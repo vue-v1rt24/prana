@@ -27,8 +27,8 @@ btnStartJs.addEventListener('click', () => {
   let posEl = 0;
 
   document.addEventListener('mousemove', (evt) => {
-    const posX = evt.pageX;
-    const posY = evt.pageY;
+    const posX = evt.clientX;
+    const posY = evt.clientY;
 
     cursor.style.top = posY + 'px';
     cursor.style.left = posX + 'px';
