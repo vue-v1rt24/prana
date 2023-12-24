@@ -117,9 +117,22 @@ if (!isMobile) {
 
 /* ================= Меню - Гамбургер */
 const backDropMenu = document.querySelector('.backDropMenu');
-const headerNav = document.querySelector('.header__nav');
-const hamburger = document.querySelector('.hamburger');
+const headerBx = document.querySelector('.header_bx');
+const headerNav = headerBx.querySelector('.header__nav');
+const hamburger = headerBx.querySelector('.hamburger');
 
+//
+let headerHeight = 0;
+
+mm.add('(max-width: 576px)', () => {
+  headerHeight = headerBx.offsetHeight;
+
+  return () => {
+    headerHeight = 0;
+  };
+});
+
+//
 const visibleMenu = () => {
   document.body.classList.toggle('open_menu');
   hamburger.classList.toggle('is-active');
@@ -134,7 +147,7 @@ const visibleMenu = () => {
   // console.log(wh);
   // console.log(headerNavHeight);
 
-  if (wh < headerNavHeight) {
+  if (wh < headerNavHeight + headerHeight) {
     headerNav.style.height = wh - 120 + 'px';
   } else {
     headerNav.style.height = headerNavHeight + 10 + 'px';
