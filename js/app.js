@@ -1,5 +1,8 @@
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
+const mm = gsap.matchMedia();
+
+/*  */
 const isMobile = /iphone|ipod|ipad|android|blackberry|mini|windows\sce|palm/i.test(
   navigator.userAgent.toLowerCase(),
 );
@@ -21,11 +24,13 @@ btnStartJs.addEventListener('click', () => {
 });
 
 /* ================= Курсор */
-/* if (!isMobile) {
-  const cursor = document.getElementById('cursor');
-  const aura = document.getElementById('aura');
+const cursor = document.getElementById('cursor');
+const aura = document.getElementById('aura');
+
+if (!isMobile) {
   let posEl = 0;
 
+  // Перемещение курсора
   document.addEventListener('mousemove', (evt) => {
     const posX = evt.clientX;
     const posY = evt.clientY;
@@ -47,6 +52,7 @@ btnStartJs.addEventListener('click', () => {
     );
   });
 
+  // Наведение курсора
   document.addEventListener('mouseover', (evt) => {
     const target = evt.target;
 
@@ -54,7 +60,14 @@ btnStartJs.addEventListener('click', () => {
     cursor.classList.remove('hidden');
     aura.classList.remove('hidden');
 
-    //
+    // Наведение на блок с классом "about_video"
+    if (target.closest('.about_video')) {
+      cursor.classList.add('video');
+      aura.classList.add('hidden');
+      return;
+    }
+
+    // Наведение на остальные блоки
     if (
       target.closest('a') ||
       target.closest('button:not(.btn_gray)') ||
@@ -69,6 +82,7 @@ btnStartJs.addEventListener('click', () => {
     }
   });
 
+  // Уход курсора
   document.addEventListener('mouseout', (evt) => {
     const target = evt.target;
 
@@ -76,7 +90,14 @@ btnStartJs.addEventListener('click', () => {
     cursor.classList.add('hidden');
     aura.classList.add('hidden');
 
-    //
+    // Уход с блока с классом "about_video"
+    if (target.closest('.about_video')) {
+      cursor.classList.remove('video');
+      aura.classList.remove('hidden');
+      return;
+    }
+
+    // Уход с остальных элементов
     if (
       target.closest('a') ||
       target.closest('button:not(.btn_gray)') ||
@@ -90,7 +111,7 @@ btnStartJs.addEventListener('click', () => {
       aura.classList.remove('active');
     }
   });
-} */
+}
 
 /*  */
 
@@ -99,23 +120,24 @@ const backDropMenu = document.querySelector('.backDropMenu');
 const headerNav = document.querySelector('.header__nav');
 const hamburger = document.querySelector('.hamburger');
 
-const headerNavRect = headerNav.getBoundingClientRect();
-
 const visibleMenu = () => {
   document.body.classList.toggle('open_menu');
   hamburger.classList.toggle('is-active');
   headerNav.classList.toggle('active');
   backDropMenu.classList.toggle('active');
 
-  // Добавление скролла в мобильное меню (если не помещается)
-  const wh = window.innerHeight;
-  console.log(wh);
-  console.log(headerNavRect.height + 98);
+  headerNav.style.height = '';
 
-  if (wh < 590 + 98) {
+  // Добавление скролла в мобильное меню (если не помещается)
+  const wh = window.outerHeight;
+  const headerNavHeight = headerNav.scrollHeight;
+  // console.log(wh);
+  // console.log(headerNavHeight);
+
+  if (wh < headerNavHeight) {
     headerNav.style.height = wh - 120 + 'px';
   } else {
-    headerNav.style.height = 590 + 'px';
+    headerNav.style.height = headerNavHeight + 10 + 'px';
   }
 };
 
@@ -250,110 +272,114 @@ if (btnDie) {
 
 /* ================= Блок "Рассчитаем стоимость" */
 const calculationForm = document.querySelector('.calculation__form');
-const blueBtnTitle = calculationForm.querySelector('.blue_btn__title');
-const calculationVariantsWrap = calculationForm.querySelectorAll('.calculation__variants_wrap');
-let isSelect = false;
-let isCalcSelect = false;
-let dataForm = null;
-
-//
-const isSelectFoo = () => {
-  if (isCalcSelect !== isSelect) {
-    isCalcSelect = isSelect;
-  } else {
-    return;
-  }
-
-  if (isSelect) {
-    gsap.to(blueBtnTitle, {
-      keyframes: [
-        { duration: 0.3, x: -100, opacity: 0 },
-        { duration: 0.3, textContent: 'Рассчитать стоимость', x: 0, opacity: 1 },
-      ],
-    });
-  } else {
-    gsap.to(blueBtnTitle, {
-      keyframes: [
-        { duration: 0.3, x: -100, opacity: 0 },
-        { duration: 0.3, textContent: 'Нужна консультация', x: 0, opacity: 1 },
-      ],
-    });
-  }
-};
-
-//
 if (calculationForm) {
-  // Проверка отмеченных пунктов
-  const checkFooCalc = () => {
-    for (let elem of calculationForm.elements) {
-      if (elem.tagName === 'INPUT') {
-        if (elem.checked) {
-          isSelect = true;
-          break;
-        } else {
-          isSelect = false;
-        }
-      }
+  const blueBtnTitle = calculationForm.querySelector('.blue_btn__title');
+  const calculationVariantsWrap = calculationForm.querySelectorAll('.calculation__variants_wrap');
+  let isSelect = false;
+  let isCalcSelect = false;
+  let dataForm = null;
+
+  //
+  const isSelectFoo = () => {
+    if (isCalcSelect !== isSelect) {
+      isCalcSelect = isSelect;
+    } else {
+      return;
+    }
+
+    if (isSelect) {
+      gsap.to(blueBtnTitle, {
+        keyframes: [
+          { duration: 0.3, x: -100, opacity: 0 },
+          { duration: 0.3, textContent: 'Рассчитать стоимость', x: 0, opacity: 1 },
+        ],
+      });
+    } else {
+      gsap.to(blueBtnTitle, {
+        keyframes: [
+          { duration: 0.3, x: -100, opacity: 0 },
+          { duration: 0.3, textContent: 'Нужна консультация', x: 0, opacity: 1 },
+        ],
+      });
     }
   };
 
   //
-  calculationForm.addEventListener('change', (evt) => {
-    const target = evt.target;
-
+  if (calculationForm) {
     // Проверка отмеченных пунктов
-    checkFooCalc();
-
-    // Открытие / закрытие подпунктов
-    if (target.matches('.checkbox__inp')) {
-      const el = target.closest('.calculation__field').querySelector('.calculation__variants_wrap');
-
-      // сброс подвариантов
-      const resetVariants = () => {
-        el.querySelectorAll('.check__inp').forEach((el) => (el.checked = false));
-        checkFooCalc();
-      };
-
-      // Переключение чекбокса
-      if (target.checked) {
-        gsap.to(el, {
-          duration: 0.6,
-          height: 'auto',
-        });
-      } else {
-        gsap.to(el, {
-          duration: 0.6,
-          height: 0,
-        });
-
-        resetVariants();
+    const checkFooCalc = () => {
+      for (let elem of calculationForm.elements) {
+        if (elem.tagName === 'INPUT') {
+          if (elem.checked) {
+            isSelect = true;
+            break;
+          } else {
+            isSelect = false;
+          }
+        }
       }
-    }
+    };
 
     //
-    isSelectFoo();
-  });
+    calculationForm.addEventListener('change', (evt) => {
+      const target = evt.target;
 
-  //
-  calculationForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+      // Проверка отмеченных пунктов
+      checkFooCalc();
 
-    dataForm = new FormData(calculationForm);
+      // Открытие / закрытие подпунктов
+      if (target.matches('.checkbox__inp')) {
+        const el = target
+          .closest('.calculation__field')
+          .querySelector('.calculation__variants_wrap');
 
-    /* Модальное окно */
-    openModal();
-  });
+        // сброс подвариантов
+        const resetVariants = () => {
+          el.querySelectorAll('.check__inp').forEach((el) => (el.checked = false));
+          checkFooCalc();
+        };
 
-  // Отмечаем варианты
-  calculationForm.addEventListener('click', (evt) => {
-    const target = evt.target;
-    const calcVarItem = target.closest('.calculation__variants__item');
+        // Переключение чекбокса
+        if (target.checked) {
+          gsap.to(el, {
+            duration: 0.6,
+            height: 'auto',
+          });
+        } else {
+          gsap.to(el, {
+            duration: 0.6,
+            height: 0,
+          });
 
-    if (calcVarItem) {
-      calcVarItem.querySelector('.check__inp').checked =
-        !calcVarItem.querySelector('.check__inp').checked;
-    }
-  });
+          resetVariants();
+        }
+      }
+
+      //
+      isSelectFoo();
+    });
+
+    //
+    calculationForm.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+
+      dataForm = new FormData(calculationForm);
+
+      /* Модальное окно */
+      openModal();
+    });
+
+    // Отмечаем варианты
+    calculationForm.addEventListener('click', (evt) => {
+      const target = evt.target;
+      const calcVarItem = target.closest('.calculation__variants__item');
+
+      if (calcVarItem) {
+        calcVarItem.querySelector('.check__inp').checked =
+          !calcVarItem.querySelector('.check__inp').checked;
+      }
+    });
+  }
 }
 
 /* ================= Валидация форм */
@@ -451,4 +477,145 @@ const dataCompanyForm = dataCompany.querySelector('.data_company__form');
 
 if (dataCompany && matchMedia('(max-width: 1365px)').matches) {
   mapWrap.after(dataCompanyForm);
+}
+
+// ================= Настройки Fancybox
+// console.log(Fancybox.defaults);
+
+Fancybox.defaults.trapFocus = false;
+Fancybox.defaults.l10n.CLOSE = 'Закрыть';
+
+// ================= Слайдер услуг на главной
+const swiperServicesBx = document.querySelector('.swiper_services');
+
+if (swiperServicesBx) {
+  const swiperServices = new Swiper(swiperServicesBx, {
+    init: false,
+    slidesPerView: 'auto',
+    freeMode: true,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      draggable: true,
+      hide: false,
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 10,
+      },
+      577: {
+        spaceBetween: 20,
+      },
+      769: {
+        spaceBetween: 40,
+      },
+    },
+  });
+
+  mm.add({ is1365: '(max-width: 1365px)', is576: '(max-width: 576px)' }, (context) => {
+    const { is1365, is576 } = context.conditions;
+
+    if (is1365 && !is576) {
+      swiperServices.init();
+      swiperServicesBx.classList.add('scrollbar');
+    }
+
+    return () => {};
+  });
+}
+
+// ================= Слайдер "Наши работы" на главной
+const swiperWorksBx = document.querySelector('.swiper__works');
+
+if (swiperWorksBx) {
+  const swiperWorks = new Swiper(swiperWorksBx, {
+    init: false,
+    slidesPerView: 'auto',
+    freeMode: true,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      draggable: true,
+      hide: false,
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 10,
+      },
+      577: {
+        spaceBetween: 40,
+      },
+    },
+  });
+
+  mm.add('(max-width: 1199px)', () => {
+    swiperWorks.init();
+    swiperWorksBx.classList.add('scrollbar');
+
+    return () => {};
+  });
+}
+
+// ================= Слайдер Блога / Статей
+const swiperArticlesBx = document.querySelector('.swiper_articles');
+
+if (swiperArticlesBx) {
+  const swiperArticles = new Swiper(swiperArticlesBx, {
+    init: false,
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    freeMode: true,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      draggable: true,
+      hide: false,
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 10,
+      },
+      577: {
+        spaceBetween: 20,
+      },
+    },
+  });
+
+  mm.add('(max-width: 1365px)', () => {
+    swiperArticles.init();
+    swiperArticlesBx.classList.add('scrollbar');
+
+    return () => {};
+  });
+}
+
+// ================= Видео на странице "Команда"
+Fancybox.bind('[data-fancybox="team"]', {
+  on: {
+    close() {
+      cursor.classList.remove('active');
+      aura.classList.remove('active');
+    },
+  },
+});
+
+// ================= Слайдер "Люди - наша гордость" на странице "Команда"
+const swiperPeopleBx = document.querySelector('.swiper_people');
+
+if (swiperPeopleBx) {
+  const peopleSwiper = new Swiper(swiperPeopleBx, {
+    init: false,
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    freeMode: true,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      draggable: true,
+      hide: false,
+    },
+  });
+
+  mm.add('(max-width: 767px)', () => {
+    peopleSwiper.init();
+    swiperPeopleBx.classList.add('scrollbar');
+
+    return () => {};
+  });
 }
