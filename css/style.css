@@ -1950,9 +1950,8 @@ a {
 /* Полоса скроллбара */
 .swiper-horizontal > .swiper-scrollbar,
 .swiper-scrollbar.swiper-scrollbar-horizontal {
-  /* left: 39px; */
-  /* right: 39px; */
-  /* width: auto; */
+  left: 39px;
+  right: 39px;
   width: auto;
   height: 2px;
   background: rgba(255, 255, 255, 0.2);
