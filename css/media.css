@@ -879,8 +879,8 @@
   /* Полоса скроллбара */
   .swiper-horizontal > .swiper-scrollbar,
   .swiper-scrollbar.swiper-scrollbar-horizontal {
-    left: 20px;
-    right: 20px;
+    /* left: 20px; */
+    /* right: 20px; */
   }
 
   /*  */
