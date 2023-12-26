@@ -1396,6 +1396,10 @@ a {
 }
 
 .job__lists_item .title_20_500_130 {
+  display: block;
+}
+
+.job__lists_item .title_20_500_130:not(:last-child) {
   margin-bottom: 10px;
 }
 
@@ -1432,7 +1436,7 @@ a {
 /*  */
 .contacts {
   width: 290px;
-  height: 402px;
+  height: 420px;
 }
 
 .contacts .job__lists__desc {
@@ -1441,7 +1445,10 @@ a {
 
 .contacts .soc {
   justify-content: flex-start;
-  margin-top: 16px;
+}
+
+.contacts .soc__item {
+  background-color: var(--colorDark3);
 }
 
 /*  */
@@ -1933,6 +1940,10 @@ a {
 
 .page_company .inp_field,
 .page_company .label_radio {
+  background-color: var(--colorDark4);
+}
+
+.page_company .contacts .soc__item {
   background-color: var(--colorDark4);
 }
 

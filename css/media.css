@@ -441,6 +441,10 @@
     width: 50%;
   }
 
+  .contacts {
+    height: 405px;
+  }
+
   .title_h4.job__title_h4 {
     font-size: 26px;
     padding-bottom: 26px;
