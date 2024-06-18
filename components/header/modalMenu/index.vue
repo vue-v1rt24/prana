@@ -33,7 +33,7 @@ onMounted(() => {
 
 <template>
   <!-- Фон модального меню -->
-  <div class="backDropMenu"></div>
+  <div @click="closeClick" class="backDropMenu"></div>
 
   <!-- Появляющиеся меню -->
   <div class="header__menu" ref="headerMenu">
@@ -330,6 +330,42 @@ onMounted(() => {
   width: 22px;
   height: 22px;
   fill: var(--accentColor);
+}
+
+/*  */
+.wrap_arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn__arrow {
+  display: inherit;
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+
+.wrap_arrow:hover .btn__arrow {
+  animation: swing 0.8s ease;
+}
+
+@keyframes swing {
+  15% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-9px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  65% {
+    transform: translateY(0);
+  }
 }
 
 /* ==================== Медиа запросы */

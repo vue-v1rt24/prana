@@ -11,7 +11,6 @@ defineProps<{
 
 //
 const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
-const blueBtnTitle = ref<HTMLSpanElement | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
 let isAnimatePlay = false;
 
@@ -32,14 +31,14 @@ const selectVariants = (idx: number, val: boolean) => {
 
   // Запускаем анимацию для изменения текста кнопки формы
   if (isAnimatePlay) {
-    gsap.to(blueBtnTitle.value, {
+    gsap.to('.calculation__btn .blue_btn__title', {
       keyframes: [
         { duration: 0.3, x: -100, opacity: 0 },
         { duration: 0.3, textContent: 'Рассчитать стоимость', x: 0, opacity: 1 },
       ],
     });
   } else {
-    gsap.to(blueBtnTitle.value, {
+    gsap.to('.calculation__btn .blue_btn__title', {
       keyframes: [
         { duration: 0.3, x: -100, opacity: 0 },
         { duration: 0.3, textContent: 'Нужна консультация', x: 0, opacity: 1 },
@@ -73,12 +72,7 @@ const openModal = () => {
           />
 
           <!--  -->
-          <UiButton
-            class="calculation__btn"
-            ref="blueBtnTitle"
-            title="Нужна консультация"
-            @click-btn="openModal"
-          />
+          <UiButton class="calculation__btn" title="Нужна консультация" @click-btn="openModal" />
         </form>
       </div>
     </div>
@@ -124,6 +118,10 @@ const openModal = () => {
   height: 103px;
   border-radius: 28px;
   margin: 54px auto 0 auto;
+}
+
+.calculation__btn :deep(.blue_btn__title) {
+  width: 307px;
 }
 
 /* ==================== Медиа запросы */

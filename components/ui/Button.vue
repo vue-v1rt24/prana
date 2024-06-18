@@ -93,11 +93,6 @@ const emit = defineEmits<{
 /* /Прозрачная кнопка */
 
 /*  */
-.blue_btn__title {
-  /* width: 307px; */
-}
-
-/*  */
 .wrap_arrow {
   display: flex;
   justify-content: center;

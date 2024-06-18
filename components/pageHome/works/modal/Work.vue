@@ -200,8 +200,8 @@ watchEffect(() => {
 
     <!-- Кнопки -->
     <div class="work_full_article__btns">
-      <UiButton title="Смотреть отзыв" color-class="btn_transparent" />
-      <UiButton title="Обсудить проект" color-class="btn_transparent" />
+      <UiButton class="work__btn" title="Смотреть отзыв" color-class="btn_transparent" />
+      <UiButton class="work__btn" title="Обсудить проект" color-class="btn_transparent" />
     </div>
 
     <!-- Нравится и поделиться -->
@@ -362,6 +362,7 @@ watchEffect(() => {
 }
 
 .work_roject_team__person img {
+  width: 100%;
   border-radius: 10px;
 }
 
@@ -403,6 +404,12 @@ watchEffect(() => {
 }
 
 /*  */
+.work__btn {
+  height: 103px;
+  border-radius: 28px;
+}
+
+/*  */
 @media (max-width: 1900px) {
   .work_full_article .close_modal {
     top: -75px;
@@ -432,6 +439,7 @@ watchEffect(() => {
 
   .work_full_article__btns {
     flex-direction: column;
+    align-items: center;
     padding: 0 52px 52px 52px;
   }
 }
