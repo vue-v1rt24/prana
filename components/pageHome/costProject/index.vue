@@ -12,7 +12,7 @@ defineProps<{
 //
 const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
-let isAnimatePlay = false;
+const isAnimatePlay = ref(false);
 
 //
 const selectVariants = (idx: number, val: boolean) => {
@@ -23,14 +23,14 @@ const selectVariants = (idx: number, val: boolean) => {
   // Проверяем значения вариантов
   const isSelect = dataCheckedVariant.value.some((item) => item);
 
-  if (isSelect !== isAnimatePlay) {
-    isAnimatePlay = isSelect;
+  if (isSelect !== isAnimatePlay.value) {
+    isAnimatePlay.value = isSelect;
   } else {
     return;
   }
 
   // Запускаем анимацию для изменения текста кнопки формы
-  if (isAnimatePlay) {
+  if (isAnimatePlay.value) {
     gsap.to('.calculation__btn .blue_btn__title', {
       keyframes: [
         { duration: 0.3, x: -100, opacity: 0 },
@@ -78,7 +78,7 @@ const openModal = () => {
     </div>
 
     <!--  -->
-    <LazyOutsideModal is-project ref="modal" />
+    <LazyOutsideModal :is-project="isAnimatePlay" ref="modal" />
   </section>
 </template>
 
