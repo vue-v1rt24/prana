@@ -2,8 +2,9 @@
 import { type TypeOutsideModal } from '@/types/form.types';
 
 /*  */
-defineProps<{
+const props = defineProps<{
   isProject?: boolean;
+  dopData?: Record<string, string[]>;
 }>();
 
 /*  */
@@ -66,7 +67,7 @@ defineExpose({
   openModal,
 });
 
-//
+// Отслеживаем открытие модального окна, чтобы дать класс тегу body
 watch(
   () => openModalRef.value,
   (val) => {
@@ -74,6 +75,18 @@ watch(
       document.body.classList.add('open_modal');
     } else {
       document.body.classList.remove('open_modal');
+    }
+  },
+);
+
+// Отслеживаем получение дополнительных данных для отправки на почту.
+// Приходят из главной страницы из раздела "Рассчитаем стоимость ..."
+watch(
+  () => props.dopData,
+  (val) => {
+    for (const key in props.dopData) {
+      const element = props.dopData[key];
+      console.log(`${key}: `, element.join(', '));
     }
   },
 );

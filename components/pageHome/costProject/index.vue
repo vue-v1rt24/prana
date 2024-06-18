@@ -13,10 +13,7 @@ const props = defineProps<{
 const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
 const isCheckedParentVariant = ref(false);
-const dataForm = ref<Record<string, string[] | null>>({});
-
-// dataForm.value['dsfdsf'] = ['1'];
-// dataForm.value['dsfdsf2'] = ['1'];
+const dataForm = ref<Record<string, string[]>>({});
 
 //
 const selectVariants = (idx: number, val: boolean) => {
@@ -52,7 +49,19 @@ const selectVariants = (idx: number, val: boolean) => {
 };
 
 // Формирование данных для отправки на почту
-const setFormData = (data: TypeNextProjectCostVarianty[]) => {};
+const setFormData = (data: TypeNextProjectCostVarianty[]) => {
+  dataForm.value = {};
+
+  for (const item of data) {
+    const isSelect = item.uslugi.some((v) => v.selected);
+
+    if (isSelect) {
+      dataForm.value[item.nextProjectCostUslugiRepeatNazvanie] = item.uslugi
+        .filter((f) => f.selected)
+        .map((m) => m.nextProjectCostUslugaRepeatNazvanie);
+    }
+  }
+};
 
 // Открытие модального окна и отправка в него данных расчёта
 const openModal = () => {
@@ -97,7 +106,7 @@ const openModal = () => {
     </div>
 
     <!--  -->
-    <LazyOutsideModal :is-project="isCheckedParentVariant" ref="modal" />
+    <LazyOutsideModal :is-project="isCheckedParentVariant" :dop-data="dataForm" ref="modal" />
   </section>
 </template>
 
