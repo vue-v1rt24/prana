@@ -1,6 +1,7 @@
 export type TypeUslugi = {
   nextProjectCostUslugaRepeatNazvanie: string;
   nextProjectCostUslugaRepeatOpisanie: string;
+  selected: boolean;
 };
 
 export type TypeNextProjectCostVarianty = {

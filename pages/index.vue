@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type TypeHome } from '@/types/home-page/homepage.types';
+import Item from '~/components/pageHome/costProject/Item.vue';
 const { graphqlUrl } = useRuntimeConfig().public;
 
 // Получение данных
@@ -59,8 +60,15 @@ const { data } = await useFetch(graphqlUrl, {
   },
   transform(data) {
     const d = data as TypeHome;
-    // console.log(d);
 
+    // Добавление в объект 'uslugi' свойство 'selected'
+    for (const item of d.data.pageBy.contentHomePage.nextProjectCostVarianty) {
+      for (const service of item.uslugi) {
+        service['selected'] = false;
+      }
+    }
+
+    //
     return {
       metaTitle: d.data.pageBy.metaTags.metaTitle,
       metaDescription: d.data.pageBy.metaTags.metaDescription,

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
 import type { OutsideModal } from '#build/components';
-import { type TypeNextProjectCostVarianty } from '@/types/home-page/nextProjectCostVarianty.types';
+import type { TypeNextProjectCostVarianty } from '@/types/home-page/nextProjectCostVarianty.types';
 
-defineProps<{
+const props = defineProps<{
   title: string;
   desc: string;
   nextProjectVars: TypeNextProjectCostVarianty[];
@@ -12,7 +12,11 @@ defineProps<{
 //
 const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
-const isAnimatePlay = ref(false);
+const isCheckedParentVariant = ref(false);
+const dataForm = ref<Record<string, string[] | null>>({});
+
+// dataForm.value['dsfdsf'] = ['1'];
+// dataForm.value['dsfdsf2'] = ['1'];
 
 //
 const selectVariants = (idx: number, val: boolean) => {
@@ -23,14 +27,14 @@ const selectVariants = (idx: number, val: boolean) => {
   // Проверяем значения вариантов
   const isSelect = dataCheckedVariant.value.some((item) => item);
 
-  if (isSelect !== isAnimatePlay.value) {
-    isAnimatePlay.value = isSelect;
+  if (isSelect !== isCheckedParentVariant.value) {
+    isCheckedParentVariant.value = isSelect;
   } else {
     return;
   }
 
   // Запускаем анимацию для изменения текста кнопки формы
-  if (isAnimatePlay.value) {
+  if (isCheckedParentVariant.value) {
     gsap.to('.calculation__btn .blue_btn__title', {
       keyframes: [
         { duration: 0.3, x: -100, opacity: 0 },
@@ -47,9 +51,24 @@ const selectVariants = (idx: number, val: boolean) => {
   }
 };
 
+// Формирование данных для отправки на почту
+const setFormData = (data: TypeNextProjectCostVarianty[]) => {};
+
 // Открытие модального окна и отправка в него данных расчёта
 const openModal = () => {
-  console.log('Данные');
+  // Отправка данных в форму модального окна
+  if (isCheckedParentVariant.value) {
+    const isCheckedChildVariant = props.nextProjectVars.some((item) =>
+      item.uslugi.some((us) => us.selected),
+    );
+
+    if (isCheckedChildVariant) {
+      setFormData(props.nextProjectVars);
+      // console.log(props.nextProjectVars);
+    }
+  }
+
+  // Открытие модального окна
   modal.value?.openModal();
 };
 </script>
@@ -78,7 +97,7 @@ const openModal = () => {
     </div>
 
     <!--  -->
-    <LazyOutsideModal :is-project="isAnimatePlay" ref="modal" />
+    <LazyOutsideModal :is-project="isCheckedParentVariant" ref="modal" />
   </section>
 </template>
 

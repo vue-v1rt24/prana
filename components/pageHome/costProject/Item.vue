@@ -3,7 +3,7 @@ import { type TypeNextProjectCostVarianty } from '@/types/home-page/nextProjectC
 import { gsap } from 'gsap';
 
 //
-const props = defineProps<{
+defineProps<{
   service: TypeNextProjectCostVarianty;
 }>();
 

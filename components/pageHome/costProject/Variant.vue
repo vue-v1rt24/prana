@@ -12,7 +12,10 @@ const inpVar = ref<HTMLInputElement | null>(null);
 
 //
 const selectVariant = () => {
-  inpVar.value && (inpVar.value.checked = !inpVar.value.checked);
+  if (inpVar.value) {
+    inpVar.value.checked = !inpVar.value.checked;
+    props.usluga.selected = inpVar.value.checked;
+  }
 };
 
 //
@@ -21,6 +24,7 @@ watch(
   (val) => {
     if (val && inpVar.value) {
       inpVar.value.checked = false;
+      props.usluga.selected = false;
     }
   },
 );
