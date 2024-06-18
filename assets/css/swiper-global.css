@@ -1,0 +1,36 @@
+/*  */
+.swiper.scrollbar {
+  padding: 0 30px 40px 30px;
+  margin: 0 -30px;
+}
+
+/* Полоса скроллбара */
+.swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  left: 30px;
+  right: 30px;
+  width: auto;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+}
+
+.swiper-scrollbar-drag {
+  background-color: var(--accentColor);
+  border-radius: 0;
+}
+
+@media (max-width: 576px) {
+  /*  */
+  .swiper.scrollbar {
+    padding: 0 20px 30px 20px;
+    margin: 0 -20px;
+  }
+
+  /* Полоса скроллбара */
+  .swiper-horizontal > .swiper-scrollbar,
+  .swiper-scrollbar.swiper-scrollbar-horizontal {
+    left: 20px;
+    right: 20px;
+  }
+}
