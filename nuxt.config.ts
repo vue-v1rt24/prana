@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport'],
+  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
 
   runtimeConfig: {
     public: {
@@ -62,6 +62,23 @@ export default defineNuxtConfig({
       screen768: 768,
       screen576: 576,
       screen320: 320,
+    },
+  },
+
+  // Отправка почты. Плагин 'nuxt-mail'
+  mail: {
+    message: {
+      from: 'rrublyov@yandex.ru',
+      to: 'rrublyov@yandex.ru', // вот так нескольким получателям: 'pranaittech@mail.ru, pranaittech@yandex.ru' либо ['info@pranait.ru, pranaittech@yandex.ru']
+    },
+    smtp: {
+      host: 'smtp.yandex.ru',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'rrublyov',
+        pass: 'uehsmscbekgvjrix', // пароль для приложений. Создаётся в учётной записи почты
+      },
     },
   },
 });

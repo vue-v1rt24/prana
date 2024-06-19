@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { type TypeOutsideModal } from '@/types/form.types';
 
-/*  */
+//
 const props = defineProps<{
   isProject?: boolean;
   dopData?: Record<string, string[]>;
 }>();
 
-/*  */
+//
+const mail = useMail();
+
+//
 const openModalRef = ref(false);
 const isOpenSelectRef = ref<boolean>(false);
 const whereFromRef = ref('Откуда узнали про PRANA IT?');
+const filePath = ref<string | null>(null);
+
+let raschet: string = '';
 
 // Поля формы
 const fields = reactive({
@@ -47,9 +53,79 @@ const openSelect = () => {
   isOpenSelectRef.value = !isOpenSelectRef.value;
 };
 
+// Сохранение картинки и формирование пути до неё
+const saveImage = () => {
+  return new Promise(async (resolve, reject) => {
+    const fd = new FormData();
+    fd.append(Date.now() + '', fields.file!);
+
+    const res = await $fetch('/api/loadImg', {
+      method: 'POST',
+      body: fd,
+    });
+
+    if (res) {
+      filePath.value = res;
+      resolve(true);
+    } else {
+      reject('Ошибка сохранения изображения');
+    }
+  });
+};
+
+// Формирование письма
+const setMail = () => {
+  const message = {
+    subject: 'Заявка с сайта pranait.ru',
+    // text: 'Текстовое сообщение',
+    html: `
+          <div>Имя: <strong>${fields.nameUser}</strong></div>
+          <div>Номер телефона: <strong>${fields.phone}</strong></div>
+
+          ${fields.email && `<div>Почта: <strong>${fields.email}</strong></div>`}
+
+          ${
+            (fields.project || raschet) &&
+            `<div>Что рассчитать: <strong>${fields.project.join(', ') || raschet}</strong></div>`
+          }
+
+          ${fields.text && `<div>Текст сообщения: <strong>${fields.text}</strong></div>`}
+
+          ${
+            fields.whereFrom &&
+            `<div>Откуда узнали про PRANA IT: <strong>${fields.whereFrom}</strong></div>`
+          }
+        `,
+  };
+
+  //
+  if (fields.file) {
+    message['attachments'] = [
+      {
+        path: `./public/files_emails/${filePath.value}`,
+      },
+    ];
+  }
+
+  //
+  return message;
+};
+
 // Отправка формы
-const sendHandler = () => {
+const sendHandler = async () => {
   console.log('Отправка формы модального окна');
+
+  // Сохранение картинки и формирование пути до неё
+  if (fields.file) {
+    try {
+      await saveImage();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Отправка письма
+  await mail.send(setMail());
 };
 
 // Открытие модального окна
@@ -86,7 +162,7 @@ watch(
   (val) => {
     for (const key in props.dopData) {
       const element = props.dopData[key];
-      console.log(`${key}: `, element.join(', '));
+      raschet += `<div>${key}: ${element.join(', ')}</div>`;
     }
   },
 );
