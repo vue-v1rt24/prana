@@ -73,7 +73,6 @@ const openModal = () => {
 
     if (isCheckedChildVariant) {
       setFormData(props.nextProjectVars);
-      // console.log(props.nextProjectVars);
     }
   }
 
