@@ -80,6 +80,19 @@ const openModal = () => {
   // Открытие модального окна
   modal.value?.openModal();
 };
+
+// Вызывается при успешной отправке формы
+const resetAsd = ref(false);
+
+// После успешной отправки формы сбрасываем поля раздела "Рассчитаем стоимость ..."
+const sendFormSuccess = () => {
+  console.log('Отправлено');
+  resetAsd.value = true;
+
+  setTimeout(() => {
+    resetAsd.value = false;
+  }, 100);
+};
 </script>
 
 <template>
@@ -97,6 +110,7 @@ const openModal = () => {
             :key="service.nextProjectCostUslugiRepeatNazvanie"
             :service
             @select-variant="selectVariants(idx, $event)"
+            :reset="resetAsd"
           />
 
           <!--  -->
@@ -106,7 +120,12 @@ const openModal = () => {
     </div>
 
     <!--  -->
-    <LazyOutsideModal :is-project="isCheckedParentVariant" :dop-data="dataForm" ref="modal" />
+    <LazyOutsideModal
+      :is-project="isCheckedParentVariant"
+      :dop-data="dataForm"
+      ref="modal"
+      @send-form-success="sendFormSuccess"
+    />
   </section>
 </template>
 

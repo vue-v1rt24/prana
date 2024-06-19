@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { type TypeOutsideModal } from '@/types/form.types';
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, minLength } from '@vuelidate/validators';
+
+import { type TypeSetMailMessage } from '@/types/form.types';
 
 //
 const props = defineProps<{
-  isProject?: boolean;
-  dopData?: Record<string, string[]>;
+  isProject?: boolean; // скрывает кнопки в форме
+  dopData?: Record<string, string[]>; // дополнительные данные для формы
+}>();
+
+const emit = defineEmits<{
+  sendFormSuccess: [];
 }>();
 
 //
@@ -18,7 +25,7 @@ const filePath = ref<string | null>(null);
 
 let raschet: string = '';
 
-// Поля формы
+// === Поля формы
 const fields = reactive({
   nameUser: 'Имя',
   phone: '1111111111',
@@ -29,7 +36,46 @@ const fields = reactive({
   whereFrom: '',
 });
 
-// Обработка загружаемого файла
+// === Сброс формы
+const resetForm = () => {
+  fields.nameUser = '';
+  fields.phone = '';
+  fields.email = '';
+  fields.project = [];
+  fields.text = '';
+  fields.file = null;
+  fields.whereFrom = '';
+  whereFromRef.value = 'Откуда узнали про PRANA IT?';
+};
+
+// === Валидация формы
+const rules = computed(() => {
+  const localRules = {
+    nameUser: {
+      required,
+    },
+    phone: {
+      required,
+      minLength: minLength(18),
+    },
+    email: {}, // для типизации
+  };
+
+  // Динамическая валидация по почты (если что-то в поле почты введём, то добавим валидацию)
+  if (fields.email) {
+    localRules.email = {
+      required,
+      email,
+    };
+  }
+
+  //
+  return localRules;
+});
+
+const v$ = useVuelidate(rules, fields);
+
+// === Обработка загружаемого файла
 const loadFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement;
 
@@ -38,7 +84,7 @@ const loadFile = (evt: Event) => {
   }
 };
 
-// Выбор "Откуда узнали про PRANA IT"
+// === Выбор "Откуда узнали про PRANA IT"
 const setWhereFrom = (evt: MouseEvent) => {
   const target = evt.target as HTMLDialogElement;
 
@@ -48,12 +94,12 @@ const setWhereFrom = (evt: MouseEvent) => {
   }
 };
 
-// Открытие/Закрытие селекта
+// === Открытие/Закрытие селекта
 const openSelect = () => {
   isOpenSelectRef.value = !isOpenSelectRef.value;
 };
 
-// Сохранение картинки и формирование пути до неё
+// === Сохранение картинки и формирование пути до неё
 const saveImage = () => {
   return new Promise(async (resolve, reject) => {
     const fd = new FormData();
@@ -73,9 +119,9 @@ const saveImage = () => {
   });
 };
 
-// Формирование письма
+// === Формирование письма
 const setMail = () => {
-  const message = {
+  const message: TypeSetMailMessage = {
     subject: 'Заявка с сайта pranait.ru',
     // text: 'Текстовое сообщение',
     html: `
@@ -85,7 +131,7 @@ const setMail = () => {
           ${fields.email && `<div>Почта: <strong>${fields.email}</strong></div>`}
 
           ${
-            (fields.project || raschet) &&
+            (fields.project.length || raschet) &&
             `<div>Что рассчитать: <strong>${fields.project.join(', ') || raschet}</strong></div>`
           }
 
@@ -111,11 +157,15 @@ const setMail = () => {
   return message;
 };
 
-// Отправка формы
+// === Отправка формы
 const sendHandler = async () => {
-  console.log('Отправка формы модального окна');
+  // Запускаем валидацию
+  v$.value.$touch();
 
-  // Сохранение картинки и формирование пути до неё
+  // Если есть ошибки в валидации
+  if (v$.value.$error) return;
+
+  // Проверяем загрузку файла в форме
   if (fields.file) {
     try {
       await saveImage();
@@ -126,14 +176,26 @@ const sendHandler = async () => {
 
   // Отправка письма
   await mail.send(setMail());
+
+  // Очищение полей
+  resetForm();
+
+  // Сброс валидации
+  v$.value.$reset();
+
+  // Отправка emit
+  emit('sendFormSuccess');
+
+  // Закрытие модального окна
+  closeModal();
 };
 
-// Открытие модального окна
+// === Открытие модального окна
 const openModal = () => {
   openModalRef.value = true;
 };
 
-// Закрытие модального окна
+// === Закрытие модального окна
 const closeModal = () => {
   openModalRef.value = false;
 };
@@ -143,7 +205,7 @@ defineExpose({
   openModal,
 });
 
-// Отслеживаем открытие модального окна, чтобы дать класс тегу body
+// === Отслеживаем открытие модального окна, чтобы дать класс тегу body
 watch(
   () => openModalRef.value,
   (val) => {
@@ -155,11 +217,13 @@ watch(
   },
 );
 
-// Отслеживаем получение дополнительных данных для отправки на почту.
+// === Отслеживаем получение дополнительных данных для отправки на почту.
 // Приходят из главной страницы из раздела "Рассчитаем стоимость ..."
 watch(
   () => props.dopData,
   (val) => {
+    fields.project = [];
+
     for (const key in props.dopData) {
       const element = props.dopData[key];
       raschet += `<div>${key}: ${element.join(', ')}</div>`;
@@ -174,22 +238,33 @@ watch(
     :class="['outside__backdrop', { outside__backdrop_visible: openModalRef }]"
   ></div>
 
-  <form @submit.prevent="" :class="['outside', { outside__open: openModalRef }]">
+  <form @submit.prevent="sendHandler" :class="['outside', { outside__open: openModalRef }]">
     <div class="outside__field">
       <div class="outside__title">Ваши контакты</div>
 
       <div class="outside__inp">
         <div class="outside__inp_duo">
-          <input type="text" placeholder="Ваше имя*" v-model="fields.nameUser" />
+          <input
+            type="text"
+            placeholder="Ваше имя*"
+            v-model.trim="fields.nameUser"
+            :class="{ invalid: v$.nameUser.$error }"
+          />
           <input
             type="tel"
             placeholder="Номер телефона*"
             v-model="fields.phone"
             v-maska="'+7 (###) ###-##-##'"
+            :class="{ invalid: v$.phone.$error }"
           />
         </div>
 
-        <input type="email" placeholder="Почта" v-model="fields.email" />
+        <input
+          type="email"
+          placeholder="Почта"
+          v-model.trim="fields.email"
+          :class="{ invalid: v$.email.$error }"
+        />
       </div>
     </div>
 
@@ -269,7 +344,7 @@ watch(
 
     <!--  -->
     <div class="outside__send">
-      <UiButton class="outside__send_btn" title="Отправить" @click-btn="sendHandler" />
+      <UiButton class="outside__send_btn" type="submit" title="Отправить" />
 
       <div class="outside__send_text">
         Нажимая кнопку “Отправить” вы соглашаетесь с
@@ -521,5 +596,10 @@ watch(
   position: absolute;
   top: 30px;
   right: 30px;
+}
+
+/*  */
+.outside .invalid {
+  outline: 1px solid red;
 }
 </style>

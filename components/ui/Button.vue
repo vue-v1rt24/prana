@@ -1,11 +1,13 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
+    type?: 'button' | 'submit' | 'reset' | 'reset';
     title: string;
     colorClass?: string;
     arrow?: boolean;
   }>(),
   {
+    type: 'button',
     arrow: true,
   },
 );
@@ -18,7 +20,7 @@ const emit = defineEmits<{
 
 <template>
   <button
-    type="button"
+    :type="type"
     :class="['blue_btn', { wrap_arrow: arrow }, colorClass]"
     @click="emit('clickBtn')"
   >

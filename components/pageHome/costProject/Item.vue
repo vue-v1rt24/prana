@@ -3,8 +3,9 @@ import { type TypeNextProjectCostVarianty } from '@/types/home-page/nextProjectC
 import { gsap } from 'gsap';
 
 //
-defineProps<{
+const props = defineProps<{
   service: TypeNextProjectCostVarianty;
+  reset?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -46,6 +47,14 @@ watch(
     changeCheckBox();
   },
 );
+
+watch(
+  () => props.reset,
+  () => {
+    isChecked.value = false;
+    changeCheckBox();
+  },
+);
 </script>
 
 <template>
@@ -63,7 +72,11 @@ watch(
       </div>
 
       <label class="checkbox">
-        <input class="checkbox__inp" type="checkbox" name="code" value="Разработка" />
+        <input
+          :class="['checkbox__inp', { checked: isChecked }]"
+          type="checkbox"
+          :value="service.nextProjectCostUslugiRepeatNazvanie"
+        />
         <span class="checkbox__check" @click="isChecked = !isChecked"></span>
       </label>
     </div>
@@ -134,7 +147,7 @@ watch(
   transition: 0.5s ease-in;
 }
 
-.checkbox__inp:checked ~ .checkbox__check {
+.checkbox__inp.checked ~ .checkbox__check {
   background-color: var(--accentColor);
 }
 
@@ -150,7 +163,7 @@ watch(
   transition: 0.5s ease-in;
 }
 
-.checkbox__inp:checked ~ .checkbox__check::before {
+.checkbox__inp.checked ~ .checkbox__check::before {
   background-color: white;
   transform: translateX(40px);
 }
@@ -270,7 +283,7 @@ watch(
     height: 25px;
   }
 
-  .checkbox__inp:checked ~ .checkbox__check::before {
+  .checkbox__inp.checked ~ .checkbox__check::before {
     transform: translateX(30px);
   }
 }
