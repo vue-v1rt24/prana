@@ -119,12 +119,12 @@ const sendFormSuccess = () => {
     </div>
 
     <!--  -->
-    <LazyOutsideModal
+    <!-- <LazyOutsideModal
       :is-project="isCheckedParentVariant"
       :dop-data="dataForm"
       ref="modal"
       @send-form-success="sendFormSuccess"
-    />
+    /> -->
   </section>
 </template>
 
@@ -164,6 +164,10 @@ const sendFormSuccess = () => {
   height: 103px;
   border-radius: 28px;
   margin: 54px auto 0 auto;
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
 .calculation__btn :deep(.blue_btn__title) {

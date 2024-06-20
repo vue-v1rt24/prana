@@ -1,8 +1,8 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    type?: 'button' | 'submit' | 'reset' | 'reset';
     title: string;
+    type?: 'button' | 'submit' | 'reset' | 'reset';
     colorClass?: string;
     arrow?: boolean;
   }>(),

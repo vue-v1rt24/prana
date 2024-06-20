@@ -34,15 +34,7 @@ const props = defineProps<{
         ></p>
 
         <div class="services__cards__link">
-          <NuxtLink :to="`/services/${item.slug}`" class="job__link wrap_arrow">
-            <span>Перейти</span>
-
-            <span class="btn__arrow">
-              <svg class="arrow">
-                <use xlink:href="/img/sprite.svg#arrow"></use>
-              </svg>
-            </span>
-          </NuxtLink>
+          <UiLinkText :link="`/services/${item.slug}`" title="Перейти" />
         </div>
       </div>
     </div>
@@ -130,42 +122,6 @@ const props = defineProps<{
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
-}
-
-/*  */
-.wrap_arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn__arrow {
-  display: inherit;
-  transform: translateY(0);
-  transition: transform 0.3s;
-}
-
-.wrap_arrow:hover .btn__arrow {
-  animation: swing 0.8s ease;
-}
-
-@keyframes swing {
-  15% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-9px);
-  }
-  40% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  65% {
-    transform: translateY(0);
-  }
 }
 
 /* ==================== Медиа запросы */

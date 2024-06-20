@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail'],
+  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail', 'vue-yandex-maps/nuxt'],
 
   runtimeConfig: {
     public: {
@@ -80,5 +80,10 @@ export default defineNuxtConfig({
         pass: 'uehsmscbekgvjrix', // пароль для приложений. Создаётся в учётной записи почты
       },
     },
+  },
+
+  // Для карты яндекса / 'vue-yandex-maps/nuxt'
+  yandexMaps: {
+    apikey: 'f52ff3fc-0a45-4e8f-8507-e60a0a562e75',
   },
 });

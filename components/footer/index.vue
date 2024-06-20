@@ -4,11 +4,13 @@ const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal()
 
 <template>
   <div>
-    <LazyOutsideModal
+    <Contacts />
+
+    <!-- <LazyOutsideModal
       :is-project="isVisibleProjectVariants().value"
       :dop-data="dopDate().value"
       @send-form-success="sendFormSuccess"
-    />
+    /> -->
   </div>
 </template>
 

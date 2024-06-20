@@ -132,25 +132,8 @@ onMounted(() => {
 
         <div class="header__menu_links">
           <div>
-            <a class="job__link wrap_arrow" href="#">
-              <span class="job__link__border">Презентация компании</span>
-
-              <span class="btn__arrow">
-                <svg class="arrow">
-                  <use xlink:href="/img/sprite.svg#arrow"></use>
-                </svg>
-              </span>
-            </a>
-
-            <a href="#" class="job__link wrap_arrow btn_start_js">
-              <span class="job__link__border">Начать проект</span>
-
-              <span class="btn__arrow">
-                <svg class="arrow">
-                  <use xlink:href="/img/sprite.svg#arrow"></use>
-                </svg>
-              </span>
-            </a>
+            <UiLinkText :link="`/`" title="Презентация компании" underline />
+            <UiLinkText :link="`/`" title="Начать проект" underline />
           </div>
 
           <ul class="header_soc">
@@ -330,42 +313,6 @@ onMounted(() => {
   width: 22px;
   height: 22px;
   fill: var(--accentColor);
-}
-
-/*  */
-.wrap_arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn__arrow {
-  display: inherit;
-  transform: translateY(0);
-  transition: transform 0.3s;
-}
-
-.wrap_arrow:hover .btn__arrow {
-  animation: swing 0.8s ease;
-}
-
-@keyframes swing {
-  15% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-9px);
-  }
-  40% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  65% {
-    transform: translateY(0);
-  }
 }
 
 /* ==================== Медиа запросы */
