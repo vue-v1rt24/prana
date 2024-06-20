@@ -194,6 +194,7 @@ watch(
   .check {
     width: 20px;
     height: 20px;
+    display: block;
   }
 }
 </style>

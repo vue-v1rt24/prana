@@ -162,12 +162,7 @@ const sendFormSuccess = () => {
 .calculation__btn {
   width: 458px;
   height: 103px;
-  border-radius: 28px;
   margin: 54px auto 0 auto;
-
-  @media (max-width: 576px) {
-    width: 100%;
-  }
 }
 
 .calculation__btn :deep(.blue_btn__title) {
@@ -195,6 +190,10 @@ const sendFormSuccess = () => {
   .calculation__form {
     margin-top: 58px;
   }
+
+  .calculation__btn {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -204,11 +203,19 @@ const sendFormSuccess = () => {
   }
 
   .description.calculation__description {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .calculation__form {
-    margin-top: 36px;
+    margin-top: 42px;
+  }
+
+  .calculation__btn {
+    height: 80px;
+  }
+
+  .calculation__btn :deep(.blue_btn__title) {
+    width: 230px;
   }
 }
 </style>

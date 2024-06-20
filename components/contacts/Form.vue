@@ -78,6 +78,7 @@
   @media (max-width: 576px) {
     border-radius: 24px;
     padding: 24px;
+    margin-top: 68px;
   }
 }
 
@@ -128,6 +129,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+
+  @media (max-width: 576px) {
+    gap: 18px;
+  }
 }
 
 .inp_field {
@@ -149,6 +154,7 @@
   @media (max-width: 576px) {
     height: 73px;
     font-size: 16px;
+    border-radius: 18px;
     padding: 26px;
   }
 }

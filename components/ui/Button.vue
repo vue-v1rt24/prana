@@ -37,8 +37,6 @@ const emit = defineEmits<{
 <style lang="css" scoped>
 /* Синяя кнопка */
 .blue_btn {
-  /* width: 458px; */
-  /* height: 103px; */
   font-family: var(--fontFamily-RoadRadio);
   font-size: 24px;
   font-weight: 700;
@@ -47,10 +45,9 @@ const emit = defineEmits<{
   background-color: var(--accentColor);
   white-space: nowrap;
   border: none;
-  /* border-radius: 28px; */
+  border-radius: 28px;
   user-select: none;
   overflow: hidden;
-  /* margin: 54px auto 0 auto; */
   transition: background-color 0.3s;
 }
 
@@ -131,27 +128,16 @@ const emit = defineEmits<{
 }
 
 /* ==================== Медиа запросы */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .blue_btn {
-    width: 100%;
-    height: 79px;
     font-size: 18px;
+    border-radius: 18px;
+    gap: 10px;
   }
 
   .blue_btn .btn__arrow .arrow {
     width: 14px;
     height: 14px;
-  }
-
-  .blue_btn__title {
-    width: 230px;
-  }
-}
-
-@media (max-width: 576px) {
-  .blue_btn {
-    border-radius: 18px;
-    margin: 24px auto 0 auto;
   }
 }
 </style>

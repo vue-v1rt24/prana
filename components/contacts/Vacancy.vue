@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const viewport = useViewport();
+</script>
 
 <template>
   <div class="job_bx">
-    <div class="job vacancy">
+    <div v-if="viewport.isGreaterOrEquals('screen576')" class="job vacancy">
       <div class="title_h4 job__title_h4">Вакансии</div>
 
       <div class="job__lists">
@@ -27,6 +29,7 @@
       <UiLinkText :link="`/`" title="Смотреть все вакансии" />
     </div>
 
+    <!--  -->
     <div class="job contacts">
       <div class="title_h4 job__title_h4">Контакты</div>
 
@@ -52,22 +55,27 @@
 
 <style lang="css" scoped>
 .job_bx {
-  display: flex;
+  display: grid;
+  grid-template-columns: 450px 1fr;
   align-items: flex-start;
   column-gap: 20px;
 
-  @media (max-width: 1800px) {
-    align-items: center;
-  }
-
   @media (max-width: 1600px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     row-gap: 40px;
   }
 
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+
   @media (max-width: 576px) {
-    flex-direction: column-reverse;
-    margin-top: 64px;
+    margin-top: 32px;
   }
 }
 
@@ -122,18 +130,7 @@
 }
 
 /*  */
-.vacancy {
-  width: 450px;
-  flex-shrink: 0;
-
-  @media (max-width: 1600px) {
-    width: 100%;
-  }
-}
-
-/*  */
 .contacts {
-  width: 100%;
   padding-bottom: 0;
 }
 
@@ -142,7 +139,7 @@
 }
 
 .contacts .job__lists_item {
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .contacts .job__lists {
@@ -152,6 +149,10 @@
   @media (max-width: 1800px) {
     flex-direction: column;
     row-gap: 26px;
+  }
+
+  @media (max-width: 576px) {
+    row-gap: 24px;
   }
 }
 </style>

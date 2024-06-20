@@ -56,6 +56,7 @@ export default defineNuxtConfig({
 
     breakpoints: {
       screen1024: 1024,
+      screen1200: 1200,
       screen1280: 1280,
       screen1600: 1600,
 

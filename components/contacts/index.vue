@@ -1,4 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { gsap } from 'gsap';
+
+//
+const mm = gsap.matchMedia();
+
+//
+onMounted(() => {
+  mm.add('(max-width: 1200px)', () => {
+    const dataCompanyLeft = document.querySelector('.data_company__left');
+    const mapWrap = document.querySelector('.map_wrap');
+    const dataCompanyForm = document.querySelector('.data_company__form');
+
+    if (dataCompanyLeft && mapWrap && dataCompanyForm) {
+      mapWrap.after(dataCompanyForm);
+
+      return () => {
+        dataCompanyLeft.after(dataCompanyForm);
+      };
+    }
+  });
+});
+</script>
 
 <template>
   <section class="blog_bx">

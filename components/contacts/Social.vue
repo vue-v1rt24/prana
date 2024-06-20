@@ -33,6 +33,10 @@
   column-gap: 12px;
   border-radius: 8px;
   margin-top: 32px;
+
+  @media (max-width: 567px) {
+    margin-top: 24px;
+  }
 }
 
 .soc__item {

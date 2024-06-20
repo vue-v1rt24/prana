@@ -254,17 +254,17 @@ watch(
 
 @media (max-width: 576px) {
   .calculation__service {
-    padding: 20px 0 20px 0;
+    padding: 24px 0 24px 0;
   }
 
   .calculation__service .title_h3 {
-    font-size: 24px;
-    column-gap: 8px;
+    font-size: 22px;
+    column-gap: 10px;
     margin-bottom: 20px;
   }
 
   .calculation__service .service__title_img {
-    width: 36px;
+    width: 29px;
   }
 
   .description.calculation__service__description {
