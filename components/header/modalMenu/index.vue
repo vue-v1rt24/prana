@@ -2,6 +2,17 @@
 import { useModalMenu } from '@/composables/useModalMenu';
 
 //
+defineProps<{
+  logo?: string;
+  nomerTelefona?: string;
+  nomerTelefonaMenedzhment?: string;
+  settingPochta?: string;
+  telegramLink?: string;
+  vkLink?: string;
+  whatsappLink?: string;
+}>();
+
+//
 const { resizeHeightMenu, addRemoveClassBody, resetMenu } = useModalMenu();
 const headerMenu = ref<HTMLDivElement | null>(null);
 const subMenu = ref<HTMLDivElement | null>(null);
@@ -38,7 +49,7 @@ onMounted(() => {
   <!-- Появляющиеся меню -->
   <div class="header__menu" ref="headerMenu">
     <div class="header__menu_top">
-      <div class="header__menu_top_img"><img src="/img/logo-menu.svg" alt="" /></div>
+      <div v-if="logo" class="header__menu_top_img"><img :src="logo" alt="" /></div>
       <UiClose @close-click="closeClick" />
     </div>
 
@@ -116,16 +127,18 @@ onMounted(() => {
       <!--  -->
       <div class="header__menu_contacts">
         <ul class="header__menu_phones">
-          <li class="header__menu_phones_li">
-            <a href="tel:8 800 500 81 54">8 800 500 81 54</a>
+          <li v-if="nomerTelefona" class="header__menu_phones_li">
+            <a :href="`tel:${nomerTelefona}`">{{ nomerTelefona }}</a>
             <span>Горячая линия</span>
           </li>
-          <li class="header__menu_phones_li">
-            <a href="tel:7 939 113 66 90">7 939 113 66 90</a>
+
+          <li v-if="nomerTelefonaMenedzhment" class="header__menu_phones_li">
+            <a :href="`tel:+${nomerTelefonaMenedzhment}`">{{ nomerTelefonaMenedzhment }}</a>
             <span>Менеджмент</span>
           </li>
-          <li class="header__menu_phones_li">
-            <a href="mailto:info@pranait.ru">info@pranait.ru</a>
+
+          <li v-if="settingPochta" class="header__menu_phones_li">
+            <a :href="`mailto:${settingPochta}`">{{ settingPochta }}</a>
             <span>Электронный адрес</span>
           </li>
         </ul>
@@ -137,26 +150,28 @@ onMounted(() => {
           </div>
 
           <ul class="header_soc">
-            <li>
-              <a href="#">
+            <li v-if="vkLink">
+              <NuxtLink :to="vkLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
-              </a>
+              </NuxtLink>
             </li>
-            <li>
-              <a href="#">
+
+            <li v-if="telegramLink">
+              <NuxtLink :to="telegramLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#telegram"></use>
                 </svg>
-              </a>
+              </NuxtLink>
             </li>
-            <li>
-              <a href="#">
+
+            <li v-if="whatsappLink">
+              <NuxtLink :to="whatsappLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#whatsapp"></use>
                 </svg>
-              </a>
+              </NuxtLink>
             </li>
           </ul>
         </div>

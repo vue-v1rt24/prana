@@ -104,6 +104,8 @@ const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal()
       :dop-data="dopDate().value"
       @send-form-success="sendFormSuccess"
     /> -->
+
+    <LazyOutsideModal />
   </footer>
 </template>
 

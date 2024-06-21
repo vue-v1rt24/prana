@@ -50,6 +50,10 @@ onMounted(() => {
   border-radius: 72px 72px 0px 0px;
   padding: 160px 0 80px 0;
 
+  @media (max-width: 700px) {
+    padding: 160px 0 38px 0;
+  }
+
   @media (max-width: 576px) {
     padding: 80px 0 38px 0;
   }

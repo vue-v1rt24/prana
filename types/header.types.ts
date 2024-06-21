@@ -7,7 +7,17 @@ export type TypeHeaderSettings = {
             mediaItemUrl: string;
           };
         };
+        logotipVModalnomMenyu: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
         nomerTelefona: string;
+        nomerTelefonaMenedzhment: string;
+        settingPochta: string;
+        telegramLink: string;
+        vkLink: string;
+        whatsappLink: string;
       };
     };
   };

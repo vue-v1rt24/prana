@@ -9,6 +9,9 @@ const props = defineProps<{
   nextProjectVars: TypeNextProjectCostVarianty[];
 }>();
 
+// Управление модальным окном
+const { isOpenModal } = useOutsideModal();
+
 //
 const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
@@ -77,7 +80,8 @@ const openModal = () => {
   }
 
   // Открытие модального окна
-  modal.value?.openModal();
+  // modal.value?.openModal();
+  isOpenModal().value = true;
 };
 
 // Вызывается при успешной отправке формы

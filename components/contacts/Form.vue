@@ -1,4 +1,78 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, minLength } from '@vuelidate/validators';
+
+//
+const mail = useMail();
+
+// === Поля формы
+const fields = reactive({
+  username: '',
+  email: '',
+  phone: '',
+  svyaz: 'Звонок',
+});
+
+// === Сброс формы
+const resetForm = () => {
+  fields.username = '';
+  fields.email = '';
+  fields.phone = '';
+  fields.svyaz = 'Звонок';
+};
+
+// === Валидация формы
+const rules = computed(() => ({
+  username: {
+    required,
+  },
+  email: {
+    required,
+    email,
+  },
+  phone: {
+    required,
+    minLength: minLength(18),
+  },
+}));
+
+const v$ = useVuelidate(rules, fields);
+
+// === Формирование письма
+const setMail = () => {
+  const message = {
+    subject: 'Заявка с сайта pranait.ru',
+    // text: 'Текстовое сообщение',
+    html: `
+          <div>Имя: <strong>${fields.username}</strong></div>
+          <div>Номер телефона: <strong>${fields.phone}</strong></div>
+          <div>Почта: <strong>${fields.email}</strong></div>
+          <div>Удобный способ связи: <strong>${fields.svyaz}</strong></div>
+        `,
+  };
+
+  //
+  return message;
+};
+
+// === Отправка почты
+const sendHandler = async () => {
+  // Запускаем валидацию
+  v$.value.$touch();
+
+  // Если есть ошибки в валидации
+  if (v$.value.$error) return;
+
+  // Отправка письма
+  await mail.send(setMail());
+
+  // Очищение полей
+  resetForm();
+
+  // Сброс валидации
+  v$.value.$reset();
+};
+</script>
 
 <template>
   <div class="data_company__form">
@@ -12,22 +86,31 @@
         любым удобным способом
       </p>
 
-      <form class="contact_form">
+      <form @submit.prevent="sendHandler" class="contact_form">
         <div class="contact_us__fields modal__fields">
           <input
             class="inp_field inp_field__forename"
             type="text"
-            name="forename"
             placeholder="Ваше имя"
+            v-model.trim="fields.username"
+            :class="{ invalid: v$.username.$error }"
           />
 
-          <input class="inp_field inp_field__email" type="email" name="email" placeholder="Email" />
+          <input
+            class="inp_field inp_field__email"
+            type="email"
+            placeholder="Email"
+            v-model.trim="fields.email"
+            :class="{ invalid: v$.email.$error }"
+          />
 
           <input
             class="inp_field inp_field__tel"
             type="tel"
-            name="tel"
             placeholder="Номер телефона"
+            v-model="fields.phone"
+            v-maska="'+7 (###) ###-##-##'"
+            :class="{ invalid: v$.phone.$error }"
           />
         </div>
 
@@ -36,23 +119,28 @@
 
           <div class="contact_us__connection_variants">
             <label class="label_radio">
-              <input class="inp_radio" checked type="radio" name="communication" value="Звонок" />
+              <input class="inp_radio" checked type="radio" value="Звонок" v-model="fields.svyaz" />
               <span class="title_radio">Звонок</span>
             </label>
 
             <label class="label_radio">
-              <input class="inp_radio" type="radio" name="communication" value="telegram" />
+              <input class="inp_radio" type="radio" value="telegram" v-model="fields.svyaz" />
               <span class="title_radio">telegram</span>
             </label>
 
             <label class="label_radio">
-              <input class="inp_radio" type="radio" name="communication" value="whats app" />
+              <input class="inp_radio" type="radio" value="whats app" v-model="fields.svyaz" />
               <span class="title_radio">whats app</span>
             </label>
           </div>
         </div>
 
-        <UiButton type="submit" title="Отправить" class="contact_us__submit" />
+        <UiButton
+          type="submit"
+          title="Отправить"
+          class="contact_us__submit"
+          v-model="fields.svyaz"
+        />
 
         <div class="contact_us__copy">
           Нажимая кнопку “Отправить” вы соглашаетесь <br />
@@ -151,6 +239,11 @@
   border-radius: 28px;
   padding: 36px;
 
+  &.invalid {
+    outline: 1px solid red;
+  }
+
+  /*  */
   @media (max-width: 576px) {
     height: 73px;
     font-size: 16px;

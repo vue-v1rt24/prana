@@ -14,9 +14,6 @@ const emit = defineEmits<{
   sendFormSuccess: [];
 }>();
 
-// Управление модальным окном
-const { isOpenModal } = useOutsideModal();
-
 //
 const mail = useMail();
 
@@ -195,34 +192,21 @@ const sendHandler = async () => {
 
 // === Открытие модального окна
 const openModal = () => {
-  document.body.classList.add('open_modal');
   openModalRef.value = true;
 };
 
 // === Закрытие модального окна
 const closeModal = () => {
   openModalRef.value = false;
-  isOpenModal().value = false;
-  document.body.classList.remove('open_modal');
 };
 
 //
-watch(
-  () => isOpenModal().value,
-  (val) => {
-    if (val) {
-      openModal();
-    }
-  },
-);
-
-//
-/* defineExpose({
+defineExpose({
   openModal,
-}); */
+});
 
 // === Отслеживаем открытие модального окна, чтобы дать класс тегу body
-/* watch(
+watch(
   () => openModalRef.value,
   (val) => {
     if (val) {
@@ -231,11 +215,11 @@ watch(
       document.body.classList.remove('open_modal');
     }
   },
-); */
+);
 
 // === Отслеживаем получение дополнительных данных для отправки на почту.
 // Приходят из главной страницы из раздела "Рассчитаем стоимость ..."
-/* watch(
+watch(
   () => props.dopData,
   (val) => {
     fields.project = [];
@@ -245,12 +229,12 @@ watch(
       raschet += `<div>${key}: ${element.join(', ')}</div>`;
     }
   },
-); */
+);
 </script>
 
 <template>
   <div
-    @click="closeModal"
+    @click="openModalRef = false"
     :class="['outside__backdrop', { outside__backdrop_visible: openModalRef }]"
   ></div>
 

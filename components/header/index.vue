@@ -13,27 +13,48 @@ const dotsMenu = ref<HTMLDivElement | null>(null);
 const settingsQuery = {
   query: `
     {
-    settingsSitePage {
-      settingsSite {
-        logotip {
-          node {
-            mediaItemUrl
+      settingsSitePage {
+        settingsSite {
+          logotip {
+            node {
+              mediaItemUrl
+            }
           }
+          logotipVModalnomMenyu {
+            node {
+              mediaItemUrl
+            }
+          }
+          nomerTelefona
+          nomerTelefonaMenedzhment
+          settingPochta
+          telegramLink
+          vkLink
+          whatsappLink
         }
-        nomerTelefona
       }
     }
-  }
 `,
 };
 
 const { data } = await useFetch(graphqlUrl, {
   params: settingsQuery,
   transform(data) {
+    const d = data as TypeHeaderSettings;
+
     return {
-      logo: (data as TypeHeaderSettings).data.settingsSitePage.settingsSite.logotip.node
-        .mediaItemUrl,
-      tel: (data as TypeHeaderSettings).data.settingsSitePage.settingsSite.nomerTelefona,
+      logo: d.data.settingsSitePage.settingsSite.logotip.node.mediaItemUrl,
+
+      logotipVModalnomMenyu:
+        d.data.settingsSitePage.settingsSite.logotipVModalnomMenyu.node.mediaItemUrl,
+
+      hotLine: d.data.settingsSitePage.settingsSite.nomerTelefona,
+      nomerTelefonaMenedzhment: d.data.settingsSitePage.settingsSite.nomerTelefonaMenedzhment,
+      settingPochta: d.data.settingsSitePage.settingsSite.settingPochta,
+
+      telegramLink: d.data.settingsSitePage.settingsSite.telegramLink,
+      vkLink: d.data.settingsSitePage.settingsSite.vkLink,
+      whatsappLink: d.data.settingsSitePage.settingsSite.whatsappLink,
     };
   },
 });
@@ -60,9 +81,9 @@ onMounted(() => {
   <header :class="['header_bx', { header_bx_relative: menuPositionRelative }]">
     <div class="container">
       <div class="header">
-        <div class="logo">
+        <div v-if="data?.logo" class="logo">
           <NuxtLink to="/">
-            <img :src="data?.logo" alt="" />
+            <img :src="data.logo" alt="" />
           </NuxtLink>
         </div>
 
@@ -86,7 +107,9 @@ onMounted(() => {
         </div>
 
         <!--  -->
-        <a class="header__tel" :href="`tel:${data?.tel}`">{{ data?.tel }}</a>
+        <a v-if="data?.hotLine" class="header__tel" :href="`tel:${data.hotLine}`">{{
+          data.hotLine
+        }}</a>
 
         <UiButton
           class="header_start_project_btn header__transparent"
@@ -99,7 +122,15 @@ onMounted(() => {
   </header>
 
   <!-- Появляющиеся меню -->
-  <HeaderModalMenu />
+  <HeaderModalMenu
+    :logo="data?.logotipVModalnomMenyu"
+    :nomerTelefona="data?.hotLine"
+    :nomerTelefonaMenedzhment="data?.nomerTelefonaMenedzhment"
+    :settingPochta="data?.settingPochta"
+    :telegramLink="data?.telegramLink"
+    :vkLink="data?.vkLink"
+    :whatsappLink="data?.whatsappLink"
+  />
 </template>
 
 <style lang="css" scoped>
