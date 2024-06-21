@@ -21,7 +21,7 @@ const map = shallowRef<null | YMap>(null);
         v-model="map"
         :settings="{
           location: {
-            center: [41.915885, 44.999924],
+            center: [41.91638975529478, 45.000137210410344],
             zoom: 17,
           },
           theme: 'dark',
