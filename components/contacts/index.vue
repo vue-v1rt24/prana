@@ -51,7 +51,7 @@ onMounted(() => {
   padding: 160px 0 80px 0;
 
   @media (max-width: 576px) {
-    padding: 80px 0 80px 0;
+    padding: 80px 0 38px 0;
   }
 }
 

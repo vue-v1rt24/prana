@@ -28,12 +28,14 @@ defineProps<{
   align-items: center;
   column-gap: 14px;
   padding-top: 32px;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }
 
 .wrap_arrow {
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   gap: 12px;
 }
 

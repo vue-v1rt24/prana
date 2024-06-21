@@ -107,6 +107,8 @@ useSeoMeta({
       :desc="data.nextProjectCostOpisanie"
       :next-project-vars="data.nextProjectCostVarianty"
     />
+
+    <Contacts />
   </div>
 </template>
 

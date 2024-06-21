@@ -1,17 +1,266 @@
 <script setup lang="ts">
+const viewport = useViewport();
 const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal();
 </script>
 
 <template>
-  <div>
-    <Contacts />
+  <footer class="footer_bx">
+    <div class="container">
+      <div class="footer">
+        <div class="footer__logo_bx">
+          <div class="footer__logo"><img src="/img/logo.svg" alt="" /></div>
+          <div class="footer__copy">© {{ new Date().getFullYear() }}, LLC PRANA IT</div>
+        </div>
+
+        <ul v-if="viewport.isGreaterOrEquals('screen1280')" class="footer__menu">
+          <li class="menu-item">
+            <a href="#">Портфолио</a>
+            <ul class="sub-menu">
+              <li class="menu-item">
+                <a href="#">Веб-разработка</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Дизайн</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">3D дизайн</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Фото</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Видео</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Motion дизайн</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Продвижение</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <a href="#">Услуги</a>
+            <ul class="sub-menu">
+              <li class="menu-item">
+                <a href="#">Веб-разработка</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Дизайн</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Фото и Видео</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Motion дизайн</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Продвижение</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <a href="#">Команда</a>
+            <ul class="sub-menu">
+              <li class="menu-item">
+                <a href="#">Блог</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Отзывы</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Вакансии</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Наша продукция</a>
+              </li>
+              <li class="menu-item">
+                <a href="#">Контакты</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="footer__links">
+          <li>
+            <UiLinkText link="/" title="Презентация компании" underline />
+          </li>
+
+          <li>
+            <UiLinkText link="/" title="Начать проект" underline />
+          </li>
+
+          <li class="footer__politico">
+            <NuxtLink to="/">Политика конфиденциальности</NuxtLink>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <!-- <LazyOutsideModal
       :is-project="isVisibleProjectVariants().value"
       :dop-data="dopDate().value"
       @send-form-success="sendFormSuccess"
     /> -->
-  </div>
+  </footer>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.footer_bx {
+  background-color: var(--colorDark3);
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  border-top: var(--border);
+  padding: 80px 0 40px 0;
+
+  @media (max-width: 1700px) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: 700px) {
+    justify-content: center;
+    padding: 38px 0 60px 0;
+  }
+}
+
+/*  */
+.footer__logo_bx {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 206px;
+
+  @media (max-width: 1700px) {
+    margin-right: 0;
+  }
+
+  @media (max-width: 700px) {
+    text-align: center;
+  }
+}
+
+.footer__copy {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  color: #7c838d;
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+/*  */
+.footer__logo {
+  @media (max-width: 700px) {
+    margin-bottom: 128px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 114px;
+  }
+}
+
+.footer__logo img {
+  width: 263px;
+
+  @media (max-width: 700px) {
+    width: 230px;
+  }
+
+  @media (max-width: 576px) {
+    width: 178px;
+  }
+}
+
+/*  */
+.footer__menu {
+  display: flex;
+  column-gap: 103px;
+  padding-top: 13px;
+}
+
+.footer__menu .menu-item a {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.footer__menu .menu-item {
+  font-size: 18px;
+}
+
+.footer__menu .menu-item .sub-menu .menu-item:not(:last-child) {
+  margin-bottom: 18px;
+}
+
+.footer__menu .menu-item .sub-menu .menu-item a {
+  font-size: 16px;
+  font-weight: 300;
+  color: #b7bec9;
+  margin-bottom: 0;
+}
+
+/*  */
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 13px;
+  margin-left: auto;
+  margin-right: 185px;
+
+  @media (max-width: 1700px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media (max-width: 700px) {
+    position: absolute;
+    top: 112px;
+    align-items: center;
+  }
+
+  @media (max-width: 576px) {
+    top: 94px;
+  }
+}
+
+.footer__links .job__link {
+  border-top: 0;
+  padding-top: 0;
+  margin-bottom: 28px;
+
+  @media (max-width: 576px) {
+    margin-bottom: 22px;
+  }
+}
+
+/*  */
+.footer__politico {
+  text-align: right;
+  margin-top: auto;
+
+  @media (max-width: 700px) {
+    margin-top: 26px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 44px;
+  }
+}
+
+.footer__politico a {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  color: #7c838d;
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
+}
+</style>
