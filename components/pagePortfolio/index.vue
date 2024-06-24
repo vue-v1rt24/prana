@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { type TypeBlogWorkTransform } from '@/types/home-page/works.types';
+import type { TypePortfolio, TypeCat } from '~/types/portfolios.types';
 
-//
 const props = defineProps<{
-  item: TypeBlogWorkTransform;
+  article: TypePortfolio;
 }>();
 
-// console.log(props.item);
+console.log(props.article);
 
 //
 const emit = defineEmits<{
@@ -17,16 +16,11 @@ const emit = defineEmits<{
 const video = ref<HTMLVideoElement | null>(null);
 
 //
-const isDirect = computed(() => props.item.homePreview.vyborText);
+const isDirect = computed(() => props.article.homePreview.vyborText);
 const direct = computed(() => (isDirect.value ? 'direct' : 'video'));
-const link = computed(() => {
-  return props.item.categories.nodes[0].taxonomyName === 'blog_categories'
-    ? `/blog/${props.item.slug}`
-    : props.item.slug;
-});
 
 const isBlog = computed(() =>
-  props.item.categories.nodes[0].taxonomyName === 'blog_categories' ? true : false,
+  props.article.portfolioCategories.nodes[0].taxonomyName === 'blog_categories' ? true : false,
 );
 
 // Запуск видео
@@ -67,10 +61,10 @@ const sendWork = (link: string) => {
 </script>
 
 <template>
-  <div :class="['works__item', direct]">
-    <div class="works__img">
+  <div :class="['works__item mix development_filter', { direct }]">
+    <div class="works__img skeleton!!!">
       <NuxtImg
-        :src="item.homePreview.izobrazhenie.node.mediaItemUrl"
+        :src="article.homePreview.izobrazhenie.node.mediaItemUrl"
         loading="lazy"
         format="webp"
         width="450"
@@ -79,14 +73,21 @@ const sendWork = (link: string) => {
 
       <!-- По наведению текст -->
       <div v-if="isDirect" class="works__item_more_detailed_bx">
-        <NuxtLink v-if="isBlog" :to="link" class="works__item_more_detailed__link">
-          <div class="works__item_more_detailed__title" v-if="item.homePreview.zagolovokHover">
-            {{ item.homePreview.zagolovokHover }}
+        <NuxtLink
+          v-if="isBlog"
+          :to="`/portfolio/${props.article.slug}`"
+          class="works__item_more_detailed__link"
+        >
+          <div class="works__item_more_detailed__title" v-if="article.homePreview.zagolovokHover">
+            {{ article.homePreview.zagolovokHover }}
           </div>
 
           <ClientOnly>
-            <p class="works__item_more_detailed__desc" v-if="item.homePreview.homePreviewTextTekst">
-              {{ item.homePreview.homePreviewTextTekst }}
+            <p
+              class="works__item_more_detailed__desc"
+              v-if="article.homePreview.homePreviewTextTekst"
+            >
+              {{ article.homePreview.homePreviewTextTekst }}
             </p>
           </ClientOnly>
 
@@ -104,17 +105,20 @@ const sendWork = (link: string) => {
         <!--  -->
         <a
           v-else
-          @click.prevent="sendWork(link)"
-          :href="link"
+          @click.prevent="sendWork(`/portfolio/${props.article.slug}`)"
+          :href="`/portfolio/${props.article.slug}`"
           class="works__item_more_detailed__link"
         >
-          <div class="works__item_more_detailed__title" v-if="item.homePreview.zagolovokHover">
-            {{ item.homePreview.zagolovokHover }}
+          <div class="works__item_more_detailed__title" v-if="article.homePreview.zagolovokHover">
+            {{ article.homePreview.zagolovokHover }}
           </div>
 
           <ClientOnly>
-            <p class="works__item_more_detailed__desc" v-if="item.homePreview.homePreviewTextTekst">
-              {{ item.homePreview.homePreviewTextTekst }}
+            <p
+              class="works__item_more_detailed__desc"
+              v-if="article.homePreview.homePreviewTextTekst"
+            >
+              {{ article.homePreview.homePreviewTextTekst }}
             </p>
           </ClientOnly>
 
@@ -132,9 +136,9 @@ const sendWork = (link: string) => {
 
       <!-- По наведению видео -->
       <div class="works__item_more_detailed_bx" v-else @mouseover="videoHover">
-        <NuxtLink v-if="isBlog" :to="link" class="works__item_more_detailed__link_video">
+        <NuxtLink v-if="isBlog" :to="''" class="works__item_more_detailed__link_video">
           <video
-            :data-src="item.homePreview.video.node.mediaItemUrl"
+            :data-src="article.homePreview.video?.node.mediaItemUrl"
             src="#"
             autoplay
             loop
@@ -147,12 +151,12 @@ const sendWork = (link: string) => {
         <!--  -->
         <a
           v-else
-          @click.prevent="sendWork(link)"
-          :href="link"
+          @click.prevent="sendWork(`/portfolio/${props.article.slug}`)"
+          :href="`/portfolio/${props.article.slug}`"
           class="works__item_more_detailed__link_video"
         >
           <video
-            :data-src="item.homePreview.video.node.mediaItemUrl"
+            :data-src="article.homePreview.video?.node.mediaItemUrl"
             src="#"
             loop
             muted
@@ -164,12 +168,14 @@ const sendWork = (link: string) => {
     </div>
 
     <div class="works__text">
-      <NuxtLink :to="link" class="works__title">{{ item.homePreview.zagolovok }}</NuxtLink>
+      <NuxtLink :to="`/portfolio/${props.article.slug}`" class="works__title">
+        {{ article.homePreview.zagolovok }}
+      </NuxtLink>
 
       <div class="works__tags">
-        <span v-for="cat in item.categories.nodes" :key="cat.name" class="works__tag">
+        <span v-for="cat in article.portfolioCategories.nodes" :key="cat.name" class="works__tag">
           <NuxtLink
-            :to="{ path: isBlog ? '/blog' : '/', query: { cat: encodeURI(cat.name) } }"
+            :to="{ path: '/portfolio', query: { cat: encodeURI(cat.name) } }"
             class="works__tag_link"
           >
             <span class="works__tag_hash">#</span>

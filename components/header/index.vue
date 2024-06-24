@@ -9,6 +9,9 @@ const { resizeHeightMenu, addRemoveClassBody } = useModalMenu();
 const menuPositionRelative = ref<Boolean>(false);
 const dotsMenu = ref<HTMLDivElement | null>(null);
 
+// Управление модальным окно формы
+const { isOpenModal } = useOutsideModal();
+
 // Запрос на получение данных
 const settingsQuery = {
   query: `
@@ -116,6 +119,7 @@ onMounted(() => {
           title="Начать проект"
           color-class="hover_bg btn_transparent"
           :arrow="false"
+          @click-btn="isOpenModal().value = true"
         />
       </div>
     </div>

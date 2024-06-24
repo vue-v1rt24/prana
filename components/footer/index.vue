@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const viewport = useViewport();
-const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal();
+const { isOpenModal } = useOutsideModal();
 </script>
 
 <template>
@@ -89,7 +89,12 @@ const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal()
           </li>
 
           <li>
-            <UiLinkText link="/" title="Начать проект" underline />
+            <UiLinkText
+              link="/"
+              title="Начать проект"
+              underline
+              @click.prevent="isOpenModal().value = true"
+            />
           </li>
 
           <li class="footer__politico">
@@ -99,12 +104,7 @@ const { isVisibleProjectVariants, dopDate, sendFormSuccess } = useOutsideModal()
       </div>
     </div>
 
-    <!-- <LazyOutsideModal
-      :is-project="isVisibleProjectVariants().value"
-      :dop-data="dopDate().value"
-      @send-form-success="sendFormSuccess"
-    /> -->
-
+    <!-- Модальное окно формы -->
     <LazyOutsideModal />
   </footer>
 </template>

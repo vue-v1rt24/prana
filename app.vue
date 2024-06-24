@@ -11,7 +11,8 @@ useSeoMeta({
     <Cursor />
     <Header />
     <NuxtPage />
-    <Footer />
+    <!-- <Contacts /> -->
+    <!-- <Footer /> -->
   </div>
 </template>
 

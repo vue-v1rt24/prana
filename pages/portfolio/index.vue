@@ -1,7 +1,82 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { TypePortfolios, TypeCat } from '~/types/portfolios.types';
+
+//
+const router = useRouter();
+
+// Получение ссылки на API
+const { graphqlUrl } = useRuntimeConfig().public;
+
+//
+const portfolios = {
+  query: `
+  {
+    portfolios {
+      nodes {
+        databaseId
+        slug
+        homePreview {
+          izobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
+          zagolovok
+          vyborText
+          zagolovokHover
+          homePreviewTextTekst
+          vyborVideo
+          video {
+            node {
+              mediaItemUrl
+            }
+          }
+        }
+        portfolioCategories {
+          nodes {
+            name
+            taxonomyName
+          }
+        }
+      }
+    }
+  }
+  `,
+};
+
+const { data: articles } = await useFetch(graphqlUrl, {
+  query: portfolios,
+
+  transform(data) {
+    const d = data as TypePortfolios;
+    const cats = new Set();
+
+    for (const cat of d.data.portfolios.nodes) {
+      for (const item of cat.portfolioCategories.nodes) {
+        cats.add(item.name);
+      }
+    }
+
+    const portfolios = d.data.portfolios.nodes;
+    const categories = [...cats] as TypeCat[];
+
+    return {
+      portfolios,
+      categories,
+    };
+  },
+});
+
+// console.log(articles.value);
+
+//
+const changeRoutePath = (link: string) => {
+  router.push(link);
+};
+</script>
 
 <template>
-  <div class="page_portfolio111">
+  <div class="page_portfolio">
     <!-- Хлебные крошки -->
     <div class="breadcrumbs_bx">
       <div class="container">
@@ -46,151 +121,27 @@
     </section>
 
     <!-- Портфолио -->
-    <section class="works_bx works_modal_js filter_js skeleton_js stop_pointer">
+    <section class="works_bx">
       <div class="works">
-        <!--  -->
-        <div class="works__item mix development_filter direct">
-          <div class="works__img skeleton">
-            <!-- <img src="img/works/1.jpg" alt="" /> -->
-
-            <!-- По наведению -->
-            <div class="works__item_more_detailed_bx">
-              <a class="works__item_more_detailed__link" href="#">
-                <div class="works__item_more_detailed__title">Приложение</div>
-
-                <p class="works__item_more_detailed__desc">
-                  В данном проекте мы вообще красавчики, по полной забахали дизайна для компании
-                  стройстрой: сделали пи#д@тый сайт, отсняли дома, смоделировали всю эту конитель
-                </p>
-
-                <div class="works__item_more_detailed__preview">
-                  <span>Смотреть проект</span>
-
-                  <div class="works__item_more_detailed__preview_svg">
-                    <svg width="22px" height="18px" class="straight_arrow">
-                      <use xlink:href="/img/sprite.svg#straight_arrow"></use>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="works__text">
-            <a href="#" class="works__title skeleton">Приложение</a>
-
-            <div class="works__tags skeleton">
-              <span class="works__tag">
-                <a class="works__tag_link" href="#">
-                  <span class="works__tag_hash">#</span>
-                  <span>Разработка приложения</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!--  -->
-        <div class="works__item mix branding_filter direct">
-          <div class="works__img skeleton">
-            <!-- <img src="img/works/8.jpg" alt="" /> -->
-
-            <!-- По наведению -->
-            <div class="works__item_more_detailed_bx">
-              <a class="works__item_more_detailed__link" href="#">
-                <div class="works__item_more_detailed__title">dvna.fr</div>
-
-                <p class="works__item_more_detailed__desc">
-                  В данном проекте мы вообще красавчики, по полной забахали дизайна для компании
-                  стройстрой: сделали пи#д@тый сайт, отсняли дома, смоделировали всю эту конитель
-                </p>
-
-                <div class="works__item_more_detailed__preview">
-                  <span>Смотреть проект</span>
-
-                  <div class="works__item_more_detailed__preview_svg">
-                    <svg width="22px" height="18px" class="straight_arrow">
-                      <use xlink:href="/img/sprite.svg#straight_arrow"></use>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="works__text">
-            <a href="#" class="works__title skeleton">dvna.fr</a>
-
-            <div class="works__tags skeleton">
-              <span class="works__tag">
-                <a class="works__tag_link" href="#">
-                  <span class="works__tag_hash">#</span>
-                  <span>Разработка сайта</span>
-                </a>
-              </span>
-
-              <span class="works__tag">
-                <a class="works__tag_link" href="#">
-                  <span class="works__tag_hash">#</span>
-                  <span>Фото</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!--  -->
-        <div class="works__item mix photo_filter direct">
-          <div class="works__img skeleton">
-            <!-- <img src="img/works/6.jpg" alt="" /> -->
-
-            <!-- По наведению -->
-            <div class="works__item_more_detailed_bx">
-              <a class="works__item_more_detailed__link" href="#">
-                <div class="works__item_more_detailed__title">Премиум парфюм Moiss Dior</div>
-
-                <p class="works__item_more_detailed__desc">
-                  В данном проекте мы вообще красавчики, по полной забахали дизайна для компании
-                  стройстрой: сделали пи#д@тый сайт, отсняли дома, смоделировали всю эту конитель
-                </p>
-
-                <div class="works__item_more_detailed__preview">
-                  <span>Смотреть проект</span>
-
-                  <div class="works__item_more_detailed__preview_svg">
-                    <svg width="22px" height="18px" class="straight_arrow">
-                      <use xlink:href="/img/sprite.svg#straight_arrow"></use>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="works__text">
-            <a href="#" class="works__title skeleton">Премиум парфюм Moiss Dior</a>
-
-            <div class="works__tags skeleton">
-              <span class="works__tag">
-                <a class="works__tag_link" href="#">
-                  <span class="works__tag_hash">#</span>
-                  <span>Фото</span>
-                </a>
-              </span>
-
-              <span class="works__tag">
-                <a class="works__tag_link" href="#">
-                  <span class="works__tag_hash">#</span>
-                  <span>3D Визуализация</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!--  -->
+        <PagePortfolio
+          v-for="article in articles?.portfolios"
+          :key="article.databaseId"
+          :article
+          @route-path="changeRoutePath"
+        />
       </div>
     </section>
+
+    <!--  -->
+    <Teleport to="#teleports">
+      <!-- <PageHomeWorksModalWork
+        v-if="dataWork"
+        :open="open"
+        @close-work="closeWork"
+        @close-modal="open = false"
+        :data-work="dataWork"
+      /> -->
+    </Teleport>
   </div>
 </template>
 
@@ -214,7 +165,7 @@
 
 /*  */
 .page_portfolio .works_bx::before {
-  bottom: -230px;
+  bottom: -228px;
 }
 
 .page_portfolio .title_52 {

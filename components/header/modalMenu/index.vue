@@ -12,6 +12,9 @@ defineProps<{
   whatsappLink?: string;
 }>();
 
+// Управление модальным окно формы
+const { isOpenModal } = useOutsideModal();
+
 //
 const { resizeHeightMenu, addRemoveClassBody, resetMenu } = useModalMenu();
 const headerMenu = ref<HTMLDivElement | null>(null);
@@ -146,7 +149,13 @@ onMounted(() => {
         <div class="header__menu_links">
           <div>
             <UiLinkText :link="`/`" title="Презентация компании" underline />
-            <UiLinkText :link="`/`" title="Начать проект" underline />
+
+            <UiLinkText
+              link="/"
+              title="Начать проект"
+              underline
+              @click.prevent="isOpenModal().value = true"
+            />
           </div>
 
           <ul class="header_soc">
