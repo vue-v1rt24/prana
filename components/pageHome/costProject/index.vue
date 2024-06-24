@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
-import type { OutsideModal } from '#build/components';
 import type { TypeNextProjectCostVarianty } from '@/types/home-page/nextProjectCostVarianty.types';
 
 const props = defineProps<{
@@ -10,13 +9,16 @@ const props = defineProps<{
 }>();
 
 // Управление модальным окном
-const { isOpenModal } = useOutsideModal();
+const { isOpenModal, dopDate, isVisibleBtnProject, isSendFormSuccess } = useOutsideModal();
 
 //
-const modal = ref<InstanceType<typeof OutsideModal> | null>(null);
 const dataCheckedVariant = ref<boolean[]>([]);
 const isCheckedParentVariant = ref(false);
-const dataForm = ref<Record<string, string[]>>({});
+
+// Сброс данных расчёта
+const resetDopData = () => {
+  dopDate().value = {};
+};
 
 //
 const selectVariants = (idx: number, val: boolean) => {
@@ -26,6 +28,10 @@ const selectVariants = (idx: number, val: boolean) => {
 
   // Проверяем значения вариантов
   const isSelect = dataCheckedVariant.value.some((item) => item);
+
+  if (!isSelect) {
+    resetDopData();
+  }
 
   if (isSelect !== isCheckedParentVariant.value) {
     isCheckedParentVariant.value = isSelect;
@@ -53,13 +59,13 @@ const selectVariants = (idx: number, val: boolean) => {
 
 // Формирование данных для отправки на почту
 const setFormData = (data: TypeNextProjectCostVarianty[]) => {
-  dataForm.value = {};
+  resetDopData();
 
   for (const item of data) {
     const isSelect = item.uslugi.some((v) => v.selected);
 
     if (isSelect) {
-      dataForm.value[item.nextProjectCostUslugiRepeatNazvanie] = item.uslugi
+      dopDate().value[item.nextProjectCostUslugiRepeatNazvanie] = item.uslugi
         .filter((f) => f.selected)
         .map((m) => m.nextProjectCostUslugaRepeatNazvanie);
     }
@@ -76,25 +82,20 @@ const openModal = () => {
 
     if (isCheckedChildVariant) {
       setFormData(props.nextProjectVars);
+    } else {
+      resetDopData();
     }
   }
 
+  // Скрытие/Показ кнопок в модальном окне
+  if (isCheckedParentVariant.value) {
+    isVisibleBtnProject().value = true;
+  } else {
+    isVisibleBtnProject().value = false;
+  }
+
   // Открытие модального окна
-  // modal.value?.openModal();
   isOpenModal().value = true;
-};
-
-// Вызывается при успешной отправке формы
-const resetAsd = ref(false);
-
-// После успешной отправки формы сбрасываем поля раздела "Рассчитаем стоимость ..."
-const sendFormSuccess = () => {
-  console.log('Отправлено');
-  resetAsd.value = true;
-
-  setTimeout(() => {
-    resetAsd.value = false;
-  }, 100);
 };
 </script>
 
@@ -113,7 +114,7 @@ const sendFormSuccess = () => {
             :key="service.nextProjectCostUslugiRepeatNazvanie"
             :service
             @select-variant="selectVariants(idx, $event)"
-            :reset="resetAsd"
+            :reset="isSendFormSuccess().value"
           />
 
           <!--  -->
@@ -121,14 +122,6 @@ const sendFormSuccess = () => {
         </form>
       </div>
     </div>
-
-    <!--  -->
-    <!-- <LazyOutsideModal
-      :is-project="isCheckedParentVariant"
-      :dop-data="dataForm"
-      ref="modal"
-      @send-form-success="sendFormSuccess"
-    /> -->
   </section>
 </template>
 

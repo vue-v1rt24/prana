@@ -1,14 +1,21 @@
 export const useOutsideModal = () => {
-  const isVisibleProjectVariants = () => useState<boolean>('isVisibleProjectVariants', () => false);
+  // Дополнительные данные передаваемые в форму
   const dopDate = () => useState<Record<string, string[]>>('dopDate', () => ({}));
+
+  // Открытие модального окна
   const isOpenModal = () => useState('isOpenModal', () => false);
-  const sendFormSuccess = () => {};
+
+  // Показ/Скрытие кнопок в модальном окне
+  const isVisibleBtnProject = () => useState('isVisibleBtnProject', () => false);
+
+  // Флаг, что форма отправлена (передаётся в другие компоненты, как emit)
+  const isSendFormSuccess = () => useState('sendFormSuccess', () => false);
 
   //
   return {
-    isVisibleProjectVariants,
     dopDate,
     isOpenModal,
-    sendFormSuccess,
+    isVisibleBtnProject,
+    isSendFormSuccess,
   };
 };

@@ -4,18 +4,8 @@ import { required, email, minLength } from '@vuelidate/validators';
 
 import { type TypeSetMailMessage } from '@/types/form.types';
 
-//
-const props = defineProps<{
-  isProject?: boolean; // скрывает кнопки в форме
-  dopData?: Record<string, string[]>; // дополнительные данные для формы
-}>();
-
-const emit = defineEmits<{
-  sendFormSuccess: [];
-}>();
-
 // Управление модальным окном
-const { isOpenModal } = useOutsideModal();
+const { isOpenModal, dopDate, isVisibleBtnProject, isSendFormSuccess } = useOutsideModal();
 
 //
 const mail = useMail();
@@ -30,11 +20,11 @@ let raschet: string = '';
 
 // === Поля формы
 const fields = reactive({
-  nameUser: 'Имя',
-  phone: '1111111111',
-  email: 'w@w.ww',
+  nameUser: '',
+  phone: '',
+  email: '',
   project: [],
-  text: 'Тест сообщения',
+  text: '',
   file: null as File | null,
   whereFrom: '',
 });
@@ -49,6 +39,7 @@ const resetForm = () => {
   fields.file = null;
   fields.whereFrom = '';
   whereFromRef.value = 'Откуда узнали про PRANA IT?';
+  raschet = '';
 };
 
 // === Валидация формы
@@ -186,8 +177,12 @@ const sendHandler = async () => {
   // Сброс валидации
   v$.value.$reset();
 
-  // Отправка emit
-  emit('sendFormSuccess');
+  // Флаг, что форма отправлена (передаётся в другие компоненты, как emit)
+  isSendFormSuccess().value = true;
+
+  setTimeout(() => {
+    isSendFormSuccess().value = false;
+  }, 100);
 
   // Закрытие модального окна
   closeModal();
@@ -206,7 +201,7 @@ const closeModal = () => {
   document.body.classList.remove('open_modal');
 };
 
-//
+// Открытие модального окна
 watch(
   () => isOpenModal().value,
   (val) => {
@@ -216,36 +211,19 @@ watch(
   },
 );
 
-//
-/* defineExpose({
-  openModal,
-}); */
-
-// === Отслеживаем открытие модального окна, чтобы дать класс тегу body
-/* watch(
-  () => openModalRef.value,
-  (val) => {
-    if (val) {
-      document.body.classList.add('open_modal');
-    } else {
-      document.body.classList.remove('open_modal');
-    }
-  },
-); */
-
-// === Отслеживаем получение дополнительных данных для отправки на почту.
-// Приходят из главной страницы из раздела "Рассчитаем стоимость ..."
-/* watch(
-  () => props.dopData,
+// Формирование дополнительных данных (они приходят из вне)
+watch(
+  () => dopDate().value,
   (val) => {
     fields.project = [];
+    raschet = '';
 
-    for (const key in props.dopData) {
-      const element = props.dopData[key];
+    for (const key in dopDate().value) {
+      const element = dopDate().value[key];
       raschet += `<div>${key}: ${element.join(', ')}</div>`;
     }
   },
-); */
+);
 </script>
 
 <template>
@@ -288,7 +266,7 @@ watch(
     <div class="outside__field">
       <div class="outside__title">О проекте</div>
 
-      <div v-if="!isProject" class="outside__inp_checkbox">
+      <div v-if="!isVisibleBtnProject().value" class="outside__inp_checkbox">
         <label class="outside__inp_var react">
           <input type="checkbox" value="Разработка" v-model="fields.project" />
           <span>Разработка</span>
@@ -363,7 +341,7 @@ watch(
       <UiButton class="outside__send_btn" type="submit" title="Отправить" />
 
       <div class="outside__send_text">
-        Нажимая кнопку “Отправить” вы соглашаетесь с
+        Нажимая кнопку "Отправить" вы соглашаетесь с
         <NuxtLink to="/privacyPolicy">политикой конфиденциальности</NuxtLink>
       </div>
     </div>
