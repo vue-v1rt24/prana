@@ -1,7 +1,7 @@
 // Категории
 export type TypeCat = {
   name: string;
-  taxonomyName: string;
+  count: number;
 };
 
 // Одна работа
@@ -26,7 +26,9 @@ export type TypePortfolio = {
     } | null;
   };
   portfolioCategories: {
-    nodes: TypeCat[];
+    nodes: {
+      name: string;
+    }[];
   };
 };
 
@@ -35,6 +37,9 @@ export type TypePortfolios = {
   data: {
     portfolios: {
       nodes: TypePortfolio[];
+    };
+    portfolioCategories: {
+      nodes: TypeCat[];
     };
   };
 };
