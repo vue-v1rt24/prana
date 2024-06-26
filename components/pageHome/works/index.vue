@@ -245,15 +245,13 @@ watchEffect(async () => {
     </div>
 
     <!--  -->
-    <Teleport to="#teleports">
-      <PageHomeWorksModalWork
-        v-if="dataWork"
-        :open="open"
-        @close-work="closeWork"
-        @close-modal="open = false"
-        :data-work="dataWork"
-      />
-    </Teleport>
+    <PageHomeWorksModalWork
+      v-if="dataWork"
+      :open="open"
+      @close-work="closeWork"
+      @close-modal="open = false"
+      :data-work="dataWork"
+    />
   </section>
 </template>
 

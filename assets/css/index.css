@@ -30,11 +30,6 @@ input[type='file'] {
 }
 
 /*  */
-.stop_pointer {
-  pointer-events: none;
-}
-
-/*  */
 .backDropMenu {
   display: none;
   position: fixed;

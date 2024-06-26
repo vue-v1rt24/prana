@@ -2,8 +2,34 @@
 import type { TypePortfolios } from '~/types/portfolios.types';
 import type { TypeWorkId, TypeWork } from '@/types/home-page/works.types';
 
-// Подключение файла для фильтрации
+// Получение ссылки на API
+const { graphqlUrl } = useRuntimeConfig().public;
+
+//
+const route = useRoute();
+const router = useRouter();
+
+//
+const activeClassFilter = ref('all'); // для переключения класса кнопки фильтра
+const filterInstance = ref<any>(null); // для объекта плагина фильтра
+
+const open = ref(false); // для открытия модального окна
+const dataWork = useState<TypeWork>('work'); // для хранения полученных данных из админки
+const viewSkeleton = ref(true); // для показа скелетона на карточках работ при загрузке страницы
+
+const worksFilter = ref<HTMLDivElement | null>(null);
+const filterJs = ref<HTMLDivElement | null>(null);
+
+// Формирование мета тегов
+const metadata = ref({
+  metaTitle: 'Наши работы',
+  metaDescription: 'Наши работы',
+});
+
+// Подключение файла для фильтрации сортировки
 useHead({
+  title: () => metadata.value.metaTitle,
+  meta: [{ name: 'description', content: () => metadata.value.metaDescription }],
   script: [
     {
       defer: true,
@@ -12,19 +38,10 @@ useHead({
   ],
 });
 
-//
-const route = useRoute();
-const router = useRouter();
-
-// Получение ссылки на API
-const { graphqlUrl } = useRuntimeConfig().public;
-
-//
-const activeClassFilter = ref('all'); // Для переключения класса кнопки фильтра
-const filterInstance = ref<any>(null);
-
-const open = ref(false);
-const dataWork = useState<TypeWork>('work');
+// Скрытие скелетона
+setTimeout(() => {
+  viewSkeleton.value = false;
+}, 3000);
 
 // Запрос на получение всех данных
 const portfolios = {
@@ -85,8 +102,6 @@ const { data: articles } = await useFetch(graphqlUrl, {
   },
 });
 
-// console.log(articles.value);
-
 // Запрос на получение одной записи работы
 const getWork = async (id: number) => {
   const workQuery = {
@@ -94,6 +109,10 @@ const getWork = async (id: number) => {
   {
     portfolioBy(portfolioId: ${id}) {
       databaseId
+      metaTags {
+        metaTitle
+        metaDescription
+      }
       fullOutputOfTheWork {
         zagolovok
         fullWorkOpisanieVypolnennojRaboty
@@ -145,8 +164,9 @@ const getWork = async (id: number) => {
         const work = data as TypeWorkId;
 
         return {
-          ...work.data.portfolioBy.fullOutputOfTheWork,
           id: work.data.portfolioBy.databaseId,
+          metaTags: work.data.portfolioBy.metaTags,
+          ...work.data.portfolioBy.fullOutputOfTheWork,
           categories: work.data.portfolioBy.portfolioCategories.nodes,
         };
       },
@@ -159,13 +179,12 @@ const getWork = async (id: number) => {
       query: workQuery,
     });
 
-    const work = {
-      ...data.data.portfolioBy.fullOutputOfTheWork,
+    return {
       id: data.data.portfolioBy.databaseId,
+      metaTags: data.data.portfolioBy.metaTags,
+      ...data.data.portfolioBy.fullOutputOfTheWork,
       categories: data.data.portfolioBy.portfolioCategories.nodes,
     };
-
-    return work;
   }
 };
 
@@ -179,6 +198,8 @@ const showWork = async () => {
 
       if (!workData?.zagolovok) throw new Error('Данные не получены');
 
+      metadata.value = workData.metaTags;
+
       dataWork.value = workData;
       dataWork.value['slug'] = route.params.slug;
       open.value = true;
@@ -189,11 +210,20 @@ const showWork = async () => {
 };
 
 // После закрытия модального окна
-const closeWork = () => {
+const closeWork = async () => {
   let cat = {};
+
+  metadata.value.metaTitle = 'Наши работы';
+  metadata.value.metaDescription = 'Наши работы';
 
   if (route.query.cat) {
     cat = { cat: route.query.cat };
+
+    // Подъём на верх страницы при перестроении работ (когда фильтруем по тегам в модальном окне)
+    worksFilter.value?.scrollIntoView();
+    // document.body.scrollIntoView();
+    // window.scrollTo(0, 0);
+    console.log('Подъём');
   }
 
   router.push({ path: '/portfolio', query: cat });
@@ -206,6 +236,13 @@ const changeFilter = (nameClassFilter: string) => {
 
   filterInstance.value.filter(cl);
   activeClassFilter.value = nameClassFilter;
+};
+
+// Сброс гет параметров в адресной строке при переключении кнопок фильтрации
+const resetRouteQuery = () => {
+  if (route.query.cat) {
+    router.push({ path: '/portfolio', query: {} });
+  }
 };
 
 // Отслеживание параметра 'slug'
@@ -226,7 +263,12 @@ watchEffect(async () => {
 //
 onMounted(() => {
   // Фильтрация работ
-  filterInstance.value = mixitup('.filter_js');
+  filterInstance.value = mixitup(filterJs.value);
+});
+
+//
+onUnmounted(() => {
+  filterInstance.value.destroy();
 });
 </script>
 
@@ -247,15 +289,15 @@ onMounted(() => {
     <div class="portfolio_particles"></div>
 
     <!-- Кнопки -->
-    <section class="works_fiter">
+    <section class="works_fiter" ref="worksFilter">
       <div class="container">
         <h2 class="title_52">Портфолио</h2>
 
-        <div class="works_tabs">
+        <div v-show="!viewSkeleton" class="works_tabs">
           <button
             type="button"
             data-filter="all"
-            @click="activeClassFilter = 'all'"
+            @click="(activeClassFilter = 'all'), resetRouteQuery()"
             :class="['works_tabs__btn control', { active: activeClassFilter === 'all' }]"
           >
             <span class="works_tabs__btn_title">Все</span>
@@ -267,7 +309,7 @@ onMounted(() => {
             :key="cat.name"
             type="button"
             :data-filter="`.${cat.name.replaceAll(' ', '_')}`"
-            @click="activeClassFilter = cat.name"
+            @click="(activeClassFilter = cat.name), resetRouteQuery()"
             :class="['works_tabs__btn control', { active: activeClassFilter === cat.name }]"
           >
             <span class="works_tabs__btn_title">{{ cat.name }}</span>
@@ -278,22 +320,23 @@ onMounted(() => {
     </section>
 
     <!-- Портфолио -->
-    <section class="works_bx filter_js">
-      <div class="works">
+    <section class="works_bx">
+      <div v-show="viewSkeleton" class="works">
+        <PagePortfolioSkeletonWork v-show="viewSkeleton" v-for="w in 30" :key="w" />
+      </div>
+
+      <div v-show="!viewSkeleton" class="works" ref="filterJs">
         <PagePortfolio v-for="article in articles?.portfolios" :key="article.databaseId" :article />
       </div>
     </section>
 
     <!--  -->
-    <Teleport to="#teleports">
-      <PagePortfolioModalWork
-        v-if="dataWork"
-        :open="open"
-        @close-work="closeWork"
-        @change-filter="changeFilter"
-        :data-work="dataWork"
-      />
-    </Teleport>
+    <PagePortfolioModalWork
+      v-if="dataWork"
+      :open="open"
+      @close-work="closeWork"
+      :data-work="dataWork"
+    />
   </div>
 </template>
 

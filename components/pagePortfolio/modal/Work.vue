@@ -23,13 +23,11 @@ const props = defineProps<{
 //
 const emit = defineEmits<{
   closeWork: [];
-  changeFilter: [hash: string];
 }>();
 
 //
-const changeFilter = (hash: string) => {
+const closeModal = () => {
   Fancybox.close();
-  emit('changeFilter', hash);
 };
 
 //
@@ -98,7 +96,7 @@ watchEffect(() => {
           <span
             v-for="hash in dataWork.categories"
             :key="hash.name"
-            @click="changeFilter(hash.name)"
+            @click="closeModal"
             class="works__tag"
           >
             <NuxtLink

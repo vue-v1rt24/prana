@@ -56,6 +56,10 @@ export type TypeWorkId = {
   data: {
     portfolioBy: {
       databaseId: number;
+      metaTags: {
+        metaTitle: string;
+        metaDescription: string;
+      };
       fullOutputOfTheWork: TypeWorkBySlugTransform;
       portfolioCategories: {
         nodes: {
