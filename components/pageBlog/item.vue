@@ -35,6 +35,7 @@ const classNameFilter = computed(() =>
         {{ blog.desc }}
       </p>
 
+      <!-- Теги -->
       <div class="works__tags">
         <span
           v-for="tag in blog.categories"
@@ -42,11 +43,6 @@ const classNameFilter = computed(() =>
           class="works__tag"
           @click="emit('changeTag', tag.name)"
         >
-          <!-- <NuxtLink :to="{ query: { cat: encodeURI(tag.name) } }" class="works__tag_link">
-            <span class="works__tag_hash">#</span>
-            <span>{{ tag.name }}</span>
-          </NuxtLink> -->
-
           <span class="works__tag_link">
             <span class="works__tag_hash">#</span>
             <span>{{ tag.name }}</span>

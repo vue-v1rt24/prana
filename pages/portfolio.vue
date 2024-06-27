@@ -281,12 +281,13 @@ onUnmounted(() => {
     <!--  -->
     <div class="portfolio_particles"></div>
 
-    <!-- Кнопки -->
+    <!--  -->
     <section class="works_fiter" ref="worksFilter">
       <div class="container">
         <h2 class="title_52">Портфолио</h2>
 
-        <div v-show="!viewSkeleton" class="works_tabs">
+        <!-- Кнопки -->
+        <div class="works_tabs">
           <button
             type="button"
             data-filter="all"
@@ -314,8 +315,8 @@ onUnmounted(() => {
 
     <!-- Портфолио -->
     <section class="works_bx">
-      <div v-show="viewSkeleton" class="works">
-        <PagePortfolioSkeletonWork v-show="viewSkeleton" v-for="w in 30" :key="w" />
+      <div v-if="viewSkeleton" class="works">
+        <PagePortfolioSkeletonWork v-for="w in 15" :key="w" />
       </div>
 
       <div v-show="!viewSkeleton" class="works" ref="filterJs">

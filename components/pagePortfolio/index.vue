@@ -58,7 +58,7 @@ const videoHover = () => {
 
 <template>
   <div :class="['works__item mix', classesFilter, { direct }]">
-    <div class="works__img skeleton!!!">
+    <div class="works__img">
       <NuxtImg
         :src="article.homePreview.izobrazhenie.node.mediaItemUrl"
         loading="lazy"

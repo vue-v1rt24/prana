@@ -15,13 +15,13 @@ const emit = defineEmits<{
 const allCount = computed(() => props.categories.reduce((acc, item) => (acc += item.count), 0));
 
 // Активный класс кнопки
-const activeClassBtn = ref(props.activeClassBtn);
+const activeClassBtnLocal = ref(props.activeClassBtn);
 
 watch(
   () => props.activeClassBtn,
   (val) => {
     console.log(val);
-    activeClassBtn.value = val;
+    activeClassBtnLocal.value = val;
   },
 );
 </script>
@@ -30,9 +30,9 @@ watch(
   <div class="works_tabs">
     <button
       type="button"
-      :class="['works_tabs__btn control', activeClassBtn === 'all' && 'active']"
+      :class="['works_tabs__btn control', activeClassBtnLocal === 'all' && 'active']"
       data-filter="all"
-      @click="activeClassBtn = 'all'"
+      @click="activeClassBtnLocal = 'all'"
     >
       <span class="works_tabs__btn_title">Все</span>
       <span class="works_tabs__btn_count">{{ allCount }}</span>
@@ -42,9 +42,9 @@ watch(
       v-for="item in categories"
       :key="item.name"
       type="button"
-      :class="['works_tabs__btn control', activeClassBtn === item.name && 'active']"
+      :class="['works_tabs__btn control', activeClassBtnLocal === item.name && 'active']"
       :data-filter="`.${replaceSpace(item.name)}`"
-      @click="activeClassBtn = item.name"
+      @click="activeClassBtnLocal = item.name"
     >
       <span class="works_tabs__btn_title">{{ item.name }}</span>
       <span class="works_tabs__btn_count">{{ item.count }}</span>

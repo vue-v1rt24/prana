@@ -23,17 +23,26 @@ const filterJs = ref<HTMLDivElement | null>(null);
 const filterInit = ref<any>(null);
 const activeClassBtn = ref('all');
 const viewSkeleton = ref(true); // для показа скелетона на карточках работ при загрузке страницы
+const pageBlog = ref<HTMLDivElement | null>(null);
 
 // Скрытие скелетона
-/* setTimeout(() => {
+setTimeout(() => {
   viewSkeleton.value = false;
-}, 3000); */
+}, 3000);
 
 // Выбор тега (для сортировки)
 const changeTag = (tagname: string) => {
   if (filterInit.value) {
     filterInit.value.filter(`.${tagname}`);
     activeClassBtn.value = tagname;
+
+    // Подъём на верх страницы при перестроении работ (когда фильтруем по тегам в модальном окне)
+    pageBlog.value?.scrollIntoView({
+      behavior: 'smooth',
+    });
+    // document.body.scrollIntoView();
+    // window.scrollTo(0, 0);
+    console.log('Подъём');
   }
 };
 
@@ -53,13 +62,14 @@ onMounted(() => {
     <div class="blog_particles"></div>
 
     <!--  -->
-    <section class="page_blog">
+    <section class="page_blog" ref="pageBlog">
       <div class="container">
         <h2 class="title_52">Блог</h2>
 
         <!-- Кнопки -->
         <ButtonsTab
           v-if="blogs?.categories"
+          v-show="!viewSkeleton"
           :categories="blogs.categories"
           :active-class-btn="activeClassBtn"
         />
@@ -68,7 +78,11 @@ onMounted(() => {
 
     <!-- Портфолио -->
     <section class="page_blog works_bx">
-      <div class="works" ref="filterJs">
+      <div v-if="viewSkeleton" class="works">
+        <PageBlogSkeletonBlog v-for="w in 15" :key="w" />
+      </div>
+
+      <div v-show="!viewSkeleton" class="works" ref="filterJs">
         <PageBlogItem v-for="blog in blogs?.blogs" :key="blog.id" :blog @change-tag="changeTag" />
       </div>
     </section>
