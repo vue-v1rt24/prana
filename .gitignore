@@ -20,6 +20,7 @@ logs
 
 #
 .vscode
+public/files_emails/
 
 # Local env files
 # .env

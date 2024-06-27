@@ -86,6 +86,10 @@ const { data } = await useFetch(graphqlUrl, {
 });
 
 //
+useHead({
+  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
+});
+
 useSeoMeta({
   title: () => data.value!.metaTitle,
   description: () => data.value!.metaDescription,
