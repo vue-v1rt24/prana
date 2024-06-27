@@ -236,12 +236,13 @@ watchEffect(async () => {
     <p class="description">Наши проекты, статьи, а так же жизнь компании</p>
 
     <div class="works">
-      <PageHomeWorksItem
-        v-for="item in articles"
-        :key="item.id"
-        :item="item"
-        @route-path="changeRoutePath"
-      />
+      <template v-for="item in articles" :key="item.id">
+        <PageHomeWorksItem
+          v-if="item.homePreview.vyvoditNaGlavnojStraniczy"
+          :item="item"
+          @route-path="changeRoutePath"
+        />
+      </template>
     </div>
 
     <!--  -->

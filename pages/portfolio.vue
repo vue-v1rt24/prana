@@ -275,15 +275,7 @@ onUnmounted(() => {
 <template>
   <div class="page_portfolio">
     <!-- Хлебные крошки -->
-    <div class="breadcrumbs_bx">
-      <div class="container">
-        <nav class="breadcrumbs">
-          <NuxtLink to="/">Главная</NuxtLink>
-          <span class="breadcrumbs_delimiter"></span>
-          Портфолио
-        </nav>
-      </div>
-    </div>
+    <Breadcrumbs :breadcrumbs="[{ title: 'Портфолио' }]" />
 
     <!--  -->
     <div class="portfolio_particles"></div>

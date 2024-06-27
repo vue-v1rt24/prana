@@ -1,6 +1,5 @@
 @import './reset.css';
 @import './variables.css';
-@import './breadcrumbs.css';
 @import './works.css';
 
 /*  */
@@ -135,6 +134,13 @@ a {
   background-color: transparent;
   border: none;
   /* cursor: pointer; */
+}
+
+/* Три точки */
+.three_dots_line_3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* ==================== Медиа запросы */
