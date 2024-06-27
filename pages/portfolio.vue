@@ -30,6 +30,7 @@ const metadata = ref({
 useHead({
   title: () => metadata.value.metaTitle,
   meta: [{ name: 'description', content: () => metadata.value.metaDescription }],
+  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
   script: [
     {
       defer: true,

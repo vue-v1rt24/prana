@@ -9,6 +9,7 @@ const { blogs } = await useQuery();
 useHead({
   title: 'Блог',
   meta: [{ name: 'description', content: '' }],
+  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
   script: [
     {
       defer: true,
