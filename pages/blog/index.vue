@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useQuery } from '~/composables/blog/useQuery';
+import '@/assets/css/works.css';
 
 const route = useRoute();
 
@@ -10,7 +11,6 @@ const { blogs } = await useQuery();
 useHead({
   title: 'Блог',
   meta: [{ name: 'description', content: '' }],
-  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
   script: [
     {
       defer: true,

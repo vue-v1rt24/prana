@@ -118,7 +118,11 @@ const videoHover = () => {
     </div>
 
     <div class="works__text">
-      <NuxtLink :to="`/portfolio/${props.article.slug}`" class="works__title">
+      <NuxtLink
+        :to="`/portfolio/${props.article.slug}`"
+        class="works__title"
+        :title="article.homePreview.zagolovok"
+      >
         {{ article.homePreview.zagolovok }}
       </NuxtLink>
 
@@ -129,11 +133,6 @@ const videoHover = () => {
           class="works__tag"
           @click="emit('changeTag', cat.name)"
         >
-          <!-- <NuxtLink :to="{ query: { cat: encodeURI(cat.name) } }" class="works__tag_link">
-            <span class="works__tag_hash">#</span>
-            <span class="works__tag__title">{{ cat.name }}</span>
-          </NuxtLink> -->
-
           <span class="works__tag_link">
             <span class="works__tag_hash">#</span>
             <span class="works__tag__title">{{ cat.name }}</span>

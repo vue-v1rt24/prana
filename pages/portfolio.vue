@@ -3,6 +3,8 @@ import type { TypePortfolios } from '~/types/portfolios.types';
 import type { TypeWorkId, TypeWork } from '@/types/home-page/works.types';
 import { replaceSpace } from '@/utils/utils';
 
+import '@/assets/css/works.css';
+
 // Получение ссылки на API
 const { graphqlUrl } = useRuntimeConfig().public;
 
@@ -31,7 +33,6 @@ const metadata = ref({
 useHead({
   title: () => metadata.value.metaTitle,
   meta: [{ name: 'description', content: () => metadata.value.metaDescription }],
-  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
   script: [
     {
       defer: true,
