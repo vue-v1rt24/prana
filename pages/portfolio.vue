@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { TypePortfolios } from '~/types/portfolios.types';
 import type { TypeWorkId, TypeWork } from '@/types/home-page/works.types';
+import { replaceSpace } from '@/utils/utils';
 
 // Получение ссылки на API
 const { graphqlUrl } = useRuntimeConfig().public;
@@ -10,7 +11,7 @@ const route = useRoute();
 const router = useRouter();
 
 //
-const activeClassFilter = ref('all'); // для переключения класса кнопки фильтра
+const activeClassBtn = ref('all'); // для переключения класса кнопки фильтра
 const filterInstance = ref<any>(null); // для объекта плагина фильтра
 
 const open = ref(false); // для открытия модального окна
@@ -211,32 +212,36 @@ const showWork = async () => {
 };
 
 // После закрытия модального окна
-const closeWork = async () => {
-  let cat = {};
-
+const closeWork = async (hashName: string) => {
   metadata.value.metaTitle = 'Наши работы';
   metadata.value.metaDescription = 'Наши работы';
 
-  if (route.query.cat) {
-    cat = { cat: route.query.cat };
+  router.push({ path: '/portfolio' });
 
-    // Подъём на верх страницы при перестроении работ (когда фильтруем по тегам в модальном окне)
-    worksFilter.value?.scrollIntoView();
-    // document.body.scrollIntoView();
-    // window.scrollTo(0, 0);
-    console.log('Подъём');
+  if (hashName && hashName !== activeClassBtn.value) {
+    changeFilter(hashName);
+
+    setTimeout(() => {
+      worksFilter.value?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 500);
   }
 
-  router.push({ path: '/portfolio', query: cat });
+  //
   open.value = false;
 };
 
 // Изменение фильтра
 const changeFilter = (nameClassFilter: string) => {
-  const cl = '.' + nameClassFilter.replaceAll(' ', '_');
+  const cl = '.' + replaceSpace(nameClassFilter);
 
   filterInstance.value.filter(cl);
-  activeClassFilter.value = nameClassFilter;
+  activeClassBtn.value = nameClassFilter;
+
+  worksFilter.value?.scrollIntoView({
+    behavior: 'smooth',
+  });
 };
 
 // Сброс гет параметров в адресной строке при переключении кнопок фильтрации
@@ -261,6 +266,12 @@ watchEffect(async () => {
   }
 });
 
+// Изменение значения переменной при клике на кнопки фильтрации
+const changeNameBtm = (name: string) => {
+  activeClassBtn.value = name;
+  resetRouteQuery();
+};
+
 //
 onMounted(() => {
   // Фильтрация работ
@@ -282,34 +293,17 @@ onUnmounted(() => {
     <div class="portfolio_particles"></div>
 
     <!--  -->
-    <section class="works_fiter" ref="worksFilter">
+    <section class="works_filter" ref="worksFilter">
       <div class="container">
         <h2 class="title_52">Портфолио</h2>
 
         <!-- Кнопки -->
-        <div class="works_tabs">
-          <button
-            type="button"
-            data-filter="all"
-            @click="(activeClassFilter = 'all'), resetRouteQuery()"
-            :class="['works_tabs__btn control', { active: activeClassFilter === 'all' }]"
-          >
-            <span class="works_tabs__btn_title">Все</span>
-            <span class="works_tabs__btn_count">{{ articles?.countAllInCategoryArticle }}</span>
-          </button>
-
-          <button
-            v-for="(cat, idx) in articles?.categories"
-            :key="cat.name"
-            type="button"
-            :data-filter="`.${cat.name.replaceAll(' ', '_')}`"
-            @click="(activeClassFilter = cat.name), resetRouteQuery()"
-            :class="['works_tabs__btn control', { active: activeClassFilter === cat.name }]"
-          >
-            <span class="works_tabs__btn_title">{{ cat.name }}</span>
-            <span class="works_tabs__btn_count">{{ cat.count }}</span>
-          </button>
-        </div>
+        <ButtonsTab
+          v-if="articles?.categories"
+          :categories="articles.categories"
+          :active-class-btn="activeClassBtn"
+          @change-tag="changeNameBtm"
+        />
       </div>
     </section>
 
@@ -320,7 +314,12 @@ onUnmounted(() => {
       </div>
 
       <div v-show="!viewSkeleton" class="works" ref="filterJs">
-        <PagePortfolio v-for="article in articles?.portfolios" :key="article.databaseId" :article />
+        <PagePortfolio
+          v-for="article in articles?.portfolios"
+          :key="article.databaseId"
+          :article
+          @change-tag="changeFilter"
+        />
       </div>
     </section>
 
@@ -349,7 +348,7 @@ onUnmounted(() => {
   background-image: url(/img/portfolio/decor_portfolio_1.svg);
   background-repeat: no-repeat;
   overflow: hidden;
-  z-index: -1;
+  z-index: 1;
 }
 
 /*  */
@@ -362,46 +361,20 @@ onUnmounted(() => {
   letter-spacing: 0.02em;
   text-align: left;
   margin-bottom: 82px;
+
+  @media (max-width: 768px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+  }
 }
 
 /*  */
-.works_tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 62px;
-}
-
-.works_tabs::-webkit-scrollbar {
-  height: 0;
-}
-
-.works_tabs__btn {
-  height: 71px;
-  font-family: var(--fontFamily-RoadRadio);
-  font-size: 18px;
-  color: white;
-  background-color: #060e1b;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 8px;
-  border: none;
-  border-radius: 18px;
-  padding: 0 34px;
-}
-
-.works_tabs__btn.active {
-  background-color: var(--accentColor2);
-}
-
-.works_tabs__btn_count {
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.works_tabs__btn.active .works_tabs__btn_count {
-  color: var(--colorTextOpacity06);
+.works_filter {
+  position: relative;
+  z-index: 2;
 }
 
 /*  */
@@ -536,5 +509,29 @@ onUnmounted(() => {
 .discuss__submit_text a {
   color: var(--colorGray);
   border-bottom: 1px solid var(--colorGray);
+}
+
+/*  */
+
+@media (max-width: 1250px) {
+  .portfolio_particles {
+    width: 552px;
+    height: 508px;
+    background-image: url(/img/portfolio/decor_portfolio_2.svg);
+  }
+}
+
+@media (max-width: 1199px) {
+  .page_portfolio .works_bx::before {
+    bottom: -170px;
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio_particles {
+    width: 287px;
+    height: 235px;
+    background-image: url(/img/portfolio/decor_portfolio_3.svg);
+  }
 }
 </style>

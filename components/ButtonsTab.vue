@@ -17,10 +17,16 @@ const allCount = computed(() => props.categories.reduce((acc, item) => (acc += i
 // Активный класс кнопки
 const activeClassBtnLocal = ref(props.activeClassBtn);
 
+//
+const changeNameBtm = (name: string) => {
+  activeClassBtnLocal.value = name;
+  emit('changeTag', name);
+};
+
+//
 watch(
   () => props.activeClassBtn,
   (val) => {
-    console.log(val);
     activeClassBtnLocal.value = val;
   },
 );
@@ -32,7 +38,7 @@ watch(
       type="button"
       :class="['works_tabs__btn control', activeClassBtnLocal === 'all' && 'active']"
       data-filter="all"
-      @click="activeClassBtnLocal = 'all'"
+      @click="changeNameBtm('all')"
     >
       <span class="works_tabs__btn_title">Все</span>
       <span class="works_tabs__btn_count">{{ allCount }}</span>
@@ -44,7 +50,7 @@ watch(
       type="button"
       :class="['works_tabs__btn control', activeClassBtnLocal === item.name && 'active']"
       :data-filter="`.${replaceSpace(item.name)}`"
-      @click="activeClassBtnLocal = item.name"
+      @click="changeNameBtm(item.name)"
     >
       <span class="works_tabs__btn_title">{{ item.name }}</span>
       <span class="works_tabs__btn_count">{{ item.count }}</span>
@@ -58,11 +64,6 @@ watch(
   flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 62px;
-
-  /*  */
-  @media (max-width: 768px) {
-    width: 80%;
-  }
 
   @media (max-width: 600px) {
     width: auto;

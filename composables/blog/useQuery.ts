@@ -39,6 +39,7 @@ export const useQuery = async () => {
   `,
   };
 
+  // Получение данных
   const { data: blogs } = await useFetch(graphqlUrl, {
     query: blogQuery,
 

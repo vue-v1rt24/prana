@@ -6,8 +6,6 @@ const props = defineProps<{
   item: TypeBlogWorkTransform;
 }>();
 
-// console.log(props.item);
-
 //
 const emit = defineEmits<{
   routePath: [link: string];
@@ -169,7 +167,7 @@ const sendWork = (link: string) => {
       <div class="works__tags">
         <span v-for="cat in item.categories.nodes" :key="cat.name" class="works__tag">
           <NuxtLink
-            :to="{ path: isBlog ? '/blog' : '/', query: { cat: encodeURI(cat.name) } }"
+            :to="{ path: isBlog ? '/blog' : '/portfolio', query: { cat: encodeURI(cat.name) } }"
             class="works__tag_link"
           >
             <span class="works__tag_hash">#</span>

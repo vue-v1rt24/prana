@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useQuery } from '~/composables/blog/useQuery';
 
+const route = useRoute();
+
 // Получение данных из БД
 const { blogs } = await useQuery();
-// console.log(blogs);
 
 // Подключение файла для фильтрации сортировки
 useHead({
@@ -28,7 +29,7 @@ const pageBlog = ref<HTMLDivElement | null>(null);
 // Скрытие скелетона
 setTimeout(() => {
   viewSkeleton.value = false;
-}, 3000);
+}, 1000);
 
 // Выбор тега (для сортировки)
 const changeTag = (tagname: string) => {
@@ -40,16 +41,25 @@ const changeTag = (tagname: string) => {
     pageBlog.value?.scrollIntoView({
       behavior: 'smooth',
     });
-    // document.body.scrollIntoView();
-    // window.scrollTo(0, 0);
-    console.log('Подъём');
   }
+};
+
+// Изменение значения переменной при клике на кнопки фильтрации
+const changeNameBtm = (name: string) => {
+  activeClassBtn.value = name;
 };
 
 //
 onMounted(() => {
   // Запуск сортировки
   filterInit.value = mixitup(filterJs.value);
+});
+
+//
+watchEffect(() => {
+  if (route.query.cat) {
+    changeTag(decodeURI(route.query.cat as string));
+  }
 });
 </script>
 
@@ -72,6 +82,7 @@ onMounted(() => {
           v-show="!viewSkeleton"
           :categories="blogs.categories"
           :active-class-btn="activeClassBtn"
+          @change-tag="changeNameBtm"
         />
       </div>
     </section>
@@ -95,10 +106,18 @@ onMounted(() => {
   letter-spacing: 0.02em;
   text-align: left;
   margin-bottom: 82px;
+
+  @media (max-width: 768px) {
+    font-size: 42px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+  }
 }
 
 .page_blog.works_bx::before {
-  bottom: -140px;
+  bottom: -130px;
 }
 
 .blog_particles {
@@ -122,6 +141,14 @@ onMounted(() => {
     width: 287px;
     height: 300px;
     background-image: url(/img/blog/decor_blog_3.svg);
+  }
+}
+
+/*  */
+
+@media (max-width: 1199px) {
+  .page_blog.works_bx::before {
+    bottom: -100px !important;
   }
 }
 </style>

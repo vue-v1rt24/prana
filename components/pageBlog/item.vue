@@ -6,8 +6,6 @@ const props = defineProps<{
   blog: TypeTransformBlog;
 }>();
 
-// console.log(props.blog);
-
 const emit = defineEmits<{
   changeTag: [title: string];
 }>();
@@ -22,7 +20,7 @@ const classNameFilter = computed(() =>
   <div :class="['works__item mix', classNameFilter]">
     <div class="works__img">
       <NuxtLink :to="`/blog/${blog.slug}`">
-        <NuxtImg :src="blog.image" loading="lazy" format="webp" />
+        <NuxtImg :src="blog.image" width="449" height="253" loading="lazy" format="webp" />
       </NuxtLink>
     </div>
 

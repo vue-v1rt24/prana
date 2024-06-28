@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { replaceSpace } from '@/utils/utils';
 import type { TypePortfolio } from '~/types/portfolios.types';
 
 const props = defineProps<{
   article: TypePortfolio;
 }>();
 
-// console.log(props.article);
+//
+const emit = defineEmits<{
+  changeTag: [title: string];
+}>();
 
 //
 const video = ref<HTMLVideoElement | null>(null);
@@ -18,7 +22,7 @@ const classesFilter = computed(() => {
   let cl = '';
 
   for (const item of props.article.portfolioCategories.nodes) {
-    cl += item.name.replaceAll(' ', '_') + ' ';
+    cl += replaceSpace(item.name) + ' ';
   }
 
   return cl;
@@ -119,11 +123,21 @@ const videoHover = () => {
       </NuxtLink>
 
       <div class="works__tags">
-        <span v-for="cat in article.portfolioCategories.nodes" :key="cat.name" class="works__tag">
-          <NuxtLink :to="{ query: { cat: encodeURI(cat.name) } }" class="works__tag_link">
+        <span
+          v-for="cat in article.portfolioCategories.nodes"
+          :key="cat.name"
+          class="works__tag"
+          @click="emit('changeTag', cat.name)"
+        >
+          <!-- <NuxtLink :to="{ query: { cat: encodeURI(cat.name) } }" class="works__tag_link">
             <span class="works__tag_hash">#</span>
             <span class="works__tag__title">{{ cat.name }}</span>
-          </NuxtLink>
+          </NuxtLink> -->
+
+          <span class="works__tag_link">
+            <span class="works__tag_hash">#</span>
+            <span class="works__tag__title">{{ cat.name }}</span>
+          </span>
         </span>
       </div>
     </div>

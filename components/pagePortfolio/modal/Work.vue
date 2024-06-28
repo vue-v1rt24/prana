@@ -11,6 +11,7 @@ const viewport = useViewport();
 
 //
 const lazyLoad = ref<HTMLImageElement[]>([]);
+const hashName = ref('');
 
 //
 const props = defineProps<{
@@ -22,11 +23,12 @@ const props = defineProps<{
 
 //
 const emit = defineEmits<{
-  closeWork: [];
+  closeWork: [name: string];
 }>();
 
 //
-const closeModal = () => {
+const closeModal = (name: string) => {
+  hashName.value = name;
   Fancybox.close();
 };
 
@@ -69,9 +71,10 @@ watchEffect(() => {
       on: {
         done: () => {
           loadImgScroll();
+          hashName.value = '';
         },
         close: () => {
-          emit('closeWork');
+          emit('closeWork', hashName.value);
         },
       },
     });
@@ -96,16 +99,13 @@ watchEffect(() => {
           <span
             v-for="hash in dataWork.categories"
             :key="hash.name"
-            @click="closeModal"
+            @click="closeModal(hash.name)"
             class="works__tag"
           >
-            <NuxtLink
-              :to="{ path: '/portfolio', query: { cat: encodeURI(hash.name) } }"
-              class="works__tag_link"
-            >
+            <span class="works__tag_link">
               <span class="works__tag_hash">#</span>
               <span>{{ hash.name }}</span>
-            </NuxtLink>
+            </span>
           </span>
         </div>
       </div>
