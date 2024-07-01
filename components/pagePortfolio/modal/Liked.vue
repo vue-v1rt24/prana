@@ -17,7 +17,7 @@ const count = ref<number>(0);
 const isWhatRequest = ref(false);
 const isCountVisible = ref(false);
 
-//
+// Получение данных из хранилища
 const getStorage = () => {
   return localStorageUtil.getStorage(nameStorage) || {};
 };

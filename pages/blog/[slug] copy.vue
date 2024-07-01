@@ -1,32 +1,10 @@
 <script setup lang="ts">
-import { useQueryOne } from '~/composables/blog/useQueryOne';
 import Swiper from 'swiper';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'assets/css/swiper-global.css';
 
-import { dateFormat } from '@/utils/utils';
-
-//
-const route = useRoute();
-
-// Запрос
-const { article } = await useQueryOne(route.params.slug);
-
-// console.log(article);
-
-if (!article) {
-  console.log('Такой статьи нет');
-}
-
-//
-useSeoMeta({
-  title: article?.metaTitle,
-  description: article?.metaDesc,
-});
-
-//
 onMounted(() => {
   const swiperArticleFull = document.querySelector<HTMLDivElement>('.swiper_article_full')!;
 
@@ -62,25 +40,25 @@ onMounted(() => {
       <div class="article_full">
         <!--  -->
         <div class="article_full_top">
-          <!-- Метка категории -->
           <div class="article_full_tag">
-            <div v-for="cat in article?.categories" :key="cat.name">
-              <span class="works__tag_hash">#</span>
-              <span>{{ cat.name }}</span>
-            </div>
+            <span class="works__tag_hash">#</span>
+            <span>Статья</span>
           </div>
 
-          <!-- Дата записи -->
-          <div v-if="article?.date" class="article_full_data">{{ dateFormat(article.date) }}</div>
+          <div class="article_full_data">29.10.2023</div>
 
-          <!-- Счётчик просмотров записи -->
-          <PageBlogView v-if="article?.id" :id="article.id" :count="article?.countView || 0" />
+          <div class="article_full_view">
+            <span><img src="/img/article/view.svg" alt="" /></span>
+            <span>1 203</span>
+          </div>
         </div>
 
-        <!-- Заголовок -->
-        <h1 class="article_full_h1">{{ article?.title }}</h1>
+        <!--  -->
+        <h1 class="article_full_h1">
+          Мастерская доспехов и центр генеалогии: 10 лучших историй про бизнес в 2023 году
+        </h1>
 
-        <!-- Поделиться -->
+        <!--  -->
         <div class="article_full_share">
           <div class="article_full_save">
             <span><img src="/img/article/bookmark.png" alt="" /></span>
@@ -93,7 +71,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <!-- Виджет "Содержание" -->
+        <!--  -->
         <div class="article_full_content_page">
           <div class="article_full_content_page__title">Содержание</div>
 
@@ -108,22 +86,126 @@ onMounted(() => {
           </a>
         </div>
 
-        <!-- Содержание из админки -->
-        <div class="article_full_content" v-html="article?.content"></div>
+        <!--  -->
+        <div class="article_full_content">
+          <h3 class="article_full_h3">
+            Мастерская доспехов и центр генеалогии: 10 лучших историй про бизнес в 2023 году
+          </h3>
 
-        <!-- Полоса -->
+          <!--  -->
+          <p class="article_full_p">
+            Неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно
+            интересные особенности картины в целом, однако конкретные выводы, разумеется, объявлены
+            нарушающими общечеловеческие нормы этики и морали. Равным образом, реализация намеченных
+            плановых заданий является качественно новой ступенью новых предложений.
+          </p>
+
+          <p class="article_full_p">
+            Повседневная практика показывает, что сложившаяся структура организации прекрасно
+            подходит для реализации поэтапного и последовательного развития общества. В целом,
+            конечно, базовый вектор развития предоставляет широкие возможности для инновационных
+            методов управления процессами.
+          </p>
+
+          <!--  -->
+          <div class="article_full_img">
+            <!-- <img src="img/article/article_1.jpg" alt="" /> -->
+            <span>Пример стоимости лендинга в виде фиксированных пакетных предложений</span>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="article_full_content">
+          <h3 id="tilda" class="article_full_h3">Создаем анимацию по скроллу на Тильде</h3>
+
+          <!--  -->
+          <p class="article_full_p">
+            Неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно
+            интересные особенности картины в целом, однако конкретные выводы, разумеется, объявлены
+            нарушающими общечеловеческие нормы этики и морали. Равным образом, реализация намеченных
+            плановых заданий является качественно новой ступенью новых предложений.
+          </p>
+
+          <!--  -->
+          <div class="article_full_img">
+            <!-- <img src="img/article/article_2.jpg" alt="" /> -->
+            <span>Источник: www.sitename.ru/subdomain</span>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="article_full_content">
+          <h3 id="pdd" class="article_full_h3">
+            В Москве провели испытания светофора, который фиксирует нарушения ПДД пешеходам
+          </h3>
+
+          <!--  -->
+          <p class="article_full_p">
+            Неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно
+            интересные особенности картины в целом, однако конкретные выводы, разумеется, объявлены
+            нарушающими общечеловеческие нормы этики и морали. Равным образом, реализация намеченных
+            плановых заданий является качественно новой ступенью новых предложений.
+          </p>
+
+          <!--  -->
+          <div class="article_full_author">
+            <div class="article_full_author__img_bx">
+              <!-- <img class="article_full_author__img" src="img/portfolio/photo.jpg" alt="" /> -->
+
+              <div class="article_full_author__desc">
+                <div class="article_full_author__name">Владислав Белецкий</div>
+                <div class="article_full_author__post">Руководитель отдела разработки</div>
+              </div>
+            </div>
+
+            <p class="article_full_p">
+              Предварительные выводы неутешительны: существующая теория играет важную роль в
+              формировании прогресса профессионального сообщества. Вот вам яркий пример современных
+              тенденций — укрепление и развитие внутренней структуры прекрасно подходит для
+              реализации вывода текущих активов.
+            </p>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="article_full_content">
+          <h3 id="dos" class="article_full_h3">
+            Мастерская доспехов и центр генеалогии: 10 лучших историй про бизнес в 2023 году
+          </h3>
+
+          <!--  -->
+          <p class="article_full_p">
+            Неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно
+            интересные особенности картины в целом, однако конкретные выводы, разумеется, объявлены
+            нарушающими общечеловеческие нормы этики и морали. Равным образом, реализация намеченных
+            плановых заданий является качественно новой ступенью новых предложений.
+          </p>
+
+          <p class="article_full_p">
+            Повседневная практика показывает, что сложившаяся структура организации прекрасно
+            подходит для реализации поэтапного и последовательного развития общества. В целом,
+            конечно, базовый вектор развития предоставляет широкие возможности для инновационных
+            методов управления процессами.
+          </p>
+        </div>
+
+        <!--  -->
         <hr class="article_full__hr" />
 
-        <!-- Виджеты -->
+        <!--  -->
         <div class="rticle_full_useful">
-          <!-- Виджет "Было полезно" -->
-          <PageBlogPolezno
-            v-if="article?.id"
-            :id="article.id"
-            :count="article.blogByloPolezno || 0"
-          />
+          <button class="rticle_full_useful__btn" type="button">
+            <div>
+              <svg class="rticle_full_useful__hart">
+                <use xlink:href="/img/sprite.svg#hart_mini"></use>
+              </svg>
+            </div>
 
-          <!-- Виджет "Поделиться" -->
+            <span class="rticle_full_useful__title">Было полезно</span>
+
+            <span class="rticle_full_useful__count">152</span>
+          </button>
+
           <div class="article_full_share">
             <div class="article_full_save">
               <span><img src="/img/article/bookmark.png" alt="" /></span>
@@ -137,7 +219,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <!-- Виджет "Еженедельный дайджест" -->
+        <!--  -->
         <div class="article_full__ditask">
           <div class="article_full__digest">
             <div class="article_full__digest__title">Еженедельный дайджест</div>
@@ -176,7 +258,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Другие статьи -->
+    <!--  -->
     <section class="article_interesting">
       <div class="container container_blog">
         <h2 class="article_interesting__title">Ещё много интересного</h2>
@@ -371,7 +453,7 @@ onMounted(() => {
   </section>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 .container_blog {
   max-width: 1390px;
 }
@@ -402,7 +484,6 @@ onMounted(() => {
   color: var(--colorDark3);
   display: flex;
   align-items: center;
-  column-gap: 10px;
 }
 
 .article_full_data,
@@ -484,37 +565,35 @@ onMounted(() => {
   margin-bottom: 42px;
 }
 
-/*  */
-.article_full_content h2 {
+.article_full_h3 {
   font-weight: 500;
   font-size: 24px;
   line-height: 130%;
   margin-bottom: 32px;
+
   scroll-margin-top: 10px;
 }
 
-/*  */
-.article_full_content p {
+.article_full_p {
   font-weight: 300;
   font-size: 20px;
   line-height: 140%;
 }
 
-.article_full_content p:has(+ p) {
+.article_full_content .article_full_p:not(:last-of-type) {
   margin-bottom: 32px;
 }
 
-/*  */
-.wp-block-media-text {
+.article_full_img {
   margin: 42px 0;
 }
 
-.wp-block-media-text img {
+.article_full_img img {
   border-radius: 24px;
   margin-bottom: 18px;
 }
 
-.wp-block-media-text__content p {
+.article_full_img span {
   font-weight: 300;
   font-size: 16px;
   line-height: 140%;
@@ -537,7 +616,7 @@ onMounted(() => {
   margin-bottom: 32px;
 }
 
-.article_full_author__img_bx img {
+.article_full_author__img {
   flex-shrink: 0;
   width: 68px;
   height: 68px;
@@ -691,7 +770,7 @@ onMounted(() => {
   margin: 0;
 }
 
-.article_full__task .blue_btn .btn__arrow .arrow {
+.article_full__task :deep(.blue_btn .btn__arrow .arrow) {
   width: 13px;
   height: 13px;
 }
@@ -724,11 +803,11 @@ onMounted(() => {
   margin: 0;
 }
 
-.article_full__digest__form .blue_btn__title {
+.article_full__digest__form :deep(.blue_btn__title) {
   display: none;
 }
 
-.article_full__digest__form .blue_btn .btn__arrow .arrow {
+.article_full__digest__form :deep(.blue_btn .btn__arrow .arrow) {
   width: 24px;
   height: 24px;
 }

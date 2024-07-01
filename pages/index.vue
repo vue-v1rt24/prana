@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type TypeHome } from '@/types/home-page/homepage.types';
-import Item from '~/components/pageHome/costProject/Item.vue';
 const { graphqlUrl } = useRuntimeConfig().public;
 
 // Получение данных
@@ -83,11 +82,6 @@ const { data } = await useFetch(graphqlUrl, {
       nextProjectCostVarianty: d.data.pageBy.contentHomePage.nextProjectCostVarianty,
     };
   },
-});
-
-//
-useHead({
-  link: [{ rel: 'stylesheet', href: '/css/works.css' }],
 });
 
 useSeoMeta({

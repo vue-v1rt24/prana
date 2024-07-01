@@ -47,3 +47,28 @@ export type TypeTransformBlog = {
   desc: string;
   categories: { name: string }[];
 };
+
+// Типизация полной статьи
+export type TypeBlogFull = {
+  data: {
+    blogBy: {
+      metaTags: {
+        metaTitle: string;
+        metaDescription: string;
+      };
+      blogId: number;
+      title: string;
+      date: string;
+      content: string;
+      blogCategories: {
+        nodes: {
+          name: string;
+        }[];
+      };
+      blogViewHome: {
+        blogKolichestvoProsmotrovStati: number;
+        blogByloPolezno: number;
+      };
+    };
+  };
+};
