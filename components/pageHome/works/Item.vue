@@ -170,6 +170,7 @@ const sendWork = (link: string) => {
         {{ item.homePreview.zagolovok }}
       </NuxtLink>
 
+      <!-- Теги -->
       <div class="works__tags">
         <span v-for="cat in item.categories.nodes" :key="cat.name" class="works__tag">
           <NuxtLink

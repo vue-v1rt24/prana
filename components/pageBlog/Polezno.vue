@@ -26,7 +26,7 @@ const getLocaleStorage = () => {
 const loadPage = () => {
   const res = getLocaleStorage();
 
-  if (res && res[props.id]) {
+  if (res && res.includes(props.id)) {
     isCheckedCount.value = true;
   }
 };
@@ -46,10 +46,8 @@ const sendChangeCount = async (link: string) => {
     if (isCheckedCount.value) {
       res.push(props.id);
     } else {
-      // delete res[props.id];
+      res.splice(res.indexOf(props.id), 1);
     }
-
-    console.log(res);
 
     localStorageUtil.setStorage(nameStorage, res);
   } catch (error) {

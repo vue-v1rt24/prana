@@ -72,3 +72,12 @@ export type TypeBlogFull = {
     };
   };
 };
+
+// Типизация статей блога
+export type TypeAllNotIn = {
+  data: {
+    blogs: {
+      nodes: TypeBlog[];
+    };
+  };
+};

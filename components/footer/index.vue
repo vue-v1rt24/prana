@@ -90,7 +90,6 @@ const { isOpenModal } = useOutsideModal();
 
           <li>
             <UiLinkText
-              link="/"
               title="Начать проект"
               underline
               @click.prevent="isOpenModal().value = true"

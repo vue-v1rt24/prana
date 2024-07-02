@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useQueryOne } from '~/composables/blog/useQueryOne';
+import { useQueryNotIn } from '~/composables/blog/useQueryNotIn';
+
 import Swiper from 'swiper';
 import { Scrollbar } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+
 import 'assets/css/swiper-global.css';
 
 import { dateFormat } from '@/utils/utils';
@@ -11,9 +14,11 @@ import { dateFormat } from '@/utils/utils';
 //
 const route = useRoute();
 
-// Запрос
-const { article } = await useQueryOne(route.params.slug);
+//
+const { isOpenModal } = useOutsideModal();
 
+// Запрос на получение записи
+const { article } = await useQueryOne(route.params.slug);
 // console.log(article);
 
 if (!article) {
@@ -26,8 +31,12 @@ useSeoMeta({
   description: article?.metaDesc,
 });
 
+// Запрос на получение всех записей, кроме текущей (для вывода в слайдере)
+const { blogsAllNotIn } = await useQueryNotIn(article!.id);
+
 //
 onMounted(() => {
+  // Вывод других статей
   const swiperArticleFull = document.querySelector<HTMLDivElement>('.swiper_article_full')!;
 
   if (swiperArticleFull) {
@@ -94,19 +103,7 @@ onMounted(() => {
         </div>
 
         <!-- Виджет "Содержание" -->
-        <div class="article_full_content_page">
-          <div class="article_full_content_page__title">Содержание</div>
-
-          <a href="#tilda">Создаем анимацию по скроллу на Тильде</a>
-
-          <a href="#pdd">
-            В Москве провели испытания светофора, который фиксирует нарушения ПДД пешеходам
-          </a>
-
-          <a href="#dos">
-            Мастерская доспехов и центр генеалогии: 10 лучших историй про бизнес в 2023 году
-          </a>
-        </div>
+        <PageBlogWidgetContent />
 
         <!-- Содержание из админки -->
         <div class="article_full_content" v-html="article?.content"></div>
@@ -148,17 +145,6 @@ onMounted(() => {
 
             <form id="digest__form" class="article_full__digest__form">
               <input type="email" name="digest_email" placeholder="Введите email" />
-
-              <!-- <button type="submit" class="blue_btn wrap_arrow">
-                <span class="blue_btn__title">Отправить</span>
-
-                <span class="btn__arrow">
-                  <svg class="arrow">
-                    <use xlink:href="/img/sprite.svg#arrow"></use>
-                  </svg>
-                </span>
-              </button> -->
-
               <UiButton title="Отправить" type="submit"></UiButton>
             </form>
           </div>
@@ -170,7 +156,7 @@ onMounted(() => {
               Давайте обсудим!
             </div>
 
-            <UiButton title="Обсудить проект"></UiButton>
+            <UiButton title="Обсудить проект" @click-btn="isOpenModal().value = true"></UiButton>
           </div>
         </div>
       </div>
@@ -184,185 +170,7 @@ onMounted(() => {
 
       <div class="swiper swiper_article_full">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="article.html">
-                  <!-- <img src="/img/blog/blog_1.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="article.html" class="works__title">Как мы путешествовали по горам</a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
-                  впечатлений
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Событие</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="#">
-                  <!-- <img src="img/blog/blog_2.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="#" class="works__title">Главный инструмент для малого</a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
-                  впечатлений
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Статья</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="#">
-                  <!-- <img src="img/blog/blog_3.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="#" class="works__title">
-                  Команда разработчиков PRANA IT посетила крупнейшее мероприятие по it технология
-                </a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
-                  впечатлений, поэтому часто устраиваем совместные поездки.
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Событие</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="#">
-                  <!-- <img src="img/blog/blog_4.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="#" class="works__title">Отзыв от компании СтройСфера</a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Видео</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="#">
-                  <!-- <img src="img/blog/blog_2.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="#" class="works__title">Главный инструмент для малого</a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
-                  впечатлений
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Статья</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide">
-            <div class="works__item">
-              <div class="works__img">
-                <a href="#">
-                  <!-- <img src="img/blog/blog_4.jpg" alt="" /> -->
-                </a>
-              </div>
-
-              <div class="works__text">
-                <a href="#" class="works__title">Отзыв от компании СтройСфера</a>
-
-                <p class="works__desc">
-                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты
-                </p>
-
-                <div class="works__tags">
-                  <span class="works__tag">
-                    <a class="works__tag_link" href="#">
-                      <span class="works__tag_hash">#</span>
-                      <span>Статья</span>
-                    </a>
-
-                    <span class="works__date">15.9.2023</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PageBlogOtherArticles v-for="blog in blogsAllNotIn" :key="blog.id" :blog="blog" />
         </div>
 
         <div class="swiper-scrollbar"></div>
@@ -445,38 +253,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 12px;
-}
-
-/*  */
-.article_full_content_page {
-  position: absolute;
-  top: 57px;
-  right: -470px;
-  width: 450px;
-  background-color: var(--colorBirch);
-  padding: 32px;
-  border-radius: 24px;
-  margin-bottom: 52px;
-}
-
-.article_full_content_page__title {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 140%;
-  margin-bottom: 20px;
-}
-
-.article_full_content_page a {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 120%;
-  color: var(--colorDark3);
-  text-decoration: underline;
-  display: block;
-}
-
-.article_full_content_page a:not(:last-child) {
-  margin-bottom: 18px;
 }
 
 /*  */

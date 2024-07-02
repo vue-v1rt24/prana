@@ -1,13 +1,13 @@
 <script setup lang="ts">
 defineProps<{
-  link: string;
+  link?: string;
   title: string;
   underline?: boolean;
 }>();
 </script>
 
 <template>
-  <NuxtLink :to="link" class="job__link wrap_arrow">
+  <NuxtLink v-if="link" :to="link" class="job__link wrap_arrow">
     <span :class="underline && 'job__link__border'">{{ title }}</span>
 
     <span class="btn__arrow">
@@ -16,6 +16,16 @@ defineProps<{
       </svg>
     </span>
   </NuxtLink>
+
+  <div v-else class="job__link wrap_arrow react">
+    <span :class="underline && 'job__link__border'">{{ title }}</span>
+
+    <span class="btn__arrow">
+      <svg class="arrow">
+        <use xlink:href="/img/sprite.svg#arrow"></use>
+      </svg>
+    </span>
+  </div>
 </template>
 
 <style lang="css" scoped>
