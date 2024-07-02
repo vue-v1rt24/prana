@@ -70,4 +70,33 @@ onMounted(() => {
 .article_full_content_page__link:not(:last-child) {
   margin-bottom: 18px;
 }
+
+/* ================= Медиа запросы */
+
+@media (max-width: 1365px) {
+  .article_full_content_page {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .article_full_content_page {
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+
+  .article_full_content_page__title {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .article_full_content_page__link {
+    font-size: 14px;
+  }
+
+  .article_full_content_page__link:not(:last-child) {
+    margin-bottom: 14px;
+  }
+}
 </style>

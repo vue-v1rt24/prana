@@ -90,4 +90,59 @@ onMounted(() => {
   </button>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.rticle_full_useful__btn {
+  width: 223px;
+  height: 51px;
+  font-family: var(--fontFamily-NeueMachina);
+  background-color: transparent;
+  border: 2px solid #40b6b7;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  padding: 0;
+}
+
+.rticle_full_useful__hart {
+  width: 19px;
+  height: 19px;
+  stroke: var(--accentColor);
+  fill: transparent;
+  margin-top: 4px;
+}
+
+.rticle_full_useful__title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--colorDark3);
+}
+
+.rticle_full_useful__count {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #b9b9b9;
+  margin-top: 2px;
+}
+
+.rticle_full_useful__btn.active {
+  background-color: var(--accentColor);
+}
+
+.rticle_full_useful__btn.active .rticle_full_useful__hart {
+  stroke: white;
+  fill: white;
+}
+
+.rticle_full_useful__btn.active .rticle_full_useful__title {
+  color: white;
+}
+
+.rticle_full_useful__btn.active .rticle_full_useful__count {
+  color: white;
+  opacity: 0.6;
+}
+</style>

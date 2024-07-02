@@ -1,14 +1,5 @@
 <script setup lang="ts">
 import { useQueryOne } from '~/composables/blog/useQueryOne';
-import { useQueryNotIn } from '~/composables/blog/useQueryNotIn';
-
-import Swiper from 'swiper';
-import { Scrollbar } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-
-import 'assets/css/swiper-global.css';
-
 import { dateFormat } from '@/utils/utils';
 
 //
@@ -29,39 +20,6 @@ if (!article) {
 useSeoMeta({
   title: article?.metaTitle,
   description: article?.metaDesc,
-});
-
-// Запрос на получение всех записей, кроме текущей (для вывода в слайдере)
-const { blogsAllNotIn } = await useQueryNotIn(article!.id);
-
-//
-onMounted(() => {
-  // Вывод других статей
-  const swiperArticleFull = document.querySelector<HTMLDivElement>('.swiper_article_full')!;
-
-  if (swiperArticleFull) {
-    new Swiper('.swiper_article_full', {
-      slidesPerView: 'auto',
-      freeMode: true,
-      modules: [Scrollbar],
-      scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-        hide: false,
-      },
-      breakpoints: {
-        320: {
-          spaceBetween: 30,
-        },
-        577: {
-          spaceBetween: 30,
-        },
-        769: {
-          spaceBetween: 20,
-        },
-      },
-    });
-  }
 });
 </script>
 
@@ -168,13 +126,7 @@ onMounted(() => {
         <h2 class="article_interesting__title">Ещё много интересного</h2>
       </div>
 
-      <div class="swiper swiper_article_full">
-        <div class="swiper-wrapper">
-          <PageBlogOtherArticles v-for="blog in blogsAllNotIn" :key="blog.id" :blog="blog" />
-        </div>
-
-        <div class="swiper-scrollbar"></div>
-      </div>
+      <Articles :id="article?.id" />
     </section>
   </section>
 </template>
@@ -349,66 +301,8 @@ onMounted(() => {
   margin: 52px 0 82px 0;
 }
 
-.rticle_full_useful__btn {
-  width: 223px;
-  height: 51px;
-  font-family: var(--fontFamily-NeueMachina);
-  background-color: transparent;
-  border: 2px solid #40b6b7;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 8px;
-  padding: 0;
-}
-
-.rticle_full_useful__hart {
-  width: 19px;
-  height: 19px;
-  margin-top: 4px;
-}
-
-.rticle_full_useful__hart {
-  stroke: var(--accentColor);
-  fill: transparent;
-}
-
-.rticle_full_useful__title {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 100%;
-  color: var(--colorDark3);
-}
-
-.rticle_full_useful__count {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 100%;
-  color: #b9b9b9;
-  margin-top: 2px;
-}
-
 .rticle_full_useful .article_full_share {
   margin: 0;
-}
-
-.rticle_full_useful__btn.active {
-  background-color: var(--accentColor);
-}
-
-.rticle_full_useful__btn.active .rticle_full_useful__hart {
-  stroke: white;
-  fill: white;
-}
-
-.rticle_full_useful__btn.active .rticle_full_useful__title {
-  color: white;
-}
-
-.rticle_full_useful__btn.active .rticle_full_useful__count {
-  color: white;
-  opacity: 0.6;
 }
 
 /*  */
@@ -523,31 +417,249 @@ onMounted(() => {
   margin-bottom: 62px;
 }
 
-/*  */
-.swiper_article_full {
-  padding: 0 30px 0 50%;
-  margin: 0 0 0 -692px;
+/* ============= Медиа запросы */
+
+@media (max-width: 1365px) {
+  .article_full {
+    max-width: 100%;
+  }
+
+  .article_full__task {
+    position: static;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .article_full__ditask {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  /*  */
+  .article_full__digest {
+    flex-grow: 1;
+  }
+
+  .article_full__digest__form input {
+    width: 100%;
+  }
 }
 
-.swiper_article_full .swiper-slide {
-  width: 450px;
+@media (max-width: 1250px) {
+  .rticle_full_useful {
+    margin: 48px 0 48px 0;
+  }
 }
 
-.swiper_article_full .swiper-scrollbar {
-  position: static;
-  max-width: 1280px;
-  background-color: #ededed;
-  margin-top: 62px;
+@media (max-width: 830px) {
+  .article_full__ditask {
+    flex-direction: column;
+    row-gap: 52px;
+  }
+
+  .article_full__task {
+    width: 100%;
+  }
 }
 
-/* .swiper__dark .works__title,
-.swiper__dark .works__tag_link,
-.swiper__dark .works__date {
-  color: white;
+@media (max-width: 768px) {
+  .article_full_bx {
+    padding: 42px 0 140px 0;
+  }
+
+  .article_full_h1 {
+    font-size: 32px;
+  }
+
+  .article_full_content h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .article_full_content p {
+    font-size: 18px;
+  }
+
+  .wp-block-media-text img {
+    margin-bottom: 16px;
+  }
+
+  .wp-block-media-text__content p {
+    font-size: 14px;
+  }
+
+  .article_interesting {
+    margin-top: 140px;
+  }
+
+  .article_interesting__title {
+    max-width: 320px;
+    font-size: 38px;
+  }
+
+  .article_full__task {
+    background-image: url(../img/article/article_full__task_decor_2.svg);
+  }
 }
 
-.swiper__dark .works__desc {
-  color: white;
-  opacity: 0.4;
-} */
+@media (max-width: 576px) {
+  .article_full_bx {
+    padding: 32px 0 80px 0;
+  }
+
+  .article_full_tag {
+    font-size: 15px;
+  }
+
+  .article_full_h1 {
+    font-size: 19px;
+    margin: 18px 0;
+  }
+
+  .article_full_share {
+    font-size: 14px;
+    margin-bottom: 42px;
+  }
+
+  .article_full_save img {
+    height: 15px;
+  }
+
+  .article_full_content_page {
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+
+  .article_full_content_page__title {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+
+  .article_full_content_page a {
+    font-size: 14px;
+  }
+
+  .article_full_content_page a:not(:last-child) {
+    margin-bottom: 14px;
+  }
+
+  .article_full_content {
+    margin-bottom: 32px;
+  }
+
+  .article_full_content h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .article_full_content p {
+    font-size: 14px;
+  }
+
+  .article_full_content .article_full_content p:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
+  .wp-block-media-text img {
+    border-radius: 18px;
+    margin-bottom: 12px;
+  }
+
+  .wp-block-media-text__content p {
+    font-size: 12px;
+  }
+
+  /*  */
+  .article_full_author {
+    border-radius: 18px;
+    padding: 20px;
+  }
+
+  .article_full_author__img_bx {
+    column-gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .article_full_author__img_bx img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .article_full_author__name {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .article_full_author__post {
+    font-size: 12px;
+  }
+
+  /*  */
+  .rticle_full_useful {
+    flex-direction: column;
+    row-gap: 24px;
+    margin: 32px 0 42px 0;
+  }
+
+  /*  */
+  .article_full__digest {
+    padding: 20px;
+  }
+
+  .article_full__digest__title {
+    margin-bottom: 10px;
+  }
+
+  .article_full__digest__desc {
+    font-size: 14px;
+    line-height: 140%;
+    margin-bottom: 24px;
+  }
+
+  .article_full__digest__form {
+    flex-direction: column;
+  }
+
+  .article_full__digest__form .blue_btn {
+    width: 100%;
+    height: 79px;
+  }
+
+  .article_full__digest__form .blue_btn__title {
+    display: block;
+  }
+
+  .article_full__digest__form .blue_btn .btn__arrow .arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  /*  */
+  .article_full__task {
+    background-image: url(/img/article/article_full__task_decor_3.svg);
+    padding: 20px;
+  }
+
+  .article_full__task__title {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .article_full__task .blue_btn {
+    width: 280px;
+    height: 79px;
+  }
+
+  /*  */
+  .article_interesting {
+    margin-top: 80px;
+  }
+
+  .article_interesting__title {
+    font-size: 26px;
+    margin-bottom: 42px;
+  }
+}
 </style>

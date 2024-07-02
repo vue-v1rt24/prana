@@ -49,4 +49,10 @@ const vTextAnimate = visibleHiddenText;
   </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+@media (max-width: 768px) {
+  .works__desc {
+    height: 72px;
+  }
+}
+</style>
