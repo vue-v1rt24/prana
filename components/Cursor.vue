@@ -121,7 +121,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="cursor" ref="cursor"></div>
+  <div class="cursor" ref="cursor">
+    <!-- Кнопка наведения на блок с видео -->
+    <button class="about_video_btn">
+      <svg class="about_video_btn_play">
+        <use xlink:href="/img/sprite.svg#play"></use>
+      </svg>
+    </button>
+  </div>
+
   <div class="aura" ref="aura"></div>
 </template>
 
@@ -171,7 +179,33 @@ onUnmounted(() => {
   transform: translate(-50%, -50%) scale(0.001);
 }
 
-/*  */
+/* Видео кнопка на странице "О компании" */
+.about_video_btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.001);
+  width: 92px;
+  height: 92px;
+  background-color: var(--colorTextWhite);
+  border: none;
+  border-radius: 50%;
+  transition: var(--transformAnimate);
+}
+
+.cursor.video .about_video_btn {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.about_video_btn_play {
+  width: 32px;
+  height: 32px;
+  fill: var(--accentColor2);
+  transform: translate(3px, 2px);
+}
+
+/* ============ Медиа запросы */
+
 @media (hover: none) and (pointer: coarse) {
   *,
   *::before,
