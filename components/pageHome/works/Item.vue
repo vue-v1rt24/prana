@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import visibleHiddenText from '@/directives/visibleHiddenText';
 import { type TypeBlogWorkTransform } from '@/types/home-page/works.types';
 
 //
@@ -10,6 +11,9 @@ const props = defineProps<{
 const emit = defineEmits<{
   routePath: [link: string];
 }>();
+
+// Директива для показа скрытого текста заголовка
+const vTextAnimate = visibleHiddenText;
 
 //
 const video = ref<HTMLVideoElement | null>(null);
@@ -162,7 +166,9 @@ const sendWork = (link: string) => {
     </div>
 
     <div class="works__text">
-      <NuxtLink :to="link" class="works__title">{{ item.homePreview.zagolovok }}</NuxtLink>
+      <NuxtLink :to="link" class="works__title" v-text-animate>
+        {{ item.homePreview.zagolovok }}
+      </NuxtLink>
 
       <div class="works__tags">
         <span v-for="cat in item.categories.nodes" :key="cat.name" class="works__tag">

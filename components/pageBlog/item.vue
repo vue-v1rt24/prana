@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import visibleHiddenText from '@/directives/visibleHiddenText';
 import type { TypeTransformBlog } from '@/types/blog-page/blogHome.types';
 import { dateFormat, replaceSpace } from '@/utils/utils';
 
@@ -9,6 +10,9 @@ const props = defineProps<{
 const emit = defineEmits<{
   changeTag: [title: string];
 }>();
+
+// Директива для показа скрытого текста заголовка
+const vTextAnimate = visibleHiddenText;
 
 // Соединение классов (для фильтрации)
 const classNameFilter = computed(() =>
@@ -25,7 +29,7 @@ const classNameFilter = computed(() =>
     </div>
 
     <div class="works__text">
-      <NuxtLink :to="`/blog/${blog.slug}`" class="works__title">
+      <NuxtLink :to="`/blog/${blog.slug}`" class="works__title" v-text-animate>
         {{ blog.title }}
       </NuxtLink>
 

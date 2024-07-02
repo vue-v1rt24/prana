@@ -61,6 +61,11 @@
   margin-bottom: 15px;
 }
 
+.works__title:hover {
+  text-overflow: unset;
+  text-indent: var(--w);
+}
+
 .works__desc {
   position: relative;
   height: 66px;

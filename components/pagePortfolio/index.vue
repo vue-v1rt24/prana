@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import visibleHiddenText from '@/directives/visibleHiddenText';
 import { replaceSpace } from '@/utils/utils';
 import type { TypePortfolio } from '~/types/portfolios.types';
 
@@ -10,6 +11,9 @@ const props = defineProps<{
 const emit = defineEmits<{
   changeTag: [title: string];
 }>();
+
+// Директива для показа скрытого текста заголовка
+const vTextAnimate = visibleHiddenText;
 
 //
 const video = ref<HTMLVideoElement | null>(null);
@@ -118,11 +122,7 @@ const videoHover = () => {
     </div>
 
     <div class="works__text">
-      <NuxtLink
-        :to="`/portfolio/${props.article.slug}`"
-        class="works__title"
-        :title="article.homePreview.zagolovok"
-      >
+      <NuxtLink :to="`/portfolio/${props.article.slug}`" class="works__title" v-text-animate>
         {{ article.homePreview.zagolovok }}
       </NuxtLink>
 
