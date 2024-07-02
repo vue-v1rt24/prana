@@ -94,9 +94,9 @@ onMounted(() => {
           <nav>
             <ul class="menu">
               <li><NuxtLink to="/portfolio">Портфолио</NuxtLink></li>
-              <li><a href="team.html">Команда</a></li>
+              <li><NuxtLink to="/company">Команда</NuxtLink></li>
               <li><NuxtLink to="/blog">Блог</NuxtLink></li>
-              <li><NuxtLink to="/blog">Наша продукция</NuxtLink></li>
+              <li><a href="#">Наша продукция</a></li>
               <li><a href="#">Контакты</a></li>
             </ul>
           </nav>
@@ -167,6 +167,10 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 60px;
+}
+
+.menu a.active {
+  color: var(--accentColor);
 }
 
 /*  */
