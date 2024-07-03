@@ -1,9 +1,10 @@
 <script setup lang="ts">
 const viewport = useViewport();
+const theme = useTheme();
 </script>
 
 <template>
-  <div class="job_bx">
+  <div :class="['job_bx', { dark: theme === 'dark' }]">
     <div v-if="viewport.isGreaterOrEquals('screen576')" class="job vacancy">
       <div class="title_h4 job__title_h4">Вакансии</div>
 
@@ -85,6 +86,10 @@ const viewport = useViewport();
   -webkit-backdrop-filter: blur(29.5px);
   border-radius: 42px;
   padding: 40px;
+
+  .dark & {
+    background-color: var(--colorDark3);
+  }
 
   @media (max-width: 576px) {
     border-radius: 24px;

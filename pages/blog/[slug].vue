@@ -126,7 +126,7 @@ useSeoMeta({
         <h2 class="article_interesting__title">Ещё много интересного</h2>
       </div>
 
-      <Articles :id="article?.id" />
+      <BlogSlider :id="article?.id" />
     </section>
   </section>
 </template>

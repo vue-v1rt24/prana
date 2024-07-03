@@ -1,8 +1,21 @@
 <script setup lang="ts">
+const route = useRoute();
+const theme = useTheme();
+
+//
 useSeoMeta({
   titleTemplate(titleChunk) {
     return titleChunk ? titleChunk : 'Прана айти';
   },
+});
+
+//
+watchEffect(() => {
+  if (route.path.includes('company')) {
+    theme.value = 'dark';
+  } else {
+    theme.value = 'light';
+  }
 });
 </script>
 

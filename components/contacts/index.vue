@@ -2,6 +2,9 @@
 import { gsap } from 'gsap';
 
 //
+const theme = useTheme();
+
+//
 const mm = gsap.matchMedia();
 
 //
@@ -23,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="blog_bx">
+  <section :class="['blog_bx', { dark: theme === 'dark' }]">
     <div class="container">
       <h2 class="blog_bx__title">Контакты</h2>
 
@@ -74,6 +77,10 @@ onMounted(() => {
 .blog_bx::after {
   left: auto;
   right: 0;
+}
+
+.blog_bx.dark {
+  background-color: var(--colorDark4);
 }
 
 .blog_bx__title {

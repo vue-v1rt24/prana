@@ -1,10 +1,13 @@
 <script setup lang="ts">
 const viewport = useViewport();
 const { isOpenModal } = useOutsideModal();
+
+//
+const theme = useTheme();
 </script>
 
 <template>
-  <footer class="footer_bx">
+  <footer :class="['footer_bx', { dark: theme === 'dark' }]">
     <div class="container">
       <div class="footer">
         <div class="footer__logo_bx">
@@ -111,6 +114,10 @@ const { isOpenModal } = useOutsideModal();
 <style lang="css" scoped>
 .footer_bx {
   background-color: var(--colorDark3);
+
+  &.dark {
+    background-color: var(--colorDark4);
+  }
 }
 
 .footer {

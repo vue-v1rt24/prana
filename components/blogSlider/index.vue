@@ -18,6 +18,7 @@ import 'assets/css/swiper-global.css';
 const props = withDefaults(
   defineProps<{
     id?: number;
+    dark?: boolean;
   }>(),
   {
     id: 0,
@@ -59,16 +60,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="swiper swiper_article_full">
+  <div :class="['swiper swiper_article_full', { swiper__dark: dark }]">
     <div class="swiper-wrapper">
-      <ArticlesItem v-for="blog in blogsAllNotIn" :key="blog.id" :blog="blog" />
+      <BlogSliderItem v-for="blog in blogsAllNotIn" :key="blog.id" :blog="blog" />
     </div>
 
     <div class="swiper-scrollbar"></div>
   </div>
 </template>
 
-<style lang="css" scoped>
+<style lang="css">
 .swiper_article_full {
   padding: 0 30px 0 50%;
   margin: 0 0 0 -692px;
@@ -85,7 +86,8 @@ onMounted(() => {
   margin-top: 62px;
 }
 
-/* .swiper__dark .works__title,
+/*  */
+.swiper__dark .works__title,
 .swiper__dark .works__tag_link,
 .swiper__dark .works__date {
   color: white;
@@ -94,7 +96,12 @@ onMounted(() => {
 .swiper__dark .works__desc {
   color: white;
   opacity: 0.4;
-} */
+}
+
+.swiper__dark .swiper-scrollbar {
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 /* ============= Медиа запросы */
 

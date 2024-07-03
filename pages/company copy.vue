@@ -149,10 +149,10 @@ Fancybox.bind('[data-fancybox="team"]', {
       </div>
     </section>
 
-    <!-- Команда -->
+    <!-- Люди - наша гордость -->
     <section class="people_sec">
       <div class="container">
-        <h2 class="people_title">Команда</h2>
+        <!-- <h2 class="title_52">Люди - наша гордость</h2> -->
 
         <div class="swiper swiper_people">
           <div class="swiper-wrapper">
@@ -259,7 +259,7 @@ Fancybox.bind('[data-fancybox="team"]', {
     </section>
 
     <!-- Блог -->
-    <section class="team_page blog_bx">
+    <section class="team_page blog_bx blog_blue">
       <div class="container">
         <h2 class="title_52">
           Как проходят наши <br />
@@ -268,8 +268,190 @@ Fancybox.bind('[data-fancybox="team"]', {
       </div>
 
       <!-- Галерея -->
-      <div class="container">
-        <BlogSlider dark />
+      <div class="swiper swiper_article_full swiper__dark">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="article.html">
+                  <!-- <img src="img/blog/blog_1.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="article.html" class="works__title">Как мы путешествовали по горам</a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
+                  впечатлений
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Событие</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="#">
+                  <!-- <img src="img/blog/blog_2.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="#" class="works__title">Главный инструмент для малого</a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
+                  впечатлений
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Статья</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="#">
+                  <!-- <img src="img/blog/blog_3.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="#" class="works__title">
+                  Команда разработчиков PRANA IT посетила крупнейшее мероприятие по it технология
+                </a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
+                  впечатлений, поэтому часто устраиваем совместные поездки.
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Событие</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="#">
+                  <!-- <img src="img/blog/blog_4.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="#" class="works__title">Отзыв от компании СтройСфера</a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Видео</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="#">
+                  <!-- <img src="img/blog/blog_2.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="#" class="works__title">Главный инструмент для малого</a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты для новых
+                  впечатлений
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Статья</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="works__item">
+              <div class="works__img">
+                <a href="#">
+                  <!-- <img src="img/blog/blog_4.jpg" alt="" /> -->
+                </a>
+              </div>
+
+              <div class="works__text">
+                <a href="#" class="works__title">Отзыв от компании СтройСфера</a>
+
+                <p class="works__desc">
+                  Мы, как коллектив, очень ценим нашу сплоченность и всегда открыты
+                </p>
+
+                <div class="works__tags">
+                  <span class="works__tag">
+                    <a class="works__tag_link" href="#">
+                      <span class="works__tag_hash">#</span>
+                      <span>Статья</span>
+                    </a>
+
+                    <span class="works__date">15.9.2023</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-scrollbar"></div>
       </div>
     </section>
   </div>
@@ -290,12 +472,6 @@ Fancybox.bind('[data-fancybox="team"]', {
   background-color: white;
   border-radius: 58px 58px 0 0;
   z-index: -1;
-}
-
-@media (max-width: 1200px) {
-  .about_sec::after {
-    height: 180px;
-  }
 }
 
 /*  */
@@ -321,24 +497,12 @@ Fancybox.bind('[data-fancybox="team"]', {
   z-index: -1;
 }
 
-@media (max-width: 1200px) {
-  .about_particles::before {
-    width: 564px;
-    height: 604px;
-    background-image: url(/img/team/decoration_1_768.svg);
-  }
-}
-
 /*  */
 .about_download {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 82px;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .about_download::before {
@@ -351,12 +515,6 @@ Fancybox.bind('[data-fancybox="team"]', {
   background-image: url(/img/ellipse-lighter-2.svg);
   background-repeat: no-repeat;
   z-index: -1;
-}
-
-@media (max-width: 768px) {
-  .about_download::before {
-    display: none;
-  }
 }
 
 /*  */
@@ -386,11 +544,6 @@ Fancybox.bind('[data-fancybox="team"]', {
   display: flex;
   flex-direction: column;
   row-gap: 60px;
-
-  @media (max-width: 1200px) {
-    flex-direction: column-reverse;
-    margin-top: 52px;
-  }
 }
 
 .about__download__right_load_link {
@@ -505,14 +658,6 @@ Fancybox.bind('[data-fancybox="team"]', {
   z-index: 1;
 }
 
-@media (max-width: 1200px) {
-  .about_desc_bx::after {
-    width: 571px;
-    height: 1114px;
-    background-image: url(../img/team/decoration_2_768.svg);
-  }
-}
-
 .about_desc_bx .container {
   position: relative;
   z-index: 2;
@@ -529,10 +674,6 @@ Fancybox.bind('[data-fancybox="team"]', {
   transform: translateY(14px);
   transition: fill 0.3s, transform 0.3s;
   margin-left: 20px;
-
-  @media (max-width: 992px) {
-    display: none;
-  }
 }
 
 .not_joke__link:hover svg {
@@ -602,9 +743,12 @@ Fancybox.bind('[data-fancybox="team"]', {
 
 /*  */
 .team_page.blog_bx {
-  background-color: #060e1b;
-  padding: 12px 0;
   overflow: hidden;
+}
+
+.team_page.blog_blue::before,
+.team_page.blog_blue::after {
+  background-color: var(--colorDark3);
 }
 
 .team_page .title_52 {
@@ -620,19 +764,8 @@ Fancybox.bind('[data-fancybox="team"]', {
   margin-top: 62px;
 }
 
-/*  */
-.team_page .swiper_article_full {
-  padding: 0;
-  margin: 0;
-
-  @media (max-width: 1200px) {
-    padding: 0 30px;
-    margin: 0 -30px;
-  }
-}
-
-.team_page :global(.swiper_article_full .swiper-slide) {
-  width: 445px;
+.team_page .swiper_article_full .swiper-scrollbar {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*  */
@@ -658,29 +791,20 @@ Fancybox.bind('[data-fancybox="team"]', {
 
 /*  */
 .people_sec {
-  position: relative;
-  margin-bottom: 320px;
+  margin-bottom: 160px;
 }
 
-.people_title {
-  position: absolute;
-  top: 166px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 800;
-  font-size: 181px;
-  line-height: 100%;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+.people_sec .container {
+  max-width: 1860px;
+  padding: 0;
+}
 
-  @media (max-width: 1300px) {
-    font-size: 80px;
-  }
+.people_sec .title_52 {
+  margin-bottom: 72px;
 }
 
 .swiper_people {
-  padding-top: 274px;
+  padding-bottom: 30px;
 }
 
 .swiper_people .swiper-wrapper {
@@ -707,7 +831,7 @@ Fancybox.bind('[data-fancybox="team"]', {
   font-weight: 600;
   line-height: 120%;
   letter-spacing: 0.36px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .people_item__post {
@@ -723,5 +847,27 @@ Fancybox.bind('[data-fancybox="team"]', {
   position: absolute;
   top: -380px;
   left: 600px;
+}
+
+/*  */
+.swiper.scrollbar {
+  padding: 0 39px 40px 39px;
+  margin: 0 -39px;
+}
+
+/* Полоса скроллбара */
+.swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  left: 39px;
+  right: 39px;
+  width: auto;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+}
+
+.swiper-scrollbar-drag {
+  background-color: var(--accentColor);
+  border-radius: 0;
 }
 </style>

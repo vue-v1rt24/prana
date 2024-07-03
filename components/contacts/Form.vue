@@ -5,6 +5,8 @@ import { required, email, minLength } from '@vuelidate/validators';
 //
 const mail = useMail();
 
+const theme = useTheme();
+
 // === Поля формы
 const fields = reactive({
   username: '',
@@ -75,7 +77,7 @@ const sendHandler = async () => {
 </script>
 
 <template>
-  <div class="data_company__form">
+  <div :class="['data_company__form', { dark: theme === 'dark' }]">
     <div class="contact_us">
       <div class="contact_us__h3">Свяжитесь с нами</div>
 
@@ -163,6 +165,10 @@ const sendHandler = async () => {
   -webkit-backdrop-filter: blur(29.5px);
   padding: 40px;
 
+  .dark & {
+    background-color: var(--colorDark3);
+  }
+
   @media (max-width: 576px) {
     border-radius: 24px;
     padding: 24px;
@@ -243,6 +249,10 @@ const sendHandler = async () => {
     outline: 1px solid red;
   }
 
+  .dark & {
+    background-color: var(--colorDark4);
+  }
+
   /*  */
   @media (max-width: 576px) {
     height: 73px;
@@ -288,6 +298,10 @@ const sendHandler = async () => {
   /* cursor: pointer; */
   outline: 2px solid transparent;
   transition: color 0.3s, outline 0.3s;
+
+  .dark & {
+    background-color: var(--colorDark4);
+  }
 
   @media (max-width: 576px) {
     font-size: 14px;
