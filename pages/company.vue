@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { gsap } from 'gsap';
+
+//
 import * as FancyboxAll from '@fancyapps/ui';
 const { Fancybox } = FancyboxAll;
 
@@ -9,6 +12,43 @@ Fancybox.bind('[data-fancybox="team"]', {
       // aura.classList.remove('active');
     },
   },
+});
+
+//
+import Swiper from 'swiper';
+import { Scrollbar } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/scrollbar';
+
+import 'assets/css/swiper-global.css';
+
+//
+const mm = gsap.matchMedia();
+
+//
+onMounted(() => {
+  const swiperPeopleBx = document.querySelector<HTMLDivElement>('.swiper_people')!;
+
+  if (swiperPeopleBx) {
+    const peopleSwiper = new Swiper(swiperPeopleBx, {
+      init: false,
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      freeMode: true,
+      modules: [Scrollbar],
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+        hide: false,
+      },
+    });
+
+    mm.add('(max-width: 767px)', () => {
+      peopleSwiper.init();
+
+      return () => {};
+    });
+  }
 });
 </script>
 
@@ -339,6 +379,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   @media (max-width: 1200px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 74px;
+  }
 }
 
 .about_download::before {
@@ -371,6 +415,11 @@ Fancybox.bind('[data-fancybox="team"]', {
   letter-spacing: 0.52px;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 52px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 42px;
+  }
 }
 
 .about_download__left_h1 {
@@ -379,6 +428,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   line-height: 100%;
   letter-spacing: 1.44px;
   color: var(--colorTextWhite);
+
+  @media (max-width: 768px) {
+    font-size: 52px;
+  }
 }
 
 /*  */
@@ -390,6 +443,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   @media (max-width: 1200px) {
     flex-direction: column-reverse;
     margin-top: 52px;
+  }
+
+  @media (max-width: 768px) {
+    row-gap: 44px;
   }
 }
 
@@ -436,6 +493,12 @@ Fancybox.bind('[data-fancybox="team"]', {
   left: 42px;
   display: flex;
   column-gap: 24px;
+
+  @media (max-width: 768px) {
+    top: 26px;
+    left: 26px;
+    column-gap: 12px;
+  }
 }
 
 .about_video__promo_billet {
@@ -452,11 +515,21 @@ Fancybox.bind('[data-fancybox="team"]', {
   justify-content: center;
   align-items: center;
   row-gap: 10px;
+
+  @media (max-width: 768px) {
+    width: 235px;
+    height: 84px;
+    border-radius: 24px;
+  }
 }
 
 .about_video__promo_billet_vide {
   font-size: 18px;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .about_video__promo_billet_duration {
@@ -464,6 +537,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   font-weight: 300;
   color: var(--colorTextOpacity06);
   transform: translateX(-13px);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .about_video__promo_billet_btn {
@@ -476,6 +553,11 @@ Fancybox.bind('[data-fancybox="team"]', {
   justify-content: center;
   align-items: center;
   padding: 0;
+
+  @media (max-width: 768px) {
+    width: 84px;
+    height: 84px;
+  }
 }
 
 .about_video__promo_billet_btn_play {
@@ -490,6 +572,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   color: var(--colorDark3);
   background-color: white;
   padding: 86px 0 150px 0;
+
+  @media (max-width: 768px) {
+    padding: 100px 0 62px 0;
+  }
 }
 
 .about_desc_bx::after {
@@ -551,6 +637,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   max-width: 1229px;
   font-family: var(--fontFamily-RFDewi);
   margin-bottom: 160px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 120px;
+  }
 }
 
 .about_desc span {
@@ -563,6 +653,12 @@ Fancybox.bind('[data-fancybox="team"]', {
   line-height: 120%;
   letter-spacing: 0.84px;
   margin-bottom: 100px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    letter-spacing: 0.64px;
+    margin-bottom: 82px;
+  }
 }
 
 .about_desc_2 {
@@ -572,6 +668,11 @@ Fancybox.bind('[data-fancybox="team"]', {
   line-height: 130%;
   letter-spacing: 0.44px;
   margin-bottom: 42px;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    margin-bottom: 32px;
+  }
 }
 
 .about_desc_3 {
@@ -581,6 +682,13 @@ Fancybox.bind('[data-fancybox="team"]', {
   line-height: 120%;
   letter-spacing: 0.56px;
   margin-bottom: 72px;
+
+  @media (max-width: 768px) {
+    max-width: 670px;
+    font-size: 26px;
+    letter-spacing: 0.52px;
+    margin-bottom: 62px;
+  }
 }
 
 .about_desc_4 {
@@ -589,10 +697,19 @@ Fancybox.bind('[data-fancybox="team"]', {
   font-size: 20px;
   font-weight: 300;
   line-height: 140%;
+
+  @media (max-width: 768px) {
+    max-width: 660px;
+    font-size: 18px;
+  }
 }
 
 .about_desc_4:not(:last-child) {
   margin-bottom: 42px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
+  }
 }
 
 .about_desc_4 span {
@@ -646,6 +763,12 @@ Fancybox.bind('[data-fancybox="team"]', {
   font-weight: 700;
   line-height: 100%;
   letter-spacing: 1.04px;
+
+  @media (max-width: 768px) {
+    font-size: 48px;
+    letter-spacing: 0.96px;
+    margin-bottom: 62px;
+  }
 }
 
 .not_joke__title span {
@@ -660,6 +783,10 @@ Fancybox.bind('[data-fancybox="team"]', {
 .people_sec {
   position: relative;
   margin-bottom: 320px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 120px;
+  }
 }
 
 .people_title {
@@ -681,16 +808,31 @@ Fancybox.bind('[data-fancybox="team"]', {
 
 .swiper_people {
   padding-top: 274px;
+
+  @media (max-width: 768px) {
+    padding: 274px 30px 30px 30px;
+    margin: 0 -30px;
+  }
 }
 
 .swiper_people .swiper-wrapper {
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px 20px;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: unset;
+  }
 }
 
 .swiper_people .swiper-slide {
   width: 450px;
+
+  @media (max-width: 768px) {
+    width: 330px;
+  }
 }
 
 .people_item__img {
@@ -699,6 +841,10 @@ Fancybox.bind('[data-fancybox="team"]', {
   background-color: #060e1b;
   border-radius: 26px;
   margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    height: 330px;
+  }
 }
 
 .people_item__name {
