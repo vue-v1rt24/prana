@@ -13,36 +13,50 @@ const { isOpenModal } = useOutsideModal();
 
 //
 const { Fancybox } = FancyboxAll;
+const videoFancyboxBx = ref<HTMLDivElement | null>(null);
 
 //
 onMounted(() => {
-  const videoFancyboxBx = document.querySelector('.video_fancybox_bx');
-
-  if (videoFancyboxBx) {
-    videoFancyboxBx.addEventListener('click', ({ target }) => {
+  // Модальное окно видео
+  if (videoFancyboxBx.value) {
+    videoFancyboxBx.value.addEventListener('click', (evt) => {
+      const target = evt.target as HTMLDivElement;
       const parent = target.closest('.video_fancybox_parent_js');
 
       if (parent) {
-        const videoHart = parent.querySelector('.video_hart');
-        const workFullArticleHartHtml = videoHart.querySelector('.work_full_article__hart');
+        const videoHart = parent.querySelector<HTMLDivElement>('.video_hart')!;
 
-        const cloneVideoHart = videoHart.cloneNode(true);
-        const workFullArticleHart = cloneVideoHart.querySelector('.work_full_article__hart');
+        const workFullArticleHartHtml = videoHart.querySelector<HTMLDivElement>(
+          '.work_full_article__hart',
+        )!;
+
+        const cloneVideoHart = videoHart.cloneNode(true) as HTMLDivElement;
+
+        const workFullArticleHart = cloneVideoHart.querySelector<HTMLDivElement>(
+          '.work_full_article__hart',
+        )!;
 
         Fancybox.bind('.video_fancybox_js', {
           mainClass: 'video_fancybox_modal',
           closeButton: false,
           on: {
             done() {
-              const videoFancyboxModal = document.querySelector('.video_fancybox_modal');
-              const fancyboxContent = videoFancyboxModal.querySelector('.fancybox__content');
+              // Клонируем и вставляем в модальное окно видео всё содержимое из компонента: LikeInModalVideo.vue
+              const videoFancyboxModal =
+                document.querySelector<HTMLDivElement>('.video_fancybox_modal')!;
+
+              const fancyboxContent =
+                videoFancyboxModal.querySelector<HTMLDivElement>('.fancybox__content')!;
 
               fancyboxContent.append(cloneVideoHart);
 
+              // Кликаем по "Нравится" в модальном окне
               workFullArticleHart.addEventListener('click', () => {
                 workFullArticleHart.classList.toggle('active');
                 workFullArticleHartHtml.classList.toggle('active');
-                console.log('Отправка запроса');
+
+                // Кликаем по кнопке "Нравится". Она находится в компоненте: Polezno.vue
+                document.querySelector<HTMLDivElement>('.rticle_full_useful__btn')?.click();
               });
             },
           },
@@ -56,7 +70,7 @@ onMounted(() => {
 <template>
   <div class="page_video article_full">
     <!-- Видео -->
-    <div class="video_fancybox_bx">
+    <div class="video_fancybox_bx" ref="videoFancyboxBx">
       <div class="video_fancybox_parent_js">
         <a
           class="video_fancybox video_fancybox_js"
@@ -76,23 +90,7 @@ onMounted(() => {
         </p>
 
         <!-- Нравится и поделиться (переносится в модальное окно видео) -->
-        <div class="video_hart_bx">
-          <div class="video_hart">
-            <div class="work_full_article__hart react">
-              <svg>
-                <use xlink:href="/img/sprite.svg#hart"></use>
-              </svg>
-
-              <span>{{ blogByloPolezno }}</span>
-            </div>
-
-            <div class="work_full_article__share react">
-              <svg>
-                <use xlink:href="/img/sprite.svg#share"></use>
-              </svg>
-            </div>
-          </div>
-        </div>
+        <PageBlogLikeInModalVideo :id="id" :count="blogByloPolezno" />
       </div>
     </div>
 
@@ -159,10 +157,18 @@ onMounted(() => {
   width: 154%;
   display: flex;
   gap: 52px 40px;
+
+  @media (max-width: 1500px) {
+    width: 100%;
+  }
 }
 
 .page_video .article_full__digest {
   width: 920px;
+
+  @media (max-width: 830px) {
+    width: 100%;
+  }
 }
 
 .page_video .article_full__task {
@@ -186,33 +192,44 @@ onMounted(() => {
   background-size: cover;
 }
 
+@media (max-width: 830px) {
+  .video_fancybox::before {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 576px) {
+  .video_fancybox::before {
+    width: 35px;
+    height: 35px;
+  }
+}
+
 .video_img {
   border-radius: 18px;
 }
 
 .desc_video {
   margin: 41px 0 52px 0;
+
+  @media (max-width: 576px) {
+    margin: 24px 0 32px 0;
+  }
 }
 
 .article_full_p {
   font-weight: 300;
   font-size: 20px;
   line-height: 140%;
-}
 
-/*  */
-.video_hart_bx {
-  display: none;
-}
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 
-.video_fancybox_modal .video_hart {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  color: white;
-  font-size: 30px;
-  margin: -269px 0 0 500px;
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }
 
 /*  */
@@ -221,12 +238,44 @@ onMounted(() => {
   top: 0px;
   right: -310px;
   width: 290px;
+
+  @media (max-width: 1500px) {
+    display: none;
+  }
+
+  @media (max-width: 830px) {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 31px;
+    margin-bottom: 52px;
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 82px;
+  }
 }
 
 .separate_project__img {
   position: relative;
   width: 290px;
   height: 290px;
+
+  @media (max-width: 830px) {
+    flex: 1.05;
+    width: 330px;
+    height: 330px;
+  }
+
+  @media (max-width: 700px) {
+    flex: none;
+  }
 }
 
 .separate_project__img img {
@@ -243,8 +292,23 @@ onMounted(() => {
   height: 82px;
   font-size: 20px;
   margin-top: 18px;
-}
 
+  @media (max-width: 830px) {
+    flex: 1;
+    width: 330px;
+    height: 330px;
+    margin-top: 0;
+  }
+
+  @media (max-width: 700px) {
+    flex: none;
+    height: 82px;
+    margin-top: 20px;
+  }
+}
+</style>
+
+<style>
 .separate_project .blue_btn .btn__arrow .arrow {
   width: 13px;
   height: 13px;

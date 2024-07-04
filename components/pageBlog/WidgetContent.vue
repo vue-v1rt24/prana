@@ -73,7 +73,7 @@ onMounted(() => {
 
 /* ================= Медиа запросы */
 
-@media (max-width: 1365px) {
+@media (max-width: 1500px) {
   .article_full_content_page {
     position: static;
     width: 100%;

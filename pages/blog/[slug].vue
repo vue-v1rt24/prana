@@ -364,7 +364,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
 
 /* ============= Медиа запросы */
 
-@media (max-width: 1365px) {
+@media (max-width: 1500px) {
   .article_full {
     max-width: 100%;
   }
