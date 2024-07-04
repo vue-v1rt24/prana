@@ -13,17 +13,29 @@ import 'swiper/css/scrollbar';
 
 import 'assets/css/swiper-global.css';
 
+// Получение данных из админки
+const { dataCompany } = await useCompanyQuery();
+console.log(dataCompany.value);
+
 //
 const peopleSwiper = ref<Swiper | null>(null);
 
 //
 const mm = gsap.matchMedia();
 
+// Видео в модальном окне
+const videoPlayModal = (link: string) => {
+  Fancybox.show([
+    {
+      src: link,
+      width: 640,
+      height: 360,
+    },
+  ]);
+};
+
 //
 onMounted(() => {
-  Fancybox.bind('[data-fancybox="team"]');
-
-  //
   const swiperPeopleBx = document.querySelector<HTMLDivElement>('.swiper_people')!;
 
   if (swiperPeopleBx) {
@@ -52,11 +64,6 @@ onUnmounted(() => {
   Fancybox.destroy();
 
   //
-  /* if (peopleSwiper.value && peopleSwiper.value.destroy) {
-    peopleSwiper.value.destroy();
-  } */
-
-  //
   mm.kill(true);
 });
 </script>
@@ -81,30 +88,24 @@ onUnmounted(() => {
           <div class="about__download__right">
             <div class="about__download__right_load">
               <img class="about__download__right_load_img" src="/img/team/download.svg" alt="" />
-              <a class="about__download__right_load_link" href="#" download>
+              <a class="about__download__right_load_link" :href="dataCompany?.file" download>
                 Скачать презентацию компании
               </a>
             </div>
 
             <p class="about__download__right_desc">
-              Команда профессионалов в различных <br />
-              областях, таких как дизайн, веб-разработка, <br />
-              продвижение, motion и фотография
+              {{ dataCompany?.descCompany }}
             </p>
           </div>
         </div>
 
         <!--  -->
-        <div class="about_video">
-          <a
-            class="about_video__link"
-            href="https://www.youtube.com/watch?v=z2X2HaTvkl8"
-            data-fancybox="team"
-          >
+        <div v-if="dataCompany?.file" class="about_video">
+          <div class="about_video__link" @click.prevent="videoPlayModal(dataCompany.videoCompany)">
             <picture>
-              <source srcset="/img/team/poster_360.jpg" media="(max-width: 360px)" />
-              <source srcset="/img/team/poster_768.jpg" media="(max-width: 768px)" />
-              <img class="about_video__img" src="/img/team/poster_1920.jpg" alt="" />
+              <source :srcset="dataCompany.image360" media="(max-width: 360px)" />
+              <source :srcset="dataCompany.image768" media="(max-width: 768px)" />
+              <img class="about_video__img" :src="dataCompany.image1920" alt="" />
             </picture>
 
             <div class="about_video__promo">
@@ -119,12 +120,12 @@ onUnmounted(() => {
                 </svg>
               </button>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!--  -->
+    <!-- Текста -->
     <section class="about_desc_bx">
       <div class="container">
         <!--  -->
@@ -205,99 +206,19 @@ onUnmounted(() => {
 
         <div class="swiper swiper_people">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div v-for="(item, idx) in dataCompany?.comands" :key="idx" class="swiper-slide">
               <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Александр Стопчев</div>
-                <div class="people_item__post">Генеральный директор</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Александр Гуминский</div>
-                <div class="people_item__post">Арт-директор</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Владислав Белецкий</div>
-                <div class="people_item__post">Руководитель отдела разработки</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Анастасия Верёвкина</div>
-                <div class="people_item__post">Графический дизайнер</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Роман Иванов</div>
-                <div class="people_item__post">Разработчик</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Александра Иванова</div>
-                <div class="people_item__post">Менеджмент</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Анатолий Дейкун</div>
-                <div class="people_item__post">Разработчик</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Семён Иванов</div>
-                <div class="people_item__post">Веб-дизайнер</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Никита Найденов</div>
-                <div class="people_item__post">Веб-дизайнер</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Серафима Гордей</div>
-                <div class="people_item__post">Фотограф</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Владислав Воробьёв</div>
-                <div class="people_item__post">Видео-оператор</div>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="people_item">
-                <div class="people_item__img"></div>
-                <div class="people_item__name">Ещё кто нибудь...</div>
-                <div class="people_item__post">Кто то - олог</div>
+                <div class="people_item__img">
+                  <NuxtImg
+                    :src="item.companyKomandaFoto.node.mediaItemUrl"
+                    width="450"
+                    height="450"
+                    loading="lazy"
+                    format="webp"
+                  />
+                </div>
+                <div class="people_item__name">{{ item.companyKomandaImyaIFamiliya }}</div>
+                <div class="people_item__post">{{ item.companyKomandaDolzhnost }}</div>
               </div>
             </div>
           </div>
@@ -956,22 +877,30 @@ onUnmounted(() => {
 }
 
 .swiper_people .swiper-wrapper {
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   gap: 40px 20px;
 
+  @media (max-width: 1500px) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
   @media (max-width: 768px) {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+    display: flex;
     gap: unset;
   }
 }
 
 .swiper_people .swiper-slide {
-  width: 450px;
+  aspect-ratio: 3 / 3.8;
 
   @media (max-width: 768px) {
     width: 330px;
+    aspect-ratio: unset;
   }
 
   @media (max-width: 576px) {
@@ -980,8 +909,6 @@ onUnmounted(() => {
 }
 
 .people_item__img {
-  width: 100%;
-  height: 450px;
   background-color: #060e1b;
   border-radius: 26px;
   margin-bottom: 24px;
