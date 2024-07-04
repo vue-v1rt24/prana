@@ -2,6 +2,10 @@
 export type TypeAllData = {
   data: {
     pageBy: {
+      metaTags: {
+        metaTitle: string;
+        metaDescription: string;
+      };
       company: {
         companySkachatPrezentacziyuKompanii: {
           node: {

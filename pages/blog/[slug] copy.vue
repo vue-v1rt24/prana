@@ -5,9 +5,12 @@ import { dateFormat } from '@/utils/utils';
 //
 const route = useRoute();
 
+//
+const { isOpenModal } = useOutsideModal();
+
 // Запрос на получение записи
 const { article } = await useQueryOne(route.params.slug);
-// console.log(article);
+console.log(article);
 
 if (!article) {
   console.log('Такой статьи нет');
@@ -47,26 +50,81 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
         <!-- Заголовок -->
         <h1 class="article_full_h1">{{ article?.title }}</h1>
 
-        <!-- Вывод содержания если категория "Статьи" -->
-        <PageBlogArticleOutput
-          v-if="!catVideo && article?.id"
-          :id="article.id"
-          :content="article.content"
-          :blog-bylo-polezno="article.blogByloPolezno || 0"
-        />
+        <!-- Поделиться -->
+        <div class="article_full_share">
+          <div class="article_full_save">
+            <span><img src="/img/article/bookmark.png" alt="" /></span>
+            <span>Сохранить</span>
+          </div>
 
-        <!-- Вывод содержания если категория "Видео" -->
-        <PageBlogVideoOutput
-          v-if="catVideo && article?.id"
-          :id="article.id"
-          :content="article.content"
-          :blog-bylo-polezno="article.blogByloPolezno || 0"
-        />
+          <div class="article_full_save">
+            <span><img src="/img/article/share.png" alt="" /></span>
+            <span>Поделиться</span>
+          </div>
+        </div>
+
+        <!-- Виджет "Содержание" -->
+        <PageBlogWidgetContent />
+
+        <!-- Содержание из админки -->
+        <div class="article_full_content" v-html="article?.content"></div>
+
+        <!-- Полоса -->
+        <hr class="article_full__hr" />
+
+        <!-- Виджеты -->
+        <div class="rticle_full_useful">
+          <!-- Виджет "Было полезно" -->
+          <PageBlogPolezno
+            v-if="article?.id"
+            :id="article.id"
+            :count="article.blogByloPolezno || 0"
+          />
+
+          <!-- Виджет "Поделиться" -->
+          <div class="article_full_share">
+            <div class="article_full_save">
+              <span><img src="/img/article/bookmark.png" alt="" /></span>
+              <span>Сохранить</span>
+            </div>
+
+            <div class="article_full_save">
+              <span><img src="/img/article/share.png" alt="" /></span>
+              <span>Поделиться</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Виджет "Еженедельный дайджест" -->
+        <div class="article_full__ditask">
+          <div class="article_full__digest">
+            <div class="article_full__digest__title">Еженедельный дайджест</div>
+
+            <div class="article_full__digest__desc">
+              Читайте свежие статьи и смотрите видео первыми
+            </div>
+
+            <form id="digest__form" class="article_full__digest__form">
+              <input type="email" name="digest_email" placeholder="Введите email" />
+              <UiButton title="Отправить" type="submit"></UiButton>
+            </form>
+          </div>
+
+          <!--  -->
+          <div class="article_full__task">
+            <div class="article_full__task__title">
+              Есть задача? <br />
+              Давайте обсудим!
+            </div>
+
+            <UiButton title="Обсудить проект" @click-btn="isOpenModal().value = true"></UiButton>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Другие статьи -->
-    <section v-if="!catVideo" class="article_interesting">
+    <section class="article_interesting">
       <div class="container container_blog">
         <h2 class="article_interesting__title">Ещё много интересного</h2>
       </div>

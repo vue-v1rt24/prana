@@ -15,7 +15,13 @@ import 'assets/css/swiper-global.css';
 
 // Получение данных из админки
 const { dataCompany } = await useCompanyQuery();
-console.log(dataCompany.value);
+// console.log(dataCompany.value);
+
+//
+useSeoMeta({
+  title: dataCompany.value?.mateTags.metaTitle,
+  description: dataCompany.value?.mateTags.metaDescription,
+});
 
 //
 const peopleSwiper = ref<Swiper | null>(null);
@@ -93,9 +99,11 @@ onUnmounted(() => {
               </a>
             </div>
 
-            <p class="about__download__right_desc">
-              {{ dataCompany?.descCompany }}
-            </p>
+            <p
+              v-if="dataCompany?.descCompany"
+              v-html="dataCompany.descCompany"
+              class="about__download__right_desc"
+            ></p>
           </div>
         </div>
 
@@ -125,7 +133,7 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- Текста -->
+    <!-- Тексты -->
     <section class="about_desc_bx">
       <div class="container">
         <!--  -->
@@ -167,7 +175,7 @@ onUnmounted(() => {
         <div class="not_joke">
           <div class="not_joke__title">
             Отбросив шутки, вы сможете убедится в нашей экспертности только увидев
-            <a class="not_joke__link" href="portfolio.html">
+            <NuxtLink to="/portfolio" class="not_joke__link">
               <span>наши работы</span>
 
               <svg viewBox="0 0 34 34" fill="transparent">
@@ -179,10 +187,10 @@ onUnmounted(() => {
                   fill="#40B6B7"
                 />
               </svg>
-            </a>
+            </NuxtLink>
             <br class="hide992" />
             и
-            <a class="not_joke__link" href="reviews.html">
+            <a class="not_joke__link" href="#">
               <span>отзывы клиентов</span>
               <svg viewBox="0 0 34 34" fill="transparent">
                 <circle cx="17" cy="17" r="15.8913" stroke="#40B6B7" stroke-width="2.21741" />

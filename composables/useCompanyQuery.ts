@@ -11,6 +11,10 @@ export const useCompanyQuery = async () => {
     query: `
     {
       pageBy(pageId: 36) {
+        metaTags {
+          metaTitle
+          metaDescription
+        }
         company {
           companySkachatPrezentacziyuKompanii {
             node {
@@ -57,6 +61,7 @@ export const useCompanyQuery = async () => {
       const d = data as TypeAllData;
 
       return {
+        mateTags: d.data.pageBy.metaTags,
         file: d.data.pageBy.company.companySkachatPrezentacziyuKompanii.node.mediaItemUrl,
         descCompany: d.data.pageBy.company.companyOpisanieKompanii,
         image1920: d.data.pageBy.company.companyIzobrazhenieVideoV1920.node.mediaItemUrl,

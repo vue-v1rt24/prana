@@ -4,10 +4,12 @@ withDefaults(
     title: string;
     type?: 'button' | 'submit' | 'reset' | 'reset';
     colorClass?: string;
+    borderRadius?: string;
     arrow?: boolean;
   }>(),
   {
     type: 'button',
+    borderRadius: '28px',
     arrow: true,
   },
 );
@@ -45,7 +47,7 @@ const emit = defineEmits<{
   background-color: var(--accentColor);
   white-space: nowrap;
   border: none;
-  border-radius: 28px;
+  border-radius: v-bind(borderRadius);
   user-select: none;
   overflow: hidden;
   transition: background-color 0.3s;

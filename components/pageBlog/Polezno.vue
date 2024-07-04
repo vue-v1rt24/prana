@@ -8,6 +8,7 @@ const { domains } = useRuntimeConfig().public;
 const props = defineProps<{
   id: number;
   count: number;
+  title: string;
 }>();
 
 // Ключ хранилища
@@ -84,7 +85,7 @@ onMounted(() => {
       </svg>
     </div>
 
-    <span class="rticle_full_useful__title">Было полезно</span>
+    <span class="rticle_full_useful__title">{{ title }}</span>
 
     <span class="rticle_full_useful__count">{{ countLocal }}</span>
   </button>
