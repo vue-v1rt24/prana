@@ -37,6 +37,10 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 14px;
+
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
 }
 
 .breadcrumbs a {

@@ -8,7 +8,7 @@
 import { useQueryNotIn } from '~/composables/blog/useQueryNotIn';
 
 import Swiper from 'swiper';
-import { Scrollbar } from 'swiper/modules';
+import { Scrollbar, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
@@ -37,7 +37,7 @@ onMounted(() => {
     new Swiper('.swiper_article_full', {
       slidesPerView: 'auto',
       freeMode: true,
-      modules: [Scrollbar],
+      modules: [Scrollbar, FreeMode],
       scrollbar: {
         el: '.swiper-scrollbar',
         draggable: true,
