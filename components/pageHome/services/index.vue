@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Swiper from 'swiper';
-import { Scrollbar } from 'swiper/modules';
+import { Scrollbar, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'assets/css/swiper-global.css';
@@ -111,7 +111,7 @@ onMounted(() => {
       init: false,
       slidesPerView: 'auto',
       freeMode: true,
-      modules: [Scrollbar],
+      modules: [Scrollbar, FreeMode],
       scrollbar: {
         el: '.swiper-scrollbar',
         draggable: true,

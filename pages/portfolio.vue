@@ -205,7 +205,14 @@ const showWork = async () => {
 
       dataWork.value = workData;
       dataWork.value['slug'] = route.params.slug;
-      open.value = true;
+
+      // Показ модального окна
+      if (route.query.blog) {
+        // когда приходим со страницы блога (видео)
+        setTimeout(() => (open.value = true), 1000);
+      } else {
+        open.value = true;
+      }
     }
   } catch (error) {
     console.log(error);

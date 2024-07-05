@@ -46,10 +46,8 @@ const { data: project } = await useFetch(graphqlUrl, {
       title="Смотреть проект"
       color-class="btn_transparent"
       border-radius="22px"
-      @click-btn="$router.push(`/portfolio/${project!.slug}`)"
+      @click-btn="$router.push(`/portfolio/${project!.slug}?blog=${project!.slug}`)"
     ></UiButton>
-
-    <a :href="`/portfolio/${project!.slug}`" style="color: black">Смотреть проект</a>
   </div>
 </template>
 

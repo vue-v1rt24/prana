@@ -445,7 +445,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
   }
 
   .article_full__task {
-    background-image: url(../img/article/article_full__task_decor_2.svg);
+    background-image: url(/img/article/article_full__task_decor_2.svg);
   }
 }
 
