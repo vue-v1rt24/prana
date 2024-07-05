@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import * as FancyboxAll from '@fancyapps/ui';
+import type { TypeVideo } from '@/types/blog-page/blogHome.types';
 
 //
-defineProps<{
+const props = defineProps<{
   id: number;
-  content: string;
+  content: TypeVideo;
   blogByloPolezno: number;
 }>();
 
@@ -14,6 +15,12 @@ const { isOpenModal } = useOutsideModal();
 //
 const { Fancybox } = FancyboxAll;
 const videoFancyboxBx = ref<HTMLDivElement | null>(null);
+
+//
+const condition = ref({
+  count: props.blogByloPolezno,
+  isChecked: false,
+});
 
 //
 onMounted(() => {
@@ -34,6 +41,10 @@ onMounted(() => {
 
         const workFullArticleHart = cloneVideoHart.querySelector<HTMLDivElement>(
           '.work_full_article__hart',
+        )!;
+
+        const count = workFullArticleHart.querySelector<HTMLSpanElement>(
+          '.work_full_article__hart_count',
         )!;
 
         Fancybox.bind('.video_fancybox_js', {
@@ -57,7 +68,18 @@ onMounted(() => {
 
                 // Кликаем по кнопке "Нравится". Она находится в компоненте: Polezno.vue
                 document.querySelector<HTMLDivElement>('.rticle_full_useful__btn')?.click();
+
+                // Изменение количества понравившимся в модальном окне
+                if (workFullArticleHart.classList.contains('active')) {
+                  count.textContent = String(+count.textContent! + 1);
+                } else {
+                  count.textContent = String(+count.textContent! - 1);
+                }
               });
+            },
+            close() {
+              // Записываем значение из модального окна
+              condition.value.count = +count.textContent!;
             },
           },
         });
@@ -74,23 +96,22 @@ onMounted(() => {
       <div class="video_fancybox_parent_js">
         <a
           class="video_fancybox video_fancybox_js"
-          href="https://www.youtube.com/watch?v=z2X2HaTvkl8"
+          :href="content.ssylkaNaVideo"
           data-fancybox
           data-width="1280"
           data-height="718"
         >
-          <img class="video_img" src="/img/video/video.jpg" alt="" />
+          <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
         </a>
 
-        <p class="article_full_p desc_video">
-          Повседневная практика показывает, что сложившаяся структура организации прекрасно подходит
-          для реализации поэтапного и последовательного развития общества. В целом, конечно, базовый
-          вектор развития предоставляет широкие возможности для инновационных методов управления
-          процессами.
-        </p>
+        <p class="article_full_p desc_video">{{ content.opisanieVideo }}</p>
 
         <!-- Нравится и поделиться (переносится в модальное окно видео) -->
-        <PageBlogLikeInModalVideo :id="id" :count="blogByloPolezno" />
+        <PageBlogLikeInModalVideo
+          :id="id"
+          :count="condition.count"
+          :is-checked="condition.isChecked"
+        />
       </div>
     </div>
 
@@ -101,24 +122,20 @@ onMounted(() => {
     <!-- Виджеты -->
     <div class="rticle_full_useful">
       <!-- Виджет "Было полезно" -->
-      <PageBlogPolezno :id="id" :count="blogByloPolezno" title="Нравится" />
+      <PageBlogPolezno
+        :id="id"
+        :count="condition.count"
+        title="Нравится"
+        @current-count="condition.count = $event"
+        @current-checked="condition.isChecked = $event"
+      />
 
       <!-- Виджет "Поделиться" -->
       <PageBlogWidgetShare />
     </div>
 
     <!-- Случайный проект -->
-    <div class="separate_project">
-      <div class="separate_project__img">
-        <img src="/img/video/2.jpg" alt="" />
-      </div>
-
-      <UiButton
-        title="Смотреть проект"
-        color-class="btn_transparent"
-        border-radius="22px"
-      ></UiButton>
-    </div>
+    <PageBlogRandomProject />
   </div>
 
   <!-- Виджеты -->
@@ -231,90 +248,9 @@ onMounted(() => {
     font-size: 14px;
   }
 }
-
-/*  */
-.separate_project {
-  position: absolute;
-  top: 0px;
-  right: -310px;
-  width: 290px;
-
-  @media (max-width: 1500px) {
-    display: none;
-  }
-
-  @media (max-width: 830px) {
-    position: static;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 31px;
-    margin-bottom: 52px;
-  }
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-  }
-
-  @media (max-width: 576px) {
-    margin-top: 82px;
-  }
-}
-
-.separate_project__img {
-  position: relative;
-  width: 290px;
-  height: 290px;
-
-  @media (max-width: 830px) {
-    flex: 1.05;
-    width: 330px;
-    height: 330px;
-  }
-
-  @media (max-width: 700px) {
-    flex: none;
-  }
-}
-
-.separate_project__img img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 18px;
-}
-
-.separate_project .blue_btn {
-  width: 100%;
-  height: 82px;
-  font-size: 20px;
-  margin-top: 18px;
-
-  @media (max-width: 830px) {
-    flex: 1;
-    width: 330px;
-    height: 330px;
-    margin-top: 0;
-  }
-
-  @media (max-width: 700px) {
-    flex: none;
-    height: 82px;
-    margin-top: 20px;
-  }
-}
 </style>
 
 <style>
-.separate_project .blue_btn .btn__arrow .arrow {
-  width: 13px;
-  height: 13px;
-}
-
-/*  */
 .video_fancybox_modal {
   margin: 0 20px;
 }

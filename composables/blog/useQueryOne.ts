@@ -26,6 +26,15 @@ export const useQueryOne = async (slug: string) => {
             blogKolichestvoProsmotrovStati
             blogByloPolezno
           }
+          blogViewCatVideo {
+            izobrazhenieVideo {
+              node {
+                mediaItemUrl
+              }
+            }
+            ssylkaNaVideo
+            opisanieVideo
+          }
         }
       }
     `,
@@ -46,6 +55,7 @@ export const useQueryOne = async (slug: string) => {
         title: d.data.blogBy.title,
         date: d.data.blogBy.date,
         content: d.data.blogBy.content,
+        contentVideo: d.data.blogBy.blogViewCatVideo,
         categories: d.data.blogBy.blogCategories.nodes,
         countView: d.data.blogBy.blogViewHome.blogKolichestvoProsmotrovStati,
         blogByloPolezno: d.data.blogBy.blogViewHome.blogByloPolezno,

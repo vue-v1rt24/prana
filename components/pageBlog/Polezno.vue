@@ -11,6 +11,11 @@ const props = defineProps<{
   title: string;
 }>();
 
+const emit = defineEmits<{
+  currentCount: [val: number];
+  currentChecked: [val: boolean];
+}>();
+
 // Ключ хранилища
 const nameStorage = 'useful';
 
@@ -29,6 +34,7 @@ const loadPage = () => {
 
   if (res && res.includes(props.id)) {
     isCheckedCount.value = true;
+    emit('currentChecked', isCheckedCount.value);
   }
 };
 
@@ -41,6 +47,8 @@ const sendChangeCount = async (link: string) => {
     });
 
     countLocal.value = resCount;
+
+    emit('currentCount', countLocal.value);
 
     const res = getLocaleStorage();
 
@@ -59,6 +67,8 @@ const sendChangeCount = async (link: string) => {
 // Клик по кнопке
 const changeCount = () => {
   isCheckedCount.value = !isCheckedCount.value;
+
+  emit('currentChecked', isCheckedCount.value);
 
   if (isCheckedCount.value) {
     sendChangeCount('count-polezno-plus');

@@ -7,6 +7,7 @@ import { localStorageUtil } from '~/utils/localStorage.utils';
 const props = defineProps<{
   id: number;
   count: number;
+  isChecked: boolean;
 }>();
 
 //
@@ -20,6 +21,15 @@ onMounted(() => {
     isCheckedCount.value = true;
   }
 });
+
+//
+watchEffect(() => {
+  if (props.isChecked) {
+    isCheckedCount.value = true;
+  } else {
+    isCheckedCount.value = false;
+  }
+});
 </script>
 
 <template>
@@ -30,7 +40,7 @@ onMounted(() => {
           <use xlink:href="/img/sprite.svg#hart"></use>
         </svg>
 
-        <span>{{ count }}</span>
+        <span class="work_full_article__hart_count">{{ count }}</span>
       </div>
 
       <div class="work_full_article__share react">

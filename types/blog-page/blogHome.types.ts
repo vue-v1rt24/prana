@@ -69,6 +69,15 @@ export type TypeBlogFull = {
         blogKolichestvoProsmotrovStati: number;
         blogByloPolezno: number;
       };
+      blogViewCatVideo: {
+        izobrazhenieVideo: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+        ssylkaNaVideo: string;
+        opisanieVideo: string;
+      };
     };
   };
 };
@@ -78,6 +87,33 @@ export type TypeAllNotIn = {
   data: {
     blogs: {
       nodes: TypeBlog[];
+    };
+  };
+};
+
+// Типизация статьи блога видео
+export type TypeVideo = {
+  izobrazhenieVideo: {
+    node: {
+      mediaItemUrl: string;
+    };
+  };
+  ssylkaNaVideo: string;
+  opisanieVideo: string;
+};
+
+// Типизация получения случайной работы (портфолио)
+export type TypeRandomProject = {
+  data: {
+    randomPostPortfolio: {
+      slug: string;
+      homePreview: {
+        izobrazhenie: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+      };
     };
   };
 };
