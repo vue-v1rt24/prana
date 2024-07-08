@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import * as FancyboxAll from '@fancyapps/ui';
 import type { TypeVideo } from '@/types/blog-page/blogHome.types';
 
 //
@@ -9,110 +8,54 @@ const props = defineProps<{
   blogByloPolezno: number;
 }>();
 
-//
+// Для модального окна с формой
 const { isOpenModal } = useOutsideModal();
 
 //
-const { Fancybox } = FancyboxAll;
-const videoFancyboxBx = ref<HTMLDivElement | null>(null);
-
-//
-const condition = ref({
-  count: props.blogByloPolezno,
-  isChecked: false,
-});
-
-//
-onMounted(() => {
-  // Модальное окно видео
-  if (videoFancyboxBx.value) {
-    videoFancyboxBx.value.addEventListener('click', (evt) => {
-      const target = evt.target as HTMLDivElement;
-      const parent = target.closest('.video_fancybox_parent_js');
-
-      if (parent) {
-        const videoHart = parent.querySelector<HTMLDivElement>('.video_hart')!;
-
-        const workFullArticleHartHtml = videoHart.querySelector<HTMLDivElement>(
-          '.work_full_article__hart',
-        )!;
-
-        const cloneVideoHart = videoHart.cloneNode(true) as HTMLDivElement;
-
-        const workFullArticleHart = cloneVideoHart.querySelector<HTMLDivElement>(
-          '.work_full_article__hart',
-        )!;
-
-        const count = workFullArticleHart.querySelector<HTMLSpanElement>(
-          '.work_full_article__hart_count',
-        )!;
-
-        Fancybox.bind('.video_fancybox_js', {
-          mainClass: 'video_fancybox_modal',
-          closeButton: false,
-          on: {
-            done() {
-              // Клонируем и вставляем в модальное окно видео всё содержимое из компонента: LikeInModalVideo.vue
-              const videoFancyboxModal =
-                document.querySelector<HTMLDivElement>('.video_fancybox_modal')!;
-
-              const fancyboxContent =
-                videoFancyboxModal.querySelector<HTMLDivElement>('.fancybox__content')!;
-
-              fancyboxContent.append(cloneVideoHart);
-
-              // Кликаем по "Нравится" в модальном окне
-              workFullArticleHart.addEventListener('click', () => {
-                workFullArticleHart.classList.toggle('active');
-                workFullArticleHartHtml.classList.toggle('active');
-
-                // Кликаем по кнопке "Нравится". Она находится в компоненте: Polezno.vue
-                document.querySelector<HTMLDivElement>('.rticle_full_useful__btn')?.click();
-
-                // Изменение количества понравившимся в модальном окне
-                if (workFullArticleHart.classList.contains('active')) {
-                  count.textContent = String(+count.textContent! + 1);
-                } else {
-                  count.textContent = String(+count.textContent! - 1);
-                }
-              });
-            },
-            close() {
-              // Записываем значение из модального окна
-              condition.value.count = +count.textContent!;
-            },
-          },
-        });
-      }
-    });
-  }
-});
+const loadIframeVideo = (evt) => {
+  document.querySelector('.video_fancybox')!.innerHTML = `
+  <iframe
+    src="https://www.youtube.com/embed/Wjt6yyNDWmc?si=WLc8FTVSQpY0-oai"
+    title="Видео отзыв"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    class="video_fancybox__iframe"
+  ></iframe>
+  `;
+};
 </script>
 
 <template>
   <div class="page_video article_full">
     <!-- Видео -->
-    <div class="video_fancybox_bx" ref="videoFancyboxBx">
-      <div class="video_fancybox_parent_js">
-        <a
-          class="video_fancybox video_fancybox_js"
-          :href="content.ssylkaNaVideo"
-          data-fancybox
-          data-width="1280"
-          data-height="718"
-        >
-          <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
-        </a>
+    <div class="video_bx">
+      <!-- <a
+        class="video_fancybox"
+        :href="content.ssylkaNaVideo"
+        data-fancybox
+        data-width="1280"
+        data-height="718"
+      >
+        <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
+      </a> -->
 
-        <p class="article_full_p desc_video">{{ content.opisanieVideo }}</p>
+      <div class="video_fancybox" @click="loadIframeVideo">
+        <!-- <iframe
+          src="https://www.youtube.com/embed/Wjt6yyNDWmc?si=WLc8FTVSQpY0-oai"
+          title="Видео отзыв"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          class="video_fancybox__iframe"
+        ></iframe> -->
 
-        <!-- Нравится и поделиться (переносится в модальное окно видео) -->
-        <PageBlogLikeInModalVideo
-          :id="id"
-          :count="condition.count"
-          :is-checked="condition.isChecked"
-        />
+        <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
       </div>
+
+      <p class="article_full_p desc_video">{{ content.opisanieVideo }}</p>
     </div>
 
     <!-- Полоса -->
@@ -122,13 +65,7 @@ onMounted(() => {
     <!-- Виджеты -->
     <div class="rticle_full_useful">
       <!-- Виджет "Было полезно" -->
-      <PageBlogPolezno
-        :id="id"
-        :count="condition.count"
-        title="Нравится"
-        @current-count="condition.count = $event"
-        @current-checked="condition.isChecked = $event"
-      />
+      <PageBlogPolezno :id="id" :count="blogByloPolezno" title="Нравится" />
 
       <!-- Виджет "Поделиться" -->
       <PageBlogWidgetShare />
@@ -195,6 +132,10 @@ onMounted(() => {
 /*  */
 .video_fancybox {
   position: relative;
+  width: 920px;
+  height: 516px;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
 }
 
 .video_fancybox::before {
@@ -207,6 +148,7 @@ onMounted(() => {
   height: 92px;
   background-image: url(/img/video/videoBtn.svg);
   background-size: cover;
+  z-index: 3;
 }
 
 @media (max-width: 830px) {
@@ -223,7 +165,20 @@ onMounted(() => {
   }
 }
 
+.video_fancybox__iframe {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 18px;
+  z-index: 1;
+}
+
 .video_img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
   border-radius: 18px;
 }
 
