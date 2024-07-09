@@ -1,11 +1,12 @@
 <script setup lang="ts">
 defineProps<{
   breadcrumbs: { title: string; link?: string }[];
+  dark?: boolean;
 }>();
 </script>
 
 <template>
-  <div class="breadcrumbs_bx">
+  <div :class="['breadcrumbs_bx', { dark }]">
     <div class="container">
       <nav class="breadcrumbs">
         <NuxtLink to="/">Главная</NuxtLink>
@@ -57,17 +58,17 @@ defineProps<{
 }
 
 /* Хлебные крошки на белом фоне */
-.breadcrumbs__dark {
+.dark {
   background-color: white;
   padding: 82px 0 100px 0;
 }
 
-.breadcrumbs__dark .breadcrumbs {
+.dark .breadcrumbs {
   color: var(--colorDark3);
   margin: 0;
 }
 
-.breadcrumbs__dark .breadcrumbs_delimiter {
+.dark .breadcrumbs_delimiter {
   background-image: url(/img/arrow-dark.svg);
 }
 </style>

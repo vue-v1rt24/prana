@@ -58,7 +58,7 @@ onMounted(() => {
 
     <!--  -->
     <div class="header__menu_center">
-      <ul class="header__menu_ul" ref="subMenu">
+      <ul class="header__menu_ul" @click="closeClick" ref="subMenu">
         <li class="menu-item">
           <a class="menu-item_not-click" href="#">Портфолио</a>
           <ul class="sub-menu">
@@ -112,7 +112,7 @@ onMounted(() => {
               <a href="#">Блог</a>
             </li>
             <li class="menu-item">
-              <a href="#">Отзывы</a>
+              <NuxtLink to="/reviews">Отзывы</NuxtLink>
             </li>
             <li class="menu-item">
               <a href="#">Вакансии</a>
@@ -260,6 +260,10 @@ onMounted(() => {
   line-height: 100%;
   color: var(--colorDark3);
   display: block;
+}
+
+.header__menu_ul a.active {
+  color: var(--accentColor);
 }
 
 .header__menu_ul .sub-menu .menu-item:first-child {
