@@ -77,6 +77,18 @@ export type TypeBlogFull = {
         };
         ssylkaNaVideo: string;
         opisanieVideo: string;
+        blogVybereteOtzyv: {
+          nodes: {
+            slug: string;
+            homePreview: {
+              izobrazhenie: {
+                node: {
+                  mediaItemUrl: string;
+                };
+              };
+            };
+          };
+        };
       };
     };
   };
@@ -100,13 +112,8 @@ export type TypeVideo = {
   };
   ssylkaNaVideo: string;
   opisanieVideo: string;
-};
-
-// Типизация получения случайной работы (портфолио)
-export type TypeRandomProject = {
-  data: {
-    randomPostPortfolio: {
-      slug: string;
+  blogVybereteOtzyv: {
+    nodes: {
       homePreview: {
         izobrazhenie: {
           node: {
@@ -114,6 +121,19 @@ export type TypeRandomProject = {
           };
         };
       };
+      slug: string;
+    }[];
+  };
+};
+
+// Типизация работы на странице видео
+export type TypeLinkProject = {
+  homePreview: {
+    izobrazhenie: {
+      node: {
+        mediaItemUrl: string;
+      };
     };
   };
+  slug: string;
 };

@@ -1,29 +1,52 @@
 <script setup lang="ts">
-import type { TypeLinkProject } from '@/types/blog-page/blogHome.types';
+import type { TypeRandomProject } from '@/types/blog-page/blogHome.types';
 
-//
-const props = defineProps<{
-  content: TypeLinkProject;
-}>();
+// Получение ссылки на API
+const { graphqlUrl } = useRuntimeConfig().public;
+
+// Запрос
+const queryRandomProject = {
+  query: `
+    {
+      randomPostPortfolio {
+        slug
+        homePreview {
+          izobrazhenie {
+            node {
+              mediaItemUrl
+            }
+          }
+        }
+      }
+    }
+  `,
+};
+
+const { data: project } = await useFetch(graphqlUrl, {
+  query: queryRandomProject,
+
+  transform(data) {
+    const d = data as TypeRandomProject;
+
+    return {
+      image: d.data.randomPostPortfolio.homePreview.izobrazhenie.node.mediaItemUrl,
+      slug: d.data.randomPostPortfolio.slug,
+    };
+  },
+});
 </script>
 
 <template>
   <div class="separate_project">
     <div class="separate_project__img">
-      <NuxtImg
-        :src="content.homePreview.izobrazhenie.node.mediaItemUrl"
-        width="290"
-        height="290"
-        loading="lazy"
-        format="webp"
-      />
+      <NuxtImg :src="project?.image" width="290" height="290" loading="lazy" format="webp" />
     </div>
 
     <UiButton
       title="Смотреть проект"
       color-class="btn_transparent"
       border-radius="22px"
-      @click-btn="$router.push(`/portfolio/${content.slug}?blog=${content.slug}`)"
+      @click-btn="$router.push(`/portfolio/${project!.slug}?blog=${project!.slug}`)"
     ></UiButton>
   </div>
 </template>

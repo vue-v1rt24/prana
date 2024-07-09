@@ -9,6 +9,8 @@ const props = defineProps<{
   blogByloPolezno: number;
 }>();
 
+// console.log(props.content);
+
 //
 const { isOpenModal } = useOutsideModal();
 
@@ -134,8 +136,8 @@ onMounted(() => {
       <PageBlogWidgetShare />
     </div>
 
-    <!-- Случайный проект -->
-    <PageBlogRandomProject />
+    <!-- Ссылка на проект -->
+    <PageBlogRandomProject :content="content.blogVybereteOtzyv.nodes[0]" />
   </div>
 
   <!-- Виджеты -->
