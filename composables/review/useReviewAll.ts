@@ -10,6 +10,8 @@ export const useReviewAll = async () => {
     {
       portfolios {
         nodes {
+          databaseId
+          slug
           reviewClient {
             reviewNazvanieKompanii
             reviewLogoKompanii {
@@ -29,7 +31,6 @@ export const useReviewAll = async () => {
               }
             }
             ssylkaNaVideo
-            reviewTekst
             reviewsVRazvernutomVide
           }
           portfolioCategories {

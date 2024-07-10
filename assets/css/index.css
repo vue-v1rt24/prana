@@ -142,6 +142,11 @@ a {
   -webkit-box-orient: vertical;
 }
 
+/*  */
+.react {
+  cursor: pointer;
+}
+
 /* ==================== Медиа запросы */
 @media (max-width: 1199px) {
   .visible1199 {

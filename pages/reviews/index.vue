@@ -2,8 +2,6 @@
 import { useReviewAll } from '~/composables/review/useReviewAll';
 
 const { dataReviews } = await useReviewAll();
-
-console.log(dataReviews);
 </script>
 
 <template>
@@ -21,15 +19,25 @@ console.log(dataReviews);
 
         <div class="video_fancybox_bx">
           <div class="reviews_open_bx">
-            <PageReviewsFavorite />
-            <PageReviewsFavorite />
+            <template v-for="(item, idx) in dataReviews" :key="item.databaseId">
+              <PageReviewsReviewFavorite
+                v-if="idx !== 2 && item.reviewClient.reviewsVRazvernutomVide"
+                :review="item"
+              />
+            </template>
           </div>
 
           <!--  -->
           <div class="reviews_close_bx">
-            <PageReviews />
-            <PageReviews />
-            <PageReviews />
+            <template v-for="item in dataReviews" :key="item.databaseId">
+              <PageReviews
+                v-if="
+                  !item.reviewClient.reviewsVRazvernutomVide &&
+                  item.reviewClient.reviewNazvanieKompanii
+                "
+                :review="item"
+              />
+            </template>
           </div>
         </div>
       </div>
@@ -69,13 +77,15 @@ console.log(dataReviews);
   height: 70px;
 }
 
-.reviews__data_text_title {
+.reviews__data_text_title,
+.reviews__data_text_title a {
   font-family: var(--fontFamily-RFDewi);
   font-weight: 700;
   font-size: 22px;
   line-height: 100%;
   letter-spacing: 0.02em;
   color: var(--colorDark3);
+  display: block;
   margin-bottom: 18px;
 }
 
