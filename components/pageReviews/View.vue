@@ -12,7 +12,7 @@ const { domains } = useRuntimeConfig().public;
 
 // Отправка изменения количества просмотра на сервер
 const sendCount = async () => {
-  const res = await $fetch<number>(`${domains}/wp-json/count-view/change-count`, {
+  const res = await $fetch<number>(`${domains}/wp-json/count-view-review/change-count`, {
     method: 'POST',
     body: { id: props.id },
   });
@@ -21,7 +21,7 @@ const sendCount = async () => {
 };
 
 // Ключ хранилища
-const keyStorage = 'view';
+const keyStorage = 'view_review';
 
 // Запись в локальное хранилище
 const setLocalStorage = async () => {

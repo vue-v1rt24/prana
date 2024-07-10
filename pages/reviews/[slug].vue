@@ -8,7 +8,7 @@ import '@/assets/css/video.css';
 const route = useRoute();
 
 const { dataReview } = await useReviewSingle(route.params.slug);
-console.log(dataReview);
+// console.log(dataReview);
 
 //
 useSeoMeta({
@@ -115,7 +115,7 @@ onMounted(() => {
           </div>
 
           <!-- Счётчик просмотров записи -->
-          <PageBlogView
+          <PageReviewsView
             v-if="dataReview?.databaseId"
             :id="dataReview.databaseId"
             :count="dataReview.fullOutputOfTheWork.fullWorkKolichestvoProsmotrov || 0"
