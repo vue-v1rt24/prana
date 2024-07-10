@@ -30,7 +30,6 @@ export const useReviewAll = async () => {
                 mediaItemUrl
               }
             }
-            ssylkaNaVideo
             reviewsVRazvernutomVide
           }
           portfolioCategories {

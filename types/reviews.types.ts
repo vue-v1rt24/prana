@@ -20,7 +20,6 @@ export type TypeReview = {
         mediaItemUrl: string;
       };
     };
-    ssylkaNaVideo: string;
     reviewsVRazvernutomVide: boolean;
   };
   portfolioCategories: {
@@ -35,6 +34,42 @@ export type TypeAllReviews = {
   data: {
     portfolios: {
       nodes: TypeReview[];
+    };
+  };
+};
+
+// Отзыв полной страницы (страница видео)
+export type TypeReviewSingle = {
+  data: {
+    portfolioBy: {
+      databaseId: number;
+      slug: string;
+      date: string;
+      title: string;
+      metaTags: {
+        metaTitle: string;
+        metaDescription: string;
+      };
+      reviewClient: {
+        reviewIzobrazhenieDlyaVideo: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+        ssylkaNaVideo: string;
+        reviewTekst: string;
+      };
+      fullOutputOfTheWork: {
+        kolichestvoPonravivshimsyaStatya: number | null;
+        fullWorkKolichestvoProsmotrov: number | null;
+      };
+      homePreview: {
+        izobrazhenie: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+      };
     };
   };
 };
