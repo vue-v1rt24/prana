@@ -768,8 +768,18 @@ onUnmounted(() => {
 /*  */
 .team_page.blog_bx {
   background-color: #060e1b;
-  padding: 12px 0;
+  border-radius: 58px 58px 0px 0px;
+  padding: 160px 0 12px 0;
   overflow: hidden;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding-top: 100px;
+  }
+
+  @media (max-width: 576px) {
+    padding-top: 80px;
+  }
 }
 
 .team_page .title_52 {
