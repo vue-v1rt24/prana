@@ -65,13 +65,37 @@ const props = defineProps<{
   background-size: cover;
 }
 
+@media (max-width: 830px) {
+  .video_fancybox::before {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 576px) {
+  .video_fancybox::before {
+    width: 35px;
+    height: 35px;
+  }
+}
+
 /*  */
 .reviews_open .reviews__data {
   margin-top: 32px;
+
+  /*  */
+  @media (max-width: 576px) {
+    margin-top: 20px;
+  }
 }
 
 .reviews_open .reviews__data_img {
   margin-bottom: 26px;
+
+  /*  */
+  @media (max-width: 576px) {
+    margin-bottom: 18px;
+  }
 }
 
 .reviews_open .works__tags {

@@ -73,6 +73,10 @@ const openFilePDF = () => {
   justify-content: space-between;
   align-items: center;
   padding: 42px 0;
+
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+  }
 }
 
 .reviews_close:not(:last-child) {
@@ -82,6 +86,25 @@ const openFilePDF = () => {
 .reviews_close .works__tags {
   max-width: 400px;
   width: 100%;
+
+  /*  */
+  @media (max-width: 1199px) {
+    max-width: 250px;
+  }
+
+  @media (max-width: 992px) {
+    max-width: 580px;
+    order: 2;
+    margin-top: 32px;
+  }
+
+  @media (max-width: 700px) {
+    order: 0;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 20px;
+  }
 }
 
 .reviews_arrow {
@@ -94,5 +117,10 @@ const openFilePDF = () => {
   display: flex;
   align-items: center;
   column-gap: 24px;
+
+  /*  */
+  @media (max-width: 700px) {
+    margin-top: 32px;
+  }
 }
 </style>

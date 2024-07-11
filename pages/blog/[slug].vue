@@ -43,7 +43,13 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
           <div v-if="article?.date" class="article_full_data">{{ dateFormat(article.date) }}</div>
 
           <!-- Счётчик просмотров записи -->
-          <PageBlogView v-if="article?.id" :id="article.id" :count="article?.countView || 0" />
+          <View
+            v-if="article?.id"
+            :id="article.id"
+            :count="article?.countView || 0"
+            name-field="blog_kolichestvo_prosmotrov_stati"
+            keyStorage="view"
+          />
         </div>
 
         <!-- Заголовок -->
@@ -53,6 +59,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
         <PageBlogArticleOutput
           v-if="!catVideo && article?.id"
           :id="article.id"
+          :title="article.title"
           :content="article.content"
           :blog-bylo-polezno="article.blogByloPolezno || 0"
         />
@@ -61,6 +68,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
         <PageBlogVideoOutput
           v-if="catVideo && article?.id"
           :id="article.id"
+          :title="article.title"
           :content="article.contentVideo"
           :blog-bylo-polezno="article.blogByloPolezno || 0"
         />

@@ -49,12 +49,44 @@ const { dataReviews } = await useReviewAll();
 .reviews_bx {
   background-color: white;
   padding-bottom: 118px;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding-bottom: 140px;
+  }
+
+  @media (max-width: 576px) {
+    padding-bottom: 80px;
+  }
 }
 
+/*  */
+.reviews_bx .breadcrumbs_bx {
+  @media (max-width: 768px) {
+    padding: 42px 0 62px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 32px 0 42px 0;
+  }
+}
+
+/*  */
 .reviews_bx .title_52 {
   font-size: 62px;
   color: var(--colorDark3);
   margin-bottom: 82px;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 42px;
+    margin-bottom: 62px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
+    margin-bottom: 52px;
+  }
 }
 
 /*  */
@@ -62,6 +94,16 @@ const { dataReviews } = await useReviewAll();
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px 20px;
+
+  /*  */
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 576px) {
+    gap: 32px 40px;
+  }
 }
 
 .reviews__data_img {
@@ -70,11 +112,22 @@ const { dataReviews } = await useReviewAll();
   display: flex;
   align-items: center;
   column-gap: 24px;
+
+  /*  */
+  @media (max-width: 576px) {
+    column-gap: 18px;
+  }
 }
 
 .reviews__data_img img {
   width: 70px;
   height: 70px;
+
+  /*  */
+  @media (max-width: 576px) {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .reviews__data_text_title,
@@ -87,6 +140,12 @@ const { dataReviews } = await useReviewAll();
   color: var(--colorDark3);
   display: block;
   margin-bottom: 18px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
 }
 
 .reviews__data_text_desc {
@@ -94,6 +153,11 @@ const { dataReviews } = await useReviewAll();
   font-size: 18px;
   line-height: 120%;
   color: var(--colorGray);
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }
 
 /*  */
@@ -119,5 +183,14 @@ const { dataReviews } = await useReviewAll();
 /*  */
 .reviews_close_bx {
   margin-top: 118px;
+
+  /*  */
+  @media (max-width: 768px) {
+    margin-top: 140px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 80px;
+  }
 }
 </style>

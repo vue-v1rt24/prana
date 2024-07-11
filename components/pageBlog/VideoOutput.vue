@@ -5,6 +5,7 @@ import type { TypeVideo } from '@/types/blog-page/blogHome.types';
 //
 const props = defineProps<{
   id: number;
+  title: string;
   content: TypeVideo;
   blogByloPolezno: number;
 }>();
@@ -131,7 +132,7 @@ onMounted(() => {
       />
 
       <!-- Виджет "Поделиться" -->
-      <PageBlogWidgetShare />
+      <WidgetShare :title />
     </div>
 
     <!-- Ссылка на проект -->

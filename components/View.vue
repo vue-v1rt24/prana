@@ -1,10 +1,14 @@
 <script setup lang="ts">
+// === Компонент для изменения количества просмотр записи
+
 import { localStorageUtil } from '@/utils/localStorage.utils';
 
 /*  */
 const props = defineProps<{
-  id: number;
-  count: number;
+  id: number; // id записи
+  count: number; // количество просмотров из админки
+  nameField: string; // название acf поля в админке
+  keyStorage: string; // название локального хранилища в браузере (localStorage)
 }>();
 
 //
@@ -12,26 +16,23 @@ const { domains } = useRuntimeConfig().public;
 
 // Отправка изменения количества просмотра на сервер
 const sendCount = async () => {
-  const res = await $fetch<number>(`${domains}/wp-json/count-view-review/change-count`, {
+  const res = await $fetch<number>(`${domains}/wp-json/count-view/change-count`, {
     method: 'POST',
-    body: { id: props.id },
+    body: { id: props.id, nameField: props.nameField },
   });
 
   // console.log(res);
 };
 
-// Ключ хранилища
-const keyStorage = 'view_review';
-
 // Запись в локальное хранилище
 const setLocalStorage = async () => {
-  const loc = (localStorageUtil.getStorage(keyStorage) as number[]) || [];
+  const loc = (localStorageUtil.getStorage(props.keyStorage) as number[]) || [];
 
   if (!loc.includes(props.id)) {
     try {
       await sendCount();
       loc.push(props.id);
-      localStorageUtil.setStorage(keyStorage, loc);
+      localStorageUtil.setStorage(props.keyStorage, loc);
     } catch (error) {
       console.log('Количество просмотров не изменилось');
     }

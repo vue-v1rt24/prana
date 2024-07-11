@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   id: number;
+  title: string;
   content: string;
   blogByloPolezno: number;
 }>();
@@ -11,7 +12,7 @@ const { isOpenModal } = useOutsideModal();
 
 <template>
   <!-- Виджет "Поделиться" -->
-  <PageBlogWidgetShare />
+  <WidgetShare :title />
 
   <!-- Виджет "Содержание" -->
   <PageBlogWidgetContent />
@@ -28,7 +29,7 @@ const { isOpenModal } = useOutsideModal();
     <PageBlogPolezno :id="id" :count="blogByloPolezno" title="Было полезно" />
 
     <!-- Виджет "Поделиться" -->
-    <PageBlogWidgetShare />
+    <WidgetShare :title />
   </div>
 
   <!-- Виджет "Еженедельный дайджест" -->

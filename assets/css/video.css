@@ -68,6 +68,7 @@
 }
 
 .article_full_save {
+  position: relative;
   display: flex;
   align-items: center;
   column-gap: 12px;

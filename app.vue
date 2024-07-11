@@ -24,8 +24,8 @@ watchEffect(() => {
     <Cursor />
     <Header />
     <NuxtPage />
-    <!-- <Contacts /> -->
-    <!-- <Footer /> -->
+    <Contacts />
+    <Footer />
   </div>
 </template>
 

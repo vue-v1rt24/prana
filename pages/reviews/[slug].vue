@@ -115,10 +115,12 @@ onMounted(() => {
           </div>
 
           <!-- Счётчик просмотров записи -->
-          <PageReviewsView
+          <View
             v-if="dataReview?.databaseId"
             :id="dataReview.databaseId"
             :count="dataReview.fullOutputOfTheWork.fullWorkKolichestvoProsmotrov || 0"
+            name-field="full_work_kolichestvo_prosmotrov"
+            keyStorage="view_review"
           />
         </div>
 
@@ -170,7 +172,7 @@ onMounted(() => {
             />
 
             <!-- Виджет "Поделиться" -->
-            <PageBlogWidgetShare />
+            <WidgetShare v-if="dataReview?.title" :title="dataReview.title" />
           </div>
 
           <!-- Ссылка на проект -->
