@@ -40,6 +40,8 @@ onMounted(() => {
 
       parent?.classList.toggle('open');
       resizeHeightMenu();
+    } else if (target.closest('.menu-item')) {
+      closeClick();
     }
   });
 });
@@ -58,7 +60,7 @@ onMounted(() => {
 
     <!--  -->
     <div class="header__menu_center">
-      <ul class="header__menu_ul" @click="closeClick" ref="subMenu">
+      <ul class="header__menu_ul" ref="subMenu">
         <li class="menu-item">
           <a class="menu-item_not-click" href="#">Портфолио</a>
           <ul class="sub-menu">
@@ -106,10 +108,10 @@ onMounted(() => {
           <a class="menu-item_not-click" href="#">Компания</a>
           <ul class="sub-menu">
             <li class="menu-item">
-              <a href="#">Команда</a>
+              <NuxtLink to="/company">Команда</NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Блог</a>
+              <NuxtLink to="/blog">Блог</NuxtLink>
             </li>
             <li class="menu-item">
               <NuxtLink to="/reviews">Отзывы</NuxtLink>
@@ -151,7 +153,6 @@ onMounted(() => {
             <UiLinkText :link="`/`" title="Презентация компании" underline />
 
             <UiLinkText
-              link="/"
               title="Начать проект"
               underline
               @click.prevent="isOpenModal().value = true"
