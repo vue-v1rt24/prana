@@ -190,7 +190,7 @@ onUnmounted(() => {
             </NuxtLink>
             <br class="hide992" />
             и
-            <a class="not_joke__link" href="#">
+            <NuxtLink to="/reviews" class="not_joke__link">
               <span>отзывы клиентов</span>
               <svg viewBox="0 0 34 34" fill="transparent">
                 <circle cx="17" cy="17" r="15.8913" stroke="#40B6B7" stroke-width="2.21741" />
@@ -201,7 +201,7 @@ onUnmounted(() => {
                   fill="#40B6B7"
                 />
               </svg>
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </div>
