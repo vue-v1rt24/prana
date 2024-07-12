@@ -110,7 +110,7 @@ onMounted(() => {
         <!-- Нравится и поделиться (переносится в модальное окно видео) -->
         <PageBlogLikeInModalVideo
           :id="id"
-          :count="condition.count"
+          :count="condition.count ?? 0"
           :is-checked="condition.isChecked"
         />
       </div>
@@ -125,7 +125,7 @@ onMounted(() => {
       <!-- Виджет "Было полезно" -->
       <PageBlogPolezno
         :id="id"
-        :count="condition.count"
+        :count="condition.count ?? 0"
         title="Нравится"
         @current-count="condition.count = $event"
         @current-checked="condition.isChecked = $event"

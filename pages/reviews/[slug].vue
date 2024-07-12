@@ -145,12 +145,14 @@ onMounted(() => {
                 />
               </a>
 
-              <p class="article_full_p desc_video">{{ dataReview?.reviewClient.reviewTekst }}</p>
+              <p v-if="dataReview?.reviewClient.reviewTekst" class="article_full_p desc_video">
+                {{ dataReview.reviewClient.reviewTekst }}
+              </p>
 
               <!-- Нравится и поделиться (переносится в модальное окно видео) -->
               <PageBlogLikeInModalVideo
                 :id="dataReview!.databaseId"
-                :count="condition.count!"
+                :count="condition.count ?? 0"
                 :is-checked="condition.isChecked"
               />
             </div>
@@ -165,7 +167,7 @@ onMounted(() => {
             <!-- Виджет "Было полезно" -->
             <PageReviewsPolezno
               :id="dataReview!.databaseId"
-              :count="condition.count!"
+              :count="condition.count ?? 0"
               title="Нравится"
               @current-count="condition.count = $event"
               @current-checked="condition.isChecked = $event"
