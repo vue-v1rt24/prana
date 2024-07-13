@@ -59,6 +59,7 @@ watchEffect(() => {
 
 <style lang="css" scoped>
 .menu-item_not-click {
+  position: relative;
   font-size: 18px;
   font-weight: 500;
   line-height: 100%;
@@ -71,8 +72,27 @@ watchEffect(() => {
   }
 }
 
+@media (max-width: 576px) {
+  .menu-item_not-click::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    width: 11px;
+    height: 11px;
+    background-image: url(/img/arrow-menu.svg);
+    background-repeat: no-repeat;
+  }
+}
+
+/*  */
 .sub-menu {
   margin-top: 15px;
+
+  /*  */
+  @media (max-width: 576px) {
+    display: none;
+  }
 }
 
 .sub-menu .menu-item {
@@ -92,5 +112,14 @@ watchEffect(() => {
   &.active {
     color: var(--accentColor);
   }
+}
+
+/*  */
+.menu-item.open .menu-item_not-click::after {
+  transform: rotate(90deg);
+}
+
+.menu-item.open .sub-menu {
+  display: block;
 }
 </style>
