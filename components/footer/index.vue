@@ -5,8 +5,9 @@ const { isOpenModal } = useOutsideModal();
 //
 const theme = useTheme();
 
-// Даём активный класс меню "Блог", когда находимся на его внутренних страницах
+// Даём активный класс меню "Блог" и "Отзывы", когда находимся на их внутренних страницах
 const { blogChildrenActiveMenu } = useChildrenActiveMenu();
+const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 </script>
 
 <template>
@@ -53,7 +54,9 @@ const { blogChildrenActiveMenu } = useChildrenActiveMenu();
                 </NuxtLink>
               </li>
               <li class="menu-item">
-                <NuxtLink to="/reviews">Отзывы</NuxtLink>
+                <NuxtLink to="/reviews" :class="{ active: reviewChildrenActiveMenu().value }">
+                  Отзывы
+                </NuxtLink>
               </li>
               <li class="menu-item">
                 <a href="#">Вакансии</a>
