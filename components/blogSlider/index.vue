@@ -118,7 +118,7 @@ onMounted(() => {
   }
 
   .swiper_article_full .swiper-scrollbar {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 }
 

@@ -3,7 +3,7 @@
 <template>
   <div class="works__item">
     <div class="works__img">
-      <UiSkeleton width="450px" height="450px" class="works__img_sk" />
+      <UiSkeleton width="100%" height="100%" class="works__img_sk" />
     </div>
 
     <div class="works__text">
