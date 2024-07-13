@@ -24,6 +24,10 @@
 </template>
 
 <style lang="css" scoped>
+.works__img {
+  aspect-ratio: 1 / 0.56;
+}
+
 .works__img_sk {
   @media (max-width: 1199px) {
     height: 185px;

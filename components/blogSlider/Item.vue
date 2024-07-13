@@ -50,6 +50,12 @@ const vTextAnimate = visibleHiddenText;
 </template>
 
 <style lang="css" scoped>
+.works__img {
+  aspect-ratio: 1 / 0.57;
+}
+
+/*  */
+
 @media (max-width: 768px) {
   .works__desc {
     height: 72px;
