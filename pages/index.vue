@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { type TypeHome } from '@/types/home-page/homepage.types';
+import '@/assets/css/works.css';
+
+//
 const { graphqlUrl } = useRuntimeConfig().public;
 
 // Получение данных

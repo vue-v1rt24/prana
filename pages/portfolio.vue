@@ -355,6 +355,7 @@ onUnmounted(() => {
   height: 633px;
   background-image: url(/img/portfolio/decor_portfolio_1.svg);
   background-repeat: no-repeat;
+  pointer-events: none;
   overflow: hidden;
   z-index: 1;
 }

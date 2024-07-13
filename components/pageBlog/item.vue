@@ -57,4 +57,8 @@ const classNameFilter = computed(() =>
   </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.works__img {
+  aspect-ratio: 1 / 0.56;
+}
+</style>

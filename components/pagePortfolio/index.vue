@@ -126,6 +126,7 @@ const videoHover = () => {
         {{ article.homePreview.zagolovok }}
       </NuxtLink>
 
+      <!-- Теги -->
       <div class="works__tags">
         <span
           v-for="cat in article.portfolioCategories.nodes"
