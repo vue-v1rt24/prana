@@ -20,25 +20,24 @@ const theme = useTheme();
             <a href="#">Портфолио</a>
             <ul class="sub-menu">
               <li class="menu-item">
-                <a href="#">Веб-разработка</a>
+                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Разработка') } }">
+                  Веб-разработка
+                </NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Дизайн</a>
+                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Фото и видео') } }">
+                  Фото и видео
+                </NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">3D дизайн</a>
+                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Продвижение') } }">
+                  Продвижение
+                </NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Фото</a>
-              </li>
-              <li class="menu-item">
-                <a href="#">Видео</a>
-              </li>
-              <li class="menu-item">
-                <a href="#">Motion дизайн</a>
-              </li>
-              <li class="menu-item">
-                <a href="#">Продвижение</a>
+                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Брендинг') } }">
+                  Брендинг
+                </NuxtLink>
               </li>
             </ul>
           </li>
@@ -211,6 +210,11 @@ const theme = useTheme();
   font-weight: 300;
   color: #b7bec9;
   margin-bottom: 0;
+  transition: color 0.5s;
+}
+
+.footer__menu .menu-item .sub-menu .menu-item a:hover {
+  color: var(--accentColor);
 }
 
 /*  */

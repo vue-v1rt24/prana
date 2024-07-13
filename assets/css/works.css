@@ -110,7 +110,17 @@
 }
 
 .works__tag_hash {
-  color: #40b6b7;
+  color: var(--accentColor);
+}
+
+.works__tag__title,
+.works__tag_name {
+  transition: color 0.5s;
+}
+
+.works__tag__title:hover,
+.works__tag_name:hover {
+  color: var(--accentColor);
 }
 
 .works__date {

@@ -105,7 +105,7 @@ watchEffect(() => {
               class="works__tag_link"
             >
               <span class="works__tag_hash">#</span>
-              <span>{{ hash.name }}</span>
+              <span class="works__tag_name">{{ hash.name }}</span>
             </NuxtLink>
           </span>
         </div>

@@ -66,7 +66,7 @@ watchEffect(() => {
 <template>
   <div>
     <!-- Хлебные крошки -->
-    <Breadcrumbs :breadcrumbs="[{ title: 'Отзывы' }]" />
+    <Breadcrumbs :breadcrumbs="[{ title: 'Блог' }]" />
 
     <!--  -->
     <div class="blog_particles"></div>

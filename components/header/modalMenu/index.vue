@@ -65,22 +65,24 @@ onMounted(() => {
           <a class="menu-item_not-click" href="#">Портфолио</a>
           <ul class="sub-menu">
             <li class="menu-item">
-              <a href="#">Веб-разработка</a>
+              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Разработка') } }">
+                Веб-разработка
+              </NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Дизайн</a>
+              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Фото и видео') } }">
+                Фото и видео
+              </NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Фото и видео</a>
+              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Продвижение') } }">
+                Продвижение
+              </NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">3D дизайн</a>
-            </li>
-            <li class="menu-item">
-              <a href="#">Motion дизайн</a>
-            </li>
-            <li class="menu-item">
-              <a href="#">Продвижение</a>
+              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Брендинг') } }">
+                Брендинг
+              </NuxtLink>
             </li>
           </ul>
         </li>
@@ -232,17 +234,6 @@ onMounted(() => {
   margin-bottom: 62px;
 }
 
-/* .header__menu_top_close {
-  width: 52px;
-  height: 52px;
-  background-color: var(--colorBirch);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-} */
-
 /*  */
 .header__menu_center {
   display: flex;
@@ -261,23 +252,26 @@ onMounted(() => {
   line-height: 100%;
   color: var(--colorDark3);
   display: block;
+  transition: color 0.5s;
 }
 
+.header__menu_ul a:not(.menu-item_not-click):hover,
 .header__menu_ul a.active {
   color: var(--accentColor);
 }
 
 .header__menu_ul .sub-menu .menu-item:first-child {
-  margin-top: 24px;
+  margin-top: 15px;
 }
 
 .header__menu_ul .sub-menu a {
   font-size: 16px;
   font-weight: 300;
+  padding: 9px 0;
 }
 
 .header__menu_ul .sub-menu .menu-item:not(:last-child) a {
-  margin-bottom: 18px;
+  padding: 9px 0;
 }
 
 /*  */
@@ -301,6 +295,11 @@ onMounted(() => {
   color: var(--colorDark3);
   display: block;
   margin-bottom: 24px;
+  transition: color 0.5s;
+}
+
+.header__menu_phones_li a:hover {
+  color: var(--accentColor);
 }
 
 .header__menu_phones_li span {
@@ -411,15 +410,6 @@ onMounted(() => {
   .header__menu_top_img {
     width: 85px;
   }
-
-  /*   .header__menu_top_close {
-    width: 34px;
-    height: 34px;
-  }
-
-  .header__menu_top_close img {
-    width: 13px;
-  } */
 
   .header__menu_center {
     flex-direction: column;

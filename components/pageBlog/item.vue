@@ -47,7 +47,7 @@ const classNameFilter = computed(() =>
         >
           <span class="works__tag_link">
             <span class="works__tag_hash">#</span>
-            <span>{{ tag.name }}</span>
+            <span class="works__tag_name">{{ tag.name }}</span>
           </span>
 
           <span class="works__date">{{ dateFormat(blog.date) }}</span>
