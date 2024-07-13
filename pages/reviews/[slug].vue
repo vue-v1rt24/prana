@@ -100,6 +100,9 @@ onMounted(() => {
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="article_full">
+        <NuxtLink to="/reviews" class="parent_page">Все отзывы</NuxtLink>
+
+        <!--  -->
         <div class="article_full_top">
           <!-- Метка категории -->
           <div class="article_full_tag">

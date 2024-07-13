@@ -147,6 +147,22 @@ a {
   cursor: pointer;
 }
 
+/*  */
+.parent_page {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0.28px;
+  color: var(--colorGray);
+  display: block;
+  margin-bottom: 30px;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
+}
+
 /* ==================== Медиа запросы */
 @media (max-width: 1199px) {
   .visible1199 {

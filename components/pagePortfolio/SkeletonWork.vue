@@ -19,13 +19,6 @@
 </template>
 
 <style lang="css" scoped>
-.works__img_sk {
-  @media (max-width: 1199px) {
-    width: 330px;
-    height: 330px;
-  }
-}
-
 .works__tag:not(:last-child) {
   margin-bottom: 5px;
 }

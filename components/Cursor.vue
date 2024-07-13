@@ -136,7 +136,7 @@ onUnmounted(() => {
 <style lang="css" scoped>
 /* Скрываем курсор браузера */
 :global(*, *::before, *::after) {
-  cursor: none;
+  /* cursor: none; */
 }
 
 /* Курсор */

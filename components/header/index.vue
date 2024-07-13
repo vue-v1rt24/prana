@@ -10,7 +10,7 @@ const menuPositionRelative = ref<Boolean>(false);
 const dotsMenu = ref<HTMLDivElement | null>(null);
 
 // Даём активный класс меню "Блог", когда находимся на его внутренних страницах
-const blogChildrenActiveMenu = ref<boolean>(false);
+const { blogChildrenActiveMenu } = useChildrenActiveMenu();
 
 // Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
@@ -72,13 +72,6 @@ watchEffect(() => {
   } else {
     menuPositionRelative.value = false;
   }
-
-  /*  */
-  if (route.path.includes('blog')) {
-    blogChildrenActiveMenu.value = true;
-  } else {
-    blogChildrenActiveMenu.value = false;
-  }
 });
 
 //
@@ -106,7 +99,9 @@ onMounted(() => {
               <li><NuxtLink to="/portfolio">Портфолио</NuxtLink></li>
               <li><NuxtLink to="/company">Команда</NuxtLink></li>
               <li>
-                <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu }">Блог</NuxtLink>
+                <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }">
+                  Блог
+                </NuxtLink>
               </li>
               <li><a href="#">Наша продукция</a></li>
               <li><a href="#">Контакты</a></li>

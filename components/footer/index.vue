@@ -4,6 +4,9 @@ const { isOpenModal } = useOutsideModal();
 
 //
 const theme = useTheme();
+
+// Даём активный класс меню "Блог", когда находимся на его внутренних страницах
+const { blogChildrenActiveMenu } = useChildrenActiveMenu();
 </script>
 
 <template>
@@ -16,34 +19,11 @@ const theme = useTheme();
         </div>
 
         <ul v-if="viewport.isGreaterOrEquals('screen1280')" class="footer__menu">
-          <li class="menu-item">
-            <a href="#">Портфолио</a>
-            <ul class="sub-menu">
-              <li class="menu-item">
-                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Разработка') } }">
-                  Веб-разработка
-                </NuxtLink>
-              </li>
-              <li class="menu-item">
-                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Фото и видео') } }">
-                  Фото и видео
-                </NuxtLink>
-              </li>
-              <li class="menu-item">
-                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Продвижение') } }">
-                  Продвижение
-                </NuxtLink>
-              </li>
-              <li class="menu-item">
-                <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Брендинг') } }">
-                  Брендинг
-                </NuxtLink>
-              </li>
-            </ul>
-          </li>
+          <HeaderModalMenuPortfolio footer />
 
           <li class="menu-item">
             <a href="#">Услуги</a>
+
             <ul class="sub-menu">
               <li class="menu-item">
                 <a href="#">Веб-разработка</a>
@@ -64,13 +44,16 @@ const theme = useTheme();
           </li>
 
           <li class="menu-item">
-            <a href="#">Команда</a>
+            <NuxtLink to="/company">Команда</NuxtLink>
+
             <ul class="sub-menu">
               <li class="menu-item">
-                <a href="#">Блог</a>
+                <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }">
+                  Блог
+                </NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Отзывы</a>
+                <NuxtLink to="/reviews">Отзывы</NuxtLink>
               </li>
               <li class="menu-item">
                 <a href="#">Вакансии</a>
@@ -213,7 +196,8 @@ const theme = useTheme();
   transition: color 0.5s;
 }
 
-.footer__menu .menu-item .sub-menu .menu-item a:hover {
+.footer__menu .menu-item .sub-menu .menu-item a:hover,
+.footer__menu .menu-item .sub-menu .menu-item a.active {
   color: var(--accentColor);
 }
 

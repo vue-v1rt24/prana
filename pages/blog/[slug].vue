@@ -29,6 +29,8 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="article_full">
+        <NuxtLink to="/blog" class="parent_page">Все статьи</NuxtLink>
+
         <!--  -->
         <div class="article_full_top">
           <!-- Метка категории -->

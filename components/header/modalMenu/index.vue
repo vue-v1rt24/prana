@@ -15,6 +15,9 @@ defineProps<{
 // Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
+// Даём активный класс меню "Блог", когда находимся на его внутренних страницах
+const { blogChildrenActiveMenu } = useChildrenActiveMenu();
+
 //
 const { resizeHeightMenu, addRemoveClassBody, resetMenu } = useModalMenu();
 const headerMenu = ref<HTMLDivElement | null>(null);
@@ -61,33 +64,11 @@ onMounted(() => {
     <!--  -->
     <div class="header__menu_center">
       <ul class="header__menu_ul" ref="subMenu">
-        <li class="menu-item">
-          <a class="menu-item_not-click" href="#">Портфолио</a>
-          <ul class="sub-menu">
-            <li class="menu-item">
-              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Разработка') } }">
-                Веб-разработка
-              </NuxtLink>
-            </li>
-            <li class="menu-item">
-              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Фото и видео') } }">
-                Фото и видео
-              </NuxtLink>
-            </li>
-            <li class="menu-item">
-              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Продвижение') } }">
-                Продвижение
-              </NuxtLink>
-            </li>
-            <li class="menu-item">
-              <NuxtLink :to="{ path: '/portfolio', query: { cat: encodeURI('Брендинг') } }">
-                Брендинг
-              </NuxtLink>
-            </li>
-          </ul>
-        </li>
+        <HeaderModalMenuPortfolio />
+
         <li class="menu-item">
           <a class="menu-item_not-click" href="#">Услуги</a>
+
           <ul class="sub-menu">
             <li class="menu-item">
               <a href="#">Веб-разработка</a>
@@ -106,14 +87,18 @@ onMounted(() => {
             </li>
           </ul>
         </li>
+
         <li class="menu-item">
           <a class="menu-item_not-click" href="#">Компания</a>
+
           <ul class="sub-menu">
             <li class="menu-item">
               <NuxtLink to="/company">Команда</NuxtLink>
             </li>
             <li class="menu-item">
-              <NuxtLink to="/blog">Блог</NuxtLink>
+              <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }"
+                >Блог</NuxtLink
+              >
             </li>
             <li class="menu-item">
               <NuxtLink to="/reviews">Отзывы</NuxtLink>
