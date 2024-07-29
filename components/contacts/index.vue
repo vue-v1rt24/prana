@@ -83,6 +83,11 @@ onMounted(() => {
   background-color: var(--colorDark4);
 }
 
+.blog_bx.dark::before,
+.blog_bx.dark::after {
+  background-color: var(--colorDark3);
+}
+
 .blog_bx__title {
   font-family: var(--fontFamily-RFDewi);
   font-weight: 700;

@@ -144,7 +144,7 @@ const props = defineProps<{
   }
 }
 
-@media (max-width: 1299px) {
+@media (max-width: 1918px) {
   .service__item_1,
   .service__item_2,
   .service__item_3,

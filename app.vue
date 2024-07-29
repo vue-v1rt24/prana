@@ -11,7 +11,7 @@ useSeoMeta({
 
 //
 watchEffect(() => {
-  if (route.path.includes('company')) {
+  if (route.path.includes('comanda') || route.path.includes('services')) {
     theme.value = 'dark';
   } else {
     theme.value = 'light';

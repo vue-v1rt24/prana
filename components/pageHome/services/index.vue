@@ -47,7 +47,7 @@ const servicesBx = ref<HTMLDivElement | null>(null);
 
 //
 onMounted(() => {
-  if (ScrollTrigger.isTouch === 0 && matchMedia('(min-width: 1299px)').matches) {
+  if (ScrollTrigger.isTouch === 0 && matchMedia('(min-width: 1920px)').matches) {
     if (servicesBx.value) {
       const tlServices = gsap.timeline({
         scrollTrigger: {
@@ -130,10 +130,10 @@ onMounted(() => {
       },
     });
 
-    mm.add({ is1365: '(max-width: 1918px)' }, (context) => {
-      const { is1365 } = context.conditions as any;
+    mm.add({ is1918: '(max-width: 1918px)' }, (context) => {
+      const { is1918 } = context.conditions as any;
 
-      if (is1365) {
+      if (is1918) {
         swiperServices.init();
         swiperServicesBx.classList.add('scrollbar');
       }
@@ -223,9 +223,8 @@ onMounted(() => {
   .swiper_services .swiper-wrapper {
     column-gap: 0;
   }
-}
 
-@media (max-width: 1299px) {
+  /*  */
   .services__h2 {
     opacity: 1;
   }

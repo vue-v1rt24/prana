@@ -972,4 +972,10 @@ onUnmounted(() => {
   top: -380px;
   left: 600px;
 }
+
+/*  */
+:global(.page_company + .blog_bx.dark::before),
+:global(.page_company + .blog_bx.dark::after) {
+  background-color: var(--colorDark4);
+}
 </style>
