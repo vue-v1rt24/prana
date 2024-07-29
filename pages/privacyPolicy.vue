@@ -1,8 +1,38 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+type TypePrivacyPolicy = {
+  data: {
+    pageBy: {
+      content: string;
+    };
+  };
+};
+
+// Получение ссылки на API
+const { graphqlUrl } = useRuntimeConfig().public;
+
+// Получение данных
+const { data: privacyPolicy } = await useFetch<TypePrivacyPolicy>(graphqlUrl, {
+  query: {
+    query: `
+      {
+        pageBy(pageId: 3) {
+          content
+        }
+      }
+    `,
+  },
+});
+</script>
 
 <template>
-  <div>
-    <h1>Политика конфиденциальности</h1>
+  <div class="privacy_policy">
+    <!-- Хлебные крошки -->
+    <Breadcrumbs :breadcrumbs="[{ title: 'Портфолио' }]" />
+
+    <!--  -->
+    <div class="container">
+      <div class="no_reset" v-html="privacyPolicy?.data.pageBy.content"></div>
+    </div>
   </div>
 </template>
 
