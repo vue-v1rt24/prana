@@ -60,6 +60,7 @@ export type TypeReviewSingle = {
         reviewTekst: string;
       };
       fullOutputOfTheWork: {
+        zagolovok: string;
         kolichestvoPonravivshimsyaStatya: number | null;
         fullWorkKolichestvoProsmotrov: number | null;
       };

@@ -27,6 +27,7 @@ export const useReviewSingle = async (title: string) => {
             reviewTekst
           }
           fullOutputOfTheWork {
+            zagolovok
             kolichestvoPonravivshimsyaStatya
             fullWorkKolichestvoProsmotrov
           }

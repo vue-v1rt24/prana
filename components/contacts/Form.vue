@@ -146,7 +146,8 @@ const sendHandler = async () => {
 
         <div class="contact_us__copy">
           Нажимая кнопку “Отправить” вы соглашаетесь <br />
-          с политикой конфиденциальности
+          с
+          <NuxtLink to="/privacyPolicy">политикой конфиденциальности</NuxtLink>
         </div>
       </form>
     </div>
@@ -338,6 +339,10 @@ const sendHandler = async () => {
   font-weight: 300;
   line-height: 130%;
   margin-top: 24px;
+
+  > a {
+    color: var(--colorTextOpacity06);
+  }
 
   @media (max-width: 576px) {
     font-size: 11px;

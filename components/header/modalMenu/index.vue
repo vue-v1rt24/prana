@@ -72,19 +72,19 @@ onMounted(() => {
 
           <ul class="sub-menu">
             <li class="menu-item">
-              <a href="#">Веб-разработка</a>
+              <NuxtLink to="/services/web-razrabotka">Веб-разработка</NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Дизайн</a>
+              <NuxtLink to="/services/design">Дизайн</NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Фото и видео</a>
+              <NuxtLink to="/services/photo-and-video">Фото и видео</NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Motion дизайн</a>
+              <NuxtLink to="/services/motion-design">Motion дизайн</NuxtLink>
             </li>
             <li class="menu-item">
-              <a href="#">Продвижение</a>
+              <NuxtLink to="/services/prodvizhenie">Продвижение</NuxtLink>
             </li>
           </ul>
         </li>
@@ -94,7 +94,7 @@ onMounted(() => {
 
           <ul class="sub-menu">
             <li class="menu-item">
-              <NuxtLink to="/company">Команда</NuxtLink>
+              <NuxtLink to="/comanda">Команда</NuxtLink>
             </li>
             <li class="menu-item">
               <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }">

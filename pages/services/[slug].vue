@@ -1,9 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Страница услуги',
+  description: 'Описание',
+});
+</script>
 
 <template>
-  <div class="service_item">
-    <h1>Страница Услуги</h1>
-  </div>
+  <section class="service_item">
+    <!-- Хлебные крошки -->
+    <Breadcrumbs :breadcrumbs="[{ title: 'Команда' }]" />
+
+    <div class="container">
+      <h1>Раздел находится в разработке</h1>
+    </div>
+  </section>
 </template>
 
 <style lang="css" scoped>

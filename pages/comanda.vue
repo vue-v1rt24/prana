@@ -77,17 +77,17 @@ onUnmounted(() => {
 <template>
   <div class="page_company">
     <!-- Хлебные крошки -->
-    <Breadcrumbs :breadcrumbs="[{ title: 'О компании' }]" />
+    <Breadcrumbs :breadcrumbs="[{ title: 'Команда' }]" />
 
     <!--  -->
     <div class="about_particles"></div>
 
-    <!-- О компании -->
+    <!-- Команда -->
     <section class="about_sec">
       <div class="container">
         <div class="about_download">
           <div class="about_download__left">
-            <div class="about_download__left_title">О компании</div>
+            <div class="about_download__left_title">Команда</div>
             <h1 class="about_download__left_h1">PRANA IT</h1>
           </div>
 

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const viewport = useViewport();
+
+// Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
 
 //
@@ -27,25 +29,25 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 
             <ul class="sub-menu">
               <li class="menu-item">
-                <a href="#">Веб-разработка</a>
+                <NuxtLink to="/services/web-razrabotka">Веб-разработка</NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Дизайн</a>
+                <NuxtLink to="/services/design">Дизайн</NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Фото и Видео</a>
+                <NuxtLink to="/services/photo-and-video">Фото и видео</NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Motion дизайн</a>
+                <NuxtLink to="/services/motion-design">Motion дизайн</NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Продвижение</a>
+                <NuxtLink to="/services/prodvizhenie">Продвижение</NuxtLink>
               </li>
             </ul>
           </li>
 
           <li class="menu-item">
-            <NuxtLink to="/company">Команда</NuxtLink>
+            <NuxtLink to="/comanda">Команда</NuxtLink>
 
             <ul class="sub-menu">
               <li class="menu-item">
@@ -85,7 +87,7 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
           </li>
 
           <li class="footer__politico">
-            <NuxtLink to="/">Политика конфиденциальности</NuxtLink>
+            <NuxtLink to="/privacyPolicy">Политика конфиденциальности</NuxtLink>
           </li>
         </ul>
       </div>

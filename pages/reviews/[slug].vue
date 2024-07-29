@@ -148,9 +148,11 @@ onMounted(() => {
                 />
               </a>
 
-              <p v-if="dataReview?.reviewClient.reviewTekst" class="article_full_p desc_video">
-                {{ dataReview.reviewClient.reviewTekst }}
-              </p>
+              <div
+                v-if="dataReview?.reviewClient.reviewTekst"
+                v-html="dataReview.reviewClient.reviewTekst"
+                class="article_full_p desc_video no_reset"
+              ></div>
 
               <!-- Нравится и поделиться (переносится в модальное окно видео) -->
               <PageBlogLikeInModalVideo
@@ -182,6 +184,7 @@ onMounted(() => {
 
           <!-- Ссылка на проект -->
           <PageBlogProject
+            v-if="dataReview?.fullOutputOfTheWork.zagolovok"
             :content="{ homePreview: dataReview!.homePreview, slug: dataReview!.slug }"
           />
         </div>

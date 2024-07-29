@@ -97,7 +97,7 @@ onMounted(() => {
           <nav>
             <ul class="menu">
               <li><NuxtLink to="/portfolio">Портфолио</NuxtLink></li>
-              <li><NuxtLink to="/company">Команда</NuxtLink></li>
+              <li><NuxtLink to="/comanda">Команда</NuxtLink></li>
               <li>
                 <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }">
                   Блог

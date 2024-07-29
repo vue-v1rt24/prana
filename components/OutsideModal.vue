@@ -342,7 +342,7 @@ watch(
 
       <div class="outside__send_text">
         Нажимая кнопку "Отправить" вы соглашаетесь с
-        <NuxtLink to="/privacyPolicy">политикой конфиденциальности</NuxtLink>
+        <NuxtLink to="/privacyPolicy" @click="closeModal">политикой конфиденциальности</NuxtLink>
       </div>
     </div>
 

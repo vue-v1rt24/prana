@@ -19,9 +19,9 @@ const { dataReviews } = await useReviewAll();
 
         <div class="video_fancybox_bx">
           <div class="reviews_open_bx">
-            <template v-for="(item, idx) in dataReviews" :key="item.databaseId">
+            <template v-for="item in dataReviews" :key="item.databaseId">
               <PageReviewsReviewFavorite
-                v-if="idx !== 2 && item.reviewClient.reviewsVRazvernutomVide"
+                v-if="item.reviewClient.reviewsVRazvernutomVide"
                 :review="item"
               />
             </template>

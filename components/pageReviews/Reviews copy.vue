@@ -2,10 +2,6 @@
 import * as FancyboxAll from '@fancyapps/ui';
 import type { TypeReview } from '@/types/reviews.types';
 
-//
-const router = useRouter();
-
-//
 const props = defineProps<{
   review: TypeReview;
 }>();
@@ -23,23 +19,10 @@ const openFilePDF = () => {
     },
   ]);
 };
-
-//
-const openLink = (evt: Event) => {
-  const target = evt.target as HTMLDivElement;
-
-  if (target.closest('.works__tags')) {
-    return;
-  } else if (props.review.reviewClient.reviewZagruziteFajl) {
-    openFilePDF();
-  } else {
-    router.push(`/reviews/${props.review.slug}`);
-  }
-};
 </script>
 
 <template>
-  <div class="reviews_close video_fancybox_parent_js react" @click="openLink">
+  <div class="reviews_close video_fancybox_parent_js">
     <div class="reviews__data_img">
       <img :src="review.reviewClient.reviewLogoKompanii?.node.mediaItemUrl" alt="" />
 
@@ -67,10 +50,19 @@ const openLink = (evt: Event) => {
     </div>
 
     <!--  -->
-    <div class="reviews_arrow react">
+    <div
+      v-if="review.reviewClient.reviewZagruziteFajl"
+      @click="openFilePDF"
+      class="reviews_arrow react"
+    >
       <span>Смотреть</span>
       <img src="/public/img/arrow-border.svg" alt="" />
     </div>
+
+    <NuxtLink v-else :to="`/reviews/${review.slug}`" class="reviews_arrow">
+      <span>Смотреть</span>
+      <img src="/public/img/arrow-border.svg" alt="" />
+    </NuxtLink>
   </div>
 </template>
 

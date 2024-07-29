@@ -40,7 +40,7 @@ const props = defineProps<{
             class="works__tag_link"
           >
             <span class="works__tag_hash">#</span>
-            <span>{{ tag.name }}</span>
+            <span class="works__tag__title">{{ tag.name }}</span>
           </NuxtLink>
         </span>
       </div>

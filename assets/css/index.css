@@ -163,6 +163,12 @@ a {
   }
 }
 
+/*  */
+.no_reset * {
+  font: revert;
+  list-style: unset;
+}
+
 /* ==================== Медиа запросы */
 @media (max-width: 1199px) {
   .visible1199 {
