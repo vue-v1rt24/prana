@@ -151,7 +151,7 @@ onMounted(() => {
               <div
                 v-if="dataReview?.reviewClient.reviewTekst"
                 v-html="dataReview.reviewClient.reviewTekst"
-                class="article_full_p desc_video no_reset"
+                class="article_full_p desc_video wp_content"
               ></div>
 
               <!-- Нравится и поделиться (переносится в модальное окно видео) -->

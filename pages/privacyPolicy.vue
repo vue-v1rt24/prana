@@ -31,7 +31,7 @@ const { data: privacyPolicy } = await useFetch<TypePrivacyPolicy>(graphqlUrl, {
 
     <!--  -->
     <div class="container">
-      <div class="no_reset" v-html="privacyPolicy?.data.pageBy.content"></div>
+      <div class="wp_content" v-html="privacyPolicy?.data.pageBy.content"></div>
     </div>
   </div>
 </template>
