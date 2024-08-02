@@ -10,7 +10,7 @@ const menuPositionRelative = ref<Boolean>(false);
 const dotsMenu = ref<HTMLDivElement | null>(null);
 
 // Даём активный класс меню "Блог", когда находимся на его внутренних страницах
-const { blogChildrenActiveMenu } = useChildrenActiveMenu();
+const { blogChildrenActiveMenu, servicesChildrenActiveMenu } = useChildrenActiveMenu();
 
 // Управление модальным окно формы
 const { isOpenModal } = useOutsideModal();
@@ -97,13 +97,17 @@ onMounted(() => {
           <nav>
             <ul class="menu">
               <li><NuxtLink to="/portfolio">Портфолио</NuxtLink></li>
-              <li><NuxtLink to="/comanda">Команда</NuxtLink></li>
               <li>
                 <NuxtLink to="/blog" :class="{ active: blogChildrenActiveMenu().value }">
                   Блог
                 </NuxtLink>
               </li>
-              <li><a href="#">Наша продукция</a></li>
+              <li>
+                <NuxtLink to="/services" :class="{ active: servicesChildrenActiveMenu().value }">
+                  Услуги
+                </NuxtLink>
+              </li>
+              <li><NuxtLink to="/comanda">Команда</NuxtLink></li>
               <li><a href="#">Контакты</a></li>
             </ul>
           </nav>
@@ -226,7 +230,7 @@ onMounted(() => {
 
 /* ==================== Медиа запросы */
 @media (max-width: 1600px) {
-  .header__nav {
+  /* .header__nav {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-18px);
@@ -241,7 +245,7 @@ onMounted(() => {
     border-radius: 26px;
     padding: 18px;
     overflow: scroll;
-  }
+  } */
 
   .header__nav.active {
     opacity: 1;
