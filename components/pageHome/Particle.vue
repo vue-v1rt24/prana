@@ -23,17 +23,15 @@ onUnmounted(() => {
 
 <template>
   <section class="decisions_sec">
-    <div class="container">
-      <div class="decisions">
-        <h1 class="decisions__title" v-html="title"></h1>
+    <div class="decisions">
+      <h1 class="decisions__title" v-html="title"></h1>
 
-        <p class="decisions__desc">{{ desc }}</p>
-      </div>
-
-      <canvas class="particle"></canvas>
-
-      <div class="ellips"></div>
+      <p class="decisions__desc">{{ desc }}</p>
     </div>
+
+    <canvas class="particle"></canvas>
+
+    <div class="ellips"></div>
   </section>
 </template>
 
@@ -41,12 +39,14 @@ onUnmounted(() => {
 .decisions_sec {
   position: relative;
   height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-top: -107px;
   margin-bottom: 40px;
 }
 
 .decisions {
-  padding-top: 280px;
   user-select: none;
 }
 
@@ -133,10 +133,6 @@ onUnmounted(() => {
     margin-bottom: 0;
   }
 
-  .decisions {
-    padding-top: 192px;
-  }
-
   .decisions__title {
     font-size: 56px;
   }
@@ -150,10 +146,6 @@ onUnmounted(() => {
   .decisions_sec {
     height: 470px;
     margin-top: -73px;
-  }
-
-  .decisions {
-    padding-top: 134px;
   }
 
   .decisions__title {

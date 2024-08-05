@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 
   // Настройка изображений (плагин @nuxt/image)
   image: {

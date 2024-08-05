@@ -29,7 +29,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="article_full">
-        <NuxtLink to="/blog" class="parent_page">Все статьи</NuxtLink>
+        <NuxtLink to="/blog" class="parent_page">Вернуться назад</NuxtLink>
 
         <!--  -->
         <div class="article_full_top">
@@ -52,6 +52,9 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
             name-field="blog_kolichestvo_prosmotrov_stati"
             keyStorage="view"
           />
+
+          <!-- Счётчик количества понравившимся статья -->
+          <PageBlogViewLike />
         </div>
 
         <!-- Заголовок -->
