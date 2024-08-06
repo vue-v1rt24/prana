@@ -12,6 +12,29 @@ import type { LngLat } from '@yandex/ymaps3-types';
 
 //
 const map = shallowRef<null | YMap>(null);
+const address = ref<HTMLDivElement | null>(null);
+
+// Для карты
+let zoom = ref(17);
+const center = ref<LngLat>([41.91638975529478, 45.000137210410344]);
+
+//
+onMounted(() => {
+  // Возврат к исходному положению карты
+  address.value?.addEventListener('click', async () => {
+    if (!map.value) return;
+
+    if (map.value.zoom !== 17) {
+      zoom.value = map.value.zoom;
+      setTimeout(() => (zoom.value = 17));
+    }
+
+    if (map.value.center[0] !== center.value[0] || map.value.center[1] !== center.value[1]) {
+      center.value = [...map.value.center];
+      setTimeout(() => (center.value = [41.91638975529478, 45.000137210410344]));
+    }
+  });
+});
 </script>
 
 <template>
@@ -21,8 +44,8 @@ const map = shallowRef<null | YMap>(null);
         v-model="map"
         :settings="{
           location: {
-            center: [41.91638975529478, 45.000137210410344],
-            zoom: 17,
+            center,
+            zoom,
           },
           theme: 'dark',
         }"
@@ -41,7 +64,7 @@ const map = shallowRef<null | YMap>(null);
       </yandex-map>
     </div>
 
-    <div class="data_company__address">
+    <div class="data_company__address" ref="address">
       <div class="data_company__address_title">Мы находимся по адресу</div>
       <div class="data_company__address_loc">Ставрополь, 50 лет ВЛКСМ 113</div>
     </div>

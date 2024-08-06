@@ -486,6 +486,10 @@ watchEffect(() => {
     border-radius: 24px;
   }
 
+  .work_full_article__content_mob_imgs .lazyLoad:after {
+    padding-bottom: 100.25%;
+  }
+
   .work_full_article__desc {
     font-size: 20px;
     margin: 18px 0 32px 0;
@@ -590,4 +594,3 @@ watchEffect(() => {
   }
 }
 </style>
-~/types/home-page/homepage.types

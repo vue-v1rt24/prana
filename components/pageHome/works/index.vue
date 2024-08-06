@@ -117,6 +117,7 @@ const getWork = async (id: number) => {
   {
     portfolioBy(portfolioId: ${id}) {
       databaseId
+      slug
       fullOutputOfTheWork {
         zagolovok
         fullWorkOpisanieVypolnennojRaboty
@@ -154,6 +155,15 @@ const getWork = async (id: number) => {
           name
         }
       }
+      reviewClient {
+        reviewZagruziteFajl {
+          node {
+            mediaItemUrl
+          }
+        }
+        ssylkaNaVideo
+        reviewNazvanieKompanii
+      }
     }
   }
   `,
@@ -171,6 +181,7 @@ const getWork = async (id: number) => {
           ...work.data.portfolioBy.fullOutputOfTheWork,
           id: work.data.portfolioBy.databaseId,
           categories: work.data.portfolioBy.portfolioCategories.nodes,
+          review: work.data.portfolioBy.reviewClient,
         };
       },
     });
@@ -186,6 +197,7 @@ const getWork = async (id: number) => {
       ...data.data.portfolioBy.fullOutputOfTheWork,
       id: data.data.portfolioBy.databaseId,
       categories: data.data.portfolioBy.portfolioCategories.nodes,
+      review: data.data.portfolioBy.reviewClient,
     };
 
     return work;

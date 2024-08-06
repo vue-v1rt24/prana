@@ -66,6 +66,15 @@ export type TypeWorkId = {
           name: string;
         }[];
       };
+      reviewClient: {
+        reviewZagruziteFajl: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
+        ssylkaNaVideo: string;
+        reviewNazvanieKompanii: string;
+      };
     };
   };
   databaseId: number;
@@ -76,6 +85,15 @@ export type TypeWork = {
   id: number;
   slug?: string;
   categories: { name: string }[];
+  review: {
+    reviewZagruziteFajl: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+    ssylkaNaVideo: string;
+    reviewNazvanieKompanii: string;
+  };
 } & TypeWorkBySlugTransform;
 
 export type TypeBlogWork = {

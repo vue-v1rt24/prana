@@ -10,6 +10,14 @@ const theme = useTheme();
 // Даём активный класс меню "Блог" и "Отзывы", когда находимся на их внутренних страницах
 const { blogChildrenActiveMenu } = useChildrenActiveMenu();
 const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
+
+// Подъём на верх страницы
+const upPage = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
 </script>
 
 <template>
@@ -17,7 +25,7 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
     <div class="container">
       <div class="footer">
         <div class="footer__logo_bx">
-          <div class="footer__logo"><img src="/img/logo.svg" alt="" /></div>
+          <div class="footer__logo" @click="upPage"><img src="/img/logo.svg" alt="" /></div>
           <div class="footer__copy">© {{ new Date().getFullYear() }}, LLC PRANA IT</div>
         </div>
 

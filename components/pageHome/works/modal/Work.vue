@@ -7,6 +7,7 @@ import { type TypeWork } from '@/types/home-page/works.types';
 const { Fancybox } = FancyboxAll;
 
 //
+const router = useRouter();
 const viewport = useViewport();
 
 //
@@ -18,7 +19,7 @@ const props = defineProps<{
   dataWork: TypeWork;
 }>();
 
-// console.log(props.dataWork);
+console.log(props.dataWork);
 
 //
 const emit = defineEmits<{
@@ -78,6 +79,24 @@ watchEffect(() => {
     });
   }
 });
+
+// Клик по кнопке "Смотреть отзыв"
+const viewReview = () => {
+  // console.log(props.dataWork.slug);
+  // console.log(props.dataWork.review);
+
+  if (props.dataWork.review.reviewZagruziteFajl) {
+    Fancybox.show([
+      {
+        src: props.dataWork.review.reviewZagruziteFajl.node.mediaItemUrl,
+        type: 'iframe',
+        preload: false,
+      },
+    ]);
+  } else if (props.dataWork.review.ssylkaNaVideo) {
+    router.push(`/reviews/${props.dataWork.slug}`);
+  }
+};
 </script>
 
 <template>
@@ -200,7 +219,14 @@ watchEffect(() => {
 
     <!-- Кнопки -->
     <div class="work_full_article__btns">
-      <UiButton class="work__btn" title="Смотреть отзыв" color-class="btn_transparent" />
+      <UiButton
+        v-if="dataWork.review.reviewNazvanieKompanii"
+        class="work__btn"
+        title="Смотреть отзыв"
+        color-class="btn_transparent"
+        @click-btn="viewReview"
+      />
+
       <UiButton class="work__btn" title="Обсудить проект" color-class="btn_transparent" />
     </div>
 
@@ -487,6 +513,10 @@ watchEffect(() => {
     border-radius: 24px;
   }
 
+  .work_full_article__content_mob_imgs .lazyLoad:after {
+    padding-bottom: 100.25%;
+  }
+
   .work_full_article__desc {
     font-size: 20px;
     margin: 18px 0 32px 0;
@@ -591,4 +621,3 @@ watchEffect(() => {
   }
 }
 </style>
-~/types/home-page/homepage.types

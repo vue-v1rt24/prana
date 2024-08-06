@@ -161,6 +161,7 @@ onUnmounted(() => {
 }
 
 .cursor.active {
+  mix-blend-mode: difference;
   transform: translate(-50%, -50%) scale(1.7);
 }
 
