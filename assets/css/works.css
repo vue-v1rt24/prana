@@ -64,9 +64,13 @@
   color: var(--colorDark3);
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: hidden;
   display: block;
   margin-bottom: 15px;
+}
+
+.works__title::-webkit-scrollbar {
+  width: 0;
 }
 
 .works__title:hover {
@@ -217,11 +221,6 @@
 .swiper__dark .works__desc {
   color: white;
   opacity: 0.4;
-}
-
-.swiper__dark .swiper-scrollbar {
-  max-width: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*  */

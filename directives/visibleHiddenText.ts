@@ -20,5 +20,6 @@ export default {
   },
   unmounted(el: HTMLElement) {
     el.removeEventListener('mouseenter', fooHover);
+    el.removeEventListener('mouseleave', fooHoverReset);
   },
 };

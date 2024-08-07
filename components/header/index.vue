@@ -234,10 +234,17 @@ onMounted(() => {
 
 /*  */
 .header__menu_dots {
+  position: relative;
   display: flex;
   align-items: center;
   column-gap: 12px;
   cursor: pointer;
+}
+
+.header__menu_dots::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
 }
 
 .header__menu_dots span {

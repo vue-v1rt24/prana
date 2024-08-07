@@ -86,6 +86,12 @@ onMounted(() => {
   margin-top: 62px;
 }
 
+/*  */
+.swiper__dark .swiper-scrollbar {
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* ============= Медиа запросы */
 
 @media (max-width: 1365px) {
