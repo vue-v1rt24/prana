@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
 
+// Получение данных
+const { dataContacts } = await useContacts();
+// console.log(dataContacts.value);
+
 //
 const theme = useTheme();
 
@@ -36,7 +40,7 @@ onMounted(() => {
           <ContactsMap />
 
           <!-- Вакансии -->
-          <ContactsVacancy />
+          <ContactsVacancyContacts v-if="dataContacts" :data-contacts="dataContacts" />
         </div>
 
         <!-- Свяжитесь с нами -->

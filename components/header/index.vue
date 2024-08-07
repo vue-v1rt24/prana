@@ -238,7 +238,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   column-gap: 12px;
-  cursor: pointer;
 }
 
 .header__menu_dots::before {

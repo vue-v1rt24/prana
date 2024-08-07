@@ -151,27 +151,27 @@ onMounted(() => {
 
           <ul class="header_soc">
             <li v-if="vkLink">
-              <NuxtLink :to="vkLink" target="_blank">
+              <a :href="vkLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
-              </NuxtLink>
+              </a>
             </li>
 
             <li v-if="telegramLink">
-              <NuxtLink :to="telegramLink" target="_blank">
+              <a :href="telegramLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#telegram"></use>
                 </svg>
-              </NuxtLink>
+              </a>
             </li>
 
             <li v-if="whatsappLink">
-              <NuxtLink :to="whatsappLink" target="_blank">
+              <a :href="whatsappLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#whatsapp"></use>
                 </svg>
-              </NuxtLink>
+              </a>
             </li>
           </ul>
         </div>
