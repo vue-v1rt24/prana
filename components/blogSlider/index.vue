@@ -86,23 +86,6 @@ onMounted(() => {
   margin-top: 62px;
 }
 
-/*  */
-.swiper__dark .works__title,
-.swiper__dark .works__tag_link,
-.swiper__dark .works__date {
-  color: white;
-}
-
-.swiper__dark .works__desc {
-  color: white;
-  opacity: 0.4;
-}
-
-.swiper__dark .swiper-scrollbar {
-  max-width: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* ============= Медиа запросы */
 
 @media (max-width: 1365px) {

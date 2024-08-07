@@ -82,12 +82,12 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
     </div>
 
     <!-- Другие статьи -->
-    <section class="article_interesting">
+    <div class="article_interesting">
       <div class="container container_blog">
         <h2 class="article_interesting__title">Ещё много интересного</h2>
       </div>
 
       <BlogSlider :id="article?.id" />
-    </section>
+    </div>
   </section>
 </template>
