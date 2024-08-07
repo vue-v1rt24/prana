@@ -69,7 +69,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 .swiper_article_full {
   padding: 0 30px 0 50%;
   margin: 0 0 0 -692px;
