@@ -82,7 +82,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
     </div>
 
     <!-- Другие статьи -->
-    <section v-if="!catVideo" class="article_interesting">
+    <section class="article_interesting">
       <div class="container container_blog">
         <h2 class="article_interesting__title">Ещё много интересного</h2>
       </div>
