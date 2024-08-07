@@ -33,7 +33,6 @@ export const useQueryOne = async (slug: string) => {
               }
             }
             ssylkaNaVideo
-            opisanieVideo
             blogVybereteOtzyv {
               nodes {
                 slug

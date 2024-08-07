@@ -65,6 +65,14 @@ const { data } = await useFetch(graphqlUrl, {
   },
 });
 
+// Перемещение к блоку контактов
+const movingContact = () => {
+  document.getElementById('contacts')?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+};
+
 //
 watchEffect(() => {
   if (route.path !== '/') {
@@ -108,7 +116,7 @@ onMounted(() => {
                 </NuxtLink>
               </li>
               <li><NuxtLink to="/comanda">Команда</NuxtLink></li>
-              <li><a href="#">Контакты</a></li>
+              <li @click="movingContact"><a href="#">Контакты</a></li>
             </ul>
           </nav>
         </div>
@@ -237,6 +245,38 @@ onMounted(() => {
   height: 15px;
   background-color: var(--accentColor);
   border-radius: 50%;
+}
+
+.header__menu_dots:hover span:nth-child(1) {
+  animation: animateDotsLeft 0.5s;
+}
+
+.header__menu_dots:hover span:nth-child(3) {
+  animation: animateDotsRight 0.5s;
+}
+
+@keyframes animateDotsLeft {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes animateDotsRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /*  */

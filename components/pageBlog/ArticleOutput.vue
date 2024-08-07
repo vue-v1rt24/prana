@@ -18,7 +18,7 @@ const { isOpenModal } = useOutsideModal();
   <PageBlogWidgetContent />
 
   <!-- Содержание из админки -->
-  <div class="article_full_content" v-html="content"></div>
+  <div class="article_full_content wp_content" v-html="content"></div>
 
   <!-- Полоса -->
   <hr class="article_full__hr" />

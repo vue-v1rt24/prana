@@ -27,6 +27,15 @@ defineProps<{
 .breadcrumbs_bx {
   background-color: transparent;
   padding: 52px 0 100px 0;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding: 42px 0 62px 0;
+  }
+
+  @media (max-width: 567px) {
+    padding: 32px 0 42px 0;
+  }
 }
 
 .breadcrumbs {
@@ -39,6 +48,7 @@ defineProps<{
   align-items: center;
   gap: 14px;
 
+  /*  */
   @media (max-width: 576px) {
     font-size: 12px;
   }

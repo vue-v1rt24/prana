@@ -11,6 +11,7 @@ const { isOpenModal, dopDate, isVisibleBtnProject, isSendFormSuccess } = useOuts
 const mail = useMail();
 
 //
+const outsideForm = ref<HTMLFormElement | null>(null);
 const openModalRef = ref(false);
 const isOpenSelectRef = ref<boolean>(false);
 const whereFromRef = ref('Откуда узнали про PRANA IT?');
@@ -157,7 +158,14 @@ const sendHandler = async () => {
   v$.value.$touch();
 
   // Если есть ошибки в валидации
-  if (v$.value.$error) return;
+  if (v$.value.$error) {
+    outsideForm.value?.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+    return;
+  }
 
   // Проверяем загрузку файла в форме
   if (fields.file) {
@@ -198,7 +206,7 @@ const openModal = () => {
 const closeModal = () => {
   openModalRef.value = false;
   isOpenModal().value = false;
-  document.body.classList.remove('open_modal');
+  document.body.classList.remove('open_modal', 'open_menu');
 };
 
 // Открытие модального окна
@@ -232,7 +240,11 @@ watch(
     :class="['outside__backdrop', { outside__backdrop_visible: openModalRef }]"
   ></div>
 
-  <form @submit.prevent="sendHandler" :class="['outside', { outside__open: openModalRef }]">
+  <form
+    ref="outsideForm"
+    @submit.prevent="sendHandler"
+    :class="['outside', { outside__open: openModalRef }]"
+  >
     <div class="outside__field">
       <div class="outside__title">Ваши контакты</div>
 

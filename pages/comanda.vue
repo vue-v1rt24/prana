@@ -928,8 +928,9 @@ onUnmounted(() => {
 
 .people_item__img {
   background-color: #060e1b;
-  border-radius: 26px;
+  border-radius: 18px;
   margin-bottom: 24px;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     height: 330px;

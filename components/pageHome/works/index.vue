@@ -244,7 +244,7 @@ watchEffect(async () => {
 
 <template>
   <section class="works_bx">
-    <h2 class="title_52">МЫ - это все</h2>
+    <h2 class="title_52">МЫ - это всё</h2>
     <p class="description">Наши проекты, статьи, а так же жизнь компании</p>
 
     <div class="works">

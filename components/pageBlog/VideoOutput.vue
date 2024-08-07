@@ -6,6 +6,7 @@ import type { TypeVideo } from '@/types/blog-page/blogHome.types';
 const props = defineProps<{
   id: number;
   title: string;
+  contentRedactor: string;
   content: TypeVideo;
   blogByloPolezno: number;
 }>();
@@ -105,7 +106,8 @@ onMounted(() => {
           <img class="video_img" :src="content.izobrazhenieVideo.node.mediaItemUrl" alt="" />
         </a>
 
-        <p class="article_full_p desc_video">{{ content.opisanieVideo }}</p>
+        <!-- Содержание из админки -->
+        <div class="article_full_p desc_video wp_content" v-html="contentRedactor"></div>
 
         <!-- Нравится и поделиться (переносится в модальное окно видео) -->
         <PageBlogLikeInModalVideo

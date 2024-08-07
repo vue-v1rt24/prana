@@ -377,6 +377,7 @@ onUnmounted(() => {
 
   @media (max-width: 576px) {
     font-size: 32px;
+    margin-bottom: 42px;
   }
 }
 

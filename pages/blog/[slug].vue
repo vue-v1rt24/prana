@@ -74,6 +74,7 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
           v-if="catVideo && article?.id"
           :id="article.id"
           :title="article.title"
+          :content-redactor="article.content"
           :content="article.contentVideo"
           :blog-bylo-polezno="article.blogByloPolezno || 0"
         />

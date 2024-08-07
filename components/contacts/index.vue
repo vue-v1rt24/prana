@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :class="['blog_bx', { dark: theme === 'dark' }]">
+  <section id="contacts" :class="['blog_bx', { dark: theme === 'dark' }]">
     <div class="container">
       <h2 class="blog_bx__title">Контакты</h2>
 
@@ -58,6 +58,7 @@ onMounted(() => {
   }
 
   @media (max-width: 576px) {
+    border-radius: 32px 32px 0px 0px;
     padding: 80px 0 38px 0;
   }
 }
