@@ -17,6 +17,8 @@ watchEffect(() => {
     theme.value = 'light';
   }
 });
+
+console.log(123);
 </script>
 
 <template>
