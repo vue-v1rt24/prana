@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 //
 import * as FancyboxAll from '@fancyapps/ui';
@@ -40,8 +43,40 @@ const videoPlayModal = (link: string) => {
   ]);
 };
 
+// Анимация текста
+const animateText = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.people_sec',
+      start: '300px bottom',
+      end: '-250px 0',
+      scrub: true,
+      // markers: true,
+    },
+  });
+
+  //
+  tl.to('.people_ludi', {
+    duration: 1,
+    y: 400,
+  });
+
+  tl.to(
+    '.people_title',
+    {
+      duration: 1,
+      y: 280,
+      fontSize: '181px',
+    },
+    '-=0.84',
+  );
+};
+
 //
 onMounted(() => {
+  animateText();
+
+  //
   const swiperPeopleBx = document.querySelector<HTMLDivElement>('.swiper_people')!;
 
   if (swiperPeopleBx) {
@@ -209,6 +244,8 @@ onUnmounted(() => {
 
     <!-- Команда -->
     <section class="people_sec">
+      <div class="people_ludi">Люди</div>
+
       <div class="container">
         <h2 class="people_title">Команда</h2>
 
@@ -258,6 +295,7 @@ onUnmounted(() => {
   position: relative;
 }
 
+/*  */
 .about_sec::after {
   content: '';
   position: absolute;
@@ -273,6 +311,12 @@ onUnmounted(() => {
 @media (max-width: 1200px) {
   .about_sec::after {
     height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about_sec::after {
+    border-radius: 28px 28px 0 0;
   }
 }
 
@@ -589,7 +633,7 @@ onUnmounted(() => {
   position: relative;
   color: var(--colorDark3);
   background-color: white;
-  padding: 86px 0 150px 0;
+  padding: 86px 0 400px 0;
 
   @media (max-width: 768px) {
     padding: 100px 0 62px 0;
@@ -851,24 +895,70 @@ onUnmounted(() => {
 /*  */
 .people_sec {
   position: relative;
-  margin-bottom: 320px;
+  background-color: black;
+  border-radius: 58px 58px 0 0;
+  padding-bottom: 186px;
 
   @media (max-width: 768px) {
-    margin-bottom: 120px;
+    padding-bottom: 100px;
+  }
+
+  @media (max-width: 576px) {
+    border-radius: 28px 28px 0 0;
   }
 }
 
-.people_title {
+.people_sec::before,
+.people_sec::after {
+  content: '';
   position: absolute;
-  top: 166px;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  z-index: -1;
+}
+
+.people_sec::after {
+  left: auto;
+  right: 0;
+}
+
+/*  */
+.people_sec .container {
+  position: relative;
+  overflow: hidden;
+}
+
+/*  */
+.people_ludi {
+  position: absolute;
+  top: -267px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--fontFamily-RFDewi);
   font-weight: 800;
-  font-size: 181px;
+  font-size: 120px;
   line-height: 100%;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  color: #030810;
+}
+
+/*  */
+.people_title {
+  position: absolute;
+  top: -130px;
+  width: 100%;
+  font-family: var(--fontFamily-RFDewi);
+  font-weight: 800;
+  font-size: 94px;
+  line-height: 100%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #02bbc9;
 
   @media (max-width: 1300px) {
     font-size: 80px;
@@ -881,7 +971,7 @@ onUnmounted(() => {
 }
 
 .swiper_people {
-  padding-top: 274px;
+  padding-top: 248px;
 
   @media (max-width: 768px) {
     padding: 220px 30px 30px 30px;
