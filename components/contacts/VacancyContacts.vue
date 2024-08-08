@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import type { TypeContactFormat } from '~/types/contacts.types';
+// Получение данных
+const { dataContacts } = await useContacts();
+// console.log(dataContacts.value);
 
 //
 const theme = useTheme();
-
-/*  */
-const props = defineProps<{
-  dataContacts: TypeContactFormat;
-}>();
-
-console.log(props.dataContacts);
 </script>
 
 <template>
@@ -18,7 +13,7 @@ console.log(props.dataContacts);
     <ContactsVacancies />
 
     <!-- Контакты -->
-    <ContactsContactBlock />
+    <ContactsContactBlock v-if="dataContacts?.contacts" :contacts="dataContacts.contacts" />
   </div>
 </template>
 

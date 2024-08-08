@@ -1,10 +1,9 @@
 <script setup lang="ts">
+import type { TypeContactFormat } from '~/types/contacts.types';
 import '~/assets/css/vacancies-contacts.css';
 
 defineProps<{
-  goryachayLine: number;
-  otdelProdazh: number;
-  otdelRazrabotki: number;
+  contacts: TypeContactFormat;
 }>();
 </script>
 
@@ -15,17 +14,29 @@ defineProps<{
     <div class="job__lists">
       <div class="job__lists_item">
         <div class="job__lists__desc">Номера</div>
-        <a class="title_20_500_130" href="tel:88005008154">8 800 500 81 54</a>
-        <a class="title_20_500_130" href="tel:+79391136690">+7 939 113 66 90</a>
-        <a class="title_20_500_130" href="tel:+79383066690">+7 938 306 66 90</a>
+        <a class="title_20_500_130" :href="`tel:${contacts.nomerTelefona}`">
+          {{ contacts.nomerTelefona }}
+        </a>
+        <a class="title_20_500_130" :href="`tel:${contacts.nomerTelefonaMenedzhment}`">
+          {{ contacts.nomerTelefonaMenedzhment }}
+        </a>
+        <a class="title_20_500_130" :href="`tel:${contacts.otdelRazrabotki}`">
+          {{ contacts.otdelRazrabotki }}
+        </a>
       </div>
 
       <div class="job__lists_item">
         <div class="job__lists__desc">Email</div>
-        <a class="title_20_500_130" href="mailto:info@pranait.ru">info@pranait.ru</a>
+        <a class="title_20_500_130" :href="`mailto:${contacts.settingPochta}`">
+          {{ contacts.settingPochta }}
+        </a>
 
         <!-- Соцсети -->
-        <ContactsSocial />
+        <ContactsSocial
+          :vk="contacts.vkLink"
+          :telegram="contacts.telegramLink"
+          :whatsapp="contacts.whatsappLink"
+        />
       </div>
     </div>
   </div>

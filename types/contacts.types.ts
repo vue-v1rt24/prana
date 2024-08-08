@@ -1,3 +1,4 @@
+// Эти типизации возможно придётся переписать, если добавятся данные вакансий (vacancies)
 export type TypeContactFormat = {
   nomerTelefona: string;
   nomerTelefonaMenedzhment: string;

@@ -242,7 +242,6 @@ html input[type='button'],
 input[type='reset'],
 input[type='submit'] {
   -webkit-appearance: button;
-  cursor: pointer;
 }
 
 button[disabled],

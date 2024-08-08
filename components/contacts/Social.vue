@@ -1,23 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  vk: string;
+  telegram: string;
+  whatsapp: string;
+}>();
+</script>
 
 <template>
   <ul class="soc">
     <li class="soc__item">
-      <a class="soc__item_link" href="#">
+      <a class="soc__item_link" :href="vk" target="_blank">
         <svg width="22px" height="22px" class="soc_img">
           <use xlink:href="/img/sprite.svg#vk"></use>
         </svg>
       </a>
     </li>
     <li class="soc__item">
-      <a class="soc__item_link" href="#">
+      <a class="soc__item_link" :href="telegram" target="_blank">
         <svg width="22px" height="19px" class="soc_img">
           <use xlink:href="/img/sprite.svg#telegram"></use>
         </svg>
       </a>
     </li>
     <li class="soc__item">
-      <a class="soc__item_link" href="#">
+      <a class="soc__item_link" :href="whatsapp" target="_blank">
         <svg width="22px" height="22px" class="soc_img">
           <use xlink:href="/img/sprite.svg#whatsapp"></use>
         </svg>
