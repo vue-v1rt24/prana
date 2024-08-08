@@ -4,6 +4,9 @@ import { localStorageUtil } from '~/utils/localStorage.utils';
 //
 const { domains } = useRuntimeConfig().public;
 
+// Хранилище для отметок понравившимся
+const likes = useCountLikes();
+
 //
 const props = defineProps<{
   id: number;
@@ -22,6 +25,9 @@ const nameStorage = 'useful';
 //
 const isCheckedCount = ref(false);
 const countLocal = ref<number>(props.count);
+
+// Установка количества понравившимся
+likes.value = props.count;
 
 // Получение данных из хранилища
 const getLocaleStorage = () => {
@@ -47,6 +53,7 @@ const sendChangeCount = async (link: string) => {
     });
 
     countLocal.value = resCount;
+    likes.value = resCount; // Установка количества понравившимся
 
     emit('currentCount', countLocal.value);
 

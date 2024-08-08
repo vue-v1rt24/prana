@@ -53,7 +53,7 @@ const sendChangeCount = async (link: string) => {
     });
 
     countLocal.value = resCount;
-    likes.value = resCount;
+    likes.value = resCount; // Установка количества понравившимся
 
     emit('currentCount', countLocal.value);
 

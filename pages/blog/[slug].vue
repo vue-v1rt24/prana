@@ -29,7 +29,13 @@ const catVideo = computed(() => article?.categories[0].name === 'Видео');
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="article_full">
-        <NuxtLink to="/blog" class="parent_page">Вернуться назад</NuxtLink>
+        <NuxtLink to="/blog" class="parent_page">
+          <svg width="14px" height="14px" class="arrow_back">
+            <use xlink:href="/public/img/sprite.svg#arrow_back"></use>
+          </svg>
+
+          <span>Вернуться назад</span>
+        </NuxtLink>
 
         <!--  -->
         <div class="article_full_top">

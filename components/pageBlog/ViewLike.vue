@@ -4,7 +4,7 @@ const likes = useCountLikes();
 
 <template>
   <div class="article_full_view">
-    <span><img src="/public/img/article/view.svg" alt="" /></span>
+    <span><img src="/public/img/article/like.svg" alt="" /></span>
     <span>{{ likes }}</span>
   </div>
 </template>

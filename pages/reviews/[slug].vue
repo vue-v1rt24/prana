@@ -100,7 +100,13 @@ onMounted(() => {
   <section class="article_full_bx">
     <div class="container container_blog">
       <div class="article_full">
-        <NuxtLink to="/reviews" class="parent_page">Все отзывы</NuxtLink>
+        <NuxtLink to="/reviews" class="parent_page">
+          <svg width="14px" height="14px" class="arrow_back">
+            <use xlink:href="/public/img/sprite.svg#arrow_back"></use>
+          </svg>
+
+          <span>Вернуться назад</span>
+        </NuxtLink>
 
         <!--  -->
         <div class="article_full_top">
@@ -125,6 +131,9 @@ onMounted(() => {
             name-field="full_work_kolichestvo_prosmotrov"
             keyStorage="view_review"
           />
+
+          <!-- Счётчик количества понравившимся отзыв -->
+          <PageBlogViewLike />
         </div>
 
         <!-- Заголовок -->

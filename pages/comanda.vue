@@ -44,6 +44,11 @@ const videoPlayModal = (link: string) => {
 };
 
 // Анимация текста
+let peopleLudiY = 400;
+let peopleTitleY = 280;
+let peopleTitleFontSize = '181px';
+let delayTime = '-=0.84';
+
 const animateText = () => {
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -56,19 +61,46 @@ const animateText = () => {
   });
 
   //
+  mm.add('(max-width: 1360px)', () => {
+    peopleTitleFontSize = '120px';
+  });
+
+  mm.add('(max-width: 992px)', () => {
+    peopleTitleFontSize = '90px';
+    delayTime = '-=0.81';
+  });
+
+  mm.add('(max-width: 768px)', () => {
+    peopleLudiY = 350;
+    peopleTitleY = 230;
+    delayTime = '-=0.95';
+  });
+
+  mm.add('(max-width: 760px)', () => {
+    peopleTitleFontSize = '60px';
+    delayTime = '-=0.97';
+  });
+
+  mm.add('(max-width: 576px)', () => {
+    peopleLudiY = 165;
+    peopleTitleY = 218;
+    peopleTitleFontSize = '40px';
+  });
+
+  //
   tl.to('.people_ludi', {
     duration: 1,
-    y: 400,
+    y: peopleLudiY,
   });
 
   tl.to(
     '.people_title',
     {
       duration: 1,
-      y: 280,
-      fontSize: '181px',
+      y: peopleTitleY,
+      fontSize: peopleTitleFontSize,
     },
-    '-=0.84',
+    delayTime,
   );
 };
 
@@ -362,7 +394,7 @@ onUnmounted(() => {
     right: -311px;
     width: 564px;
     height: 604px;
-    background-image: url(../img/team/decoration_1_360.svg);
+    background-image: url(/img/team/decoration_1_360.svg);
   }
 }
 
@@ -636,7 +668,11 @@ onUnmounted(() => {
   padding: 86px 0 400px 0;
 
   @media (max-width: 768px) {
-    padding: 100px 0 62px 0;
+    padding: 100px 0 230px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 100px 0 150px 0;
   }
 }
 
@@ -943,14 +979,33 @@ onUnmounted(() => {
   line-height: 100%;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #030810;
+  color: black;
+
+  /*  */
+  @media (max-width: 992px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 768px) {
+    top: -180px;
+  }
+
+  @media (max-width: 760px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 576px) {
+    top: -110px;
+    font-size: 32px;
+  }
 }
 
 /*  */
 .people_title {
   position: absolute;
   top: -130px;
-  width: 100%;
+  left: 0;
+  right: 0;
   font-family: var(--fontFamily-RFDewi);
   font-weight: 800;
   font-size: 94px;
@@ -958,28 +1013,48 @@ onUnmounted(() => {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-align: center;
-  color: #02bbc9;
+  color: white;
 
-  @media (max-width: 1300px) {
-    font-size: 80px;
+  /*  */
+  @media (max-width: 992px) {
+    font-size: 60px;
   }
 
-  @media (max-width: 768px) {
-    top: 100px;
-    font-size: 40px;
+  @media (max-width: 760px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 32px;
   }
 }
 
 .swiper_people {
   padding-top: 248px;
 
+  @media (max-width: 1360px) {
+    padding-top: 217px;
+  }
+
+  @media (max-width: 992px) {
+    padding-top: 200px;
+  }
+
   @media (max-width: 768px) {
-    padding: 220px 30px 30px 30px;
+    padding: 150px 30px 30px 30px;
     margin: 0 -30px;
   }
 
+  @media (max-width: 760px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 760px) {
+    padding: 135px 30px 30px 30px;
+  }
+
   @media (max-width: 576px) {
-    padding: 274px 20px 30px 20px;
+    padding: 110px 20px 30px 20px;
     margin: 0 -20px;
   }
 }

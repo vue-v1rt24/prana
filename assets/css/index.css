@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './wp-content.css';
 @import './variables.css';
 
 /*  */
@@ -154,106 +155,33 @@ a {
   line-height: 100%;
   letter-spacing: 0.28px;
   color: var(--colorGray);
-  display: block;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
   margin-bottom: 30px;
+  transition: color 0.3s;
+
+  .arrow_back {
+    color: var(--colorGray);
+  }
+
+  &:hover {
+    color: var(--colorDark3);
+
+    .arrow_back {
+      color: var(--accentColor);
+    }
+  }
 
   /*  */
   @media (max-width: 576px) {
     font-size: 12px;
-  }
-}
+    column-gap: 8px;
 
-/* Сброс стилей сброса для содержания вордпресса */
-.wp_content {
-  ol {
-    list-style: decimal;
-  }
-
-  ul {
-    list-style: disc;
-  }
-
-  table {
-    border-collapse: collapse;
-
-    border-spacing: 1;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  blockquote,
-  pre,
-  a,
-  abbr,
-  acronym,
-  address,
-  big,
-  cite,
-  code,
-  del,
-  dfn,
-  em,
-  img,
-  ins,
-  kbd,
-  q,
-  s,
-  samp,
-  small,
-  strike,
-  strong,
-  sub,
-  sup,
-  tt,
-  var,
-  b,
-  u,
-  i,
-  center,
-  dl,
-  dt,
-  dd,
-  ol,
-  ul,
-  li,
-  fieldset,
-  form,
-  label,
-  legend,
-  table,
-  caption,
-  tbody,
-  tfoot,
-  thead,
-  tr,
-  th,
-  td,
-  article,
-  aside,
-  canvas,
-  details,
-  embed,
-  figure,
-  figcaption,
-  footer,
-  header,
-  hgroup,
-  menu,
-  nav,
-  output,
-  ruby,
-  section,
-  summary,
-  time,
-  mark,
-  audio,
-  video {
-    font: revert;
+    .arrow_back {
+      width: 12px;
+      height: 12px;
+    }
   }
 }
 
