@@ -125,22 +125,22 @@ watchEffect(() => {
   position: absolute;
   top: 0;
   right: 0;
-  width: 1290px;
-  height: 891px;
+  width: 1286px;
+  height: 711px;
   background-image: url(/img/blog/decor_blog_1.svg);
   background-repeat: no-repeat;
   overflow: hidden;
   z-index: -1;
 
   @media (max-width: 1299px) {
-    width: 552px;
-    height: 508px;
+    width: 699px;
+    height: 569px;
     background-image: url(/img/blog/decor_blog_2.svg);
   }
 
   @media (max-width: 576px) {
-    width: 287px;
-    height: 300px;
+    width: 318px;
+    height: 329px;
     background-image: url(/img/blog/decor_blog_3.svg);
   }
 }

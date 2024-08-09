@@ -18,6 +18,7 @@ export type TypeHeaderSettings = {
         telegramLink: string;
         vkLink: string;
         whatsappLink: string;
+        yutub: string;
       };
     };
   };

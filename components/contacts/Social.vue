@@ -3,6 +3,7 @@ defineProps<{
   vk: string;
   telegram: string;
   whatsapp: string;
+  youtube: string;
 }>();
 </script>
 
@@ -10,22 +11,29 @@ defineProps<{
   <ul class="soc">
     <li class="soc__item">
       <a class="soc__item_link" :href="vk" target="_blank">
-        <svg width="22px" height="22px" class="soc_img">
-          <use xlink:href="/img/sprite.svg#vk"></use>
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#vk"></use>
         </svg>
       </a>
     </li>
     <li class="soc__item">
       <a class="soc__item_link" :href="telegram" target="_blank">
-        <svg width="22px" height="19px" class="soc_img">
-          <use xlink:href="/img/sprite.svg#telegram"></use>
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#telegram"></use>
         </svg>
       </a>
     </li>
     <li class="soc__item">
       <a class="soc__item_link" :href="whatsapp" target="_blank">
-        <svg width="22px" height="22px" class="soc_img">
-          <use xlink:href="/img/sprite.svg#whatsapp"></use>
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#whatsapp"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="soc__item">
+      <a class="soc__item_link" :href="youtube" target="_blank">
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#youtube"></use>
         </svg>
       </a>
     </li>
@@ -36,7 +44,7 @@ defineProps<{
 .soc {
   display: flex;
   align-items: center;
-  column-gap: 12px;
+  column-gap: 14px;
   border-radius: 8px;
   margin-top: 32px;
 
@@ -46,18 +54,24 @@ defineProps<{
 }
 
 .soc__item {
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   background-color: var(--colorDark3);
   border-radius: 8px;
 }
 
 .soc__item_link {
-  display: block;
-  padding: 12px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .soc_img {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
   fill: white;
   transition: 0.3s;
 }

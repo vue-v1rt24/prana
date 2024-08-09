@@ -36,6 +36,7 @@ defineProps<{
           :vk="contacts.vkLink"
           :telegram="contacts.telegramLink"
           :whatsapp="contacts.whatsappLink"
+          :youtube="contacts.yutub"
         />
       </div>
     </div>

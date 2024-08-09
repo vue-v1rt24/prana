@@ -10,6 +10,7 @@ defineProps<{
   telegramLink?: string;
   vkLink?: string;
   whatsappLink?: string;
+  youtubeLink?: string;
 }>();
 
 // Управление модальным окно формы
@@ -153,7 +154,7 @@ onMounted(() => {
             <li v-if="vkLink">
               <a :href="vkLink" target="_blank">
                 <svg>
-                  <use xlink:href="/img/sprite.svg#vk"></use>
+                  <use xlink:href="/public/img/sprite.svg#vk"></use>
                 </svg>
               </a>
             </li>
@@ -161,7 +162,7 @@ onMounted(() => {
             <li v-if="telegramLink">
               <a :href="telegramLink" target="_blank">
                 <svg>
-                  <use xlink:href="/img/sprite.svg#telegram"></use>
+                  <use xlink:href="/public/img/sprite.svg#telegram"></use>
                 </svg>
               </a>
             </li>
@@ -169,7 +170,15 @@ onMounted(() => {
             <li v-if="whatsappLink">
               <a :href="whatsappLink" target="_blank">
                 <svg>
-                  <use xlink:href="/img/sprite.svg#whatsapp"></use>
+                  <use xlink:href="/public/img/sprite.svg#whatsapp"></use>
+                </svg>
+              </a>
+            </li>
+
+            <li v-if="youtubeLink">
+              <a :href="youtubeLink" target="_blank">
+                <svg>
+                  <use xlink:href="/public/img/sprite.svg#youtube"></use>
                 </svg>
               </a>
             </li>
@@ -323,12 +332,22 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s;
+}
+
+.header_soc a:hover {
+  background-color: var(--accentColor);
 }
 
 .header_soc svg {
   width: 22px;
   height: 22px;
   fill: var(--accentColor);
+  transition: fill 0.3s;
+}
+
+.header_soc a:hover svg {
+  fill: white;
 }
 
 /* ==================== Медиа запросы */

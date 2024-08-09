@@ -125,7 +125,7 @@ onMounted(() => {
       },
     });
 
-    mm.add('(max-width: 767px)', () => {
+    mm.add('(max-width: 768px)', () => {
       peopleSwiper.value?.init();
 
       return () => {};
@@ -1099,10 +1099,12 @@ onUnmounted(() => {
 
   @media (max-width: 768px) {
     height: 330px;
+    border-radius: 72px;
   }
 
   @media (max-width: 576px) {
     height: 260px;
+    border-radius: 32px;
     margin-bottom: 20px;
   }
 }

@@ -37,6 +37,7 @@ const settingsQuery = {
           telegramLink
           vkLink
           whatsappLink
+          yutub
         }
       }
     }
@@ -61,6 +62,7 @@ const { data } = await useFetch(graphqlUrl, {
       telegramLink: d.data.settingsSitePage.settingsSite.telegramLink,
       vkLink: d.data.settingsSitePage.settingsSite.vkLink,
       whatsappLink: d.data.settingsSitePage.settingsSite.whatsappLink,
+      youtubeLink: d.data.settingsSitePage.settingsSite.yutub,
     };
   },
 });
@@ -147,12 +149,13 @@ onMounted(() => {
   <!-- Появляющиеся меню -->
   <HeaderModalMenu
     :logo="data?.logotipVModalnomMenyu"
-    :nomerTelefona="data?.hotLine"
-    :nomerTelefonaMenedzhment="data?.nomerTelefonaMenedzhment"
-    :settingPochta="data?.settingPochta"
-    :telegramLink="data?.telegramLink"
-    :vkLink="data?.vkLink"
-    :whatsappLink="data?.whatsappLink"
+    :nomer-telefona="data?.hotLine"
+    :nomer-telefona-menedzhment="data?.nomerTelefonaMenedzhment"
+    :setting-pochta="data?.settingPochta"
+    :telegram-link="data?.telegramLink"
+    :vk-link="data?.vkLink"
+    :whatsapp-link="data?.whatsappLink"
+    :youtube-link="data?.youtubeLink"
   />
 </template>
 

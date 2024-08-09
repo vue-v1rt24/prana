@@ -44,7 +44,12 @@ onMounted(() => {
 
 <template>
   <div class="article_full_save">
-    <span><img src="/img/article/share.png" alt="" /></span>
+    <!-- <span><img src="/img/article/share.png" alt="" /></span> -->
+
+    <svg width="21px" height="20px" class="share react">
+      <use xlink:href="/public/img/sprite.svg#share2"></use>
+    </svg>
+
     <span class="react share_title">Поделиться</span>
 
     <!--  -->
@@ -146,6 +151,23 @@ onMounted(() => {
   .soc_modal::before {
     display: none;
   }
+}
+
+.share {
+  stroke: #a9aeb9;
+  transition: stroke 0.3s;
+}
+
+.article_full_save:hover .share {
+  stroke: var(--accentColor);
+}
+
+.share_title {
+  transition: color 0.3s;
+}
+
+.article_full_save:hover .share_title {
+  color: var(--colorDark3);
 }
 
 .share_title:hover + .soc_modal {

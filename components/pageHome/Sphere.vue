@@ -143,11 +143,10 @@ onMounted(() => {
   line-height: 100%;
   white-space: nowrap;
   color: var(--colorTextOpacity06);
-  border: none;
-  background: rgba(6, 14, 27, 0.5);
-  backdrop-filter: blur(29.5px);
-  -webkit-backdrop-filter: blur(29.5px);
+  background-color: rgba(8, 19, 37, 0.9);
+  backdrop-filter: blur(20px);
   border-radius: 32px;
+  border: none;
   padding: 42px 52px;
 }
 /*  */
