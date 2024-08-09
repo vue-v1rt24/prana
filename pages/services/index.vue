@@ -21,7 +21,8 @@ useSeoMeta({
       <h1 class="service_item__h1">Раздел находится в разработке</h1>
       <p class="service_item__desc">Совсем скоро он появится</p>
 
-      <UiButton title="Вернуться назад" @click-btn="router.back" class="service_item__btn" />
+      <UiButton title="Скачать презентацию" class="service_item__btn download_pdf" />
+      <!-- <UiButton title="Вернуться назад" @click-btn="router.back" class="service_item__btn" /> -->
     </div>
   </section>
 </template>
