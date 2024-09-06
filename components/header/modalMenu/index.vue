@@ -275,6 +275,17 @@ onMounted(() => {
 .header__menu_contacts {
   display: flex;
   column-gap: 110px;
+
+  /*  */
+  @media (max-width: 1500px) {
+    width: 100%;
+    justify-content: space-between;
+    column-gap: 0;
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 }
 
 /*  */
@@ -282,6 +293,12 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   row-gap: 38px;
+
+  /*  */
+  @media (max-width: 700px) {
+    row-gap: 24px;
+    margin-bottom: 32px;
+  }
 }
 
 .header__menu_phones_li a {
@@ -387,10 +404,6 @@ onMounted(() => {
     width: 100%;
   }
 
-  .header__menu_contacts {
-    width: 100%;
-  }
-
   .header__menu_phones_li a {
     font-size: 20px;
     margin-bottom: 16px;
@@ -398,10 +411,14 @@ onMounted(() => {
 }
 
 @media (max-width: 700px) {
-  .header__menu_ul,
-  .header__menu_contacts {
+  .header__menu_ul {
     justify-content: space-between;
     column-gap: 0;
+  }
+
+  /*  */
+  .header__menu_center[data-v-c1e677d6] {
+    flex-direction: column;
   }
 }
 
@@ -434,15 +451,6 @@ onMounted(() => {
 
   .header__menu_ul .sub-menu {
     display: none;
-  }
-
-  .header__menu_contacts {
-    flex-direction: column;
-  }
-
-  .header__menu_phones {
-    row-gap: 24px;
-    margin-bottom: 32px;
   }
 
   .header__menu_phones_li a {
