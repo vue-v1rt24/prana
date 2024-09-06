@@ -1,0 +1,129 @@
+/* 
+Используется в файлах, у которых есть класс: video_fancybox:
+components\pageBlog\VideoOutput.vue
+pages\reviews\[slug].vue
+*/
+
+.video_fancybox {
+  position: relative;
+}
+
+.video_fancybox::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
+  background-image: url(/img/video/videoBtn.svg);
+  background-size: cover;
+}
+
+@media (max-width: 830px) {
+  .video_fancybox::before {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 576px) {
+  .video_fancybox::before {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.video_img {
+  border-radius: 18px;
+}
+
+.desc_video {
+  margin: 41px 0 52px 0;
+
+  @media (max-width: 576px) {
+    margin: 24px 0 32px 0;
+  }
+}
+
+.article_full_p {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 140%;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
+}
+
+/* Видео в iframe в модальном окне */
+
+.video_fancybox_modal {
+  margin: 0 20px;
+}
+
+.video_fancybox_modal .fancybox__slide.has-iframe {
+  overflow-y: auto;
+}
+
+.video_fancybox_modal .fancybox__slide.has-iframe::-webkit-scrollbar {
+  width: 0;
+}
+
+.video_fancybox_modal .fancybox__content {
+  width: auto;
+  height: auto;
+  background: transparent;
+  padding: 0;
+}
+
+.video_fancybox_modal .fancybox__backdrop {
+  backdrop-filter: blur(16px);
+  background: rgba(6, 14, 27, 0.8);
+}
+
+.video_fancybox_modal iframe {
+  width: 1262px;
+  height: 717px;
+  translate: -50px;
+  margin: auto;
+
+  /*  */
+  @media (max-width: 1500px) {
+    width: 877px;
+    height: 500px;
+  }
+
+  @media (max-width: 1299px) {
+    translate: 0;
+  }
+
+  @media (max-width: 1024px) {
+    width: 700px;
+    height: 401px;
+  }
+
+  @media (max-width: 768px) {
+    width: 676px;
+    height: 387px;
+  }
+
+  @media (max-width: 700px) {
+    width: 497px;
+    height: 287px;
+  }
+
+  @media (max-width: 576px) {
+    width: 400px;
+    height: 233px;
+  }
+
+  @media (max-width: 480px) {
+    width: 320px;
+    height: 187px;
+  }
+}

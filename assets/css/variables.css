@@ -1,0 +1,33 @@
+@import '../fonts/fonts.css';
+
+:root {
+  --fontFamily-NeueMachina: 'NeueMachina', sans-serif;
+  --fontFamily-RFDewi: 'RFDewi', sans-serif;
+  --fontFamily-RoadRadio: 'RoadRadio', sans-serif;
+
+  --accentColor: #40b6b7;
+  --accentColor2: #43b7b7;
+  --linearGradient: linear-gradient(
+    91deg,
+    var(--accentColor) 15.54%,
+    #6fe1e2 60.08%,
+    var(--accentColor) 106.51%
+  );
+
+  --colorTextWhite: white;
+  --colorTextOpacity06: rgba(255, 255, 255, 0.6);
+  --colorTextOpacity08: rgba(255, 255, 255, 0.8);
+  --colorGray: #a9aeb9;
+  --colorDark: #181a25;
+  --colorDark2: #1d1f2c;
+  --colorDark3: #030810;
+  --colorDark4: #060e1b;
+  --colorBirch: #f2fafa;
+  --colorBirch2: #f8f8f8;
+
+  --bg: #030810;
+
+  --border: 1px solid rgba(255, 255, 255, 0.2);
+
+  --transformAnimate: transform 0.5s cubic-bezier(0.75, -1.27, 0.3, 2.33);
+}
