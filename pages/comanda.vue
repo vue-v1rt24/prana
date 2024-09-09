@@ -336,7 +336,12 @@ onUnmounted(() => {
                     format="webp"
                   />
                 </div>
-                <div class="people_item__name">{{ item.companyKomandaImyaIFamiliya }}</div>
+
+                <div
+                  class="people_item__name"
+                  v-html="item.companyKomandaImyaIFamiliya.replace(' ', '<br />')"
+                ></div>
+
                 <div class="people_item__post">{{ item.companyKomandaDolzhnost }}</div>
               </div>
             </div>
