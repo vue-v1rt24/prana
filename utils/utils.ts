@@ -1,3 +1,6 @@
+import { gsap } from 'gsap';
+import type { Ref } from 'vue';
+
 // Формирование даты
 export const dateFormat = (value: string) => {
   return new Intl.DateTimeFormat('ru-RU', {
@@ -29,5 +32,25 @@ export const upPage = () => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
+  });
+};
+
+// Копирование почты
+export const copyBuffer = (elem: Ref | string, rightGsap: Ref | number) => {
+  const elemNew = toValue(elem);
+  const rightGsapNew = toValue(rightGsap);
+
+  elemNew.value && navigator.clipboard.writeText(elemNew.value.textContent as string);
+
+  //
+  gsap.to('.notification_animate', {
+    duration: 0.5,
+    right: rightGsapNew.value,
+
+    onComplete() {
+      setTimeout(() => {
+        gsap.to('.notification_animate', { duration: 1, right: '-100%' });
+      }, 3000);
+    },
   });
 };

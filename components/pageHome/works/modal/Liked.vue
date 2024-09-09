@@ -5,6 +5,9 @@ import { localStorageUtil } from '~/utils/localStorage.utils';
 const { domains } = useRuntimeConfig().public;
 
 //
+const isShowSoc = useIsShowSoc();
+
+//
 const props = defineProps<{
   id: number | undefined;
   slug: string | undefined;
@@ -14,8 +17,24 @@ const props = defineProps<{
 //
 const nameStorage = 'works';
 const count = ref<number>(0);
+const slugLink = ref('');
 const isWhatRequest = ref(false);
 const isCountVisible = ref(false);
+
+// Блок "Поделиться"
+const fooSoc = (evt: Event) => {
+  const target = evt.target as HTMLElement;
+
+  if (target.closest('.work_full_article__share')) {
+    slugLink.value = props.slug ?? '';
+    isShowSoc.value = !isShowSoc.value;
+  } else {
+    if (!target.closest('.modal_work_share')) {
+      isShowSoc.value = false;
+      slugLink.value = '';
+    }
+  }
+};
 
 //
 const getStorage = () => {
@@ -85,6 +104,15 @@ const toggleLicked = async () => {
     }
   }
 };
+
+//
+onMounted(() => {
+  document.addEventListener('click', fooSoc);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', fooSoc);
+});
 </script>
 
 <template>
@@ -104,6 +132,10 @@ const toggleLicked = async () => {
       <svg>
         <use xlink:href="/img/sprite.svg#share"></use>
       </svg>
+    </div>
+
+    <div :class="['modal_work_share', { active: isShowSoc }]">
+      <LazyUiShare v-if="slugLink" :title="slugLink" />
     </div>
   </div>
 </template>
@@ -185,5 +217,35 @@ const toggleLicked = async () => {
   .work_full_article__hart_share {
     bottom: -127px;
   }
+}
+
+/*  */
+.modal_work_share {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 190px;
+  left: -290px;
+  width: 362px;
+  transform: translateY(20px);
+  transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+  z-index: 3;
+
+  /*  */
+  @media (max-width: 1900px) {
+    top: -200px;
+    left: 50%;
+    translate: -50%;
+  }
+
+  @media (max-width: 576px) {
+    width: 172px;
+  }
+}
+
+.modal_work_share.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 </style>

@@ -264,7 +264,12 @@ const viewReview = () => {
 }
 
 .work_full_article__left {
-  width: 50%;
+  width: 60%;
+
+  /*  */
+  @media (max-width: 1199px) {
+    width: 100%;
+  }
 }
 
 .work_full_article__title {

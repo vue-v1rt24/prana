@@ -29,7 +29,7 @@ const { isOpenModal } = useOutsideModal();
     <PageBlogPolezno :id="id" :count="blogByloPolezno" title="Было полезно" />
 
     <!-- Виджет "Поделиться" -->
-    <WidgetShare :title />
+    <WidgetShare class="article_full_bottom_share" :title />
   </div>
 
   <!-- Виджет "Еженедельный дайджест" -->
@@ -57,4 +57,12 @@ const { isOpenModal } = useOutsideModal();
   </div>
 </template>
 
-<style lang="css" scoped></style>
+<style lang="css">
+.article_full_bottom_share .article_full_share {
+  left: -224px;
+
+  @media (max-width: 576px) {
+    left: -55px;
+  }
+}
+</style>

@@ -139,7 +139,7 @@ onMounted(() => {
 
         <div class="header__menu_links">
           <div>
-            <UiLinkText :link="`/`" title="Презентация компании" underline />
+            <UiLinkText class="close_menu" :link="`/`" title="Презентация компании" underline />
 
             <UiLinkText
               title="Начать проект"

@@ -135,7 +135,7 @@ onMounted(() => {
       />
 
       <!-- Виджет "Поделиться" -->
-      <WidgetShare :title />
+      <WidgetShare class="article_full_bottom_share" :title />
     </div>
 
     <!-- Ссылка на проект -->

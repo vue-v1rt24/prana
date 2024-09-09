@@ -12,3 +12,6 @@ export const useActiveBtnCategoryPortfolio = () =>
     parent: 'all',
     child: 'Все',
   }));
+
+// Для показа / скрытия поделиться в соц.сетях во всплывающих окнах портфолио
+export const useIsShowSoc = () => useState<boolean>('isShowSoc', () => false);
