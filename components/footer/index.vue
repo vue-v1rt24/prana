@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useShowPresentCompany } from '~/composables/showPresentCompany';
 import { upPage } from '~/utils/utils';
 
 //
@@ -75,15 +76,11 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 
         <ul class="footer__links">
           <li>
-            <UiLinkText link="/" title="Презентация компании" underline />
+            <UiLinkText title="Презентация компании" underline @click="useShowPresentCompany" />
           </li>
 
           <li>
-            <UiLinkText
-              title="Начать проект"
-              underline
-              @click.prevent="isOpenModal().value = true"
-            />
+            <UiLinkText title="Начать проект" underline @click="isOpenModal().value = true" />
           </li>
 
           <li class="footer__politico">

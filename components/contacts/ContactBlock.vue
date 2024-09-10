@@ -1,48 +1,11 @@
 <script setup lang="ts">
-import { gsap } from 'gsap';
-
+import { copyBuffer } from '~/utils/copy-email.utils';
 import type { TypeContactFormat } from '~/types/contacts.types';
 import '~/assets/css/vacancies-contacts.css';
 
 defineProps<{
   contacts: TypeContactFormat;
 }>();
-
-//
-const mailtoRef = ref<HTMLLinkElement | null>(null);
-const rightGsap = ref(30);
-
-//
-let mm = gsap.matchMedia();
-
-//
-const copyBuffer = () => {
-  mailtoRef.value && navigator.clipboard.writeText(mailtoRef.value.textContent as string);
-
-  //
-  gsap.to('.notification_animate', {
-    duration: 0.5,
-    right: rightGsap.value,
-
-    onComplete() {
-      setTimeout(() => {
-        gsap.to('.notification_animate', { duration: 1, right: '-100%' });
-      }, 3000);
-    },
-  });
-};
-
-//
-onMounted(() => {
-  mm.add('(max-width: 576px)', () => {
-    rightGsap.value = 20;
-
-    return () => {
-      // optional
-      rightGsap.value = 30;
-    };
-  });
-});
 </script>
 
 <template>
@@ -76,7 +39,7 @@ onMounted(() => {
       <div class="job__lists_item">
         <div class="job__lists__desc">Email</div>
 
-        <a class="title_20_500_130" href="#" @click.prevent="copyBuffer" ref="mailtoRef">
+        <a class="title_20_500_130" href="#" @click.prevent="copyBuffer">
           {{ contacts.settingPochta }}
         </a>
 

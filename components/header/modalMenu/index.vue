@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useModalMenu } from '@/composables/useModalMenu';
+import { useShowPresentCompany } from '~/composables/showPresentCompany';
+import { copyBuffer } from '~/utils/copy-email.utils';
 import { movingContact } from '~/utils/utils';
 
 //
@@ -132,20 +134,21 @@ onMounted(() => {
           </li>
 
           <li v-if="settingPochta" class="header__menu_phones_li">
-            <a :href="`mailto:${settingPochta}`">{{ settingPochta }}</a>
+            <a href="#" @click.prevent="copyBuffer">{{ settingPochta }}</a>
             <span>Электронный адрес</span>
           </li>
         </ul>
 
         <div class="header__menu_links">
           <div>
-            <UiLinkText class="close_menu" :link="`/`" title="Презентация компании" underline />
-
             <UiLinkText
-              title="Начать проект"
+              class="close_menu"
+              title="Презентация компании"
               underline
-              @click.prevent="isOpenModal().value = true"
+              @click="useShowPresentCompany"
             />
+
+            <UiLinkText title="Начать проект" underline @click="isOpenModal().value = true" />
 
             <UiLinkText class="close_menu" title="Бриф на разработку" underline link="/brief" />
           </div>
