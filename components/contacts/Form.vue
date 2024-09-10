@@ -155,7 +155,7 @@ const sendHandler = async () => {
         <div class="contact_us__copy">
           Нажимая кнопку “Отправить” вы соглашаетесь <br />
           с
-          <NuxtLink to="/privacyPolicy">политикой конфиденциальности</NuxtLink>
+          <NuxtLink to="/privacy">политикой конфиденциальности</NuxtLink>
         </div>
       </form>
     </div>

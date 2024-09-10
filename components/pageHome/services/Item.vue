@@ -33,9 +33,9 @@ const props = defineProps<{
           :class="['description', key === 0 && 'description_animate']"
         ></p>
 
-        <div class="services__cards__link">
+        <!-- <div class="services__cards__link">
           <UiLinkText :link="`/services/${item.slug}`" title="Перейти" />
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -84,9 +84,6 @@ onMounted(() => {
             <li class="menu-item">
               <NuxtLink to="/services/foto-i-video">Фото и видео</NuxtLink>
             </li>
-            <li class="menu-item">
-              <NuxtLink to="/services/prodvizhenie">Продвижение</NuxtLink>
-            </li>
           </ul>
         </li>
 

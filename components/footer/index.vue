@@ -41,9 +41,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
               <li class="menu-item">
                 <NuxtLink to="/services/photo-and-video">Фото и видео</NuxtLink>
               </li>
-              <li class="menu-item">
-                <NuxtLink to="/services/prodvizhenie">Продвижение</NuxtLink>
-              </li>
             </ul>
           </li>
 
@@ -62,10 +59,10 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
                 </NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Вакансии</a>
+                <NuxtLink to="/vacancies">Вакансии</NuxtLink>
               </li>
               <li class="menu-item">
-                <a href="#">Наша продукция</a>
+                <NuxtLink to="/products">Наша продукция</NuxtLink>
               </li>
               <li class="menu-item">
                 <a href="#">Контакты</a>
@@ -84,7 +81,7 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
           </li>
 
           <li class="footer__politico">
-            <NuxtLink to="/privacyPolicy">Политика конфиденциальности</NuxtLink>
+            <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
           </li>
         </ul>
       </div>

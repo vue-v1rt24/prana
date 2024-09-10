@@ -1033,7 +1033,7 @@ const resetForm = () => {
           <!--  -->
           <div class="form__copy">
             Нажимая кнопку "Отправить" вы соглашаетесь с
-            <NuxtLink to="/privacyPolicy">политикой конфиденциальности</NuxtLink>
+            <NuxtLink to="/privacy">политикой конфиденциальности</NuxtLink>
           </div>
         </form>
       </div>

@@ -354,7 +354,7 @@ watch(
 
       <div class="outside__send_text">
         Нажимая кнопку "Отправить" вы соглашаетесь с
-        <NuxtLink to="/privacyPolicy" @click="closeModal">политикой конфиденциальности</NuxtLink>
+        <NuxtLink to="/privacy" @click="closeModal">политикой конфиденциальности</NuxtLink>
       </div>
     </div>
 
@@ -376,7 +376,7 @@ watch(
   inset: 0;
   background-color: rgba(6, 14, 27, 0.8);
   backdrop-filter: blur(16px);
-  z-index: 100;
+  z-index: 1099;
   transition: opacity 0.5s;
 }
 
@@ -390,7 +390,7 @@ watch(
   position: fixed;
   top: 0;
   right: -100%;
-  z-index: 101;
+  z-index: 1100;
   width: 950px;
   height: 100%;
   background-color: var(--colorBirch);

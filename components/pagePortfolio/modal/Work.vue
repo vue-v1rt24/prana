@@ -10,6 +10,9 @@ const { Fancybox } = FancyboxAll;
 const router = useRouter();
 const viewport = useViewport();
 
+// Управление модальным окно формы
+const { isOpenModal } = useOutsideModal();
+
 //
 const lazyLoad = ref<HTMLImageElement[]>([]);
 const hashName = ref('');
@@ -227,7 +230,12 @@ const viewReview = () => {
         @click-btn="viewReview"
       />
 
-      <UiButton class="work__btn" title="Обсудить проект" color-class="btn_transparent" />
+      <UiButton
+        class="work__btn"
+        title="Обсудить проект"
+        color-class="btn_transparent"
+        @click="isOpenModal().value = true"
+      />
     </div>
 
     <!-- Нравится и поделиться -->
