@@ -231,6 +231,10 @@ onMounted(() => {
   align-items: center;
   transition: background-color 0.3s;
 
+  &:hover {
+    background-color: var(--colorDark4);
+  }
+
   /*  */
   @media (max-width: 900px) {
     width: 50px;
@@ -273,7 +277,7 @@ onMounted(() => {
   }
 
   @media (max-width: 1024px) {
-    li:nth-child(4) {
+    li:nth-child(5) {
       display: none;
     }
   }

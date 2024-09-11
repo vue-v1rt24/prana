@@ -39,6 +39,9 @@ const settingsQuery = {
           vkLink
           whatsappLink
           yutub
+          behansLink
+          rutubLink
+          workspaceLink
         }
       }
     }
@@ -64,6 +67,9 @@ const { data } = await useFetch(graphqlUrl, {
       vkLink: d.data.settingsSitePage.settingsSite.vkLink,
       whatsappLink: d.data.settingsSitePage.settingsSite.whatsappLink,
       youtubeLink: d.data.settingsSitePage.settingsSite.yutub,
+      behansLink: d.data.settingsSitePage.settingsSite.behansLink,
+      rutubLink: d.data.settingsSitePage.settingsSite.rutubLink,
+      workspaceLink: d.data.settingsSitePage.settingsSite.workspaceLink,
     };
   },
 });
@@ -151,6 +157,9 @@ watchEffect(() => {
     :vk-link="data?.vkLink"
     :whatsapp-link="data?.whatsappLink"
     :youtube-link="data?.youtubeLink"
+    :behans-link="data?.behansLink"
+    :rutub-link="data?.rutubLink"
+    :workspace-link="data?.workspaceLink"
   />
 
   <!-- Нижнее меню -->

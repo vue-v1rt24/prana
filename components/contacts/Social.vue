@@ -4,6 +4,9 @@ defineProps<{
   telegram: string;
   whatsapp: string;
   youtube: string;
+  behans: string;
+  rutube: string;
+  workspace: string;
 }>();
 
 //
@@ -40,6 +43,27 @@ const theme = useTheme();
         </svg>
       </a>
     </li>
+    <li class="soc__item">
+      <a class="soc__item_link" :href="behans" target="_blank">
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#behance"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="soc__item">
+      <a class="soc__item_link" :href="rutube" target="_blank">
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#rutube"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="soc__item">
+      <a class="soc__item_link" :href="workspace" target="_blank">
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#workspace"></use>
+        </svg>
+      </a>
+    </li>
   </ul>
 </template>
 
@@ -47,6 +71,7 @@ const theme = useTheme();
 .soc {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   column-gap: 14px;
   border-radius: 8px;
   margin-top: 32px;

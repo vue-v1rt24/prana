@@ -14,6 +14,9 @@ defineProps<{
   vkLink?: string;
   whatsappLink?: string;
   youtubeLink?: string;
+  behansLink?: string;
+  rutubLink?: string;
+  workspaceLink?: string;
 }>();
 
 // Управление модальным окно формы
@@ -154,7 +157,7 @@ onMounted(() => {
             <li v-if="vkLink">
               <a :href="vkLink" target="_blank">
                 <svg>
-                  <use xlink:href="/public/img/sprite.svg#vk"></use>
+                  <use xlink:href="/img/sprite.svg#vk"></use>
                 </svg>
               </a>
             </li>
@@ -162,7 +165,7 @@ onMounted(() => {
             <li v-if="telegramLink">
               <a :href="telegramLink" target="_blank">
                 <svg>
-                  <use xlink:href="/public/img/sprite.svg#telegram"></use>
+                  <use xlink:href="/img/sprite.svg#telegram"></use>
                 </svg>
               </a>
             </li>
@@ -170,7 +173,7 @@ onMounted(() => {
             <li v-if="whatsappLink">
               <a :href="whatsappLink" target="_blank">
                 <svg>
-                  <use xlink:href="/public/img/sprite.svg#whatsapp"></use>
+                  <use xlink:href="/img/sprite.svg#whatsapp"></use>
                 </svg>
               </a>
             </li>
@@ -178,7 +181,31 @@ onMounted(() => {
             <li v-if="youtubeLink">
               <a :href="youtubeLink" target="_blank">
                 <svg>
-                  <use xlink:href="/public/img/sprite.svg#youtube"></use>
+                  <use xlink:href="/img/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+
+            <li v-if="behansLink">
+              <a :href="behansLink" target="_blank">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#behance"></use>
+                </svg>
+              </a>
+            </li>
+
+            <li v-if="rutubLink">
+              <a :href="rutubLink" target="_blank">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#rutube"></use>
+                </svg>
+              </a>
+            </li>
+
+            <li v-if="workspaceLink">
+              <a :href="workspaceLink" target="_blank">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#workspace"></use>
                 </svg>
               </a>
             </li>
@@ -240,7 +267,11 @@ onMounted(() => {
 /*  */
 .header__menu_ul {
   display: flex;
-  column-gap: 88px;
+  column-gap: 53px;
+}
+
+.header__menu_ul li {
+  width: 131px;
 }
 
 .header__menu_ul a {
@@ -274,13 +305,13 @@ onMounted(() => {
 /*  */
 .header__menu_contacts {
   display: flex;
-  column-gap: 110px;
+  column-gap: 80px;
 
   /*  */
   @media (max-width: 1500px) {
     width: 100%;
     justify-content: space-between;
-    column-gap: 0;
+    column-gap: 53px;
   }
 
   @media (max-width: 700px) {
@@ -290,6 +321,7 @@ onMounted(() => {
 
 /*  */
 .header__menu_phones {
+  width: 300px;
   display: flex;
   flex-direction: column;
   row-gap: 38px;
@@ -306,6 +338,7 @@ onMounted(() => {
   font-weight: 700;
   font-size: 22px;
   line-height: 100%;
+  white-space: nowrap;
   color: var(--colorDark3);
   display: block;
   margin-bottom: 24px;
@@ -337,7 +370,8 @@ onMounted(() => {
 .header_soc {
   display: flex;
   align-items: center;
-  column-gap: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: auto;
 }
 

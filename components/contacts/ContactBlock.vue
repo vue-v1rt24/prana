@@ -49,6 +49,9 @@ defineProps<{
           :telegram="contacts.telegramLink"
           :whatsapp="contacts.whatsappLink"
           :youtube="contacts.yutub"
+          :behans="contacts.behansLink"
+          :rutube="contacts.rutubLink"
+          :workspace="contacts.workspaceLink"
         />
       </div>
     </div>
@@ -87,6 +90,10 @@ defineProps<{
   @media (max-width: 576px) {
     row-gap: 24px;
   }
+}
+
+.job__lists_item_cont a {
+  white-space: nowrap;
 }
 
 /*  */

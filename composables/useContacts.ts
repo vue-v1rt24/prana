@@ -18,6 +18,9 @@ export const useContacts = async () => {
             vkLink
             whatsappLink
             yutub
+            behansLink
+            rutubLink
+            workspaceLink
           }
         }
       }

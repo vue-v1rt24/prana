@@ -8,6 +8,9 @@ export type TypeContactFormat = {
   vkLink: string;
   whatsappLink: string;
   yutub: string;
+  behansLink: string;
+  rutubLink: string;
+  workspaceLink: string;
 };
 
 export type TypeContacts = {

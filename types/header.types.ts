@@ -19,6 +19,9 @@ export type TypeHeaderSettings = {
         vkLink: string;
         whatsappLink: string;
         yutub: string;
+        behansLink: string;
+        rutubLink: string;
+        workspaceLink: string;
       };
     };
   };
