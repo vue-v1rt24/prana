@@ -18,7 +18,8 @@ watchEffect(() => {
     route.path.includes('services') ||
     route.path.includes('products') ||
     route.path.includes('vacancies') ||
-    route.path.includes('privacy')
+    route.path.includes('privacy') ||
+    route.path.includes('success')
   ) {
     theme.value = 'dark';
   } else {

@@ -80,6 +80,10 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
             <UiLinkText title="Начать проект" underline @click="isOpenModal().value = true" />
           </li>
 
+          <li>
+            <UiLinkText title="Бриф на разработку" underline link="/brief" />
+          </li>
+
           <li class="footer__politico">
             <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
           </li>

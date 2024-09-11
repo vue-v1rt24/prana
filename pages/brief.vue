@@ -50,7 +50,6 @@ type TypeFormData = {
 
 //
 const mail = useMail();
-const modalRef = ref<InstanceType<typeof UiModal> | null>(null);
 const filePath = ref<string | null>(null);
 
 //
@@ -291,14 +290,14 @@ const formHandler = async () => {
     // Отправка на почту
     await mail.send(message);
 
-    // Модальное окно
-    modalRef.value?.modalOpen();
-
     // Очищение полей
     resetForm();
 
     // Сброс валидации
     v$.value.$reset();
+
+    // Перенаправление нап страницу "Спасибо"
+    await navigateTo('/success');
   } catch (error) {
     console.log(error);
   }
@@ -1025,7 +1024,6 @@ const resetForm = () => {
               <UiFormInput type="file" v-model="formData.file" />
             </div>
           </div>
-          <!-- ============================== -->
 
           <!--  -->
           <UiButton class="form_btn_submit" type="submit" title="Отправить" arrow />
@@ -1038,17 +1036,6 @@ const resetForm = () => {
         </form>
       </div>
     </main>
-
-    <Teleport to="body">
-      <UiModal ref="modalRef" max-width="614px">
-        <div class="brief_modal">
-          <div class="brief_modal__title">Заявка отправлена</div>
-          <div class="brief_modal__desc">в скором времени мы свяжемся с Вами</div>
-
-          <UiButton title="На главную" color-class="btn_transparent" @click-btn="navigateTo('/')" />
-        </div>
-      </UiModal>
-    </Teleport>
   </div>
 </template>
 
@@ -1182,40 +1169,6 @@ const resetForm = () => {
   border-bottom: 1px solid var(--colorGray);
 }
 
-/*  */
-.brief_modal {
-  background-color: #fff;
-  border-radius: 32px;
-  padding: 82px;
-}
-
-.brief_modal__title {
-  color: #030810;
-  font-family: var(--fontFamily-RFDewi);
-  font-size: 52px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 110%;
-  text-align: center;
-}
-
-.brief_modal__desc {
-  color: var(--accentColor);
-  font-family: var(--fontFamily-RFDewi);
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 110%;
-  margin-top: 26px;
-  text-align: center;
-}
-
-.brief_modal .blue_btn {
-  width: 300px;
-  height: 103px;
-  margin: 62px auto 0;
-}
-
 /* ====================== */
 @media (max-width: 830px) {
   .brief_title {
@@ -1251,20 +1204,6 @@ const resetForm = () => {
   .form_title {
     font-size: 26px;
     margin-bottom: 52px;
-  }
-
-  /*  */
-  .brief_modal__title {
-    font-size: 30px;
-  }
-
-  .brief_modal__desc {
-    font-size: 16px;
-    margin: 26px auto 0;
-  }
-
-  .brief_modal .blue_btn {
-    width: 100%;
   }
 }
 
@@ -1332,11 +1271,6 @@ const resetForm = () => {
 
   .brief_main {
     padding-bottom: 62px;
-  }
-
-  /*  */
-  .brief_modal {
-    padding: 50px;
   }
 }
 

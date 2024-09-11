@@ -81,6 +81,9 @@ const sendHandler = async () => {
 
   // Сброс валидации
   v$.value.$reset();
+
+  // Перенаправление нап страницу "Спасибо"
+  await navigateTo('/success');
 };
 </script>
 
