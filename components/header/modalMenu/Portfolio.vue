@@ -42,12 +42,6 @@ watchEffect(() => {
         Фото и видео
       </li>
       <li
-        :class="['menu-item react', { active: activeMenuPortfolio === 'Продвижение' }]"
-        @click="menuPortfolio('Продвижение', 1)"
-      >
-        Продвижение
-      </li>
-      <li
         :class="['menu-item react', { active: activeMenuPortfolio === 'Брендинг' }]"
         @click="menuPortfolio('Брендинг', 0)"
       >

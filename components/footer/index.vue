@@ -23,6 +23,9 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
         <div class="footer__logo_bx">
           <div class="footer__logo" @click="upPage"><img src="/img/logo.svg" alt="" /></div>
           <div class="footer__copy">© {{ new Date().getFullYear() }}, LLC PRANA IT</div>
+          <div class="footer__politico">
+            <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
+          </div>
         </div>
 
         <ul v-if="viewport.isGreaterOrEquals('screen1280')" class="footer__menu">
@@ -40,6 +43,9 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
               </li>
               <li class="menu-item">
                 <NuxtLink to="/services/photo-and-video">Фото и видео</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/services/promotion">Продвижение</NuxtLink>
               </li>
             </ul>
           </li>
@@ -84,8 +90,10 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
             <UiLinkText title="Бриф на разработку" underline link="/brief" />
           </li>
 
-          <li class="footer__politico">
-            <NuxtLink to="/privacy">Политика конфиденциальности</NuxtLink>
+          <li>
+            <a href="https://arda.digital" target="_blank">
+              <img src="/public/img/arda.svg" alt="" />
+            </a>
           </li>
         </ul>
       </div>
@@ -146,6 +154,7 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
   font-size: 16px;
   line-height: 100%;
   color: #7c838d;
+  margin: auto 0 26px 0;
 
   @media (max-width: 576px) {
     font-size: 16px;
@@ -155,11 +164,11 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 /*  */
 .footer__logo {
   @media (max-width: 700px) {
-    margin-bottom: 128px;
+    margin-bottom: 240px;
   }
 
   @media (max-width: 576px) {
-    margin-bottom: 114px;
+    margin-bottom: 200px;
   }
 }
 
@@ -243,19 +252,6 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 }
 
 /*  */
-.footer__politico {
-  text-align: right;
-  margin-top: auto;
-
-  @media (max-width: 700px) {
-    margin-top: 26px;
-  }
-
-  @media (max-width: 576px) {
-    margin-top: 44px;
-  }
-}
-
 .footer__politico a {
   font-weight: 300;
   font-size: 16px;
