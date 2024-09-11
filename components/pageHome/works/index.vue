@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap';
+
 import {
   type TypeBlogWork,
   type TypeBlogWorkTransform,
@@ -105,6 +107,8 @@ const { data: articles } = await useFetch(graphqlUrl, {
           : null,
       });
     }
+
+    gsap.utils.shuffle(articles);
 
     return articles;
   },
