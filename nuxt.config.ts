@@ -25,7 +25,13 @@ export default defineNuxtConfig({
     typedPages: true,
   },
 
-  modules: ['@nuxt/image', 'nuxt-viewport', 'nuxt-mail', 'vue-yandex-maps/nuxt'],
+  modules: [
+    '@nuxt/image',
+    'nuxt-viewport',
+    'nuxt-mail',
+    'vue-yandex-maps/nuxt',
+    'yandex-metrika-module-nuxt3',
+  ],
 
   runtimeConfig: {
     public: {
@@ -43,18 +49,6 @@ export default defineNuxtConfig({
 
   // Настройка размеров разрешения экрана (плагин nuxt-viewport)
   viewport: {
-    /* breakpoints: {
-      desktop: 1024,
-      desktopMedium: 1280,
-      desktopWide: 1600,
-
-      mobile: 320,
-      mobileMedium: 375,
-      mobileWide: 425,
-
-      tablet: 768,
-    }, */
-
     breakpoints: {
       screen1024: 1024,
       screen1200: 1200,
@@ -87,6 +81,12 @@ export default defineNuxtConfig({
   // Для карты яндекса / 'vue-yandex-maps/nuxt'
   yandexMaps: {
     apikey: 'f52ff3fc-0a45-4e8f-8507-e60a0a562e75',
+  },
+
+  // Яндекс метрика
+  yandexMetrika: {
+    id: '98315354',
+    webvisor: true,
   },
 
   // Для сжатия файлов
