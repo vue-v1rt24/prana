@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { gsap } from 'gsap';
-
 import {
   type TypeBlogWork,
   type TypeBlogWorkTransform,
@@ -27,6 +25,7 @@ const blogsPortfolios = {
       nodes {
         databaseId
         slug
+        date
         homePreview {
           vyvoditNaGlavnojStraniczy
           izobrazhenie {
@@ -57,6 +56,7 @@ const blogsPortfolios = {
       nodes {
         databaseId
         slug
+        date
         homePreview {
           vyvoditNaGlavnojStraniczy
           izobrazhenie {
@@ -99,6 +99,7 @@ const { data: articles } = await useFetch(graphqlUrl, {
       articles.push({
         id: key,
         databaseId: item.databaseId,
+        date: item.date,
         slug: item.slug,
         homePreview: item.homePreview,
         categories: (item as any).blogCategories ?? (item as any).portfolioCategories,
@@ -108,11 +109,14 @@ const { data: articles } = await useFetch(graphqlUrl, {
       });
     }
 
-    gsap.utils.shuffle(articles);
+    //@ts-ignore
+    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return articles;
   },
 });
+
+console.log(articles.value);
 
 // Запрос на получение одной записи работы
 const getWork = async (id: number) => {

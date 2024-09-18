@@ -117,6 +117,7 @@ export type TypeBlogWork = {
       nodes: {
         databaseId: number;
         slug: string;
+        date: string;
         homePreview: TypeHomePreview;
         blogCategories: {
           nodes: {
@@ -130,6 +131,7 @@ export type TypeBlogWork = {
       nodes: {
         databaseId: number;
         slug: string;
+        date: string;
         homePreview: TypeHomePreview;
         portfolioCategories: {
           nodes: {
@@ -148,6 +150,7 @@ export type TypeBlogWorkTransform = {
   id: string;
   databaseId: number;
   slug: string;
+  date: string;
   homePreview: TypeHomePreview;
   categories: {
     nodes: {
