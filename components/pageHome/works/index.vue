@@ -116,8 +116,6 @@ const { data: articles } = await useFetch(graphqlUrl, {
   },
 });
 
-console.log(articles.value);
-
 // Запрос на получение одной записи работы
 const getWork = async (id: number) => {
   const workQuery = {
