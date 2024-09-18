@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useModalMenu } from '@/composables/useModalMenu';
-import { useShowPresentCompany } from '~/composables/showPresentCompany';
 import { copyBuffer } from '~/utils/copy-email.utils';
 import { movingContact } from '~/utils/utils';
 
@@ -145,10 +144,11 @@ onMounted(() => {
         <div class="header__menu_links">
           <div>
             <UiLinkText
+              link="/presents_parana_it.pdf"
+              target="_blank"
               class="close_menu"
               title="Презентация компании"
               underline
-              @click="useShowPresentCompany"
             />
 
             <UiLinkText title="Начать проект" underline @click="isOpenModal().value = true" />
