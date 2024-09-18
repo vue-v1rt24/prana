@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useShowPresentCompany } from '~/composables/showPresentCompany';
 import { upPage } from '~/utils/utils';
 
 //
@@ -79,7 +78,13 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 
         <ul class="footer__links">
           <li>
-            <UiLinkText title="Презентация компании" underline @click="useShowPresentCompany" />
+            <UiLinkText
+              link="/presents_parana_it.pdf"
+              target="_blank"
+              class="close_menu"
+              title="Презентация компании"
+              underline
+            />
           </li>
 
           <li>
