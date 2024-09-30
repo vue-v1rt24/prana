@@ -16,12 +16,24 @@ const { dataServiceFile } = await useQueryFile(route.params.slug);
 
 // Скачивание файла
 const loadFile = async () => {
-  if (!dataServiceFile.value?.filePath) return;
+  // Из админки
+  /* if (!dataServiceFile.value?.filePath) return;
 
   const link = document.createElement('a');
   link.setAttribute('href', dataServiceFile.value.filePath);
   link.setAttribute('target', '_blank');
   link.setAttribute('download', '');
+  link.style.display = 'none';
+
+  document.body.append(link);
+  link.click();
+  link.remove(); */
+
+  // Локально
+  const link = document.createElement('a');
+  link.setAttribute('href', '/presents_parana_it.pdf');
+  link.setAttribute('target', '_blank');
+  // link.setAttribute('download', '');
   link.style.display = 'none';
 
   document.body.append(link);

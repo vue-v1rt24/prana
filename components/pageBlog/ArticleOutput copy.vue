@@ -14,10 +14,8 @@ const { isOpenModal } = useOutsideModal();
   <!-- Виджет "Поделиться" -->
   <WidgetShare :title />
 
-  <!-- Виджет "Содержание" в 1500px -->
-  <div class="widgetContent1500">
-    <PageBlogWidgetContent />
-  </div>
+  <!-- Виджет "Содержание" -->
+  <PageBlogWidgetContent />
 
   <!-- Содержание из админки -->
   <div class="article_full_content wp_content" v-html="content"></div>
@@ -48,7 +46,7 @@ const { isOpenModal } = useOutsideModal();
     </div>
 
     <!-- Виджет "Обсудить проект" -->
-    <div class="discuss_roject_1500 article_full__task">
+    <div class="article_full__task">
       <div class="article_full__task__title">
         Есть задача? <br />
         Давайте обсудим!
@@ -65,24 +63,6 @@ const { isOpenModal } = useOutsideModal();
 
   @media (max-width: 576px) {
     left: -55px;
-  }
-}
-
-/*  */
-.widgetContent1500 {
-  display: none;
-
-  @media (max-width: 1500px) {
-    display: block;
-  }
-}
-
-/*  */
-.discuss_roject_1500.article_full__task {
-  display: none;
-
-  @media (max-width: 1500px) {
-    display: block;
   }
 }
 </style>

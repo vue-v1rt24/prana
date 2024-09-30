@@ -41,9 +41,9 @@ onMounted(() => {
 
 <style lang="css" scoped>
 .article_full_content_page {
-  /* position: absolute;
+  position: absolute;
   top: 57px;
-  right: -470px; */
+  right: -470px;
   width: 450px;
   background-color: var(--colorBirch);
   padding: 32px;
@@ -75,7 +75,7 @@ onMounted(() => {
 
 @media (max-width: 1500px) {
   .article_full_content_page {
-    /* position: static; */
+    position: static;
     width: 100%;
   }
 }

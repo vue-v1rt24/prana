@@ -72,7 +72,7 @@ const theme = useTheme();
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  column-gap: 14px;
+  gap: 14px;
   border-radius: 8px;
   margin-top: 32px;
 
