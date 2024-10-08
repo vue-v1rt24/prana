@@ -164,9 +164,10 @@ onUnmounted(() => {
           </div>
 
           <div class="about__download__right">
-            <div class="about__download__right_load">
+            <div v-if="dataCompany?.file" class="about__download__right_load">
               <img class="about__download__right_load_img" src="/img/team/download.svg" alt="" />
-              <a class="about__download__right_load_link" :href="dataCompany?.file" download>
+
+              <a class="about__download__right_load_link" :href="dataCompany.file" target="_blank">
                 Скачать презентацию компании
               </a>
             </div>

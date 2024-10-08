@@ -72,12 +72,12 @@ export const useCompanyQuery = async () => {
 
       return {
         mateTags: d.data.pageBy.metaTags,
-        file: d.data.pageBy.company.companySkachatPrezentacziyuKompanii.node.mediaItemUrl,
+        file: d.data.pageBy.company.companySkachatPrezentacziyuKompanii?.node.mediaItemUrl,
         descCompany: d.data.pageBy.company.companyOpisanieKompanii,
-        imagePeopleCompany: d.data.pageBy.company.companyIzobrazhenieKomandy.node.mediaItemUrl,
-        image1920: d.data.pageBy.company.companyIzobrazhenieVideoV1920.node.mediaItemUrl,
-        image768: d.data.pageBy.company.companyIzobrazhenieVideoV768.node.mediaItemUrl,
-        image360: d.data.pageBy.company.companyIzobrazhenieVideoV360.node.mediaItemUrl,
+        imagePeopleCompany: d.data.pageBy.company.companyIzobrazhenieKomandy?.node.mediaItemUrl,
+        image1920: d.data.pageBy.company.companyIzobrazhenieVideoV1920?.node.mediaItemUrl,
+        image768: d.data.pageBy.company.companyIzobrazhenieVideoV768?.node.mediaItemUrl,
+        image360: d.data.pageBy.company.companyIzobrazhenieVideoV360?.node.mediaItemUrl,
         videoCompany: d.data.pageBy.company.companyVideo,
         comands: d.data.pageBy.company.komanda,
       };

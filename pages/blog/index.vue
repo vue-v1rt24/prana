@@ -9,8 +9,14 @@ const { blogs } = await useQuery();
 
 // Подключение файла для фильтрации сортировки
 useHead({
-  title: 'Блог',
-  meta: [{ name: 'description', content: '' }],
+  title: 'Блог | Статьи и новости компании PRANA IT',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Статьи от IT-экспертов, информационные видео, новости компании. Новые материалы каждую неделю.',
+    },
+  ],
   script: [
     {
       defer: true,

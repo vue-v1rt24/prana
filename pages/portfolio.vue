@@ -27,8 +27,9 @@ const filterJs = ref<HTMLDivElement | null>(null);
 
 // Формирование мета тегов
 const metadata = ref({
-  metaTitle: 'Наши работы',
-  metaDescription: 'Наши работы',
+  metaTitle: 'Портфолио | Проекты компании PRANA IT',
+  metaDescription:
+    'Кейсы по брендингу, web-разработке, продвижению в Интернете фото-и видеосъемке. Подберем решение для вашего бизнеса.',
 });
 
 // Подключение файла для фильтрации сортировки
