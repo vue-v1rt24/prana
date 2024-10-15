@@ -5,6 +5,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'ru',
       },
+      meta: [{ name: 'yandex-verification', content: '9679f16570bf7142' }],
       link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
     },
     pageTransition: { name: 'pageopacity', mode: 'out-in' },
