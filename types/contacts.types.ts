@@ -3,6 +3,7 @@ export type TypeContactFormat = {
   nomerTelefona: string;
   nomerTelefonaMenedzhment: string;
   otdelRazrabotki: string;
+  otdelRazrabotkiVtorojNomer: string;
   settingPochta: string;
   telegramLink: string;
   vkLink: string;

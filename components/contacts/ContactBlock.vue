@@ -33,6 +33,10 @@ defineProps<{
           <a class="title_20_500_130" :href="`tel:${contacts.otdelRazrabotki}`">
             {{ contacts.otdelRazrabotki }}
           </a>
+
+          <a class="title_20_500_130" :href="`tel:${contacts.otdelRazrabotkiVtorojNomer}`">
+            {{ contacts.otdelRazrabotkiVtorojNomer }}
+          </a>
         </div>
       </div>
 

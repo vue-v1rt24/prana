@@ -13,6 +13,7 @@ export const useContacts = async () => {
             nomerTelefona
             nomerTelefonaMenedzhment
             otdelRazrabotki
+            otdelRazrabotkiVtorojNomer
             settingPochta
             telegramLink
             vkLink
