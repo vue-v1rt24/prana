@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const headings = ref<Element[]>([]);
+const content = ref<HTMLDivElement | null>(null);
 
 //
 const travel = (title: string) => {
@@ -15,8 +16,11 @@ const travel = (title: string) => {
 
 //
 onMounted(() => {
-  const content = document.querySelector<HTMLDivElement>('.article_full_content')!;
-  const headingsAll = content.querySelectorAll('.wp-block-heading');
+  content.value = document.querySelector<HTMLDivElement>('.article_full_content')!;
+
+  if (!content.value) return;
+
+  const headingsAll = content.value?.querySelectorAll('.wp-block-heading');
 
   for (const head of headingsAll) {
     headings.value.push(head);
@@ -25,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="article_full_content_page">
+  <div v-if="content" class="article_full_content_page">
     <div class="article_full_content_page__title">Содержание</div>
 
     <div
