@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     pageTransition: { name: 'pageopacity', mode: 'out-in' },
   },
 
+  // Для заглушки
+  routeRules: {
+    '/': { redirect: '/vn' },
+  },
+
   pages: true,
 
   router: {
