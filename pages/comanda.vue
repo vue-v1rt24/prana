@@ -182,7 +182,7 @@ onUnmounted(() => {
 
         <!--  -->
         <div v-if="dataCompany?.imagePeopleCompany" class="about_image_people_company">
-          <NuxtImg :src="dataCompany.imagePeopleCompany" densities="x1" />
+          <NuxtImg :src="dataCompany.imagePeopleCompany" densities="x1" alt="" />
         </div>
 
         <div v-else-if="dataCompany?.file" class="about_video">
@@ -565,6 +565,16 @@ onUnmounted(() => {
 /*  */
 .about_image_people_company {
   text-align: center;
+
+  /*  */
+  img {
+    border-radius: 52px;
+
+    /*  */
+    @media (max-width: 576px) {
+      border-radius: 24px;
+    }
+  }
 }
 
 /*  */

@@ -6,6 +6,19 @@ useSeoMeta({
   title: 'Услуги',
   description: 'Описание',
 });
+
+//
+// Скачивание файла
+const loadFile = async () => {
+  const link = document.createElement('a');
+  link.setAttribute('href', '/presents_parana_it.pdf');
+  link.setAttribute('target', '_blank');
+  link.style.display = 'none';
+
+  document.body.append(link);
+  link.click();
+  link.remove();
+};
 </script>
 
 <template>
@@ -21,7 +34,12 @@ useSeoMeta({
       <h1 class="service_item__h1">Раздел находится в разработке</h1>
       <p class="service_item__desc">Совсем скоро он появится</p>
 
-      <!-- <UiButton title="Скачать презентацию" class="service_item__btn download_pdf" /> -->
+      <UiButton
+        title="Скачать презентацию"
+        class="service_item__btn download_pdf"
+        @click-btn="loadFile"
+      />
+
       <UiButton title="Вернуться назад" @click-btn="router.back" class="service_item__btn" />
     </div>
   </section>
@@ -108,6 +126,7 @@ useSeoMeta({
 .service_item__btn {
   width: 430px;
   height: 103px;
+  margin-bottom: 20px;
 
   @media (max-width: 576px) {
     width: 100%;
