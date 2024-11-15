@@ -12,9 +12,9 @@ export default defineNuxtConfig({
   },
 
   // Для заглушки
-  /*   routeRules: {
+  routeRules: {
     '/': { redirect: '/vn' },
-  }, */
+  },
 
   pages: true,
 
