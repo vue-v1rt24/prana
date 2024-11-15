@@ -62,7 +62,7 @@ watch(
     <div class="calculation__service">
       <h3 class="title_h3">
         <span class="service__title_img">
-          <img :src="service.nextProjectCostUslugiRepeatIzbrazhenie.node.mediaItemUrl" alt="" />
+          <img :src="service.nextProjectCostUslugiRepeatIzbrazhenie?.node.mediaItemUrl" alt="" />
         </span>
         {{ service.nextProjectCostUslugiRepeatNazvanie }}
       </h3>
