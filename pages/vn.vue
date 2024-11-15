@@ -1,7 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// Заглушка. Включить в файле nuxt.config.ts в настройке routeRules
+</script>
 
 <template>
-  // Заглушка
   <div class="zaglushka_bx">
     <img class="zaglushka" src="/zaglushka.jpg" alt="" />
   </div>
