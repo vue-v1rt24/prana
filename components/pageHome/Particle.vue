@@ -52,12 +52,13 @@ onUnmounted(() => {
 
 .decisions__title {
   font-family: var(--fontFamily-RFDewi);
-  font-size: 80px;
+  font-size: 68px;
   font-weight: 700;
   line-height: 110%;
   letter-spacing: 1.6px;
   text-align: center;
   color: var(--colorTextWhite);
+  padding: 0 30px;
 }
 
 :global(.decisions__title span) {
@@ -73,6 +74,7 @@ onUnmounted(() => {
   font-size: 26px;
   font-weight: 300;
   line-height: 130%;
+  padding: 0 30px;
   margin-top: 46px;
 }
 
@@ -121,7 +123,7 @@ onUnmounted(() => {
   }
 
   .decisions__title {
-    font-size: 62px;
+    font-size: 52px;
     letter-spacing: 1.24px;
   }
 }
@@ -134,7 +136,7 @@ onUnmounted(() => {
   }
 
   .decisions__title {
-    font-size: 56px;
+    font-size: 44px;
   }
 
   .decisions__desc {
@@ -149,13 +151,15 @@ onUnmounted(() => {
   }
 
   .decisions__title {
-    font-size: 28px;
+    font-size: 22px;
     letter-spacing: 0.76px;
+    padding: 0 20px;
   }
 
   .decisions__desc {
     width: 260px;
     font-size: 15px;
+    padding: 0 20px;
     margin: 24px auto 0 auto;
   }
 }
