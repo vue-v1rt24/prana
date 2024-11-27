@@ -7,6 +7,9 @@ import '@/assets/css/video.css';
 //
 const route = useRoute();
 
+// Управление модальным окно формы
+const { isOpenModal } = useOutsideModal();
+
 // Запрос на получение записи
 const { article } = await useQueryOne(route.params.slug);
 // console.log(article);
