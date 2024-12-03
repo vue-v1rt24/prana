@@ -22,6 +22,7 @@ export type TypeHeaderSettings = {
         behansLink: string;
         rutubLink: string;
         workspaceLink: string;
+        dprofileLink: string;
       };
     };
   };

@@ -22,6 +22,7 @@ export const useContacts = async () => {
             behansLink
             rutubLink
             workspaceLink
+            dprofileLink
           }
         }
       }

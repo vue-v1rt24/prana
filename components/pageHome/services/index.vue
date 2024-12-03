@@ -181,12 +181,12 @@ onMounted(() => {
               :service="branding"
             />
 
-            <PageHomeServicesItem
+            <!-- <PageHomeServicesItem
               item-class="service__item_3"
               img="prodvizhenie.svg"
               :title="serviceCategories[1].name"
               :service="prodvizhenie"
-            />
+            /> -->
 
             <PageHomeServicesItem
               item-class="service__item_4"
@@ -220,7 +220,13 @@ onMounted(() => {
 }
 
 .swiper_services .swiper-wrapper {
+  justify-content: center;
   column-gap: 20px;
+
+  /*  */
+  @media (max-width: 1400px) {
+    justify-content: flex-start;
+  }
 }
 
 /* ==================== Медиа запросы */

@@ -12,6 +12,7 @@ export type TypeContactFormat = {
   behansLink: string;
   rutubLink: string;
   workspaceLink: string;
+  dprofileLink: string;
 };
 
 export type TypeContacts = {

@@ -7,6 +7,7 @@ defineProps<{
   behans: string;
   rutube: string;
   workspace: string;
+  dprofile: string;
 }>();
 
 //
@@ -61,6 +62,13 @@ const theme = useTheme();
       <a class="soc__item_link" :href="workspace" target="_blank">
         <svg class="soc_img">
           <use xlink:href="/public/img/sprite.svg#workspace"></use>
+        </svg>
+      </a>
+    </li>
+    <li class="soc__item">
+      <a class="soc__item_link" :href="workspace" target="_blank">
+        <svg class="soc_img">
+          <use xlink:href="/public/img/sprite.svg#dprofile"></use>
         </svg>
       </a>
     </li>

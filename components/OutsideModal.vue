@@ -292,10 +292,10 @@ watch(
           <span>Брендинг</span>
         </label>
 
-        <label class="outside__inp_var react">
+        <!-- <label class="outside__inp_var react">
           <input type="checkbox" value="Продвижение" v-model="fields.project" />
           <span>Продвижение</span>
-        </label>
+        </label> -->
 
         <label class="outside__inp_var react">
           <input type="checkbox" value="Фото и видео" v-model="fields.project" />

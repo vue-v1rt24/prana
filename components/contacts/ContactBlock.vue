@@ -56,6 +56,7 @@ defineProps<{
           :behans="contacts.behansLink"
           :rutube="contacts.rutubLink"
           :workspace="contacts.workspaceLink"
+          :dprofile="contacts.dprofileLink"
         />
       </div>
     </div>

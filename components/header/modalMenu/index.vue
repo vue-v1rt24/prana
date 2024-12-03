@@ -16,6 +16,7 @@ defineProps<{
   behansLink?: string;
   rutubLink?: string;
   workspaceLink?: string;
+  dprofileLink?: string;
 }>();
 
 // Управление модальным окно формы
@@ -86,9 +87,9 @@ onMounted(() => {
             <li class="menu-item">
               <NuxtLink to="/services/foto-i-video">Фото и видео</NuxtLink>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <NuxtLink to="/services/promotion">Продвижение</NuxtLink>
-            </li>
+            </li> -->
           </ul>
         </li>
 
@@ -104,17 +105,17 @@ onMounted(() => {
                 Блог
               </NuxtLink>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <NuxtLink to="/reviews" :class="{ active: reviewChildrenActiveMenu().value }">
                 Отзывы
               </NuxtLink>
-            </li>
-            <li class="menu-item">
+            </li> -->
+            <!-- <li class="menu-item">
               <NuxtLink to="/vacancies">Вакансии</NuxtLink>
-            </li>
-            <li class="menu-item">
+            </li> -->
+            <!-- <li class="menu-item">
               <NuxtLink to="/products">Наша продукция</NuxtLink>
-            </li>
+            </li> -->
             <li class="menu-item">
               <a @click.prevent="movingContact" href="#">Контакты</a>
             </li>
@@ -209,6 +210,14 @@ onMounted(() => {
               <a :href="workspaceLink" target="_blank">
                 <svg>
                   <use xlink:href="/img/sprite.svg#workspace"></use>
+                </svg>
+              </a>
+            </li>
+
+            <li v-if="dprofileLink">
+              <a :href="dprofileLink" target="_blank">
+                <svg>
+                  <use xlink:href="/img/sprite.svg#dprofile"></use>
                 </svg>
               </a>
             </li>

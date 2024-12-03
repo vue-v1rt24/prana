@@ -42,6 +42,7 @@ const settingsQuery = {
           behansLink
           rutubLink
           workspaceLink
+          dprofileLink
         }
       }
     }
@@ -70,6 +71,7 @@ const { data } = await useFetch(graphqlUrl, {
       behansLink: d.data.settingsSitePage.settingsSite.behansLink,
       rutubLink: d.data.settingsSitePage.settingsSite.rutubLink,
       workspaceLink: d.data.settingsSitePage.settingsSite.workspaceLink,
+      dprofileLink: d.data.settingsSitePage.settingsSite.dprofileLink,
     };
   },
 });
@@ -160,6 +162,7 @@ watchEffect(() => {
     :behans-link="data?.behansLink"
     :rutub-link="data?.rutubLink"
     :workspace-link="data?.workspaceLink"
+    :dprofile-link="data?.dprofileLink"
   />
 
   <!-- Нижнее меню -->
