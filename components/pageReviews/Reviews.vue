@@ -116,8 +116,7 @@ const openLink = (evt: Event) => {
 }
 
 .reviews_arrow {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 15px;
   line-height: 130%;
   letter-spacing: 0.02em;

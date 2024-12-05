@@ -47,8 +47,7 @@
 
 /*  */
 .article_full_h1 {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 36px;
   line-height: 120%;
   letter-spacing: 0.02em;
@@ -140,8 +139,7 @@
 }
 
 .article_full_author__name {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 600;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0.02em;
@@ -180,8 +178,7 @@
 }
 
 .article_full__digest__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   line-height: 26px;
   font-size: 20px;
   margin-bottom: 14px;
@@ -211,8 +208,7 @@
 }
 
 .article_full__task__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 20px;
   line-height: 130%;
   letter-spacing: 0.02em;
@@ -276,8 +272,7 @@
 }
 
 .article_interesting__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 42px;
   line-height: 120%;
   letter-spacing: 0.02em;

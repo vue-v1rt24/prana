@@ -233,8 +233,7 @@ watchEffect(() => {
 
 /*  */
 .header__tel {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 20px;
   line-height: 100%;
   text-transform: uppercase;
@@ -303,7 +302,7 @@ watchEffect(() => {
   width: 234px;
   height: 62px;
   color: white;
-  font-family: var(--fontFamily-RoadRadio);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 20px;
   border-radius: 18px;
 }

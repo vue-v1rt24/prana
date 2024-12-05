@@ -468,7 +468,7 @@ onUnmounted(() => {
 
 /*  */
 .about_download__left {
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
 }
 
 .about_download__left_title {
@@ -802,7 +802,7 @@ onUnmounted(() => {
 /*  */
 .about_desc {
   max-width: 1229px;
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   margin-bottom: 80px;
 
   @media (max-width: 768px) {
@@ -986,7 +986,7 @@ onUnmounted(() => {
 /*  */
 .not_joke {
   max-width: 1170px;
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
 }
 
 .not_joke__title {
@@ -1061,8 +1061,7 @@ onUnmounted(() => {
   top: -267px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 800;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 120px;
   line-height: 100%;
   letter-spacing: 0.02em;
@@ -1091,8 +1090,7 @@ onUnmounted(() => {
   top: -130px;
   left: 0;
   right: 0;
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 800;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 94px;
   line-height: 100%;
   letter-spacing: 0.02em;
@@ -1205,9 +1203,8 @@ onUnmounted(() => {
 
 /*  */
 .people_item__name {
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 22px;
-  font-weight: 600;
   line-height: 120%;
   letter-spacing: 0.36px;
   margin-bottom: 18px;

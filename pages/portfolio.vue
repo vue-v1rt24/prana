@@ -343,8 +343,7 @@ watchEffect(async () => {
 }
 
 .discuss__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 38px;
   line-height: 120%;
   letter-spacing: 0.02em;

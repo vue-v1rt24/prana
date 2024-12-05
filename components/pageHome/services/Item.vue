@@ -113,8 +113,7 @@ const props = defineProps<{
 
 /*  */
 .services__cards__link .job__link {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 600;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 14px;
   line-height: 100%;
   border-top: 0;

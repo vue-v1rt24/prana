@@ -112,8 +112,7 @@ useSeoMeta({
 /*  */
 .service_item__h1 {
   max-width: 770px;
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 62px;
   line-height: 100%;
   letter-spacing: 0.02em;

@@ -51,9 +51,8 @@ onUnmounted(() => {
 }
 
 .decisions__title {
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 68px;
-  font-weight: 700;
   line-height: 110%;
   letter-spacing: 1.6px;
   text-align: center;

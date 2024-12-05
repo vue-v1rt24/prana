@@ -39,9 +39,8 @@ const emit = defineEmits<{
 <style lang="css" scoped>
 /* Синяя кнопка */
 .blue_btn {
-  font-family: var(--fontFamily-RoadRadio);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 24px;
-  font-weight: 700;
   line-height: 130%;
   color: white;
   background-color: var(--accentColor);

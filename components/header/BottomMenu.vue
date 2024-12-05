@@ -361,7 +361,7 @@ onMounted(() => {
 .menu_button_start_project {
   width: 222px;
   height: 60px;
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 14px;
   text-transform: uppercase;
   border-radius: 12px;

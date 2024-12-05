@@ -49,9 +49,8 @@ useSeoMeta({
 .privacy_policy h1 {
   max-width: 80%;
   color: var(--colorTextWhite);
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 52px;
-  font-weight: 700;
   line-height: 100%;
   letter-spacing: 1.04px;
   margin-bottom: 50px;
@@ -64,8 +63,7 @@ useSeoMeta({
 
 .privacy_policy h2 {
   max-width: 60%;
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 32px;
   line-height: 120%;
   letter-spacing: 0.02em;

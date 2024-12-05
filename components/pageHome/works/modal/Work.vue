@@ -273,8 +273,7 @@ const viewReview = () => {
 }
 
 .work_full_article__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 32px;
   line-height: 120%;
   letter-spacing: 0.02em;
@@ -397,8 +396,7 @@ const viewReview = () => {
 }
 
 .work_roject_team__name {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 600;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 16px;
   line-height: 100%;
   letter-spacing: 0.02em;

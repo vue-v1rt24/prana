@@ -1056,8 +1056,7 @@ const resetForm = () => {
 
 /*  */
 .brief_title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 68px;
   line-height: 110%;
   letter-spacing: 0.02em;
@@ -1091,8 +1090,7 @@ const resetForm = () => {
 }
 
 .form_title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 32px;
   line-height: 120%;
   letter-spacing: 0.02em;
@@ -1145,8 +1143,7 @@ const resetForm = () => {
   max-width: 730px;
   width: 100%;
   height: 103px;
-  font-family: var(--fontFamily-RoadRadio);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 24px;
   line-height: 130%;
   border-radius: 28px;

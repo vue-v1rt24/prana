@@ -346,8 +346,7 @@ onMounted(() => {
 }
 
 .header__menu_phones_li a {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 22px;
   line-height: 100%;
   white-space: nowrap;

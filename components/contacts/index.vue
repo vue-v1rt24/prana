@@ -102,8 +102,7 @@ onMounted(() => {
 
 /*  */
 .blog_bx__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 52px;
   line-height: 100%;
   letter-spacing: 0.02em;

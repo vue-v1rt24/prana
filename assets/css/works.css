@@ -57,8 +57,7 @@
 
 .works__title {
   position: relative;
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 22px;
   line-height: 110%;
   color: var(--colorDark3);
@@ -156,8 +155,7 @@
 }
 
 .works__item_more_detailed__title {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 22px;
   line-height: 110%;
   margin-bottom: 24px;
@@ -170,8 +168,7 @@
 }
 
 .works__item_more_detailed__preview {
-  font-family: var(--fontFamily-RFDewi);
-  font-weight: 700;
+  font-family: var(--fontFamily-Unbounded);
   font-size: 22px;
   line-height: 100%;
 

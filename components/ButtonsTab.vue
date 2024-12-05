@@ -85,7 +85,7 @@ watch(
 
 .works_tabs__btn {
   height: 71px;
-  font-family: var(--fontFamily-RoadRadio);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 18px;
   color: white;
   background-color: #060e1b;

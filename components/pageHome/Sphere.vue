@@ -118,7 +118,7 @@ onMounted(() => {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  font-family: var(--fontFamily-RFDewi);
+  font-family: var(--fontFamily-Unbounded);
   font-size: 120px;
   letter-spacing: 2.4px;
   font-weight: 700;
