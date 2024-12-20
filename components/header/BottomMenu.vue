@@ -109,11 +109,11 @@ onMounted(() => {
         </li>
 
         <li class="logo">
-          <NuxtLink to="/" v-if="route.path !== '/'">
+          <NuxtLink v-if="route.path !== '/'" to="/">
             <img src="/img/logo-footer.svg" alt="" />
           </NuxtLink>
 
-          <img v-else src="/img/logo-footer.svg" alt="" />
+          <img v-else src="/img/logo-footer.svg" alt="" @click="upPage" />
         </li>
 
         <li class="menu__item">

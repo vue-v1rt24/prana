@@ -51,6 +51,7 @@ onUnmounted(() => {
 }
 
 .decisions__title {
+  position: relative;
   font-family: var(--fontFamily-Unbounded);
   font-size: 68px;
   line-height: 110%;
@@ -58,6 +59,61 @@ onUnmounted(() => {
   text-align: center;
   color: var(--colorTextWhite);
   padding: 0 30px;
+
+  /* Шапка деда Мороза */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: rotate(340deg);
+    margin-left: -457px;
+    width: 60px;
+    height: 60px;
+    background-image: url(/img/shapka-ded-moroza.svg);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 100% 100%;
+  }
+
+  @media (min-width: 1925px) {
+    &::before {
+      margin-left: -461px;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    &::before {
+      top: -20px;
+      width: 45px;
+      height: 45px;
+      margin-left: -350px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &::before {
+      top: -18px;
+      width: 40px;
+      height: 40px;
+      margin-left: -300px;
+    }
+  }
+
+  @media (max-width: 636px) {
+    &::before {
+      margin-left: -183px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &::before {
+      top: -9px;
+      width: 20px;
+      height: 20px;
+      margin-left: -151px;
+    }
+  }
 }
 
 :global(.decisions__title span) {
