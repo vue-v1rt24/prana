@@ -78,14 +78,14 @@ onMounted(() => {
         '-=3',
       );
 
-      tlServices.to(
+      /* tlServices.to(
         '.service__item_3',
         {
           y: 0,
           opacity: 1,
         },
         '-=3',
-      );
+      ); */
 
       tlServices.to(
         ['.title_h4_animate', '.description_animate', '.services__cards__vars_animate'],
