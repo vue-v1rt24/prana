@@ -91,6 +91,10 @@ useSeoMeta({
   title: () => data.value!.metaTitle,
   description: () => data.value!.metaDescription,
 });
+
+// Для разработки. Нужно добавить в адресную строку: ?dev=1
+const route = useRoute();
+const idDev = computed(() => route.query.dev);
 </script>
 
 <template>
@@ -100,12 +104,16 @@ useSeoMeta({
     <PageHomeWorks />
     <PageHomeSphere v-if="data?.sphere" :sphere="data.sphere" />
 
+    <!-- Раздел: Рассчитаем стоимость вашего будущего проекта -->
     <PageHomeCostProject
-      v-if="data?.nextProjectCostVarianty"
+      v-if="!idDev && data?.nextProjectCostVarianty"
       :title="data.nextProjectCostZagolovok"
       :desc="data.nextProjectCostOpisanie"
       :next-project-vars="data.nextProjectCostVarianty"
     />
+
+    <!-- Раздел: Как мы работаем? -->
+    <PageHomeHowWork v-else />
   </div>
 </template>
 
