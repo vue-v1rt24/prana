@@ -30,11 +30,19 @@ defineProps<{
 
         <div class="job__lists_item_cont">
           <div class="job__lists__desc">Отдел разработки</div>
-          <a class="title_20_500_130" :href="`tel:${contacts.otdelRazrabotki}`">
+          <a
+            v-if="contacts.otdelRazrabotki"
+            class="title_20_500_130"
+            :href="`tel:${contacts.otdelRazrabotki}`"
+          >
             {{ contacts.otdelRazrabotki }}
           </a>
 
-          <a class="title_20_500_130" :href="`tel:${contacts.otdelRazrabotkiVtorojNomer}`">
+          <a
+            v-if="contacts.otdelRazrabotkiVtorojNomer"
+            class="title_20_500_130"
+            :href="`tel:${contacts.otdelRazrabotkiVtorojNomer}`"
+          >
             {{ contacts.otdelRazrabotkiVtorojNomer }}
           </a>
         </div>
