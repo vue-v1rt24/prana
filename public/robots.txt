@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pranait.ru/sitemap.xml
+Host: https://pranait.ru

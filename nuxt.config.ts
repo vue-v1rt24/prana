@@ -37,6 +37,8 @@ export default defineNuxtConfig({
     'nuxt-mail',
     'vue-yandex-maps/nuxt',
     'yandex-metrika-module-nuxt3',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
 
   runtimeConfig: {
@@ -93,6 +95,12 @@ export default defineNuxtConfig({
   yandexMetrika: {
     id: '98315354',
     webvisor: true,
+  },
+
+  // Карта сайта. Плагин @nuxtjs/sitemap
+  site: {
+    url: 'https://pranait.ru',
+    name: 'Разработка сайтов и медиа контента в Ставрополе',
   },
 
   // Для сжатия файлов
