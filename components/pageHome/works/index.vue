@@ -284,6 +284,13 @@ watchEffect(async () => {
 </template>
 
 <style lang="css" scoped>
+.description {
+  @media (max-width: 576px) {
+    padding: 0 50px;
+  }
+}
+
+/*  */
 .works_portfolios_link {
   position: relative;
   z-index: 1;

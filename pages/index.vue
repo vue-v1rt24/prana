@@ -94,7 +94,7 @@ useSeoMeta({
 
 // Для разработки. Нужно добавить в адресную строку: ?dev=1
 const route = useRoute();
-const idDev = computed(() => route.query.dev);
+const isDev = computed(() => route.query.dev);
 </script>
 
 <template>
@@ -106,7 +106,7 @@ const idDev = computed(() => route.query.dev);
 
     <!-- Раздел: Рассчитаем стоимость вашего будущего проекта -->
     <PageHomeCostProject
-      v-if="!idDev && data?.nextProjectCostVarianty"
+      v-if="!isDev && data?.nextProjectCostVarianty"
       :title="data.nextProjectCostZagolovok"
       :desc="data.nextProjectCostOpisanie"
       :next-project-vars="data.nextProjectCostVarianty"

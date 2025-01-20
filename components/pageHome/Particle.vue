@@ -61,7 +61,7 @@ onUnmounted(() => {
   padding: 0 30px;
 
   /* Шапка деда Мороза */
-  &::before {
+  /* &::before {
     content: '';
     position: absolute;
     top: -24px;
@@ -113,7 +113,7 @@ onUnmounted(() => {
       height: 20px;
       margin-left: -151px;
     }
-  }
+  } */
 }
 
 :global(.decisions__title span) {

@@ -27,42 +27,51 @@ defineProps<{
 
   /*  */
   position: absolute;
-  width: 500px;
-  height: 550px;
-  /* top: 50%; */
   top: 0;
-  /* left: 50%; */
   left: 0;
   transform-origin: center center;
-  margin-left: -250px;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  will-change: transform;
-
-  /*  */
-  @media (max-width: 900px) {
-    width: 375px;
-    height: 500px;
-  }
-  /*  */
-  /* position: relative; */
   width: 510px;
   height: 510px;
-  border-radius: 42px;
   background-color: var(--colorDark3);
-
   background-image: url(/img/folder.svg);
   background-repeat: no-repeat;
   background-position: calc(100% - var(--padding)) calc(100% - var(--padding));
-
+  will-change: transform;
+  border-radius: 42px;
   padding: var(--padding);
+  margin-left: -250px;
   overflow: hidden;
-
   transition: background-color 0.3s;
 
+  /*  */
   &.active {
     background-color: white;
+  }
+
+  /*  */
+  @media (max-width: 1200px) {
+    position: static;
+    background-color: white;
+    margin-left: 0;
+  }
+
+  /*  */
+  @media (max-width: 1024px) {
+    --padding: 34px;
+    width: 410px;
+    height: 410px;
+    /* margin-left: -200px; */
+  }
+
+  @media (max-width: 800px) {
+    --padding: 24px;
+    width: 320px;
+    height: 320px;
+    background-size: 100px;
+    /* margin-left: -160px; */
+
+    /*  */
+    border-radius: 24px;
   }
 
   /*  */
@@ -90,6 +99,15 @@ defineProps<{
   align-items: center;
   column-gap: 26px;
   margin-bottom: 52px;
+
+  /*  */
+  @media (max-width: 1200px) {
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 800px) {
+    margin-bottom: 16px;
+  }
 }
 
 .card__counter_line {
@@ -107,6 +125,11 @@ defineProps<{
   .active & {
     color: var(--colorDark3);
   }
+
+  /*  */
+  @media (max-width: 1200px) {
+    color: var(--colorDark3);
+  }
 }
 
 .card__text_title {
@@ -114,6 +137,16 @@ defineProps<{
   font-size: 46px;
   line-height: 100%;
   margin-bottom: 24px;
+
+  /*  */
+  @media (max-width: 1200px) {
+    font-size: 34px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 28px;
+  }
 }
 
 .card__text_desc {
@@ -122,5 +155,14 @@ defineProps<{
   font-size: 20px;
   line-height: 130%;
   opacity: 0.8;
+
+  /*  */
+  @media (max-width: 1200px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+  }
 }
 </style>

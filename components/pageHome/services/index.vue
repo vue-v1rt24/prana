@@ -260,7 +260,7 @@ onMounted(() => {
 
 @media (max-width: 576px) {
   .services_bx {
-    padding-bottom: 120px;
+    padding-bottom: 30px;
   }
 
   .services__h2 {

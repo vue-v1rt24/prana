@@ -112,6 +112,7 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 <style lang="css" scoped>
 .footer_bx {
   background-color: var(--colorDark3);
+  overflow: hidden;
 
   &.dark {
     background-color: var(--colorDark4);
