@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   idx: number;
   cartAll: number;
   title: string;
@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="card" :style="`--bgUrl: url(${imgFolder})`">
+  <div class="card" :style="`--folderUrl: url(${imgFolder})`">
     <div class="card__counter">
       <span>{{ idx }}/{{ cartAll }}</span>
       <span class="card__counter_line"></span>
@@ -34,8 +34,7 @@ const props = defineProps<{
   width: 510px;
   height: 510px;
   background-color: var(--colorDark3);
-  /* background-image: url(/img/folder.svg); */
-  background-image: var(--bgUrl);
+  background-image: var(--folderUrl);
   background-repeat: no-repeat;
   background-position: calc(100% - var(--padding)) calc(100% - var(--padding));
   will-change: transform;
@@ -62,7 +61,6 @@ const props = defineProps<{
     --padding: 34px;
     width: 410px;
     height: 410px;
-    /* margin-left: -200px; */
   }
 
   @media (max-width: 800px) {
@@ -70,9 +68,6 @@ const props = defineProps<{
     width: 320px;
     height: 320px;
     background-size: 100px;
-    /* margin-left: -160px; */
-
-    /*  */
     border-radius: 24px;
   }
 

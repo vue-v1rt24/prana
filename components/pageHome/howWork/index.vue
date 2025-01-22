@@ -37,11 +37,6 @@ onMounted(() => {
   });
 
   // Заголовок
-  /* tlPercent.to('.how_work_clients__title span', {
-    y: 0,
-    ease: 'power1.out',
-  }); */
-
   gsap.to('.how_work_clients__title span', {
     y: 0,
     ease: 'power1.out',
@@ -104,10 +99,6 @@ onMounted(() => {
 .how_work_bx {
   position: relative;
   height: 100vh;
-  /* background-color: var(--colorDark4);
-  border-radius: 72px 72px 0px 0px; */
-  /* padding: 160px 0; */
-  /* padding-top: 160px; */
   padding-top: 60px;
 
   /*  */
@@ -127,7 +118,6 @@ onMounted(() => {
   /*  */
   .title_52 {
     text-align: center;
-    /* margin-bottom: 120px; */
 
     /*  */
     @media (max-width: 1200px) {

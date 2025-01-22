@@ -15,8 +15,6 @@ const props = defineProps<{
   }[];
 }>();
 
-console.log(props.howWorkCards);
-
 // Количество карточек
 const countCard = computed(() => props.howWorkCards.length);
 
@@ -66,49 +64,6 @@ onUnmounted(() => {
           :img-folder="card.howworkcardrepeatimg.node.mediaItemUrl"
         />
       </div>
-
-      <!-- <PageHomeHowWorkCard
-          :idx="1"
-          :cart-all="5"
-          title="Брифинг"
-          desc="Собираем информацию и определяем цель проекта"
-        /> 
-      <div class="swiper-slide">
-        <PageHomeHowWorkCard
-          :idx="2"
-          :cart-all="5"
-          title="Коммерческое предложение"
-          desc="На основе брифа обозначаем основные этапы, определяем сроки и производим расчет стоимости проекта"
-        />
-      </div>
-
-      <div class="swiper-slide">
-        <PageHomeHowWorkCard
-          :idx="3"
-          :cart-all="5"
-          title="Договор и ТЗ"
-          desc="Заключаем договор, составляем техническое задание"
-        />
-      </div>
-
-      <div class="swiper-slide">
-        <PageHomeHowWorkCard
-          :idx="4"
-          :cart-all="5"
-          title="Разработка проекта"
-          desc="Создаем продукт, согласовывая ключевые этапы и решения"
-        />
-      </div>
-
-      <div class="swiper-slide">
-        <PageHomeHowWorkCard
-          :idx="5"
-          :cart-all="5"
-          title="Сдача проекта"
-          desc="Формируем и передаем все разработанные материалы"
-          class="card_last"
-        />
-      </div> -->
     </div>
   </div>
 </template>

@@ -11,5 +11,10 @@ export type TypeHowWork = {
   howWorkCards: {
     howWorkCardRepeatTitle: string;
     howWorkCardRepeatDesc: string;
+    howworkcardrepeatimg: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
   }[];
 };

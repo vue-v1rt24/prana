@@ -9,7 +9,7 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
 //
-const props = defineProps<{
+defineProps<{
   logos: {
     howWorkCardProcentRepeatLogos: {
       node: {
@@ -18,8 +18,6 @@ const props = defineProps<{
     };
   }[];
 }>();
-
-// console.log(props.logos);
 
 //
 gsap.registerPlugin(ScrollTrigger);
@@ -32,8 +30,6 @@ const swiperLogos = ref<HTMLDivElement | null>(null);
 //
 onMounted(() => {
   // Блок с логотипами компаний
-  mm.add('(min-width: 577px', () => {});
-
   gsap.set('.how_work_clients__logos_item', { clearProps: 'all' });
 
   gsap.to('.how_work_clients__logos_item', {
@@ -67,6 +63,8 @@ onMounted(() => {
 
     mm.add('(max-width: 576px', () => {
       logosSwiper.value?.init();
+
+      return () => {};
     });
   }
 });
@@ -88,8 +86,6 @@ onUnmounted(() => {
     <div class="swiper-wrapper how_work_clients__logos">
       <div v-for="(logo, idx) in logos" :key="idx" class="swiper-slide">
         <div class="how_work_clients__logos_item">
-          <!-- <img :src="logo.howWorkCardProcentRepeatLogos.node.mediaItemUrl" alt="" /> -->
-
           <NuxtImg
             :src="logo.howWorkCardProcentRepeatLogos.node.mediaItemUrl"
             densities="x1"
@@ -99,88 +95,18 @@ onUnmounted(() => {
           />
         </div>
       </div>
-
-      <!-- <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w1.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w2.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w3.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w4.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w1.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w2.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w3.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w4.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w1.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w2.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w3.png" alt="" />
-        </div>
-      </div>
-
-      <div class="swiper-slide">
-        <div class="how_work_clients__logos_item">
-          <img src="/img/work/w4.png" alt="" />
-        </div>
-      </div> -->
     </div>
 
-    <!-- If we need pagination -->
+    <!--  -->
     <div class="swiper-pagination swiper_pagination_custom"></div>
   </div>
 </template>
 
 <style lang="css" scoped>
 .swiper {
-  padding-bottom: 50px;
+  @media (max-width: 576px) {
+    padding-bottom: 50px;
+  }
 }
 
 /*  */

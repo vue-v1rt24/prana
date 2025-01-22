@@ -170,43 +170,6 @@ onUnmounted(() => {
       :img-folder="card.howworkcardrepeatimg.node.mediaItemUrl"
       :class="{ card_last: idx + 1 === countCard }"
     />
-
-    <!--  -->
-    <!-- <PageHomeHowWorkCard
-      :idx="1"
-      :cart-all="5"
-      title="Брифинг"
-      desc="Собираем информацию и определяем цель проекта"
-    />
-
-    <PageHomeHowWorkCard
-      :idx="2"
-      :cart-all="5"
-      title="Коммерческое предложение"
-      desc="На основе брифа обозначаем основные этапы, определяем сроки и производим расчет стоимости проекта"
-    />
-
-    <PageHomeHowWorkCard
-      :idx="3"
-      :cart-all="5"
-      title="Договор и ТЗ"
-      desc="Заключаем договор, составляем техническое задание"
-    />
-
-    <PageHomeHowWorkCard
-      :idx="4"
-      :cart-all="5"
-      title="Разработка проекта"
-      desc="Создаем продукт, согласовывая ключевые этапы и решения"
-    />
-
-    <PageHomeHowWorkCard
-      :idx="5"
-      :cart-all="5"
-      title="Сдача проекта"
-      desc="Формируем и передаем все разработанные материалы"
-      class="card_last"
-    /> -->
   </div>
 </template>
 
@@ -218,5 +181,18 @@ onUnmounted(() => {
   transform: translateX(-50%);
   height: 550px;
   will-change: transform;
+
+  /*  */
+  @media (max-height: 870px) {
+    top: 180px;
+  }
+
+  @media (max-height: 788px) {
+    top: 160px;
+  }
+
+  @media (max-height: 768px) {
+    top: 140px;
+  }
 }
 </style>

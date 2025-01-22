@@ -137,9 +137,7 @@ useSeoMeta({
     /> -->
 
     <!-- Раздел: Как мы работаем? -->
-    <template>
-      <PageHomeHowWork v-if="data?.howWork" :how-works="data.howWork" />
-    </template>
+    <PageHomeHowWork v-if="data?.howWork" :how-works="data.howWork" />
   </div>
 </template>
 
