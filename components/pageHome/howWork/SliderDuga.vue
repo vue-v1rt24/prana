@@ -2,6 +2,25 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+//
+const props = defineProps<{
+  howWorkCards: {
+    howWorkCardRepeatTitle: string;
+    howWorkCardRepeatDesc: string;
+    howworkcardrepeatimg: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+  }[];
+}>();
+
+// console.log(props.howWorkCards);
+
+// Количество карточек
+const countCard = computed(() => props.howWorkCards.length);
+
+//
 gsap.registerPlugin(ScrollTrigger);
 
 //
@@ -142,6 +161,18 @@ onUnmounted(() => {
 <template>
   <div class="cards" ref="cardsBx">
     <PageHomeHowWorkCard
+      v-for="(card, idx) in howWorkCards"
+      :key="card.howWorkCardRepeatTitle"
+      :idx="idx + 1"
+      :cart-all="countCard"
+      :title="card.howWorkCardRepeatTitle"
+      :desc="card.howWorkCardRepeatDesc"
+      :img-folder="card.howworkcardrepeatimg.node.mediaItemUrl"
+      :class="{ card_last: idx + 1 === countCard }"
+    />
+
+    <!--  -->
+    <!-- <PageHomeHowWorkCard
       :idx="1"
       :cart-all="5"
       title="Брифинг"
@@ -175,7 +206,7 @@ onUnmounted(() => {
       title="Сдача проекта"
       desc="Формируем и передаем все разработанные материалы"
       class="card_last"
-    />
+    /> -->
   </div>
 </template>
 

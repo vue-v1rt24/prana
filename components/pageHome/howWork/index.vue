@@ -2,6 +2,16 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { type TypeHowWork } from '~/types/home-page/howWork.types';
+
+//
+const props = defineProps<{
+  howWorks: TypeHowWork;
+}>();
+
+// console.log(props.howWorks);
+
+//
 gsap.registerPlugin(ScrollTrigger);
 
 //
@@ -23,7 +33,7 @@ onMounted(() => {
 
   tlPercent.to(clientsPercent, {
     duration: 1,
-    count: 98,
+    count: props.howWorks.howWorkProcent,
   });
 
   // Заголовок
@@ -37,35 +47,10 @@ onMounted(() => {
     ease: 'power1.out',
     scrollTrigger: {
       trigger: '.how_work_clients',
-      start: 'top top',
+      start: 'top top+=200',
       // markers: true,
     },
   });
-
-  // Блок с логотипами компаний
-  /* tlPercent.to('.how_work_clients__logos_item', {
-    x: 0,
-    opacity: 1,
-    stagger: 0.1,
-    ease: 'power1.out',
-  }); */
-
-  gsap.to('.how_work_clients__logos_item', {
-    x: 0,
-    opacity: 1,
-    stagger: 0.1,
-    ease: 'power1.out',
-    scrollTrigger: {
-      trigger: '.how_work_clients',
-      start: 'top top',
-      // markers: true,
-    },
-  });
-});
-
-//
-onMounted(() => {
-  gsap.set('.how_work_clients__logos_item', { clearProps: 'all' });
 });
 </script>
 
@@ -77,69 +62,27 @@ onMounted(() => {
       </div>
 
       <!--  -->
-      <PageHomeHowWorkSliderDuga v-if="viewport.isGreaterThan('screen1200')" />
+      <template v-if="howWorks.howWorkCards">
+        <PageHomeHowWorkSliderDuga
+          v-if="viewport.isGreaterThan('screen1200')"
+          :how-work-cards="howWorks.howWorkCards"
+        />
 
-      <!--  -->
-      <PageHomeHowWorkSliderHorizontal v-else />
+        <!--  -->
+        <PageHomeHowWorkSliderHorizontal v-else :how-work-cards="howWorks.howWorkCards" />
+      </template>
     </div>
 
     <!--  -->
     <div class="how_work_clients">
       <div class="container">
-        <!-- <div class="how_work_clients__percent">98%</div> -->
         <div class="how_work_clients__percent">{{ Math.floor(clientsPercent.count) }}%</div>
         <div class="how_work_clients__title">
-          <span>Наших клиентов продолжают сотрудничество с нами</span>
+          <span>{{ howWorks.howWorkProcentTitle }}</span>
         </div>
-        <div class="how_work_clients__logos">
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w1.png" alt="" />
-          </div>
 
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w2.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w3.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w4.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w1.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w2.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w3.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w4.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w1.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w2.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w3.png" alt="" />
-          </div>
-
-          <div class="how_work_clients__logos_item">
-            <img src="/img/work/w4.png" alt="" />
-          </div>
-        </div>
+        <!--  -->
+        <PageHomeHowWorkLogos v-if="howWorks.howWorkLogos" :logos="howWorks.howWorkLogos" />
       </div>
     </div>
   </section>
@@ -205,10 +148,9 @@ onMounted(() => {
 /*  */
 
 .how_work_clients {
-  background-color: var(--colorDark3);
+  background-color: white;
   border-radius: 72px 72px 0 0;
-  /* padding: 160px 0; */
-  padding-top: 160px;
+  padding: 160px 0;
   margin-top: 160px;
 
   /*  */
@@ -217,11 +159,12 @@ onMounted(() => {
   }
 
   @media (max-width: 1024px) {
-    padding-top: 140px;
+    padding: 140px 0;
   }
 
   @media (max-width: 576px) {
-    padding-top: 80px;
+    border-radius: 32px 32px 0 0;
+    padding: 80px 0;
   }
 }
 
@@ -237,7 +180,6 @@ onMounted(() => {
   letter-spacing: 0.02em;
   text-align: center;
   color: #40b6b7;
-  background-color: var(--colorDark3);
   border: 2px solid #40b6b7;
   border-radius: 42px;
   padding: 15px 25px;
@@ -263,6 +205,7 @@ onMounted(() => {
   line-height: 100%;
   letter-spacing: 0.02em;
   text-align: center;
+  color: var(--colorDark3);
   margin: 42px auto 62px auto;
   overflow: hidden;
 
@@ -274,7 +217,7 @@ onMounted(() => {
   }
 
   @media (max-width: 576px) {
-    height: 56px;
+    height: 82px;
     font-size: 26px;
     margin: 24px 0 42px 0;
   }
@@ -284,35 +227,5 @@ onMounted(() => {
     display: block;
     transform: translateY(100%);
   }
-}
-
-/*  */
-.how_work_clients__logos {
-  max-width: 1280px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin: 0 auto;
-
-  /*  */
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  @media (max-width: 576px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 10px;
-  }
-}
-
-.how_work_clients__logos_item {
-  opacity: 0;
-  transform: translateX(-50px);
 }
 </style>

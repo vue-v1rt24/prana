@@ -3,6 +3,24 @@ import Swiper from 'swiper';
 import 'swiper/css';
 
 //
+const props = defineProps<{
+  howWorkCards: {
+    howWorkCardRepeatTitle: string;
+    howWorkCardRepeatDesc: string;
+    howworkcardrepeatimg: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+  }[];
+}>();
+
+console.log(props.howWorkCards);
+
+// Количество карточек
+const countCard = computed(() => props.howWorkCards.length);
+
+//
 const howWorkSwiper = ref<Swiper | null>(null);
 const swiperHowWork = ref<HTMLDivElement | null>(null);
 
@@ -32,27 +50,29 @@ onUnmounted(() => {
 });
 </script>
 
-<!-- 
-<NuxtImg
-  :src="item.fotoPoNavedeniyuCompanyKomanda?.node.mediaItemUrl"
-  class="people_item__img_face_hover"
-  loading="lazy"
-  format="webp"
-/>
--->
-
 <template>
   <div class="swiper swiper_how_work" ref="swiperHowWork">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
+      <div
+        v-for="(card, idx) in howWorkCards"
+        :key="card.howWorkCardRepeatTitle"
+        class="swiper-slide"
+      >
         <PageHomeHowWorkCard
+          :idx="idx + 1"
+          :cart-all="countCard"
+          :title="card.howWorkCardRepeatTitle"
+          :desc="card.howWorkCardRepeatDesc"
+          :img-folder="card.howworkcardrepeatimg.node.mediaItemUrl"
+        />
+      </div>
+
+      <!-- <PageHomeHowWorkCard
           :idx="1"
           :cart-all="5"
           title="Брифинг"
           desc="Собираем информацию и определяем цель проекта"
-        />
-      </div>
-
+        /> 
       <div class="swiper-slide">
         <PageHomeHowWorkCard
           :idx="2"
@@ -88,7 +108,7 @@ onUnmounted(() => {
           desc="Формируем и передаем все разработанные материалы"
           class="card_last"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -12,7 +12,8 @@ useSeoMeta({
 //
 watchEffect(() => {
   if (route.path === '/') {
-    theme.value = null;
+    // theme.value = null;
+    theme.value = 'light';
   } else if (
     route.path.includes('comanda') ||
     route.path.includes('services') ||

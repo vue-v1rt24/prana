@@ -9,12 +9,32 @@ export type TypeHome = {
       contentHomePage: {
         zagoovok: string;
         podzagolook: string;
+
         nextProjectCostZagolovok: string;
         nextProjectCostOpisanie: string;
         sphereVarianty: {
           nazvanie: string;
         }[];
         nextProjectCostVarianty: TypeNextProjectCostVarianty[];
+
+        howWorkCardProcent: string;
+        howWorkCardProcentTitle: string;
+        howWorkCardProcentRepeat: {
+          howWorkCardProcentRepeatLogos: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+        }[];
+        howWorkCardRepeat: {
+          howWorkCardRepeatTitle: string;
+          howWorkCardRepeatDesc: string;
+          howworkcardrepeatimg: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+        }[];
       };
     };
     services: {

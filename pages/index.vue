@@ -19,7 +19,6 @@ const { data } = await useFetch(graphqlUrl, {
           zagoovok
           podzagolook
           nextProjectCostZagolovok
-          nextProjectCostOpisanie
           sphereVarianty {
             nazvanie
           }
@@ -36,6 +35,25 @@ const { data } = await useFetch(graphqlUrl, {
               nextProjectCostUslugaRepeatOpisanie
             }
           }
+          howWorkCardProcent
+          howWorkCardProcentTitle
+          howWorkCardProcentRepeat {
+            howWorkCardProcentRepeatLogos {
+              node {
+                mediaItemUrl
+              }
+            }
+          }
+          howWorkCardRepeat {
+            howWorkCardRepeatTitle
+            howWorkCardRepeatDesc
+            howworkcardrepeatimg {
+              node {
+                mediaItemUrl
+              }
+            }
+          }
+          nextProjectCostOpisanie
         }
       }
       services(first: 100) {
@@ -80,6 +98,13 @@ const { data } = await useFetch(graphqlUrl, {
       serviceCategories: d.data.serviceCategories.nodes,
       sphere: d.data.pageBy.contentHomePage.sphereVarianty,
 
+      howWork: {
+        howWorkCards: d.data.pageBy.contentHomePage.howWorkCardRepeat,
+        howWorkProcent: d.data.pageBy.contentHomePage.howWorkCardProcent,
+        howWorkProcentTitle: d.data.pageBy.contentHomePage.howWorkCardProcentTitle,
+        howWorkLogos: d.data.pageBy.contentHomePage.howWorkCardProcentRepeat,
+      },
+
       nextProjectCostZagolovok: d.data.pageBy.contentHomePage.nextProjectCostZagolovok,
       nextProjectCostOpisanie: d.data.pageBy.contentHomePage.nextProjectCostOpisanie,
       nextProjectCostVarianty: d.data.pageBy.contentHomePage.nextProjectCostVarianty,
@@ -87,14 +112,13 @@ const { data } = await useFetch(graphqlUrl, {
   },
 });
 
+// console.log(data.value);
+
+//
 useSeoMeta({
   title: () => data.value!.metaTitle,
   description: () => data.value!.metaDescription,
 });
-
-// Для разработки. Нужно добавить в адресную строку: ?dev=1
-const route = useRoute();
-const isDev = computed(() => route.query.dev);
 </script>
 
 <template>
@@ -105,15 +129,17 @@ const isDev = computed(() => route.query.dev);
     <PageHomeSphere v-if="data?.sphere" :sphere="data.sphere" />
 
     <!-- Раздел: Рассчитаем стоимость вашего будущего проекта -->
-    <PageHomeCostProject
-      v-if="!isDev && data?.nextProjectCostVarianty"
+    <!-- <PageHomeCostProject
+      v-if="data?.nextProjectCostVarianty"
       :title="data.nextProjectCostZagolovok"
       :desc="data.nextProjectCostOpisanie"
       :next-project-vars="data.nextProjectCostVarianty"
-    />
+    /> -->
 
     <!-- Раздел: Как мы работаем? -->
-    <PageHomeHowWork v-else />
+    <template>
+      <PageHomeHowWork v-if="data?.howWork" :how-works="data.howWork" />
+    </template>
   </div>
 </template>
 
