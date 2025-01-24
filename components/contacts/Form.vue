@@ -31,7 +31,7 @@ const rules = computed(() => ({
     required,
   },
   email: {
-    required,
+    // required,
     email,
   },
   phone: {
