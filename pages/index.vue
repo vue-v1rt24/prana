@@ -123,7 +123,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <PageHomeParticle :title="data!.title" :desc="data!.podzagolook" />
+    <PageHomeParticle :title="data?.title" :desc="data?.podzagolook" />
     <PageHomeServices :service-categories="data!.serviceCategories" :services="data!.services" />
     <PageHomeWorks />
     <PageHomeSphere v-if="data?.sphere" :sphere="data.sphere" />

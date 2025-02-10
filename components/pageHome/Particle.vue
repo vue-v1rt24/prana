@@ -3,8 +3,8 @@ import { particle } from '@/assets/libs/particle';
 
 //
 defineProps<{
-  title: string;
-  desc: string;
+  title?: string;
+  desc?: string;
 }>();
 
 //
@@ -24,9 +24,9 @@ onUnmounted(() => {
 <template>
   <section class="decisions_sec">
     <div class="decisions">
-      <h1 class="decisions__title" v-html="title"></h1>
+      <h1 v-if="title" class="decisions__title" v-html="title"></h1>
 
-      <p class="decisions__desc">{{ desc }}</p>
+      <p v-if="desc" class="decisions__desc">{{ desc }}</p>
     </div>
 
     <canvas class="particle"></canvas>

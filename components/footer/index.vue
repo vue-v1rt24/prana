@@ -35,13 +35,13 @@ const { reviewChildrenActiveMenu } = useChildrenActiveMenu();
 
             <ul class="sub-menu">
               <li class="menu-item">
-                <NuxtLink to="/services/web-razrabotka">Разработка</NuxtLink>
+                <NuxtLink to="/services/razrabotka">Разработка</NuxtLink>
               </li>
               <li class="menu-item">
-                <NuxtLink to="/services/design">Дизайн</NuxtLink>
+                <NuxtLink to="/services/branding">Брендинг</NuxtLink>
               </li>
               <li class="menu-item">
-                <NuxtLink to="/services/photo-and-video">Фото и видео</NuxtLink>
+                <NuxtLink to="/services/foto-video">Фото/видео</NuxtLink>
               </li>
               <!-- <li class="menu-item">
                 <NuxtLink to="/services/promotion">Продвижение</NuxtLink>

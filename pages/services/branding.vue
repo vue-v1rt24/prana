@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useQueryFile } from '~/composables/services/useQueryFile';
+// import { useQueryFile } from '~/composables/services/useQueryFile';
 
 //
 const router = useRouter();
@@ -7,12 +7,12 @@ const route = useRoute();
 
 //
 useSeoMeta({
-  title: 'Услуга',
+  title: 'Брендинг',
   description: 'Описание',
 });
 
 // Получение данных
-const { dataServiceFile } = await useQueryFile(route.params.slug);
+// const { dataServiceFile } = await useQueryFile(route.params.slug);
 
 // Скачивание файла
 const loadFile = async () => {
@@ -45,7 +45,7 @@ const loadFile = async () => {
 <template>
   <section class="service_item">
     <!-- Хлебные крошки -->
-    <Breadcrumbs :breadcrumbs="[{ title: 'Услуга' }]" />
+    <Breadcrumbs :breadcrumbs="[{ title: 'Услуги', link: '/services' }, { title: 'Брендинг' }]" />
 
     <!--  -->
     <div class="about_particles"></div>
