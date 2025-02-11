@@ -1,3 +1,9 @@
+export type TypeMetaTags = {
+  metaTitle: string;
+  metaDescription: string;
+};
+
+//
 export type TypeOneScreen = {
   title: string;
   desc: string;
@@ -7,21 +13,25 @@ export type TypeOneScreen = {
   runText: string;
 };
 
-export type TypeRazrabotkaVarianty = {
-  variants: {
-    razrabotkaVariantyZagolovok: string;
-    razrabotkaVariantyOpisanie: string;
-    razrabotkaVariantyIzobrazheniyaInstrumentov: {
-      razrabotkaVariantyIzobrazheniyaInstrumentovIzobrazhenie: {
-        node: {
-          mediaItemUrl: string;
-        };
+//
+export type TypeRazrabotkaVariantyItem = {
+  razrabotkaVariantyZagolovok: string;
+  razrabotkaVariantyOpisanie: string;
+  razrabotkaVariantyIzobrazheniyaInstrumentov: {
+    razrabotkaVariantyIzobrazheniyaInstrumentovIzobrazhenie: {
+      node: {
+        mediaItemUrl: string;
       };
-    }[];
+    };
   }[];
+};
+
+export type TypeRazrabotkaVarianty = {
+  variants: TypeRazrabotkaVariantyItem[];
   runText: string;
 };
 
+//
 export type TypeKakMyRabotaemVarianty = {
   kakMyRabotaemVariantyZagolovok: string;
   kakMyRabotaemVariantyOpisanie: string;
@@ -32,7 +42,9 @@ export type TypeKakMyRabotaemVarianty = {
   };
 };
 
+//
 export type TypeRazrabotka = {
+  metaTags: TypeMetaTags;
   oneScreen: TypeOneScreen;
   razrabotkaVarianty: TypeRazrabotkaVarianty;
   kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty[];

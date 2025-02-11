@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
   const { data } = await requestFetch<TypeRazrabotka>(razrabotkaQuery);
 
   return {
+    metaTags: data.pageBy.metaTags,
     oneScreen: {
       title: data.pageBy.razrabotkaPage.razrabotkaZagolovok,
       desc: data.pageBy.razrabotkaPage.razrabotkaOpisanie,

@@ -1,6 +1,10 @@
 export const razrabotkaQuery = `
 {
   pageBy(pageId: 2663) {
+    metaTags {
+      metaTitle
+      metaDescription
+    }
     razrabotkaPage {
       razrabotkaZagolovok
       razrabotkaOpisanie

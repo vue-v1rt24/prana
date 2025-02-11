@@ -1,6 +1,10 @@
 export type TypeRazrabotka = {
   data: {
     pageBy: {
+      metaTags: {
+        metaTitle: string;
+        metaDescription: string;
+      };
       razrabotkaPage: {
         razrabotkaZagolovok: string;
         razrabotkaOpisanie: string;
