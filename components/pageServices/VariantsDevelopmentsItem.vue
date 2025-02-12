@@ -43,52 +43,38 @@ const props = defineProps<{
   /*  */
   &:first-child {
     z-index: -1;
-    /* grid-column: 1 / span 6; */
-    /* grid-row: 1 / span 1; */
-
-    grid-area: bx1;
+    grid-column: 1 / span 6;
+    grid-row: 1 / span 1;
   }
 
   &:nth-child(2) {
-    /* grid-column: 7 / span 6; */
-    /* grid-row: 1 / span 1; */
-
-    grid-area: bx2;
+    grid-column: 7 / span 6;
+    grid-row: 1 / span 1;
   }
 
   &:nth-child(3) {
-    /* grid-column: 1 / span 4; */
-    /* grid-row: 2 / span 1; */
-
-    grid-area: bx3;
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 1;
   }
 
   &:nth-child(4) {
-    /* grid-column: 5 / span 4; */
-    /* grid-row: 2 / span 1; */
-
-    grid-area: bx4;
+    grid-column: 5 / span 4;
+    grid-row: 2 / span 1;
   }
 
   &:nth-child(5) {
-    /* grid-column: 9 / span 4; */
-    /* grid-row: 2 / span 1; */
-
-    grid-area: bx5;
+    grid-column: 9 / span 4;
+    grid-row: 2 / span 1;
   }
 
   &:nth-child(6) {
-    /* grid-column: 1 / span 6; */
-    /* grid-row: 3 / span 1; */
-
-    grid-area: bx6;
+    grid-column: 1 / span 6;
+    grid-row: 3 / span 1;
   }
 
   &:nth-child(7) {
-    /* grid-column: 7 / span 6; */
-    /* grid-row: 3 / span 1; */
-
-    grid-area: bx7;
+    grid-column: 7 / span 6;
+    grid-row: 3 / span 1;
   }
 }
 
