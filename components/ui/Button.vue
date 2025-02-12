@@ -67,6 +67,25 @@ const emit = defineEmits<{
 }
 /* /Синяя кнопка */
 
+/* Белая кнопка */
+.btn_white {
+  color: var(--accentColor);
+  background-color: var(--colorTextWhite);
+}
+
+.btn_white .btn__arrow .arrow {
+  fill: var(--accentColor);
+}
+
+.btn_white:hover {
+  background-color: var(--colorTextWhite);
+}
+
+.btn_white:active {
+  background-color: #e8e2e2;
+}
+/* /Белая кнопка */
+
 /* Прозрачная кнопка */
 .btn_transparent {
   color: var(--colorDark3);

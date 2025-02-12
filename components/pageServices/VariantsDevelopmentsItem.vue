@@ -33,7 +33,6 @@ const props = defineProps<{
 .variants_dev__item {
   position: relative;
   z-index: 1;
-  /* width: 920px; */
   background-color: #060e1b;
   border-radius: 42px;
   display: flex;
@@ -45,11 +44,13 @@ const props = defineProps<{
     z-index: -1;
     grid-column: 1 / span 6;
     grid-row: 1 / span 1;
+    transform: translateY(-590px);
   }
 
   &:nth-child(2) {
     grid-column: 7 / span 6;
     grid-row: 1 / span 1;
+    transform: translateY(-260px);
   }
 
   &:nth-child(3) {

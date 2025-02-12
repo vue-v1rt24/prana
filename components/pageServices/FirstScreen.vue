@@ -30,9 +30,16 @@ defineProps<{
           <img :src="img.mediaItemUrl" alt="" />
         </li>
       </ul>
+    </div>
 
-      <!--  -->
-      <PageServicesLineText class="line_text_parent" :text="data.runText" width="2886px" />
+    <!--  -->
+    <div class="first_section__line_text_wrap">
+      <PageServicesLineText
+        v-if="data.runText"
+        :text="data.runText"
+        width="2500px"
+        class="first_section__line_text"
+      />
     </div>
   </section>
 </template>
@@ -111,10 +118,19 @@ defineProps<{
 
 /*  */
 
-.line_text_parent {
+.first_section__line_text_wrap {
   position: absolute;
-  bottom: calc(-100% - 67px);
+  top: 0;
   left: 50%;
-  transform: translateX(-50%) rotate(-35deg);
+  transform: translateX(-50%) translateY(146px);
+  width: 1920px;
+  height: 1530px;
+  pointer-events: none;
+  overflow: hidden;
+  /* outline: 1px solid red; */
+}
+
+.first_section__line_text {
+  transform: translate(-12%, 808%) rotate(-35deg);
 }
 </style>

@@ -17,6 +17,9 @@ export default defineEventHandler(async (event) => {
       variants: data.pageBy.razrabotkaPage.razrabotkaVarianty,
       runText: data.pageBy.razrabotkaPage.razrabotkaTwoScreenTekstBegushhejStroki,
     },
-    kakMyRabotaemVarianty: data.pageBy.razrabotkaPage.kakMyRabotaemVarianty,
+    kakMyRabotaemVarianty: {
+      variants: data.pageBy.razrabotkaPage.kakMyRabotaemVarianty,
+      runText: data.pageBy.razrabotkaPage.kakMyRabotaemVariantyTekstBegushhejStroki,
+    },
   };
 });

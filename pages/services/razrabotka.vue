@@ -25,6 +25,12 @@ useSeoMeta({
       v-if="data?.razrabotkaVarianty"
       :variants-dev="data.razrabotkaVarianty"
     />
+
+    <!--  -->
+    <PageServicesHowDoWeWork
+      v-if="data?.kakMyRabotaemVarianty.variants.length"
+      :works="data.kakMyRabotaemVarianty"
+    />
   </main>
 </template>
 

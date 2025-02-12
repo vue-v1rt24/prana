@@ -32,7 +32,7 @@ export type TypeRazrabotkaVarianty = {
 };
 
 //
-export type TypeKakMyRabotaemVarianty = {
+export type TypeKakMyRabotaemVariantyItem = {
   kakMyRabotaemVariantyZagolovok: string;
   kakMyRabotaemVariantyOpisanie: string;
   kakMyRabotaemVariantyIzobrazhenie: {
@@ -42,10 +42,15 @@ export type TypeKakMyRabotaemVarianty = {
   };
 };
 
+export type TypeKakMyRabotaemVarianty = {
+  variants: TypeKakMyRabotaemVariantyItem[];
+  runText: string;
+};
+
 //
 export type TypeRazrabotka = {
   metaTags: TypeMetaTags;
   oneScreen: TypeOneScreen;
   razrabotkaVarianty: TypeRazrabotkaVarianty;
-  kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty[];
+  kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty;
 };
