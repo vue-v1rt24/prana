@@ -21,7 +21,7 @@ const { isOpenModal } = useOutsideModal();
       <h2 class="title_52">Как мы работаем?</h2>
 
       <ul class="how_do_we_work__list">
-        <PageServicesHowDoWeWorkItem
+        <PageServicesRazrabotkaHowDoWeWorkItem
           v-for="(work, idx) in works.variants"
           :key="work.kakMyRabotaemVariantyZagolovok"
           :idx

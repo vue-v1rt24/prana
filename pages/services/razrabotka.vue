@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TypeRazrabotka } from '~/types/razrabotka.types';
+// import type { TypeRazrabotka } from '~/types/razrabotka.types';
 
 //
 const { data } = await useFetch('/api/razrabotkaPage');
@@ -18,16 +18,16 @@ useSeoMeta({
     <Breadcrumbs :breadcrumbs="[{ title: 'Услуги', link: '/services' }, { title: 'Разработка' }]" />
 
     <!--  -->
-    <PageServicesFirstScreen v-if="data?.oneScreen" :data="data.oneScreen" />
+    <PageServicesRazrabotkaFirstScreen v-if="data?.oneScreen" :data="data.oneScreen" />
 
     <!--  -->
-    <PageServicesVariantsDevelopments
+    <PageServicesRazrabotkaVariantsDevelopments
       v-if="data?.razrabotkaVarianty"
       :variants-dev="data.razrabotkaVarianty"
     />
 
     <!--  -->
-    <PageServicesHowDoWeWork
+    <PageServicesRazrabotkaHowDoWeWork
       v-if="data?.kakMyRabotaemVarianty.variants.length"
       :works="data.kakMyRabotaemVarianty"
     />

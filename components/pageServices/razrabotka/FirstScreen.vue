@@ -34,7 +34,7 @@ defineProps<{
 
     <!--  -->
     <div class="first_section__line_text_wrap">
-      <PageServicesLineText
+      <PageServicesRazrabotkaLineText
         v-if="data.runText"
         :text="data.runText"
         width="2500px"

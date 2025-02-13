@@ -5,6 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { TypeRazrabotkaVarianty } from '~/types/razrabotka.types';
 
 //
+gsap.registerPlugin(ScrollTrigger);
+
+//
 const props = defineProps<{
   variantsDev: TypeRazrabotkaVarianty;
 }>();
@@ -63,7 +66,7 @@ onMounted(() => {
 
       <!--  -->
       <div class="variants_dev_wrap">
-        <PageServicesVariantsDevelopmentsItem
+        <PageServicesRazrabotkaVariantsDevelopmentsItem
           v-for="variant in variantsDev.variants"
           :key="variant.razrabotkaVariantyZagolovok"
           :variant
@@ -72,7 +75,7 @@ onMounted(() => {
 
       <!--  -->
       <div class="variants_dev__line_text">
-        <PageServicesLineText v-if="variantsDev.runText" :text="variantsDev.runText" />
+        <PageServicesRazrabotkaLineText v-if="variantsDev.runText" :text="variantsDev.runText" />
       </div>
     </div>
   </section>
