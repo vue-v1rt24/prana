@@ -79,13 +79,13 @@ onMounted(() => {
 
           <ul class="sub-menu">
             <li class="menu-item">
-              <NuxtLink to="/services/razrabotka">Разработка</NuxtLink>
+              <NuxtLink to="/razrabotka">Разработка</NuxtLink>
             </li>
             <li class="menu-item">
-              <NuxtLink to="/services/branding">Брендинг</NuxtLink>
+              <NuxtLink to="/branding">Брендинг</NuxtLink>
             </li>
             <li class="menu-item">
-              <NuxtLink to="/services/foto-video">Фото/видео</NuxtLink>
+              <NuxtLink to="/foto-video">Фото/видео</NuxtLink>
             </li>
             <!-- <li class="menu-item">
               <NuxtLink to="/services/promotion">Продвижение</NuxtLink>

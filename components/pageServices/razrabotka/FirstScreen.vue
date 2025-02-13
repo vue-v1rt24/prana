@@ -84,6 +84,7 @@ defineProps<{
   /*  */
   &::before {
     content: '';
+    pointer-events: none;
     position: absolute;
     top: -317%;
     left: -55%;

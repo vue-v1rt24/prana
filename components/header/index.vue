@@ -85,8 +85,10 @@ const openMenuSticky = () => {
 //
 watchEffect(() => {
   if (route.path !== '/') {
-    if (route.path !== '/services/razrabotka') {
+    if (route.path !== '/razrabotka') {
       menuPositionRelative.value = true;
+    } else {
+      menuPositionRelative.value = false;
     }
 
     isMenuLink.value = true;

@@ -22,7 +22,7 @@ export const useChildrenActiveMenu = () => {
     }
 
     // Для внутренних страниц services
-    if (route.path.includes('services')) {
+    if (['/razrabotka', '/branding', '/foto-video'].includes(route.path)) {
       servicesChildrenActiveMenu().value = true;
     } else {
       servicesChildrenActiveMenu().value = false;
