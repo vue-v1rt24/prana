@@ -16,7 +16,7 @@ watchEffect(() => {
     theme.value = 'light';
   } else if (
     route.path.includes('comanda') ||
-    route.path.includes('services') ||
+    // route.path.includes('services') ||
     route.path.includes('products') ||
     route.path.includes('vacancies') ||
     route.path.includes('privacy') ||

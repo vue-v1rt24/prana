@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="how_do_we_work__list_item">
+  <li class="how_do_we_work__list_item cart_hdw">
     <div class="how_do_we_work__list_item__count">
       <span>{{ idx + 1 }} / {{ countCart }}</span>
     </div>
@@ -29,7 +29,7 @@ defineProps<{
 .how_do_we_work__list_item {
   --padding: 52px;
   position: relative;
-  width: 920px;
+  width: 900px;
   height: 510px;
   border-radius: 42px;
   padding: var(--padding);

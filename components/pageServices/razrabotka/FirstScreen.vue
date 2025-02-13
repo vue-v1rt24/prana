@@ -128,6 +128,11 @@ defineProps<{
   pointer-events: none;
   overflow: hidden;
   /* outline: 1px solid red; */
+
+  /*  */
+  @media (max-width: 1919px) {
+    width: 100%;
+  }
 }
 
 .first_section__line_text {
