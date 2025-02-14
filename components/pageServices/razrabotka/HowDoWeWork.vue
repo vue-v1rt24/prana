@@ -105,7 +105,7 @@ onMounted(() => {
 <style lang="css" scoped>
 .how_do_we_work_sec {
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: var(--colorDark4);
   padding: 160px 0 209px 0;
 }

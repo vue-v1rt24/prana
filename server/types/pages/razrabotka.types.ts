@@ -1,3 +1,4 @@
+// Получение данных страницы
 export type TypeRazrabotka = {
   data: {
     pageBy: {
@@ -37,6 +38,36 @@ export type TypeRazrabotka = {
         }[];
         kakMyRabotaemVariantyTekstBegushhejStroki: string;
       };
+    };
+
+    //////// Для категорий и работ
+    portfolioCategories: {
+      edges: {
+        node: {
+          databaseId: number;
+          name: string;
+          count: number | null;
+          portfolios: {
+            nodes: {
+              databaseId: number;
+              slug: string;
+              homePreview: {
+                izobrazhenie: {
+                  node: {
+                    mediaItemUrl: string;
+                  };
+                };
+                zagolovok: string;
+                vyborText: boolean;
+                zagolovokHover: string;
+                homePreviewTextTekst: string;
+                vyborVideo: boolean;
+                video: string | null;
+              };
+            }[];
+          };
+        };
+      }[];
     };
   };
 };

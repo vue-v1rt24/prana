@@ -48,9 +48,38 @@ export type TypeKakMyRabotaemVarianty = {
 };
 
 //
+export type TypePortfolio = {
+  node: {
+    databaseId: number;
+    name: string;
+    count: number | null;
+    portfolios: {
+      nodes: {
+        databaseId: number;
+        slug: string;
+        homePreview: {
+          izobrazhenie: {
+            node: {
+              mediaItemUrl: string;
+            };
+          };
+          zagolovok: string;
+          vyborText: boolean;
+          zagolovokHover: string;
+          homePreviewTextTekst: string;
+          vyborVideo: boolean;
+          video: string | null;
+        };
+      }[];
+    };
+  };
+};
+
+//
 export type TypeRazrabotka = {
   metaTags: TypeMetaTags;
   oneScreen: TypeOneScreen;
   razrabotkaVarianty: TypeRazrabotkaVarianty;
   kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty;
+  portfolio: TypePortfolio[];
 };

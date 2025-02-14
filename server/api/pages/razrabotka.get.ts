@@ -1,6 +1,6 @@
-import { requestFetch } from '../utils/requestFetch';
-import { razrabotkaQuery } from '../queriesGraphQl/razrabotka';
-import type { TypeRazrabotka } from '../types/razrabotka.types';
+import { requestFetch } from '~/server/utils/requestFetch';
+import { razrabotkaQuery } from '~/server/queriesGraphQl/pages/razrabotka';
+import type { TypeRazrabotka } from '~/server/types/pages/razrabotka.types';
 
 export default defineEventHandler(async (event) => {
   const { data } = await requestFetch<TypeRazrabotka>(razrabotkaQuery);
@@ -21,5 +21,6 @@ export default defineEventHandler(async (event) => {
       variants: data.pageBy.razrabotkaPage.kakMyRabotaemVarianty,
       runText: data.pageBy.razrabotkaPage.kakMyRabotaemVariantyTekstBegushhejStroki,
     },
+    portfolio: data.portfolioCategories.edges,
   };
 });

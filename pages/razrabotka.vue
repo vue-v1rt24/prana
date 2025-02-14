@@ -2,7 +2,7 @@
 // import type { TypeRazrabotka } from '~/types/razrabotka.types';
 
 //
-const { data } = await useFetch('/api/razrabotkaPage');
+const { data } = await useFetch('/api/pages/razrabotka');
 // console.log(data.value);
 
 //
@@ -31,6 +31,9 @@ useSeoMeta({
       v-if="data?.kakMyRabotaemVarianty.variants.length"
       :works="data.kakMyRabotaemVarianty"
     />
+
+    <!--  -->
+    <PageServicesRazrabotkaPortfolio v-if="data?.portfolio.length" :portfolio="data.portfolio" />
   </main>
 </template>
 
