@@ -50,6 +50,7 @@ export const razrabotkaQuery = `
           nodes {
             databaseId
             slug
+            date
             homePreview {
               izobrazhenie {
                 node {
@@ -65,6 +66,12 @@ export const razrabotkaQuery = `
                 node {
                   mediaItemUrl
                 }
+              }
+            }
+            portfolioCategories {
+              nodes {
+                name
+                taxonomyName
               }
             }
           }

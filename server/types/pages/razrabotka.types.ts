@@ -64,6 +64,12 @@ export type TypeRazrabotka = {
                 vyborVideo: boolean;
                 video: string | null;
               };
+              portfolioCategories: {
+                nodes: {
+                  name: string;
+                  taxonomyName: string;
+                }[];
+              };
             }[];
           };
         };

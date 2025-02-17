@@ -33,7 +33,6 @@ useSeoMeta({
     />
 
     <!--  -->
-    <PageServicesRazrabotkaPortfolio v-if="data?.portfolio.length" :portfolio="data.portfolio" />
   </main>
 </template>
 

@@ -48,15 +48,61 @@ export type TypeKakMyRabotaemVarianty = {
 };
 
 //
+export type TypeSinglePortfolio = {
+  databaseId: number;
+  slug: string;
+  homePreview: {
+    izobrazhenie: {
+      node: {
+        mediaItemUrl: string;
+      };
+    };
+    zagolovok: string;
+    vyborText: boolean;
+    zagolovokHover: string;
+    homePreviewTextTekst: string;
+    vyborVideo: boolean;
+    video: string | null;
+  };
+  portfolioCategories: {
+    nodes: {
+      name: string;
+      taxonomyName: string;
+    }[];
+  };
+};
+
 export type TypePortfolio = {
   node: {
     databaseId: number;
     name: string;
     count: number | null;
     portfolios: {
+      nodes: TypeSinglePortfolio[];
+    };
+  };
+};
+
+//
+export type TypeRazrabotka = {
+  metaTags: TypeMetaTags;
+  oneScreen: TypeOneScreen;
+  razrabotkaVarianty: TypeRazrabotkaVarianty;
+  kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty;
+  portfolio: TypePortfolio[];
+};
+
+// Для работ сайтов
+export type TypeWork = {
+  node: {
+    databaseId: number;
+    name: string;
+    count: number;
+    portfolios: {
       nodes: {
         databaseId: number;
         slug: string;
+        date: string;
         homePreview: {
           izobrazhenie: {
             node: {
@@ -70,16 +116,21 @@ export type TypePortfolio = {
           vyborVideo: boolean;
           video: string | null;
         };
+        portfolioCategories: {
+          nodes: {
+            name: string;
+            taxonomyName: string;
+          }[];
+        };
       }[];
     };
   };
 };
 
-//
-export type TypeRazrabotka = {
-  metaTags: TypeMetaTags;
-  oneScreen: TypeOneScreen;
-  razrabotkaVarianty: TypeRazrabotkaVarianty;
-  kakMyRabotaemVarianty: TypeKakMyRabotaemVarianty;
-  portfolio: TypePortfolio[];
+export type TypeSiteWorks = {
+  data: {
+    portfolioCategories: {
+      edges: TypeWork[];
+    };
+  };
 };
