@@ -62,7 +62,7 @@ export type TypeSinglePortfolio = {
     zagolovokHover: string;
     homePreviewTextTekst: string;
     vyborVideo: boolean;
-    video: string | null;
+    video: { node: { mediaItemUrl: string } } | null;
   };
   portfolioCategories: {
     nodes: {
@@ -114,7 +114,7 @@ export type TypeWork = {
           zagolovokHover: string;
           homePreviewTextTekst: string;
           vyborVideo: boolean;
-          video: string | null;
+          video: { node: { mediaItemUrl: string } } | null;
         };
         portfolioCategories: {
           nodes: {

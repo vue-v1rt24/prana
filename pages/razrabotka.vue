@@ -33,15 +33,8 @@ useSeoMeta({
     />
 
     <!--  -->
+    <WidgetWorks name-page="razrabotka" />
   </main>
 </template>
 
-<style lang="css" scoped>
-.service_item {
-  padding-bottom: 180px;
-
-  @media (max-width: 576px) {
-    padding-bottom: 80px;
-  }
-}
-</style>
+<style lang="css" scoped></style>
