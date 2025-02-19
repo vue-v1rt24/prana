@@ -72,11 +72,11 @@ onMounted(() => {
           :variant
         />
       </div>
-    </div>
 
-    <!--  -->
-    <div class="variants_dev__line_text">
-      <PageServicesRazrabotkaLineText v-if="variantsDev.runText" :text="variantsDev.runText" />
+      <!--  -->
+      <div class="variants_dev__line_text">
+        <PageServicesRazrabotkaLineText v-if="variantsDev.runText" :text="variantsDev.runText" />
+      </div>
     </div>
   </section>
 </template>
@@ -112,6 +112,6 @@ onMounted(() => {
 /*  */
 
 .variants_dev__line_text {
-  margin-top: 160px;
+  margin: 160px -30px 0 -30px;
 }
 </style>

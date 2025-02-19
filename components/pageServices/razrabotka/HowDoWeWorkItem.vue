@@ -45,6 +45,11 @@ defineProps<{
     color: var(--colorTextWhite);
     background-color: #030810;
   }
+
+  /*  */
+  @media (max-width: 1900px) {
+    width: 600px;
+  }
 }
 
 /*  */

@@ -34,9 +34,12 @@ defineProps<{
 
     <!--  -->
     <div class="first_section__line_text_wrap">
-      <div class="first_section__line_text">
-        <PageServicesRazrabotkaLineText v-if="data.runText" :text="data.runText" />
-      </div>
+      <PageServicesRazrabotkaLineText
+        v-if="data.runText"
+        :text="data.runText"
+        width="2500px"
+        class="first_section__line_text"
+      />
     </div>
   </section>
 </template>
@@ -121,24 +124,19 @@ defineProps<{
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(146px);
+  width: 1920px;
+  height: 1530px;
   pointer-events: none;
+  overflow: hidden;
   /* outline: 1px solid red; */
 
   /*  */
-  @media (max-width: 1920px) {
+  @media (max-width: 1919px) {
     width: 100%;
-    height: 1530px;
-    overflow: hidden;
   }
 }
 
 .first_section__line_text {
-  transform: translate(0%, 808%) rotate(-35deg);
-
-  /*  */
-  @media (max-width: 1920px) {
-    width: 130%;
-    transform: translate(-11%, 797%) rotate(-35deg);
-  }
+  transform: translate(-12%, 808%) rotate(-35deg);
 }
 </style>

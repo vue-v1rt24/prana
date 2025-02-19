@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// import type { TypeRazrabotka } from '~/types/razrabotka.types';
-
-//
 const { data } = await useFetch('/api/pages/razrabotka');
 // console.log(data.value);
 

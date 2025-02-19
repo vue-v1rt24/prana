@@ -15,15 +15,15 @@ withDefaults(
 <template>
   <div class="text_line_wrap">
     <div class="text_line_item">
-      <div class="text_line">{{ text }}</div>
+      <div class="text_line" v-html="text"></div>
     </div>
 
     <div class="text_line_item">
-      <div class="text_line">{{ text }}</div>
+      <div class="text_line" v-html="text"></div>
     </div>
 
     <div class="text_line_item">
-      <div class="text_line">{{ text }}</div>
+      <div class="text_line" v-html="text"></div>
     </div>
   </div>
 </template>
@@ -47,10 +47,10 @@ withDefaults(
 
 @keyframes scroll {
   from {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
   to {
-    transform: translateX(calc(-100% - 20px));
+    transform: translateX(0);
   }
 }
 

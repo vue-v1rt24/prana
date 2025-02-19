@@ -21,6 +21,5 @@ export default defineEventHandler(async (event) => {
       variants: data.pageBy.razrabotkaPage.kakMyRabotaemVarianty,
       runText: data.pageBy.razrabotkaPage.kakMyRabotaemVariantyTekstBegushhejStroki,
     },
-    portfolio: data.portfolioCategories.edges,
   };
 });

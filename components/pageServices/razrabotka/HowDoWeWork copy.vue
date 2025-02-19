@@ -13,12 +13,6 @@ const props = defineProps<{
 // console.log(props.works);
 
 //
-const viewport = useViewport();
-
-//
-let mm = gsap.matchMedia();
-
-//
 const countCart = computed(() => props.works.variants.length);
 
 // Управление модальным окно формы
@@ -26,54 +20,37 @@ const { isOpenModal } = useOutsideModal();
 
 //
 onMounted(() => {
-  mm.add('(min-width: 1300px)', () => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.how_do_we_work_sec',
-        scrub: 0.5,
-        pin: true,
-        // markers: true,
-      },
-    });
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.how_do_we_work_sec',
+      scrub: 0.5,
+      pin: true,
+      // markers: true,
+    },
+  });
 
-    //
-    let countCart = 0;
+  tl.to('.cart_hdw:nth-child(1)', {
+    x: 0,
+  });
 
-    const renderCartAnimation = () => {
-      let c = 0;
+  tl.to('.cart_hdw:nth-child(2)', {
+    x: 188,
+  });
 
-      for (let index = 0; index < 6; index++) {
-        tl.to(`.cart_hdw:nth-child(${index + 1})`, {
-          x: c,
-        });
+  tl.to('.cart_hdw:nth-child(3)', {
+    x: 376,
+  });
 
-        c += countCart;
-      }
-    };
+  tl.to('.cart_hdw:nth-child(4)', {
+    x: 564,
+  });
 
-    mm.add(
-      {
-        isDesktop: '(min-width: 1601px)',
-        is1600: '(max-width: 1600px)',
-        is1480: '(max-width: 1480px)',
-        is1360: '(max-width: 1360px)',
-      },
-      (context) => {
-        const { isDesktop, is1600, is1480, is1360 } = context.conditions as {
-          isDesktop: boolean;
-          is1600: boolean;
-          is1480: boolean;
-          is1360: boolean;
-        };
+  tl.to('.cart_hdw:nth-child(5)', {
+    x: 752,
+  });
 
-        countCart = isDesktop ? 188 : is1360 ? 125 : is1480 ? 140 : is1600 ? 160 : 0;
-        renderCartAnimation();
-
-        return () => {};
-      },
-    );
-
-    return () => {};
+  tl.to('.cart_hdw:nth-child(6)', {
+    x: 940,
   });
 });
 </script>
@@ -83,8 +60,7 @@ onMounted(() => {
     <div class="container">
       <h2 class="title_52">Как мы работаем?</h2>
 
-      <!--  -->
-      <ul v-if="viewport.isGreaterOrEquals('screen1300')" class="how_do_we_work__list">
+      <ul class="how_do_we_work__list">
         <PageServicesRazrabotkaHowDoWeWorkItem
           v-for="(work, idx) in works.variants"
           :key="work.kakMyRabotaemVariantyZagolovok"
@@ -113,20 +89,15 @@ onMounted(() => {
           />
         </li>
       </ul>
-
-      <!--  -->
-      <PageServicesRazrabotkaSliderHorizontal v-else :how-work-cards="works.variants" />
     </div>
 
     <!--  -->
-    <div v-if="viewport.isGreaterOrEquals('screen1300')" class="how_do_we_work_line_text_wrap">
-      <div class="how_do_we_work_line_text">
-        <PageServicesRazrabotkaLineText
-          v-if="works?.runText"
-          :text="works.runText"
-          bg="var(--colorTextWhite)"
-        />
-      </div>
+    <div class="how_do_we_work_line_text_wrap">
+      <PageServicesRazrabotkaLineText
+        v-if="works?.runText"
+        :text="works.runText"
+        bg="var(--colorTextWhite)"
+      />
     </div>
   </section>
 </template>
@@ -134,14 +105,9 @@ onMounted(() => {
 <style lang="css" scoped>
 .how_do_we_work_sec {
   position: relative;
+  /* height: 100vh; */
   background-color: var(--colorDark4);
   padding: 160px 0 209px 0;
-  overflow: hidden;
-
-  /*  */
-  @media (max-height: 768px) {
-    padding-top: 25px;
-  }
 }
 
 /*  */
@@ -173,11 +139,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   padding: 52px;
-
-  /*  */
-  @media (max-width: 1900px) {
-    width: 600px;
-  }
 }
 
 /*  */
@@ -186,11 +147,6 @@ onMounted(() => {
   top: 0;
   left: 0;
   transform: translateX(210%);
-
-  /*  */
-  @media (max-width: 1900px) {
-    transform: translateX(310%);
-  }
 }
 
 /*  */
@@ -250,20 +206,24 @@ onMounted(() => {
 
 .how_do_we_work_line_text_wrap {
   position: absolute;
-  top: 0;
+  top: 274px;
   transform: translateX(-50%);
   left: 50%;
+
+  width: 1920px;
+  height: 720px;
+  overflow: hidden;
   pointer-events: none;
   /* outline: 1px solid red; */
-}
-
-.how_do_we_work_line_text {
-  color: var(--accentColor2);
-  transform: translate(3.6%, 620%) rotate(-35deg);
 
   /*  */
-  @media (max-height: 768px) {
-    transform: translate(2.5%, 620%) rotate(-35deg);
+  @media (max-width: 1919px) {
+    width: 100%;
   }
+}
+
+.how_do_we_work_line_text_wrap .text_line_wrap {
+  color: var(--accentColor2);
+  transform: translate(20%, 620%) rotate(-35deg);
 }
 </style>
