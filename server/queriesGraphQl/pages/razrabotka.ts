@@ -13,7 +13,11 @@ export const razrabotkaQuery = `
           mediaItemUrl
         }
       }
-      razrabotkaOneScreenTekstBegushhejStroki
+      razrabotkaOneScreenRunImg {
+        node {
+          mediaItemUrl
+        }
+      }
       razrabotkaVarianty {
         razrabotkaVariantyZagolovok
         razrabotkaVariantyOpisanie

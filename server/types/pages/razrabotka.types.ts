@@ -14,7 +14,11 @@ export type TypeRazrabotka = {
             mediaItemUrl: string;
           }[];
         };
-        razrabotkaOneScreenTekstBegushhejStroki: string;
+        razrabotkaOneScreenRunImg: {
+          node: {
+            mediaItemUrl: string;
+          };
+        };
         razrabotkaVarianty: {
           razrabotkaVariantyZagolovok: string;
           razrabotkaVariantyOpisanie: string;

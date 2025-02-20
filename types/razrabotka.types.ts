@@ -10,7 +10,7 @@ export type TypeOneScreen = {
   instruments: {
     mediaItemUrl: string;
   }[];
-  runText: string;
+  runImg: string;
 };
 
 //

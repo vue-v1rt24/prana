@@ -142,18 +142,26 @@ onMounted(() => {
   @media (max-height: 768px) {
     padding-top: 25px;
   }
-}
 
-/*  */
+  @media (max-width: 768px) {
+    padding: 120px 0;
+  }
 
-.title_52 {
-  margin-bottom: 62px;
+  @media (max-width: 576px) {
+    padding: 80px 0;
+  }
 }
 
 /*  */
 
 .title_52 {
   font-weight: 500;
+  margin-bottom: 62px;
+
+  /*  */
+  @media (max-width: 576px) {
+    margin-bottom: 42px;
+  }
 }
 
 /*  */

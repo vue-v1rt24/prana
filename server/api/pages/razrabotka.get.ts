@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
       title: data.pageBy.razrabotkaPage.razrabotkaZagolovok,
       desc: data.pageBy.razrabotkaPage.razrabotkaOpisanie,
       instruments: data.pageBy.razrabotkaPage.razrabotkaNaChyomRazrabatyvaem.nodes,
-      runText: data.pageBy.razrabotkaPage.razrabotkaOneScreenTekstBegushhejStroki,
+      runImg: data.pageBy.razrabotkaPage.razrabotkaOneScreenRunImg.node.mediaItemUrl,
     },
     razrabotkaVarianty: {
       variants: data.pageBy.razrabotkaPage.razrabotkaVarianty,

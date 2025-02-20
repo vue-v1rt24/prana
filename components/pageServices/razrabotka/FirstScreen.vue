@@ -38,7 +38,7 @@ defineProps<{
     <!--  -->
     <div class="first_section__line_text_wrap">
       <div class="first_section__line_text">
-        <PageServicesRazrabotkaLineText v-if="data.runText" :text="data.runText" />
+        <PageServicesRazrabotkaLineImg v-if="data.runImg" :img="data.runImg" />
       </div>
     </div>
   </section>
@@ -183,6 +183,7 @@ defineProps<{
   position: absolute;
   top: 0;
   left: 50%;
+  width: 200%;
   transform: translateX(-50%) translateY(146px);
   pointer-events: none;
   /* outline: 1px solid red; */
@@ -200,17 +201,25 @@ defineProps<{
 }
 
 .first_section__line_text {
-  transform: translate(0%, 808%) rotate(-35deg);
+  transform: translate(0%, 980%) rotate(-35deg);
 
   /*  */
   @media (max-width: 1920px) {
     width: 130%;
-    transform: translate(-11%, 797%) rotate(-35deg);
+    transform: translate(-11%, 930%) rotate(-35deg);
+  }
+
+  @media (max-width: 1600px) {
+    transform: translate(-11%, 1000%) rotate(-35deg);
+  }
+
+  @media (max-width: 1300px) {
+    transform: translate(-11%, 1040%) rotate(-35deg);
   }
 
   @media (max-width: 992px) {
     width: 160%;
-    transform: translate(-11%, 850%) rotate(-35deg);
+    transform: translate(-11%, 1000%) rotate(-35deg);
   }
 
   @media (max-width: 768px) {

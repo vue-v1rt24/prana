@@ -40,19 +40,13 @@ defineProps<{
   transition: background-color 0.3s;
 
   /*  */
-  /*   @media (max-width: 1024px) {
-    --padding: 34px;
-    width: 410px;
-    height: 410px;
-  } */
-
-  /*   @media (max-width: 800px) {
+  @media (max-width: 576px) {
     --padding: 24px;
     width: 320px;
     height: 320px;
     background-size: 100px;
     border-radius: 24px;
-  } */
+  }
 
   /*  */
   &::before {

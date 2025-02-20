@@ -24,13 +24,13 @@ useSeoMeta({
     />
 
     <!--  -->
-    <!-- <PageServicesRazrabotkaHowDoWeWork
+    <PageServicesRazrabotkaHowDoWeWork
       v-if="data?.kakMyRabotaemVarianty.variants.length"
       :works="data.kakMyRabotaemVarianty"
-    /> -->
+    />
 
     <!--  -->
-    <!-- <WidgetWorks name-page="razrabotka" /> -->
+    <WidgetWorks name-page="razrabotka" />
   </main>
 </template>
 

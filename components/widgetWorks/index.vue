@@ -149,47 +149,45 @@ watchEffect(async () => {
 
 <template>
   <section class="portfolio_wrap">
-    <div class="container">
-      <h2 class="title_52">Смотрите примеры наших сайтов</h2>
+    <h2 class="title_52">Смотрите примеры наших сайтов</h2>
 
-      <!--  -->
-      <div class="portfolio_btns">
-        <template v-for="cat in works" :key="cat.node.databaseId">
-          <ButtonsTabSubPortfolio
-            v-if="cat.node.count"
-            :cat-name="cat.node.name"
-            @change-tag-sub="changeTitleBtmSub"
-          />
-        </template>
-      </div>
-
-      <!--  -->
-      <div class="works" ref="filterJs">
-        <template v-for="item in works" :key="item.node.databaseId">
-          <template v-for="work in item.node.portfolios.nodes">
-            <WidgetWorksItem :item="work" @route-path="changeRoutePath" />
-          </template>
-        </template>
-      </div>
-
-      <!--  -->
-      <div class="container">
-        <UiButton
-          class="works_portfolios_link"
-          title="Перейти в портфолио"
-          @click-btn="router.push('/portfolio')"
+    <!--  -->
+    <div class="portfolio_btns">
+      <template v-for="cat in works" :key="cat.node.databaseId">
+        <ButtonsTabSubPortfolio
+          v-if="cat.node.count"
+          :cat-name="cat.node.name"
+          @change-tag-sub="changeTitleBtmSub"
         />
-      </div>
+      </template>
+    </div>
 
-      <!--  -->
-      <WidgetWorksModalWork
-        v-if="dataWork"
-        :open="open"
-        @close-work="closeWork"
-        @close-modal="open = false"
-        :data-work="dataWork"
+    <!--  -->
+    <div class="works" ref="filterJs">
+      <template v-for="item in works" :key="item.node.databaseId">
+        <template v-for="work in item.node.portfolios.nodes">
+          <WidgetWorksItem :item="work" @route-path="changeRoutePath" />
+        </template>
+      </template>
+    </div>
+
+    <!--  -->
+    <div class="container">
+      <UiButton
+        class="works_portfolios_link"
+        title="Перейти в портфолио"
+        @click-btn="router.push('/portfolio')"
       />
     </div>
+
+    <!--  -->
+    <WidgetWorksModalWork
+      v-if="dataWork"
+      :open="open"
+      @close-work="closeWork"
+      @close-modal="open = false"
+      :data-work="dataWork"
+    />
   </section>
 </template>
 
@@ -199,6 +197,15 @@ watchEffect(async () => {
   background-color: white;
   border-radius: 80px 80px 0 0;
   padding: 160px 0;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding: 120px 0;
+  }
+
+  @media (max-width: 576px) {
+    padding: 80px 0;
+  }
 
   /*  */
   &::before {
@@ -215,27 +222,26 @@ watchEffect(async () => {
 
 /*  */
 
-.portfolio_wrap .container {
-  position: relative;
-}
-
-/*  */
-
 .title_52 {
+  position: relative;
   max-width: 785px;
   text-align: center;
+  color: white;
+  padding: 0 20px;
   margin: 0 auto;
 }
 
 /*  */
 
 .portfolio_btns {
+  position: relative;
   max-width: 1110px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 18px;
+  padding: 0 20px;
   margin: 42px auto 62px auto;
 }
 

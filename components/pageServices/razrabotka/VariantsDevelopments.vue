@@ -143,5 +143,14 @@ onMounted(() => {
 
 .variants_dev__line_text {
   margin-top: 160px;
+
+  /*  */
+  @media (max-width: 768px) {
+    margin-top: 120px;
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 80px;
+  }
 }
 </style>

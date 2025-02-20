@@ -36,11 +36,6 @@ withDefaults(
   gap: 20px;
   padding: 30px 0;
   overflow: hidden;
-
-  /*  */
-  @media (max-width: 768px) {
-    padding: 20px 0;
-  }
 }
 
 /*  */
@@ -68,10 +63,5 @@ withDefaults(
   font-size: 28px;
   text-transform: uppercase;
   white-space: nowrap;
-
-  /*  */
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
 }
 </style>

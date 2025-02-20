@@ -73,5 +73,10 @@ onUnmounted(() => {
 /*  */
 .swiper-slide {
   width: 510px;
+
+  /*  */
+  @media (max-width: 576px) {
+    width: 320px;
+  }
 }
 </style>
