@@ -19,43 +19,47 @@ const mm = gsap.matchMedia();
 
 //
 onMounted(() => {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.variants_dev_sec',
-      start: 'top center-=200',
-      end: 'center center-=150',
-      scrub: 1,
-      // markers: true,
-    },
-  });
+  mm.add('(min-width: 993px)', () => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.variants_dev_sec',
+        start: 'top center-=200',
+        end: 'center center-=150',
+        scrub: 1,
+        // markers: true,
+      },
+    });
 
-  tl.to('.variants_dev__item:first-child', {
-    y: 0,
-  });
-
-  tl.to(
-    '.variants_dev__item:nth-child(2)',
-    {
+    tl.to('.variants_dev__item:first-child', {
       y: 0,
-    },
-    '<',
-  );
+    });
 
-  tl.to(
-    '.first_section__line_text_wrap',
-    {
-      y: 536,
-    },
-    '<',
-  );
+    tl.to(
+      '.variants_dev__item:nth-child(2)',
+      {
+        y: 0,
+      },
+      '<',
+    );
 
-  tl.to(
-    '.variants_dev__shadow',
-    {
-      opacity: 1,
-    },
-    '<',
-  );
+    tl.to(
+      '.first_section__line_text_wrap',
+      {
+        y: 536,
+      },
+      '<',
+    );
+
+    tl.to(
+      '.variants_dev__shadow',
+      {
+        opacity: 1,
+      },
+      '<',
+    );
+
+    return () => {};
+  });
 });
 </script>
 
@@ -85,6 +89,16 @@ onMounted(() => {
 .variants_dev_sec {
   position: relative;
   padding-top: 710px;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 992px) {
+    padding-top: 120px;
+  }
+
+  @media (max-width: 576px) {
+    padding-top: 80px;
+  }
 }
 
 /*  */
@@ -92,6 +106,17 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 20px;
+
+  /*  */
+  @media (max-width: 992px) {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+  }
+
+  @media (max-width: 576px) {
+    row-gap: 20px;
+  }
 }
 
 /*  */
@@ -107,6 +132,11 @@ onMounted(() => {
   background-image: url(/img/razrabotka/shadow2.svg);
   background-repeat: no-repeat;
   z-index: -1;
+
+  /*  */
+  @media (max-width: 992px) {
+    display: none;
+  }
 }
 
 /*  */

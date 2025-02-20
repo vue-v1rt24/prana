@@ -40,42 +40,95 @@ const props = defineProps<{
   padding: 42px;
 
   /*  */
+  @media (max-width: 576px) {
+    border-radius: 24px;
+    padding: 24px;
+  }
+
+  /*  */
   &:first-child {
     z-index: -1;
     grid-column: 1 / span 6;
     grid-row: 1 / span 1;
     transform: translateY(-590px);
+
+    /*  */
+    @media (max-width: 992px) {
+      padding-right: 250px;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      padding-right: 80px;
+    }
+
+    @media (max-width: 740px) {
+      padding-right: 0;
+    }
   }
 
   &:nth-child(2) {
     grid-column: 7 / span 6;
     grid-row: 1 / span 1;
     transform: translateY(-260px);
+
+    /*  */
+    @media (max-width: 992px) {
+      transform: translateY(0);
+    }
   }
 
   &:nth-child(3) {
     grid-column: 1 / span 4;
     grid-row: 2 / span 1;
+
+    /*  */
+    @media (max-width: 1200px) {
+      grid-column: 1 / span 6;
+    }
   }
 
   &:nth-child(4) {
     grid-column: 5 / span 4;
     grid-row: 2 / span 1;
+
+    /*  */
+    @media (max-width: 1200px) {
+      grid-column: 7 / span 6;
+    }
   }
 
   &:nth-child(5) {
     grid-column: 9 / span 4;
     grid-row: 2 / span 1;
+
+    /*  */
+    @media (max-width: 1200px) {
+      grid-column: 1 / span 6;
+      grid-row: 3 / span 1;
+    }
   }
 
   &:nth-child(6) {
     grid-column: 1 / span 6;
     grid-row: 3 / span 1;
+
+    /*  */
+    @media (max-width: 1200px) {
+      grid-column: 7 / span 6;
+      grid-row: 3 / span 1;
+    }
   }
 
   &:nth-child(7) {
     grid-column: 7 / span 6;
     grid-row: 3 / span 1;
+
+    /*  */
+    @media (max-width: 1200px) {
+      grid-column: 1 / span 6;
+      grid-row: 4 / span 1;
+    }
   }
 }
 
@@ -85,6 +138,11 @@ const props = defineProps<{
   font-family: var(--fontFamily-Unbounded);
   font-size: 24px;
   line-height: 110%;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 18px;
+  }
 }
 
 /*  */
@@ -95,6 +153,12 @@ const props = defineProps<{
   line-height: 130%;
   opacity: 0.8;
   margin: 24px 0 42px 0;
+
+  /*  */
+  @media (max-width: 576px) {
+    font-size: 15px;
+    margin: 18px 0 32px 0;
+  }
 }
 
 /*  */
@@ -105,6 +169,15 @@ const props = defineProps<{
   /*  */
   li {
     transform: translateX(calc(var(--offset) * -24px));
+
+    /*  */
+    @media (max-width: 768px) {
+      width: 62px;
+    }
+
+    @media (max-width: 576px) {
+      width: 50px;
+    }
   }
 }
 </style>

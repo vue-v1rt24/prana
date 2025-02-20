@@ -9,7 +9,7 @@ const props = defineProps<{
   howWorkCards: TypeKakMyRabotaemVariantyItem[];
 }>();
 
-console.log(props.howWorkCards);
+// console.log(props.howWorkCards);
 
 // Количество карточек
 const countCard = computed(() => props.howWorkCards.length);
@@ -66,20 +66,12 @@ onUnmounted(() => {
 
 <style lang="css" scoped>
 .swiper_how_work {
-  padding: 0 20px;
+  padding: 0 30px;
+  margin: 0 -30px;
 }
 
 /*  */
 .swiper-slide {
   width: 510px;
-
-  /*  */
-  /* @media (max-width: 1024px) {
-    width: 410px;
-  } */
-
-  /* @media (max-width: 800px) {
-    width: 320px;
-  } */
 }
 </style>

@@ -11,7 +11,10 @@ defineProps<{
   <section class="first_section">
     <div class="container about_particles_container">
       <div class="about_particles">
-        <img src="/img/razrabotka/sphera.svg" alt="" />
+        <picture class="first_section__img">
+          <source srcset="/img/razrabotka/sphera_1300.svg" media="(max-width: 1300px)" />
+          <img src="/img/razrabotka/sphera.svg" alt="" />
+        </picture>
       </div>
     </div>
 
@@ -58,6 +61,30 @@ defineProps<{
   right: 0;
   width: 920px;
   z-index: -1;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 768px) {
+    top: -50px;
+    width: 436px;
+  }
+
+  @media (max-width: 576px) {
+    top: -35px;
+    width: 282px;
+  }
+}
+
+/*  */
+.first_section__img img {
+  @media (max-width: 1300px) {
+    transform: translate(200px, 0);
+  }
+
+  /*  */
+  @media (max-width: 768px) {
+    transform: translate(80px, 0);
+  }
 }
 
 /*  */
@@ -75,7 +102,7 @@ defineProps<{
   }
 
   @media (max-width: 576px) {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   /*  */
@@ -83,12 +110,28 @@ defineProps<{
     content: '';
     pointer-events: none;
     position: absolute;
-    top: -317%;
+    top: 50%;
     left: -55%;
+    transform: translateY(-50%);
     width: 1151px;
     height: 1147px;
     background-image: url(/img/razrabotka/shadow.png);
     background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: -65px;
+
+    /*  */
+    @media (max-width: 768px) {
+      width: 800px;
+      height: 800px;
+      margin-left: -50px;
+    }
+
+    @media (max-width: 576px) {
+      width: 600px;
+      height: 600px;
+      margin-left: -120px;
+    }
   }
 }
 
@@ -101,6 +144,17 @@ defineProps<{
   line-height: 130%;
   opacity: 0.8;
   margin: 31px 0 62px 0;
+
+  /*  */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin: 28px 0 42px 0;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 14px;
+    margin: 22px 0 32px 0;
+  }
 }
 
 /*  */
@@ -111,6 +165,15 @@ defineProps<{
   /*  */
   li {
     transform: translateX(calc(var(--offset) * -24px));
+
+    /*  */
+    @media (max-width: 768px) {
+      width: 62px;
+    }
+
+    @media (max-width: 576px) {
+      width: 50px;
+    }
   }
 }
 
@@ -130,6 +193,10 @@ defineProps<{
     height: 1530px;
     overflow: hidden;
   }
+
+  @media (max-width: 740px) {
+    display: none;
+  }
 }
 
 .first_section__line_text {
@@ -139,6 +206,15 @@ defineProps<{
   @media (max-width: 1920px) {
     width: 130%;
     transform: translate(-11%, 797%) rotate(-35deg);
+  }
+
+  @media (max-width: 992px) {
+    width: 160%;
+    transform: translate(-11%, 850%) rotate(-35deg);
+  }
+
+  @media (max-width: 768px) {
+    transform: translate(-12%, 1030%) rotate(-35deg);
   }
 }
 </style>
