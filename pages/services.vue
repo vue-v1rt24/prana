@@ -1,53 +1,62 @@
 <script setup lang="ts">
-const router = useRouter();
+const { data } = await useFetch('/api/pages/services');
+// console.log(data.value);
 
 //
 useSeoMeta({
-  title: 'Услуги',
-  description: 'Описание',
+  title: data.value?.metaTags.metaTitle,
+  description: data.value?.metaTags.metaDescription,
 });
-
-//
-// Скачивание файла
-const loadFile = async () => {
-  const link = document.createElement('a');
-  link.setAttribute('href', '/presents_parana_it.pdf');
-  link.setAttribute('target', '_blank');
-  link.style.display = 'none';
-
-  document.body.append(link);
-  link.click();
-  link.remove();
-};
 </script>
 
 <template>
-  <section class="service_item">
+  <section class="service">
     <!-- Хлебные крошки -->
-    <Breadcrumbs :breadcrumbs="[{ title: 'Услуги' }]" />
-
-    <!--  -->
-    <div class="about_particles"></div>
+    <Breadcrumbs :breadcrumbs="[{ title: 'Услуги' }]" dark />
 
     <!--  -->
     <div class="container">
-      <h1 class="service_item__h1">Раздел находится в разработке</h1>
-      <p class="service_item__desc">Совсем скоро он появится</p>
+      <h1 class="service__h1">Услуги</h1>
 
-      <UiButton
-        title="Скачать презентацию"
-        class="service_item__btn download_pdf"
-        @click-btn="loadFile"
-      />
+      <!--  -->
+      <div class="service__content">
+        <div class="service__left">
+          <NuxtImg
+            :src="data?.pageServices.pageServicesIzobrazhenie.node.mediaItemUrl"
+            :alt="data?.pageServices.pageServicesIzobrazhenie.node.altText"
+          />
+        </div>
 
-      <UiButton title="Вернуться назад" @click-btn="router.back" class="service_item__btn" />
+        <ul class="service__right">
+          <PageServicesServiceItem
+            v-for="service in data?.pageServices.pageServicesRepeatUslugi"
+            :img="service.izobrazhenie.node.mediaItemUrl"
+            :alt="service.izobrazhenie.node.altText"
+            :title="service.zagolovok"
+            :desc="service.opisanie"
+            :link="service.pageServicesRepeatUslugiSsylkaNaStraniczu"
+          />
+        </ul>
+      </div>
+
+      <!-- Виджет Яндекса -->
+      <div
+        class="service_reviews"
+        v-html="data?.pageServices.pageServicesVidzhetRejtingaYandeksa"
+      ></div>
     </div>
   </section>
 </template>
 
 <style lang="css" scoped>
-.service_item {
-  padding-bottom: 180px;
+.service {
+  background-color: white;
+  padding-bottom: 160px;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding-bottom: 120px;
+  }
 
   @media (max-width: 576px) {
     padding-bottom: 80px;
@@ -55,81 +64,86 @@ const loadFile = async () => {
 }
 
 /*  */
-.about_particles {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 2318px;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.about_particles::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 940px;
-  height: 714px;
-  background-image: url(/img/team/decoration_1_1920.png);
-  background-repeat: no-repeat;
-  z-index: -1;
-}
-
-@media (max-width: 1200px) {
-  .about_particles::before {
-    width: 564px;
-    height: 604px;
-    background-image: url(/img/team/decoration_1_768.png);
-  }
-}
-
-@media (max-width: 700px) {
-  .about_particles::before {
-    right: -120px;
-  }
-}
-
-@media (max-width: 576px) {
-  .about_particles::before {
-    right: -311px;
-    width: 564px;
-    height: 604px;
-    background-image: url(../img/team/decoration_1_360.png);
-  }
-}
-
-/*  */
-.service_item__h1 {
-  max-width: 770px;
+.service__h1 {
   font-family: var(--fontFamily-Unbounded);
   font-size: 62px;
   line-height: 100%;
   letter-spacing: 0.02em;
-  color: #fff;
+  color: var(--colorDark3);
+  margin-bottom: 62px;
 
   @media (max-width: 768px) {
     font-size: 42px;
   }
 
   @media (max-width: 576px) {
-    font-size: 32px;
+    font-size: 26px;
+    margin-bottom: 42px;
   }
 }
 
-.service_item__desc {
-  margin: 52px 0 82px 0;
+/*  */
+
+.service__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 632px;
+  column-gap: 20px;
+
+  /*  */
+  @media (max-width: 1300px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
 }
 
-.service_item__btn {
-  width: 430px;
-  height: 103px;
-  margin-bottom: 20px;
+/*  */
+
+.service__left {
+  border-radius: 42px;
+  overflow: hidden;
+
+  /*  */
+  @media (max-width: 1300px) {
+    order: 1;
+    margin-top: 40px;
+  }
 
   @media (max-width: 576px) {
+    aspect-ratio: 1;
+    height: auto;
+    border-radius: 24px;
+    margin-top: 32px;
+  }
+
+  /*  */
+  img {
     width: 100%;
-    height: 80px;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/*  */
+
+.service__right {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+/*  */
+
+.service_reviews {
+  margin-top: 100px;
+
+  /*  */
+  @media (max-width: 768px) {
+    margin-top: 80px;
+  }
+
+  @media (max-width: 576px) {
+    display: none;
   }
 }
 </style>

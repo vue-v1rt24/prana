@@ -71,6 +71,11 @@ defineProps<{
 .dark {
   background-color: white;
   padding: 82px 0 100px 0;
+
+  /*  */
+  @media (max-width: 768px) {
+    padding: 34px 0 42px 0;
+  }
 }
 
 .dark .breadcrumbs {

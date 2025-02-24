@@ -16,7 +16,8 @@ watchEffect(() => {
     theme.value = 'light';
   } else if (
     route.path.includes('comanda') ||
-    // route.path.includes('services') ||
+    route.path.includes('branding') ||
+    route.path.includes('foto-video') ||
     route.path.includes('products') ||
     route.path.includes('vacancies') ||
     route.path.includes('privacy') ||

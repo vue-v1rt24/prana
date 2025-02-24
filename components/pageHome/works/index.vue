@@ -220,6 +220,10 @@ const showWork = async () => {
   try {
     const work = articles.value?.find((work) => work.slug === route.params.slug);
 
+    if (!work) {
+      showError('');
+    }
+
     if (work?.databaseId) {
       const workData = await getWork(work.databaseId);
 

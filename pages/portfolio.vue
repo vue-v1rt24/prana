@@ -61,6 +61,10 @@ const showWork = async () => {
   try {
     const work = articles.value?.portfolios.find((w) => w.slug === route.params.slug);
 
+    if (!work) {
+      showError('');
+    }
+
     if (work?.databaseId) {
       const workData = await getWork(work.databaseId);
 
