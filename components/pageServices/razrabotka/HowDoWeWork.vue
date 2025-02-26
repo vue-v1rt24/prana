@@ -139,7 +139,7 @@ onMounted(() => {
   overflow: hidden;
 
   /*  */
-  @media (max-height: 768px) {
+  @media (max-height: 788px) {
     padding-top: 25px;
   }
 

@@ -62,6 +62,7 @@ defineProps<{
 .service__right_link {
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 
 /*  */
