@@ -94,7 +94,7 @@ export default defineNuxtConfig({
 
   // Яндекс метрика
   yandexMetrika: {
-    id: '98315354',
+    id: '100256014',
     webvisor: true,
   },
 
